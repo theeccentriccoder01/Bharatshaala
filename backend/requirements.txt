@@ -1,0 +1,3 @@
+Flask-Bcrypt
+Flask-Login
+Flask-CORS

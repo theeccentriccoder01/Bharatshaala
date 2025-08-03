@@ -1,0 +1,125 @@
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+const UserSidebar = ({ user }) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    const menuItems = [
+        { id: 'dashboard', name: 'डैशबोर्ड', icon: '🏠', href: '/user/dashboard' },
+        { id: 'orders', name: 'मेरे ऑर्डर', icon: '📦', href: '/user/orders', badge: '3' },
+        { id: 'wishlist', name: 'पसंदीदा', icon: '❤️', href: '/user/wishlist', badge: '12' },
+        { id: 'addresses', name: 'पते', icon: '📍', href: '/user/addresses' },
+        { id: 'payments', name: 'पेमेंट विधि', icon: '💳', href: '/user/payments' },
+        { id: 'rewards', name: 'रिवॉर्ड पॉइंट्स', icon: '🎁', href: '/user/rewards' },
+        { id: 'notifications', name: 'अधिसूचनाएं', icon: '🔔', href: '/user/notifications' },
+        { id: 'settings', name: 'सेटिंग्स', icon: '⚙️', href: '/user/settings' },
+        { id: 'support', name: 'सहायता', icon: '💬', href: '/user/support' }
+    ];
+
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        navigate('/login');
+    };
+
+    return (
+        <div className={`bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-emerald-200 transition-all duration-300 ${
+            isCollapsed ? 'w-20' : 'w-80'
+        }`}>
+            
+            {/* Header */}
+            <div className='p-6 border-b border-emerald-200'>
+                <div className='flex items-center justify-between'>
+                    {!isCollapsed && (
+                        <div className='flex items-center space-x-3'>
+                            <div className='w-12 h-12 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg'>
+                                {user?.name?.charAt(0) || 'U'}
+                            </div>
+                            <div>
+                                <h3 className='font-bold text-emerald-800'>{user?.name || 'उपयोगकर्ता'}</h3>
+                                <p className='text-emerald-600 text-sm'>{user?.email}</p>
+                            </div>
+                        </div>
+                    )}
+                    <button
+                        onClick={() => setIsCollapsed(!isCollapsed)}
+                        className='p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors duration-200'
+                    >
+                        {isCollapsed ? '→' : '←'}
+                    </button>
+                </div>
+            </div>
+
+            {/* Navigation Menu */}
+            <nav className='p-4'>
+                <ul className='space-y-2'>
+                    {menuItems.map((item) => {
+                        const isActive = location.pathname === item.href;
+                        return (
+                            <li key={item.id}>
+                                <a
+                                    href={item.href}
+                                    className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 group ${
+                                        isActive
+                                            ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-md'
+                                            : 'text-emerald-700 hover:bg-emerald-50'
+                                    }`}
+                                >
+                                    <span className='text-xl'>{item.icon}</span>
+                                    {!isCollapsed && (
+                                        <>
+                                            <span className='font-medium flex-1'>{item.name}</span>
+                                            {item.badge && (
+                                                <span className={`px-2 py-1 rounded-full text-xs font-bold ${
+                                                    isActive 
+                                                        ? 'bg-white/20 text-white' 
+                                                        : 'bg-emerald-500 text-white'
+                                                }`}>
+                                                    {item.badge}
+                                                </span>
+                                            )}
+                                        </>
+                                    )}
+                                </a>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </nav>
+
+            {/* User Actions */}
+            {!isCollapsed && (
+                <div className='p-4 border-t border-emerald-200'>
+                    <div className='space-y-3'>
+                        {/* Quick Stats */}
+                        <div className='bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
+                            <h4 className='font-semibold text-emerald-800 mb-3 text-sm'>आपकी गतिविधि</h4>
+                            <div className='grid grid-cols-2 gap-3 text-center'>
+                                <div>
+                                    <div className='text-lg font-bold text-emerald-600'>8</div>
+                                    <div className='text-xs text-emerald-600'>कुल ऑर्डर</div>
+                                </div>
+                                <div>
+                                    <div className='text-lg font-bold text-emerald-600'>₹15,420</div>
+                                    <div className='text-xs text-emerald-600'>कुल खर्च</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Logout Button */}
+                        <button
+                            onClick={handleLogout}
+                            className='w-full flex items-center justify-center space-x-2 p-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors duration-200'
+                        >
+                            <span>🚪</span>
+                            <span className='font-medium'>लॉग आउट</span>
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default UserSidebar;
