@@ -1,354 +1,381 @@
-import React, { useState, useEffect } from 'react';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import '../../App.css';
+// About Page for Bharatshala Platform
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useAnalytics } from '../analytics';
+import { motion } from 'framer-motion';
 
 const About = () => {
-    const [loading, setLoading] = useState(true);
-    const [activeSection, setActiveSection] = useState('story');
+  const { trackPageView, trackEvent } = useAnalytics();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 1000);
-        return () => clearTimeout(timer);
-    }, []);
+  useEffect(() => {
+    trackPageView('about');
+  }, [trackPageView]);
 
-    const sections = [
-        { id: 'story', name: 'हमारी कहानी', icon: '📚' },
-        { id: 'mission', name: 'हमारा मिशन', icon: '🎯' },
-        { id: 'team', name: 'हमारी टीम', icon: '👥' },
-        { id: 'values', name: 'हमारे मूल्य', icon: '💎' }
-    ];
+  const stats = [
+    { number: '50,000+', label: 'संतुष्ट ग्राहक', icon: '👥' },
+    { number: '5,000+', label: 'कारीगर और विक्रेता', icon: '🛍️' },
+    { number: '1,00,000+', label: 'हस्तनिर्मित उत्पाद', icon: '🎨' },
+    { number: '28', label: 'राज्यों में सेवा', icon: '🗺️' }
+  ];
 
-    const founders = [
-        {
-            id: 1,
-            name: 'राज शर्मा',
-            nameEn: 'Raj Sharma',
-            role: 'सह-संस्थापक और सीईओ',
-            roleEn: 'Co-Founder & CEO',
-            description: 'ई-कॉमर्स और डिजिटल मार्केटिंग में 15 साल का अनुभव। भारतीय हस्तशिल्प के प्रति गहरा प्रेम।',
-            image: '/images/team/raj-sharma.jpg',
-            linkedin: '#',
-            twitter: '#',
-            background: 'IIT दिल्ली से कंप्यूटर साइंस, पूर्व में Flipkart और Amazon में काम',
-            achievements: ['Best Startup Award 2023', 'Digital India Champion', 'E-commerce Excellence']
-        },
-        {
-            id: 2,
-            name: 'प्रिया पटेल',
-            nameEn: 'Priya Patel',
-            role: 'सह-संस्थापक और सीटीओ',
-            roleEn: 'Co-Founder & CTO',
-            description: 'टेक्नोलॉजी और इनोवेशन की विशेषज्ञ। AI और ML के क्षेत्र में अग्रणी।',
-            image: '/images/team/priya-patel.jpg',
-            linkedin: '#',
-            twitter: '#',
-            background: 'IIT बॉम्बे से टेक्नोलॉजी, Google और Microsoft में वरिष्ठ पद',
-            achievements: ['Tech Innovation Award', 'AI Excellence', 'Women in Tech Leader']
-        },
-        {
-            id: 3,
-            name: 'अमित कुमार',
-            nameEn: 'Amit Kumar',
-            role: 'मुख्य डिज़ाइन अधिकारी',
-            roleEn: 'Chief Design Officer',
-            description: 'UX/UI डिज़ाइन और ब्रांडिंग के क्षेत्र में 12 साल का अनुभव। भारतीय कला से प्रेरित डिज़ाइन।',
-            image: '/images/team/amit-kumar.jpg',
-            linkedin: '#',
-            twitter: '#',
-            background: 'NID अहमदाबाद से डिज़ाइन, Adobe और Zomato में काम',
-            achievements: ['Design Excellence Award', 'Brand Innovation', 'Creative Leadership']
-        }
-    ];
-
-    const stats = [
-        { number: '50+', label: 'बाजार', icon: '🏪' },
-        { number: '1000+', label: 'विक्रेता', icon: '👨‍💼' },
-        { number: '25000+', label: 'उत्पाद', icon: '📦' },
-        { number: '5⭐', label: 'रेटिंग', icon: '⭐' }
-    ];
-
-    const values = [
-        {
-            icon: '🌿',
-            title: 'प्रामाणिकता',
-            description: 'हम केवल असली और प्रमाणित उत्पाद बेचते हैं'
-        },
-        {
-            icon: '🤝',
-            title: 'विश्वास',
-            description: 'ग्राहकों और विक्रेताओं के साथ पारदर्शी संबंध'
-        },
-        {
-            icon: '🎨',
-            title: 'परंपरा',
-            description: 'भारतीय कला और शिल्प को संरक्षित करना'
-        },
-        {
-            icon: '🚀',
-            title: 'नवाचार',
-            description: 'आधुनिक तकनीक के साथ पारंपरिक व्यापार'
-        }
-    ];
-
-    if (loading) {
-        return <LoadingSpinner message="हमारे बारे में जानकारी लोड हो रही है..." />;
+  const timeline = [
+    {
+      year: '2020',
+      title: 'स्थापना',
+      description: 'भारतीय हस्तशिल्प को डिजिटल प्लेटफॉर्म पर लाने का सपना'
+    },
+    {
+      year: '2021',
+      title: 'पहले 1000 कारीगर',
+      description: 'देश भर के प्रतिभाशाली कारीगरों का जुड़ाव'
+    },
+    {
+      year: '2022',
+      title: 'राष्ट्रीय विस्तार',
+      description: '15 राज्यों में सेवा का विस्तार'
+    },
+    {
+      year: '2023',
+      title: 'अंतर्राष्ट्रीय पहुंच',
+      description: 'वैश्विक बाज़ार में भारतीय कला का प्रवेश'
+    },
+    {
+      year: '2024',
+      title: 'एक लाख उत्पाद',
+      description: 'प्लेटफॉर्म पर एक लाख से अधिक हस्तनिर्मित उत्पाद'
+    },
+    {
+      year: '2025',
+      title: 'AI और इनोवेशन',
+      description: 'कृत्रिम बुद्धिमत्ता के साथ बेहतर खरीदारी अनुभव'
     }
+  ];
 
-    return (
-        <React.StrictMode>
-            <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+  const teamMembers = [
+    {
+      name: 'राहुल शर्मा',
+      role: 'संस्थापक और CEO',
+      image: '/images/team/rahul.jpg',
+      bio: 'IIT दिल्ली से इंजीनियरिंग और 10+ साल का टेक अनुभव'
+    },
+    {
+      name: 'प्रिया गुप्ता',
+      role: 'CTO',
+      image: '/images/team/priya.jpg',
+      bio: 'तकनीकी नेतृत्व और उत्पाद विकास की विशेषज्ञ'
+    },
+    {
+      name: 'अमित कुमार',
+      role: 'कारीगर संपर्क प्रमुख',
+      image: '/images/team/amit.jpg',
+      bio: 'पारंपरिक कलाओं के संरक्षण में 15 साल का अनुभव'
+    },
+    {
+      name: 'सुमित्रा देवी',
+      role: 'गुणवत्ता नियंत्रण प्रमुख',
+      image: '/images/team/sumitra.jpg',
+      bio: 'हस्तशिल्प की प्रामाणिकता सुनिश्चित करने में विशेषज्ञ'
+    }
+  ];
 
-                {/* Hero Section */}
-                <div className='relative overflow-hidden'>
-                    <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
-                        <div className='text-center mb-16'>
-                            <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-emerald-200'>
-                                <span className='text-2xl'>🏛️</span>
-                                <span className='text-emerald-800 font-bold'>हमारे बारे में</span>
-                            </div>
-                            
-                            <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-green-600 to-emerald-800 bg-clip-text text-transparent mb-6 leading-tight'>
-                                भारतशाला की कहानी
-                            </h1>
-                            
-                            <p className='text-xl md:text-2xl text-emerald-700 max-w-4xl mx-auto leading-relaxed font-medium'>
-                                भारतीय बाजार वास्तव में कुछ प्रामाणिक और शानदार उत्पाद प्रदान करते हैं,<br/>
-                                चाहे वह कपड़े हों, मसाले हों, या आभूषण हों।
-                            </p>
-                        </div>
-                    </div>
+  const values = [
+    {
+      title: 'प्रामाणिकता',
+      description: 'हर उत्पाद की गुणवत्ता और मूलता की गारंटी',
+      icon: '✨'
+    },
+    {
+      title: 'न्यायसंगत व्यापार',
+      description: 'कारीगरों को उचित मूल्य और सम्मान',
+      icon: '⚖️'
+    },
+    {
+      title: 'सांस्कृतिक संरक्षण',
+      description: 'पारंपरिक कलाओं का संरक्षण और प्रोत्साहन',
+      icon: '🏛️'
+    },
+    {
+      title: 'नवाचार',
+      description: 'तकनीक के साथ परंपरा का संयोजन',
+      icon: '🚀'
+    }
+  ];
+
+  const handleContactClick = () => {
+    trackEvent('about_contact_clicked');
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>हमारे बारे में - भारतशाला | भारतीय हस्तशिल्प का डिजिटल घर</title>
+        <meta name="description" content="भारतशाला के बारे में जानें - भारत की सबसे बड़ी हस्तशिल्प मार्केटप्लेस जो कारीगरों और ग्राहकों को जोड़ती है।" />
+        <meta name="keywords" content="भारतशाला, हस्तशिल्प, कारीगर, भारतीय कला, हैंडमेड" />
+      </Helmet>
+
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-orange-50">
+        
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="container mx-auto px-6 relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center max-w-4xl mx-auto"
+            >
+              <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                भारतशाला की कहानी
+              </h1>
+              <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
+                जहाँ हर हाथ से बना उत्पाद एक कहानी कहता है और हर कारीगर का सपना पूरा होता है
+              </p>
+              <div className="mt-8 text-6xl">🎨</div>
+            </motion.div>
+          </div>
+          
+          {/* Decorative elements */}
+          <div className="absolute top-10 left-10 text-4xl opacity-30 animate-bounce">🪔</div>
+          <div className="absolute bottom-10 right-10 text-4xl opacity-30 animate-pulse">🏺</div>
+        </section>
+
+        {/* Mission Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="text-center max-w-4xl mx-auto"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-emerald-800 mb-8">
+                हमारा लक्ष्य
+              </h2>
+              <p className="text-xl text-gray-700 leading-relaxed mb-12">
+                भारतशाला का लक्ष्य भारत की समृद्ध सांस्कृतिक विरासत को डिजिटल युग में संजोना है। 
+                हम कारीगरों को सीधे ग्राहकों से जोड़कर उन्हें उचित मूल्य दिलाते हैं और पारंपरिक 
+                कलाओं को नई पीढ़ी तक पहुंचाते हैं।
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="text-center">
+                  <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-4xl">🎯</span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-emerald-800 mb-4">विज़न</h3>
+                  <p className="text-gray-600">
+                    भारतीय हस्तशिल्प को वैश्विक मंच पर स्थापित करना और 
+                    कारीगरों की आर्थिक स्थिति में सुधार लाना।
+                  </p>
                 </div>
-
-                {/* Stats Section */}
-                <div className='max-w-7xl mx-auto px-6 mb-20'>
-                    <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
-                        {stats.map((stat, index) => (
-                            <div key={index} className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg border border-emerald-200 hover:shadow-xl transition-all duration-300 transform hover:scale-105'>
-                                <div className='text-3xl mb-3'>{stat.icon}</div>
-                                <div className='text-3xl font-bold text-emerald-600 mb-2'>{stat.number}</div>
-                                <div className='text-emerald-700 font-medium'>{stat.label}</div>
-                            </div>
-                        ))}
-                    </div>
+                
+                <div className="text-center">
+                  <div className="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-4xl">💫</span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-orange-600 mb-4">मिशन</h3>
+                  <p className="text-gray-600">
+                    प्रामाणिक हस्तनिर्मित उत्पादों के माध्यम से ग्राहकों को 
+                    भारतीय संस्कृति से जोड़ना और कारीगरों को सशक्त बनाना।
+                  </p>
                 </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-                {/* Navigation Tabs */}
-                <div className='max-w-4xl mx-auto px-6 mb-12'>
-                    <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-2 shadow-lg'>
-                        <div className='grid grid-cols-2 md:grid-cols-4 gap-2'>
-                            {sections.map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => setActiveSection(section.id)}
-                                    className={`flex items-center justify-center space-x-2 py-3 px-4 rounded-xl transition-all duration-300 ${
-                                        activeSection === section.id
-                                            ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-md'
-                                            : 'text-emerald-600 hover:bg-emerald-50'
-                                    }`}
-                                >
-                                    <span className='text-lg'>{section.icon}</span>
-                                    <span className='font-medium'>{section.name}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Content Sections */}
-                <div className='max-w-6xl mx-auto px-6 pb-20'>
-                    
-                    {/* Our Story */}
-                    {activeSection === 'story' && (
-                        <div className='bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
-                            <h2 className='text-3xl font-bold text-emerald-800 mb-6 flex items-center space-x-3'>
-                                <span>📚</span>
-                                <span>हमारी कहानी</span>
-                            </h2>
-                            
-                            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-center'>
-                                <div className='space-y-6'>
-                                    <p className='text-lg text-emerald-700 leading-relaxed'>
-                                        <span className='font-bold text-2xl text-emerald-600'>भारतशाला</span> का जन्म एक सपने से हुआ - 
-                                        भारत के पारंपरिक बाजारों को डिजिटल दुनिया से जोड़ने का सपना। हमारा लक्ष्य इन क्षेत्रीय बाजारों को 
-                                        हमारी वेबसाइट पर पेश करना है ताकि हर कोई उन तक पहुंच सके।
-                                    </p>
-                                    
-                                    <p className='text-lg text-emerald-700 leading-relaxed'>
-                                        हमारा उद्देश्य इन दुकानदारों और विक्रेताओं को लेकर उनके सामान को जनता के लिए दृश्यमान और 
-                                        हमेशा पहुंचने योग्य बनाना है, जबकि उपयोगकर्ता डिजिटल रूप से खरीदारी करने और इन बाजारों का 
-                                        अनुभव करने में सक्षम हैं।
-                                    </p>
-
-                                    <div className='bg-emerald-50 rounded-xl p-6 border border-emerald-200'>
-                                        <h3 className='font-bold text-emerald-800 mb-3'>हमारा दृष्टिकोण</h3>
-                                        <p className='text-emerald-700'>
-                                            "प्रत्येक भारतीय बाजार की अनूठी संस्कृति और परंपरा को डिजिटल युग में संरक्षित करना"
-                                        </p>
-                                    </div>
-                                </div>
-                                
-                                <div className='relative'>
-                                    <div className='bg-gradient-to-br from-emerald-400 to-green-500 rounded-3xl p-8 text-white text-center'>
-                                        <div className='text-6xl mb-4'>🏪</div>
-                                        <h3 className='text-2xl font-bold mb-4'>2023 में स्थापित</h3>
-                                        <p className='text-emerald-100'>
-                                            भारतीय व्यापारिक परंपरा को आधुनिक तकनीक से जोड़कर एक नया अध्याय शुरू किया
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Our Mission */}
-                    {activeSection === 'mission' && (
-                        <div className='bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
-                            <h2 className='text-3xl font-bold text-emerald-800 mb-6 flex items-center space-x-3'>
-                                <span>🎯</span>
-                                <span>हमारा मिशन</span>
-                            </h2>
-                            
-                            <div className='space-y-8'>
-                                <div className='text-center'>
-                                    <p className='text-xl text-emerald-700 leading-relaxed max-w-4xl mx-auto'>
-                                        भारत के पारंपरिक बाजारों को डिजिटल प्लेटफॉर्म पर लाना और स्थानीय कारीगरों, 
-                                        शिल्पकारों और व्यापारियों को वैश्विक बाजार से जोड़ना।
-                                    </p>
-                                </div>
-
-                                <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-                                    <div className='bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200'>
-                                        <div className='text-3xl mb-4 text-center'>🌐</div>
-                                        <h3 className='font-bold text-blue-800 mb-3 text-center'>वैश्विक पहुंच</h3>
-                                        <p className='text-blue-700 text-center'>
-                                            भारतीय उत्पादों को दुनिया भर के ग्राहकों तक पहुंचाना
-                                        </p>
-                                    </div>
-
-                                    <div className='bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200'>
-                                        <div className='text-3xl mb-4 text-center'>🤝</div>
-                                        <h3 className='font-bold text-green-800 mb-3 text-center'>सामुदायिक सहयोग</h3>
-                                        <p className='text-green-700 text-center'>
-                                            स्थानीय कारीगरों और शिल्पकारों को सशक्त बनाना
-                                        </p>
-                                    </div>
-
-                                    <div className='bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200'>
-                                        <div className='text-3xl mb-4 text-center'>🎨</div>
-                                        <h3 className='font-bold text-purple-800 mb-3 text-center'>परंपरा संरक्षण</h3>
-                                        <p className='text-purple-700 text-center'>
-                                            भारतीय कला और शिल्प परंपराओं को भविष्य के लिए संरक्षित करना
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Our Team */}
-                    {activeSection === 'team' && (
-                        <div className='bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
-                            <h2 className='text-3xl font-bold text-emerald-800 mb-8 flex items-center space-x-3'>
-                                <span>👥</span>
-                                <span>हमारे संस्थापक</span>
-                            </h2>
-                            
-                            <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-                                {founders.map((founder) => (
-                                    <div key={founder.id} className='group bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200 hover:shadow-xl transition-all duration-300 transform hover:scale-105'>
-                                        <div className='text-center mb-6'>
-                                            <div className='w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg'>
-                                                {founder.name.charAt(0)}
-                                            </div>
-                                            <h3 className='text-xl font-bold text-emerald-800 mb-1'>{founder.name}</h3>
-                                            <p className='text-emerald-600 font-medium mb-2'>{founder.role}</p>
-                                            <div className='flex justify-center space-x-3'>
-                                                <a href={founder.linkedin} className='text-blue-600 hover:text-blue-700'>
-                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                                    </svg>
-                                                </a>
-                                                <a href={founder.twitter} className='text-blue-400 hover:text-blue-500'>
-                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        
-                                        <p className='text-emerald-700 mb-4 text-center'>{founder.description}</p>
-                                        
-                                        <div className='space-y-3'>
-                                            <div className='bg-white rounded-lg p-3 border border-emerald-200'>
-                                                <h4 className='font-semibold text-emerald-800 text-sm mb-1'>शैक्षणिक पृष्ठभूमि:</h4>
-                                                <p className='text-emerald-700 text-sm'>{founder.background}</p>
-                                            </div>
-                                            
-                                            <div className='bg-white rounded-lg p-3 border border-emerald-200'>
-                                                <h4 className='font-semibold text-emerald-800 text-sm mb-2'>उपलब्धियां:</h4>
-                                                <div className='space-y-1'>
-                                                    {founder.achievements.map((achievement, index) => (
-                                                        <div key={index} className='flex items-center space-x-2'>
-                                                            <span className='text-yellow-500'>🏆</span>
-                                                            <span className='text-emerald-700 text-sm'>{achievement}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Our Values */}
-                    {activeSection === 'values' && (
-                        <div className='bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
-                            <h2 className='text-3xl font-bold text-emerald-800 mb-8 flex items-center space-x-3'>
-                                <span>💎</span>
-                                <span>हमारे मूल्य</span>
-                            </h2>
-                            
-                            <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-                                {values.map((value, index) => (
-                                    <div key={index} className='bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200 hover:shadow-lg transition-all duration-300'>
-                                        <div className='flex items-start space-x-4'>
-                                            <div className='w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl flex items-center justify-center text-2xl text-white shadow-lg'>
-                                                {value.icon}
-                                            </div>
-                                            <div className='flex-1'>
-                                                <h3 className='text-xl font-bold text-emerald-800 mb-3'>{value.title}</h3>
-                                                <p className='text-emerald-700 leading-relaxed'>{value.description}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                </div>
-
-                {/* CTA Section */}
-                <div className='bg-gradient-to-r from-emerald-600 to-green-600 py-16'>
-                    <div className='max-w-4xl mx-auto text-center px-6 text-white'>
-                        <h3 className='text-3xl font-bold mb-4'>हमारे साथ जुड़ें</h3>
-                        <p className='text-xl text-emerald-100 mb-8'>
-                            भारतीय परंपरा और आधुनिक तकनीक के इस सफर में हमारे साथ चलें
-                        </p>
-                        <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                            <a href="/markets" className='bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold hover:bg-emerald-50 transition-colors duration-300 transform hover:scale-105'>
-                                बाजार खोजें
-                            </a>
-                            <a href="/contact" className='border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-emerald-600 transition-all duration-300 transform hover:scale-105'>
-                                संपर्क करें
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        {/* Stats Section */}
+        <section className="py-20 bg-gradient-to-r from-emerald-500 to-orange-500 text-white">
+          <div className="container mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center mb-16">हमारी उपलब्धियां</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="text-4xl mb-4">{stat.icon}</div>
+                  <div className="text-3xl md:text-4xl font-bold mb-2">{stat.number}</div>
+                  <div className="text-lg opacity-90">{stat.label}</div>
+                </motion.div>
+              ))}
             </div>
-        </React.StrictMode>
-    );
+          </div>
+        </section>
+
+        {/* Timeline Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center text-emerald-800 mb-16">हमारी यात्रा</h2>
+            <div className="max-w-4xl mx-auto">
+              {timeline.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`flex items-center mb-12 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                >
+                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
+                    <div className="bg-gradient-to-r from-emerald-500 to-orange-500 text-white inline-block px-4 py-2 rounded-full text-sm font-semibold mb-2">
+                      {item.year}
+                    </div>
+                    <h3 className="text-xl font-bold text-emerald-800 mb-2">{item.title}</h3>
+                    <p className="text-gray-600">{item.description}</p>
+                  </div>
+                  
+                  <div className="w-8 h-8 bg-emerald-500 rounded-full border-4 border-white shadow-lg flex-shrink-0 z-10">
+                  </div>
+                  
+                  <div className="w-1/2"></div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Values Section */}
+        <section className="py-20 bg-emerald-50">
+          <div className="container mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center text-emerald-800 mb-16">हमारे मूल्य</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {values.map((value, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="text-5xl mb-6">{value.icon}</div>
+                  <h3 className="text-xl font-bold text-emerald-800 mb-4">{value.title}</h3>
+                  <p className="text-gray-600">{value.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <h2 className="text-4xl font-bold text-center text-emerald-800 mb-16">हमारी टीम</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {teamMembers.map((member, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                >
+                  <div className="w-24 h-24 bg-gradient-to-r from-emerald-400 to-orange-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <span className="text-2xl">👤</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-emerald-800 mb-2">{member.name}</h3>
+                  <p className="text-orange-600 font-semibold mb-4">{member.role}</p>
+                  <p className="text-gray-600 text-sm">{member.bio}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Impact Section */}
+        <section className="py-20 bg-gradient-to-r from-orange-400 to-emerald-500 text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-4xl font-bold mb-8">हमारा प्रभाव</h2>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-xl leading-relaxed mb-12">
+                भारतशाला के माध्यम से हजारों कारीगरों की आर्थिक स्थिति में सुधार हुआ है। 
+                हमने न केवल उन्हें नए बाज़ार तक पहुंच दिलाई है, बल्कि उनकी पारंपरिक कलाओं 
+                को भी संरक्षित करने में मदद की है।
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <div className="text-3xl mb-4">💰</div>
+                  <h3 className="text-xl font-semibold mb-2">आय में वृद्धि</h3>
+                  <p>कारीगरों की औसत आय में 150% तक की वृद्धि</p>
+                </div>
+                
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <div className="text-3xl mb-4">🎓</div>
+                  <h3 className="text-xl font-semibold mb-2">कौशल विकास</h3>
+                  <p>1000+ कारीगरों को डिजिटल मार्केटिंग की ट्रेनिंग</p>
+                </div>
+                
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <div className="text-3xl mb-4">🌍</div>
+                  <h3 className="text-xl font-semibold mb-2">वैश्विक पहुंच</h3>
+                  <p>20+ देशों में भारतीय हस्तशिल्प की बिक्री</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-3xl mx-auto"
+            >
+              <h2 className="text-4xl font-bold text-emerald-800 mb-8">
+                हमारे साथ जुड़ें
+              </h2>
+              <p className="text-xl text-gray-700 mb-12">
+                चाहे आप एक कारीगर हों जो अपनी कला को दुनिया के सामने लाना चाहते हैं, 
+                या एक ग्राहक हों जो प्रामाणिक हस्तनिर्मित उत्पाद खरीदना चाहते हैं - 
+                भारतशाला आपका स्वागत करता है।
+              </p>
+              
+              <div className="flex flex-col md:flex-row gap-6 justify-center">
+                <button 
+                  onClick={handleContactClick}
+                  className="bg-emerald-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-emerald-600 transition-colors duration-200 text-lg"
+                >
+                  विक्रेता बनें
+                </button>
+                <button 
+                  onClick={handleContactClick}
+                  className="border-2 border-orange-500 text-orange-500 px-8 py-4 rounded-xl font-semibold hover:bg-orange-500 hover:text-white transition-all duration-200 text-lg"
+                >
+                  संपर्क करें
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="py-16 bg-emerald-800 text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h3 className="text-2xl font-bold mb-4">नवीनतम अपडेट प्राप्त करें</h3>
+            <p className="mb-8">हमारी यात्रा का हिस्सा बनें और नई कलाओं की खोज करें</p>
+            <div className="max-w-md mx-auto flex gap-4">
+              <input
+                type="email"
+                placeholder="आपका ईमेल पता"
+                className="flex-1 px-4 py-3 rounded-lg text-gray-800"
+              />
+              <button className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors">
+                सब्स्क्राइब करें
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
 };
 
 export default About;
