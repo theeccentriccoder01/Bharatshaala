@@ -1,59 +1,50 @@
 import React, { useState } from 'react';
+import { dateHelpers, stringHelpers } from '../helpers';
 import { useAuth } from '../hooks/useAuth';
+import { useNotification } from '../hooks/useNotification';
 
-const ReviewCard = ({ 
-  review, 
-  onUpdate, 
-  onDelete, 
-  onReport, 
+const ReviewCard = ({
+  review,
+  onUpdate,
+  onDelete,
+  onReport,
+  onHelpful,
   isEditable = false,
   showActions = true,
-  className = '' 
+  variant = 'default', // 'default', 'compact', 'detailed'
+  className = ''
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(review.comment);
-  const [editRating, setEditRating] = useState(review.rating);
   const { user } = useAuth();
+  const { showSuccess, showError } = useNotification();
+  
+  const [showFullReview, setShowFullReview] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [editData, setEditData] = useState({
+    rating: review.rating,
+    title: review.title || '',
+    comment: review.comment,
+    images: review.images || []
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('hi-IN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
+  const renderStars = (rating, size = 'medium', interactive = false) => {
+    const sizeClasses = {
+      small: 'text-sm',
+      medium: 'text-lg',
+      large: 'text-xl'
+    };
 
-  const handleSaveEdit = () => {
-    if (editText.trim() && editRating > 0) {
-      onUpdate?.(review.id, {
-        comment: editText.trim(),
-        rating: editRating
-      });
-      setIsEditing(false);
-    }
-  };
-
-  const handleCancelEdit = () => {
-    setEditText(review.comment);
-    setEditRating(review.rating);
-    setIsEditing(false);
-  };
-
-  const renderStars = (rating, isInteractive = false, size = 'text-base') => {
     return (
-      <div className={`flex items-center space-x-1 ${size}`}>
+      <div className={`flex items-center space-x-1 ${sizeClasses[size]}`}>
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
-            onClick={isInteractive ? () => setEditRating(star) : undefined}
-            className={`${isInteractive ? 'cursor-pointer hover:scale-110' : 'cursor-default'} transition-transform duration-200 ${
-              star <= (isInteractive ? editRating : rating) 
-                ? 'text-yellow-500' 
-                : 'text-gray-300'
+            onClick={interactive ? () => setEditData({...editData, rating: star}) : undefined}
+            className={`${interactive ? 'cursor-pointer hover:scale-110' : 'cursor-default'} transition-transform duration-200 ${
+              star <= rating ? 'text-yellow-500' : 'text-gray-300'
             }`}
-            disabled={!isInteractive}
+            disabled={!interactive}
           >
             ⭐
           </button>
@@ -62,255 +53,425 @@ const ReviewCard = ({
     );
   };
 
-  const getRatingText = (rating) => {
-    const ratingTexts = {
-      5: 'बहुत अच्छा',
-      4: 'अच्छा',
-      3: 'ठीक है',
-      2: 'खराब',
-      1: 'बहुत खराब'
-    };
-    return ratingTexts[rating] || '';
+  const handleEdit = () => {
+    setShowEditForm(true);
   };
 
-  const isOwner = user && user.id === review.userId;
-  const canEdit = isEditable && isOwner;
+  const handleSaveEdit = async () => {
+    if (!editData.comment.trim()) {
+      showError('कृपया समीक्षा लिखें');
+      return;
+    }
 
-  return (
-    <div className={`bg-white rounded-2xl shadow-lg border border-emerald-200 overflow-hidden transition-all duration-300 hover:shadow-xl ${className}`}>
-      
-      {/* Header */}
-      <div className="p-6 border-b border-emerald-100">
-        <div className="flex items-start justify-between">
-          
-          {/* User Info */}
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-              {review.userName?.charAt(0) || review.userInitial || 'U'}
-            </div>
-            <div>
-              <h4 className="font-semibold text-emerald-800">{review.userName || 'ग्राहक'}</h4>
-              <div className="flex items-center space-x-2 mt-1">
-                {isEditing ? (
-                  <div className="flex items-center space-x-2">
-                    {renderStars(editRating, true, 'text-lg')}
-                    <span className="text-emerald-600 text-sm font-medium">
-                      ({editRating}/5) {getRatingText(editRating)}
-                    </span>
-                  </div>
-                ) : (
-                  <>
-                    {renderStars(review.rating)}
-                    <span className="text-emerald-600 text-sm font-medium">
-                      ({review.rating}/5) {getRatingText(review.rating)}
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
+    setIsSubmitting(true);
+    try {
+      await onUpdate(review.id, editData);
+      setShowEditForm(false);
+      showSuccess('समीक्षा अपडेट हो गई!');
+    } catch (error) {
+      showError('समीक्षा अपडेट करने में त्रुटि');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditData({
+      rating: review.rating,
+      title: review.title || '',
+      comment: review.comment,
+      images: review.images || []
+    });
+    setShowEditForm(false);
+  };
+
+  const handleDelete = () => {
+    if (window.confirm('क्या आप वाकई इस समीक्षा को हटाना चाहते हैं?')) {
+      onDelete(review.id);
+    }
+  };
+
+  const handleReport = () => {
+    if (window.confirm('क्या आप इस समीक्षा को रिपोर्ट करना चाहते हैं?')) {
+      onReport(review.id);
+      showSuccess('समीक्षा रिपोर्ट की गई');
+    }
+  };
+
+  const handleHelpfulVote = () => {
+    if (!hasVoted) {
+      onHelpful(review.id);
+      setHasVoted(true);
+      showSuccess('आपका वोट दर्ज हो गया!');
+    }
+  };
+
+  const getSentimentColor = () => {
+    if (review.rating >= 4) return 'text-green-600';
+    if (review.rating >= 3) return 'text-yellow-600';
+    return 'text-red-600';
+  };
+
+  const getSentimentIcon = () => {
+    if (review.rating >= 4) return '😊';
+    if (review.rating >= 3) return '😐';
+    return '😞';
+  };
+
+  const getTimeAgo = () => {
+    return dateHelpers.getRelativeTime(review.createdAt);
+  };
+
+  const truncatedComment = stringHelpers.truncate(review.comment, 200);
+  const shouldShowReadMore = review.comment.length > 200;
+
+  const renderCompactVariant = () => (
+    <div className={`bg-white rounded-lg p-4 border border-gray-200 ${className}`}>
+      <div className="flex items-start space-x-3">
+        <img
+          src={review.customerAvatar || '/images/default-avatar.png'}
+          alt={review.customerName}
+          className="w-10 h-10 rounded-full object-cover"
+        />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center space-x-2 mb-1">
+            <h4 className="font-semibold text-gray-900 truncate">{review.customerName}</h4>
+            {renderStars(review.rating, 'small')}
+            <span className="text-gray-500 text-xs">{getTimeAgo()}</span>
           </div>
-
-          {/* Actions */}
-          {showActions && (
-            <div className="flex items-center space-x-2">
-              {canEdit && !isEditing && (
-                <button
-                  onClick={() => setIsEditing(true)}
-                  className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors duration-200"
-                  title="संपादित करें"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                </button>
-              )}
-              
-              {!isOwner && (
-                <button
-                  onClick={() => onReport?.(review.id)}
-                  className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                  title="रिपोर्ट करें"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.464 0L4.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
-                </button>
-              )}
-            </div>
+          <p className="text-gray-700 text-sm line-clamp-2">{review.comment}</p>
+          {review.isVerifiedPurchase && (
+            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 mt-2">
+              ✓ सत्यापित खरीदारी
+            </span>
           )}
         </div>
       </div>
+    </div>
+  );
 
-      {/* Content */}
-      <div className="p-6">
-        
-        {/* Review Text */}
-        {isEditing ? (
-          <div className="space-y-4">
-            <textarea
-              value={editText}
-              onChange={(e) => setEditText(e.target.value)}
-              rows={4}
-              className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none resize-none"
-              placeholder="अपनी समीक्षा लिखें..."
+  const renderDetailedVariant = () => (
+    <div className={`bg-white rounded-2xl p-6 shadow-lg border border-gray-100 ${className}`}>
+      {showEditForm ? (
+        /* Edit Form */
+        <div className="space-y-4">
+          <h3 className="text-lg font-bold text-gray-900">समीक्षा संपादित करें</h3>
+          
+          {/* Rating */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">रेटिंग</label>
+            {renderStars(editData.rating, 'large', true)}
+          </div>
+
+          {/* Title */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">शीर्षक</label>
+            <input
+              type="text"
+              value={editData.title}
+              onChange={(e) => setEditData({...editData, title: e.target.value})}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              placeholder="संक्षिप्त शीर्षक"
             />
+          </div>
+
+          {/* Comment */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">समीक्षा</label>
+            <textarea
+              value={editData.comment}
+              onChange={(e) => setEditData({...editData, comment: e.target.value})}
+              rows={5}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none"
+              placeholder="अपना अनुभव विस्तार से बताएं..."
+            />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex space-x-3">
+            <button
+              onClick={handleSaveEdit}
+              disabled={isSubmitting}
+              className="bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 disabled:opacity-50 transition-colors duration-200"
+            >
+              {isSubmitting ? 'सेव हो रहा है...' : 'सेव करें'}
+            </button>
+            <button
+              onClick={handleCancelEdit}
+              disabled={isSubmitting}
+              className="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+            >
+              रद्द करें
+            </button>
+          </div>
+        </div>
+      ) : (
+        /* Display Mode */
+        <div className="space-y-4">
+          {/* Header */}
+          <div className="flex items-start justify-between">
+            <div className="flex items-center space-x-4">
+              <img
+                src={review.customerAvatar || '/images/default-avatar.png'}
+                alt={review.customerName}
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <div>
+                <h3 className="font-bold text-gray-900">{review.customerName}</h3>
+                <div className="flex items-center space-x-2 mt-1">
+                  {renderStars(review.rating)}
+                  <span className="text-gray-500 text-sm">{getTimeAgo()}</span>
+                  <span className={`text-lg ${getSentimentColor()}`}>
+                    {getSentimentIcon()}
+                  </span>
+                </div>
+              </div>
+            </div>
             
-            {/* Edit Actions */}
-            <div className="flex items-center justify-end space-x-3">
-              <button
-                onClick={handleCancelEdit}
-                className="px-4 py-2 text-gray-600 hover:text-gray-700 transition-colors duration-200"
-              >
-                रद्द करें
-              </button>
-              <button
-                onClick={handleSaveEdit}
-                disabled={!editText.trim() || editRating === 0}
-                className="bg-emerald-500 text-white px-6 py-2 rounded-lg hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-              >
-                सहेजें
-              </button>
+            {/* Badges */}
+            <div className="flex flex-col space-y-2">
+              {review.isVerifiedPurchase && (
+                <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                  ✓ सत्यापित खरीदारी
+                </span>
+              )}
+              {review.isTopReviewer && (
+                <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-medium">
+                  👑 टॉप रिव्यूअर
+                </span>
+              )}
             </div>
           </div>
-        ) : (
-          <div className="space-y-4">
-            <p className={`text-gray-700 leading-relaxed ${
-              !isExpanded && review.comment.length > 200 ? 'line-clamp-3' : ''
-            }`}>
-              {review.comment}
-            </p>
-            
-            {/* Expand/Collapse */}
-            {review.comment.length > 200 && (
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="text-emerald-600 hover:text-emerald-700 text-sm font-medium"
-              >
-                {isExpanded ? 'कम दिखाएं' : 'और पढ़ें'}
-              </button>
+
+          {/* Product Info (if available) */}
+          {review.productName && (
+            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+              {review.productImage && (
+                <img
+                  src={review.productImage}
+                  alt={review.productName}
+                  className="w-12 h-12 rounded-lg object-cover"
+                />
+              )}
+              <div>
+                <h4 className="font-semibold text-gray-800">{review.productName}</h4>
+                {review.orderDate && (
+                  <p className="text-gray-600 text-sm">
+                    खरीदारी दिनांक: {dateHelpers.formatDate(review.orderDate)}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Review Content */}
+          <div className="space-y-3">
+            {review.title && (
+              <h4 className="font-semibold text-gray-800 text-lg">{review.title}</h4>
             )}
+            
+            <div className="text-gray-700 leading-relaxed">
+              {showFullReview || !shouldShowReadMore ? (
+                <p>{review.comment}</p>
+              ) : (
+                <p>{truncatedComment}</p>
+              )}
+              
+              {shouldShowReadMore && (
+                <button
+                  onClick={() => setShowFullReview(!showFullReview)}
+                  className="text-emerald-600 hover:text-emerald-800 font-medium mt-2 text-sm"
+                >
+                  {showFullReview ? 'कम दिखाएं' : 'और पढ़ें'}
+                </button>
+              )}
+            </div>
 
             {/* Review Images */}
             {review.images && review.images.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+              <div className="flex space-x-3 mt-3">
                 {review.images.map((image, index) => (
                   <img
                     key={index}
-                    src={image.url}
+                    src={image.url || image}
                     alt={`Review image ${index + 1}`}
-                    className="w-full h-24 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-200"
-                    onClick={() => {
-                      // Open image in modal/lightbox
-                    }}
+                    className="w-20 h-20 rounded-lg object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
+                    onClick={() => window.open(image.url || image, '_blank')}
                   />
                 ))}
               </div>
             )}
 
-            {/* Helpful Votes */}
-            {review.helpfulVotes !== undefined && (
-              <div className="flex items-center justify-between pt-4 border-t border-emerald-100">
-                <div className="flex items-center space-x-4">
-                  <button className="flex items-center space-x-2 text-emerald-600 hover:text-emerald-700 transition-colors duration-200">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                    </svg>
-                    <span className="text-sm">सहायक ({review.helpfulVotes})</span>
-                  </button>
-                  
-                  {canEdit && (
-                    <button
-                      onClick={() => onDelete?.(review.id)}
-                      className="flex items-center space-x-2 text-red-500 hover:text-red-600 transition-colors duration-200"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
-                      <span className="text-sm">हटाएं</span>
-                    </button>
-                  )}
-                </div>
-                
-                <span className="text-gray-500 text-sm">
-                  {formatDate(review.createdAt)}
-                </span>
+            {/* Tags */}
+            {review.tags && review.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {review.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs"
+                  >
+                    #{tag}
+                  </span>
+                ))}
               </div>
             )}
           </div>
-        )}
-      </div>
 
-      {/* Verified Purchase Badge */}
-      {review.isVerifiedPurchase && (
-        <div className="px-6 pb-4">
-          <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>वेरिफाइड परचेज</span>
+          {/* Footer */}
+          <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+            {/* Helpful Votes */}
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={handleHelpfulVote}
+                disabled={hasVoted || (user && user.id === review.userId)}
+                className={`flex items-center space-x-2 px-3 py-1 rounded-lg text-sm transition-colors duration-200 ${
+                  hasVoted 
+                    ? 'bg-emerald-100 text-emerald-700' 
+                    : 'hover:bg-gray-100 text-gray-600'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                <span>👍</span>
+                <span>सहायक ({review.helpfulVotes || 0})</span>
+              </button>
+              
+              {review.totalVotes > 0 && (
+                <span className="text-gray-500 text-sm">
+                  कुल वोट: {review.totalVotes}
+                </span>
+              )}
+            </div>
+
+            {/* Actions */}
+            {showActions && (
+              <div className="flex items-center space-x-2">
+                {isEditable && user && user.id === review.userId && (
+                  <>
+                    <button
+                      onClick={handleEdit}
+                      className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors duration-200"
+                      title="संपादित करें"
+                    >
+                      ✏️
+                    </button>
+                    <button
+                      onClick={handleDelete}
+                      className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50 transition-colors duration-200"
+                      title="हटाएं"
+                    >
+                      🗑️
+                    </button>
+                  </>
+                )}
+                
+                {user && user.id !== review.userId && (
+                  <button
+                    onClick={handleReport}
+                    className="text-orange-600 hover:text-orange-800 p-2 rounded-lg hover:bg-orange-50 transition-colors duration-200"
+                    title="रिपोर्ट करें"
+                  >
+                    🚩
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
     </div>
   );
-};
 
-// Review List Component
-export const ReviewList = ({ 
-  reviews = [], 
-  onUpdate, 
-  onDelete, 
-  onReport,
-  isLoading = false,
-  emptyMessage = "कोई समीक्षा नहीं मिली",
-  className = ""
-}) => {
-  if (isLoading) {
-    return (
-      <div className={`space-y-4 ${className}`}>
-        {[...Array(3)].map((_, index) => (
-          <div key={index} className="bg-white rounded-2xl p-6 shadow-lg animate-pulse">
-            <div className="flex items-center space-x-4 mb-4">
-              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
-              <div className="space-y-2">
-                <div className="h-4 bg-gray-300 rounded w-24"></div>
-                <div className="h-3 bg-gray-300 rounded w-32"></div>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 bg-gray-300 rounded w-full"></div>
-              <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+  const renderDefaultVariant = () => (
+    <div className={`bg-white rounded-xl p-6 shadow-md border border-gray-100 ${className}`}>
+      {/* Header */}
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center space-x-3">
+          <img
+            src={review.customerAvatar || '/images/default-avatar.png'}
+            alt={review.customerName}
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <div>
+            <h3 className="font-semibold text-gray-900">{review.customerName}</h3>
+            <div className="flex items-center space-x-2 mt-1">
+              {renderStars(review.rating, 'small')}
+              <span className="text-gray-500 text-sm">{getTimeAgo()}</span>
             </div>
           </div>
-        ))}
+        </div>
+        
+        {review.isVerifiedPurchase && (
+          <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+            ✓ सत्यापित
+          </span>
+        )}
       </div>
-    );
-  }
 
-  if (reviews.length === 0) {
-    return (
-      <div className={`text-center py-12 ${className}`}>
-        <div className="text-6xl mb-4">💬</div>
-        <h3 className="text-xl font-bold text-emerald-800 mb-2">{emptyMessage}</h3>
-        <p className="text-emerald-600">पहली समीक्षा लिखने वाले बनें!</p>
+      {/* Content */}
+      {review.title && (
+        <h4 className="font-semibold text-gray-800 mb-2">{review.title}</h4>
+      )}
+      
+      <p className="text-gray-700 mb-4">{review.comment}</p>
+
+      {/* Images */}
+      {review.images && review.images.length > 0 && (
+        <div className="flex space-x-2 mb-4">
+          {review.images.slice(0, 3).map((image, index) => (
+            <img
+              key={index}
+              src={image.url || image}
+              alt={`Review image ${index + 1}`}
+              className="w-16 h-16 rounded-lg object-cover"
+            />
+          ))}
+          {review.images.length > 3 && (
+            <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 text-sm">
+              +{review.images.length - 3}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Footer */}
+      <div className="flex items-center justify-between text-sm">
+        <button
+          onClick={handleHelpfulVote}
+          disabled={hasVoted}
+          className="flex items-center space-x-1 text-gray-600 hover:text-emerald-600 transition-colors duration-200"
+        >
+          <span>👍</span>
+          <span>सहायक ({review.helpfulVotes || 0})</span>
+        </button>
+        
+        {showActions && isEditable && (
+          <div className="flex space-x-2">
+            <button
+              onClick={handleEdit}
+              className="text-blue-600 hover:text-blue-800"
+            >
+              संपादित करें
+            </button>
+            <button
+              onClick={handleDelete}
+              className="text-red-600 hover:text-red-800"
+            >
+              हटाएं
+            </button>
+          </div>
+        )}
       </div>
-    );
-  }
-
-  return (
-    <div className={`space-y-6 ${className}`}>
-      {reviews.map((review) => (
-        <ReviewCard
-          key={review.id}
-          review={review}
-          onUpdate={onUpdate}
-          onDelete={onDelete}
-          onReport={onReport}
-          isEditable={true}
-        />
-      ))}
     </div>
   );
+
+  // Render based on variant
+  switch (variant) {
+    case 'compact':
+      return renderCompactVariant();
+    case 'detailed':
+      return renderDetailedVariant();
+    default:
+      return renderDefaultVariant();
+  }
 };
 
 export default ReviewCard;
