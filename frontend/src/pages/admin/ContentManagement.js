@@ -1,4 +1,4 @@
-// Content Management System for Bharatshala Admin Panel
+// Content Management System for Bharatshaala Admin Panel
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';

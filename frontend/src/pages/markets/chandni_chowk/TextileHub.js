@@ -1,4 +1,4 @@
-// Textile Hub Component for Chandni Chowk - Bharatshala Platform
+// Textile Hub Component for Chandni Chowk - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -164,7 +164,7 @@ const TextileHub = () => {
         <title>{hubInfo.name} - भारतशाला | चांदनी चौक के पारंपरिक वस्त्र</title>
         <meta name="description" content="चांदनी चौक के प्रसिद्ध वस्त्र बाजार से बनारसी साड़ी, राजस्थानी लहंगा, चंदेरी सूट और अन्य पारंपरिक वस्त्र।" />
         <meta name="keywords" content="चांदनी चौक वस्त्र, बनारसी साड़ी, लहंगा, सलवार सूट, किनारी बाजार, पारंपरिक कपड़े" />
-        <link rel="canonical" href="https://bharatshala.com/markets/chandni-chowk/textile-hub" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/chandni-chowk/textile-hub" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

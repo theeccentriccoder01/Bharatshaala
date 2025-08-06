@@ -1,4 +1,4 @@
-// Fashion Hub Component for Commercial Street - Bharatshala Platform
+// Fashion Hub Component for Commercial Street - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -172,7 +172,7 @@ const FashionHub = () => {
         <title>{hubInfo.name} - भारतशाला | बेंगलुरु का प्रसिद्ध फैशन हब</title>
         <meta name="description" content="कमर्शियल स्ट्रीट फैशन हब से ट्रेंडी और ट्रेडिशनल फैशन आइटम्स। मल्टी-ब्रांड स्टोर्स, सीजनल कलेक्शन्स और लेटेस्ट ट्रेंड्स।" />
         <meta name="keywords" content="कमर्शियल स्ट्रीट फैशन, बेंगलुरु शॉपिंग, मल्टी-ब्रांड फैशन, ट्रेंडी कपड़े, एथनिक वेयर" />
-        <link rel="canonical" href="https://bharatshala.com/markets/commercial-street/fashion-hub" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/commercial-street/fashion-hub" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

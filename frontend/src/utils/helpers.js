@@ -1,4 +1,4 @@
-// Helper Utilities - Bharatshala Platform
+// Helper Utilities - Bharatshaala Platform
 
 // Format currency in Indian Rupees
 export const formatCurrency = (amount, locale = 'hi-IN') => {

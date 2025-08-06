@@ -1,4 +1,4 @@
-// Comprehensive FAQ Page for Bharatshala Platform
+// Comprehensive FAQ Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useAnalytics } from '../analytics';
@@ -31,7 +31,7 @@ const FAQ = () => {
   const faqData = {
     general: [
       {
-        id: 'what-is-bharatshala',
+        id: 'what-is-bharatshaala',
         question: 'भारतशाला क्या है?',
         answer: 'भारतशाला भारत का सबसे बड़ा हस्तशिल्प मार्केटप्लेस है जो प्रामाणिक हस्तनिर्मित उत्पादों को कारीगरों से सीधे ग्राहकों तक पहुंचाता है।',
         tags: ['about', 'platform', 'handicrafts'],

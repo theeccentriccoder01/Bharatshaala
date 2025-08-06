@@ -1,4 +1,4 @@
-// Bangle Store Component for Laad Bazaar - Bharatshala Platform
+// Bangle Store Component for Laad Bazaar - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -210,7 +210,7 @@ const BangleStore = () => {
         <title>{storeInfo.name} - भारतशाला | हैदराबाद की प्रसिद्ध चूड़ियां</title>
         <meta name="description" content="लाड बाजार से हैदराबाद की प्रसिद्ध चूड़ियां। लाक चूड़ियां, मोती वर्क, कुंदन चूड़ियां और ब्राइडल सेट्स। पारंपरिक निज़ामी डिज़ाइन।" />
         <meta name="keywords" content="लाड बाजार, हैदराबाद चूड़ियां, लाक बैंगल्स, निज़ामी ज्वेलरी, मोती चूड़ियां, कुंदन बैंगल्स" />
-        <link rel="canonical" href="https://bharatshala.com/markets/laad-bazaar/bangle-store" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/laad-bazaar/bangle-store" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

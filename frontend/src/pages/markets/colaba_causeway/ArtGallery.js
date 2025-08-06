@@ -1,4 +1,4 @@
-// Art Gallery Component for Colaba Causeway - Bharatshala Platform
+// Art Gallery Component for Colaba Causeway - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -166,7 +166,7 @@ const ArtGallery = () => {
         <title>{galleryInfo.name} - भारतशाला | कोलाबा की समकालीन कला</title>
         <meta name="description" content="कोलाबा आर्ट गैलरी से समकालीन और पारंपरिक भारतीय कलाकृतियां। पेंटिंग्स, मूर्तिकला, डिजिटल आर्ट और फोटोग्राफी।" />
         <meta name="keywords" content="कोलाबा आर्ट गैलरी, समकालीन कला, भारतीय पेंटिंग्स, मुंबई आर्ट, कलाकृति खरीदें" />
-        <link rel="canonical" href="https://bharatshala.com/markets/colaba-causeway/art-gallery" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/colaba-causeway/art-gallery" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

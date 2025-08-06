@@ -1,4 +1,4 @@
-// Antiques Category Page for Bharatshala Platform
+// Antiques Category Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
@@ -175,7 +175,7 @@ const Antiques = () => {
         <title>{categoryInfo.title} - भारतशाला | प्राचीन और दुर्लभ वस्तुओं का संग्रह</title>
         <meta name="description" content="भारत की समृद्ध सांस्कृतिक विरासत से जुड़ी प्राचीन वस्तुएं। कांस्य मूर्तियां, विंटेज आभूषण, प्राचीन सिक्के और अन्य दुर्लभ संग्रहणीय वस्तुएं।" />
         <meta name="keywords" content="प्राचीन वस्तुएं, antiques, कांस्य मूर्ति, विंटेज आभूषण, प्राचीन सिक्के, भारतीय कलाकृति" />
-        <link rel="canonical" href="https://bharatshala.com/categories/antiques" />
+        <link rel="canonical" href="https://bharatshaala.com/categories/antiques" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -1,4 +1,4 @@
-// Spice Market Component for Chandni Chowk - Bharatshala Platform
+// Spice Market Component for Chandni Chowk - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -155,7 +155,7 @@ const SpiceMarket = () => {
         <title>{marketInfo.name} - भारतशाला | चांदनी चौक के प्रामाणिक मसाले</title>
         <meta name="description" content="चांदनी चौक के 400 साल पुराने मसाला बाजार से प्रामाणिक भारतीय मसाले। कश्मीरी लाल मिर्च, केरल इलायची और पारंपरिक मसाला मिश्रण।" />
         <meta name="keywords" content="चांदनी चौक मसाले, भारतीय मसाले, कश्मीरी मिर्च, इलायची, गरम मसाला, पुरानी दिल्ली" />
-        <link rel="canonical" href="https://bharatshala.com/markets/chandni-chowk/spice-market" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/chandni-chowk/spice-market" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

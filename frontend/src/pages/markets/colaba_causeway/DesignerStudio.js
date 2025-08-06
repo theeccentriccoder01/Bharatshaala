@@ -1,4 +1,4 @@
-// Designer Studio Component for Colaba Causeway - Bharatshala Platform
+// Designer Studio Component for Colaba Causeway - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -171,7 +171,7 @@ const DesignerStudio = () => {
         <title>{studioInfo.name} - भारतशाला | कोलाबा के डिज़ाइनर आउटफिट्स</title>
         <meta name="description" content="कोलाबा डिज़ाइनर स्टूडियो से भारत के टॉप डिज़ाइनरों के एक्सक्लूसिव कलेक्शन। डिज़ाइनर वेयर, ब्राइडल आउटफिट्स और कस्टम डिज़ाइन।" />
         <meta name="keywords" content="कोलाबा डिज़ाइनर स्टूडियो, डिज़ाइनर वेयर, ब्राइडल आउटफिट्स, लक्जरी फैशन, मुंबई डिज़ाइनर" />
-        <link rel="canonical" href="https://bharatshala.com/markets/colaba-causeway/designer-studio" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/colaba-causeway/designer-studio" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

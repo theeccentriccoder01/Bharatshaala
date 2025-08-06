@@ -1,4 +1,4 @@
-// Shipping Settings Component - Bharatshala Vendor Platform (COMPLETED)
+// Shipping Settings Component - Bharatshaala Vendor Platform (COMPLETED)
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -595,10 +595,10 @@ const ShippingSettings = () => {
                 </p>
                 <div className="space-y-2">
                   <a 
-                    href="mailto:shipping@bharatshala.com"
+                    href="mailto:shipping@bharatshaala.com"
                     className="block text-yellow-600 hover:text-yellow-800 text-sm font-medium"
                   >
-                    📧 shipping@bharatshala.com
+                    📧 shipping@bharatshaala.com
                   </a>
                   <a 
                     href="tel:+91-XXXX-XXXXXX"

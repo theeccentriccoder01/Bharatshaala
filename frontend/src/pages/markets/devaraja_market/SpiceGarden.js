@@ -1,4 +1,4 @@
-// Spice Garden Component for Devaraja Market - Bharatshala Platform
+// Spice Garden Component for Devaraja Market - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -183,7 +183,7 @@ const SpiceGarden = () => {
         <title>{gardenInfo.name} - भारतशाला | कर्नाटक के ताजे मसाले</title>
         <meta name="description" content="देवराज मार्केट स्पाइस गार्डन से कर्नाटक के विशेष मसाले। बायदगी चिली, कोडागु पेपर, मैसूर रसम पाउडर और ऑर्गेनिक स्पाइसेस।" />
         <meta name="keywords" content="कर्नाटक मसाले, बायदगी चिली, कोडागू काली मिर्च, मैसूर मसाले, ऑर्गेनिक स्पाइसेस, देवराज मार्केट" />
-        <link rel="canonical" href="https://bharatshala.com/markets/devaraja-market/spice-garden" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/devaraja-market/spice-garden" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

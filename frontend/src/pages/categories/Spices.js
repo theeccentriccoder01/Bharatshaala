@@ -1,4 +1,4 @@
-// Spices Category Page for Bharatshala Platform
+// Spices Category Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
@@ -173,7 +173,7 @@ const Spices = () => {
         <title>{categoryInfo.title} - भारतशाला | प्रामाणिक भारतीय मसाले</title>
         <meta name="description" content="भारत के विभिन्न राज्यों से प्रामाणिक और शुद्ध मसाले। केरल के इलायची से लेकर कश्मीर के केसर तक, सभी मसालों का बेहतरीन संग्रह।" />
         <meta name="keywords" content="मसाले, भारतीय मसाले, इलायची, केसर, हल्दी, लाल मिर्च, गरम मसाला, जैविक मसाले" />
-        <link rel="canonical" href="https://bharatshala.com/categories/spices" />
+        <link rel="canonical" href="https://bharatshaala.com/categories/spices" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

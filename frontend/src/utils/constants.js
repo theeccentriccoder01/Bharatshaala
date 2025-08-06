@@ -1,18 +1,18 @@
-// Comprehensive Constants for Bharatshala Platform
+// Comprehensive Constants for Bharatshaala Platform
 export const PLATFORM_SETTINGS = {
   NAME: 'भारतशाला',
-  NAME_EN: 'Bharatshala',
+  NAME_EN: 'Bharatshaala',
   VERSION: '1.0.0',
   TAGLINE: 'भारत की सांस्कृतिक धरोहर का डिजिटल घर',
   TAGLINE_EN: 'Digital Home of India\'s Cultural Heritage',
   COPYRIGHT: '© 2025 भारतशाला। सभी अधिकार सुरक्षित।',
-  SUPPORT_EMAIL: 'support@bharatshala.com',
+  SUPPORT_EMAIL: 'support@bharatshaala.com',
   SUPPORT_PHONE: '+91-1800-123-4567'
 };
 
 // API Configuration
 export const API_CONFIG = {
-  BASE_URL: process.env.REACT_APP_API_URL || 'https://api.bharatshala.com/api',
+  BASE_URL: process.env.REACT_APP_API_URL || 'https://api.bharatshaala.com/api',
   VERSION: 'v1',
   TIMEOUT: 30000,
   RETRY_ATTEMPTS: 3,
@@ -397,24 +397,24 @@ export const FEATURES = {
 
 // Social Media Links
 export const SOCIAL_LINKS = {
-  FACEBOOK: 'https://facebook.com/bharatshala',
-  INSTAGRAM: 'https://instagram.com/bharatshala',
-  TWITTER: 'https://twitter.com/bharatshala',
-  YOUTUBE: 'https://youtube.com/bharatshala',
-  LINKEDIN: 'https://linkedin.com/company/bharatshala',
+  FACEBOOK: 'https://facebook.com/bharatshaala',
+  INSTAGRAM: 'https://instagram.com/bharatshaala',
+  TWITTER: 'https://twitter.com/bharatshaala',
+  YOUTUBE: 'https://youtube.com/bharatshaala',
+  LINKEDIN: 'https://linkedin.com/company/bharatshaala',
   WHATSAPP: 'https://wa.me/919876543210'
 };
 
 // App Store Links
 export const APP_LINKS = {
-  ANDROID: 'https://play.google.com/store/apps/details?id=com.bharatshala.app',
-  IOS: 'https://apps.apple.com/app/bharatshala/id123456789'
+  ANDROID: 'https://play.google.com/store/apps/details?id=com.bharatshaala.app',
+  IOS: 'https://apps.apple.com/app/bharatshaala/id123456789'
 };
 
 // Business Information
 export const BUSINESS_INFO = {
   COMPANY_NAME: 'भारतशाला प्राइवेट लिमिटेड',
-  COMPANY_NAME_EN: 'Bharatshala Private Limited',
+  COMPANY_NAME_EN: 'Bharatshaala Private Limited',
   CIN: 'U74999DL2020PTC123456',
   GST: '07AABCB1234M1Z5',
   ADDRESS: {
@@ -426,10 +426,10 @@ export const BUSINESS_INFO = {
     COUNTRY: 'भारत'
   },
   CONTACT: {
-    EMAIL: 'info@bharatshala.com',
+    EMAIL: 'info@bharatshaala.com',
     PHONE: '+91-11-4567-8901',
-    SUPPORT: 'support@bharatshala.com',
-    VENDOR: 'vendor@bharatshala.com'
+    SUPPORT: 'support@bharatshaala.com',
+    VENDOR: 'vendor@bharatshaala.com'
   }
 };
 
@@ -447,16 +447,16 @@ export const REGEX_PATTERNS = {
 
 // Local Storage Keys
 export const STORAGE_KEYS = {
-  AUTH_TOKEN: 'bharatshala_auth_token',
-  REFRESH_TOKEN: 'bharatshala_refresh_token',
-  USER_DATA: 'bharatshala_user_data',
-  CART_DATA: 'bharatshala_cart_data',
-  WISHLIST_DATA: 'bharatshala_wishlist_data',
-  SEARCH_HISTORY: 'bharatshala_search_history',
-  RECENTLY_VIEWED: 'bharatshala_recently_viewed',
-  USER_PREFERENCES: 'bharatshala_user_preferences',
-  LANGUAGE: 'bharatshala_language',
-  THEME: 'bharatshala_theme'
+  AUTH_TOKEN: 'bharatshaala_auth_token',
+  REFRESH_TOKEN: 'bharatshaala_refresh_token',
+  USER_DATA: 'bharatshaala_user_data',
+  CART_DATA: 'bharatshaala_cart_data',
+  WISHLIST_DATA: 'bharatshaala_wishlist_data',
+  SEARCH_HISTORY: 'bharatshaala_search_history',
+  RECENTLY_VIEWED: 'bharatshaala_recently_viewed',
+  USER_PREFERENCES: 'bharatshaala_user_preferences',
+  LANGUAGE: 'bharatshaala_language',
+  THEME: 'bharatshaala_theme'
 };
 
 // Date/Time Formats

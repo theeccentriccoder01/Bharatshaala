@@ -1,4 +1,4 @@
-// Blog Component - Bharatshala Platform
+// Blog Component - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -119,7 +119,7 @@ const Blog = () => {
         <title>ब्लॉग - भारतशाला | भारतीय संस्कृति और हस्तशिल्प की जानकारी</title>
         <meta name="description" content="भारतशाला ब्लॉग में पढ़ें भारतीय बाजारों, हस्तशिल्प, संस्कृति, शॉपिंग गाइड और त्योहारों के बारे में रोचक जानकारी।" />
         <meta name="keywords" content="भारतशाला ब्लॉग, हस्तशिल्प, भारतीय संस्कृति, शॉपिंग गाइड, बाजार, त्योहार, व्यंजन" />
-        <link rel="canonical" href="https://bharatshala.com/blog" />
+        <link rel="canonical" href="https://bharatshaala.com/blog" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

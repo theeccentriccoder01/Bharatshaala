@@ -1,4 +1,4 @@
-// Payment Settings Component - Bharatshala Vendor Platform
+// Payment Settings Component - Bharatshaala Vendor Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -558,10 +558,10 @@ const PaymentSettings = () => {
                 </p>
                 <div className="space-y-2">
                   <a 
-                    href="mailto:payments@bharatshala.com"
+                    href="mailto:payments@bharatshaala.com"
                     className="block text-yellow-600 hover:text-yellow-800 text-sm font-medium"
                   >
-                    📧 payments@bharatshala.com
+                    📧 payments@bharatshaala.com
                   </a>
                   <a 
                     href="tel:+91-XXXX-XXXXXX"

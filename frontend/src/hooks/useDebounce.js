@@ -1,4 +1,4 @@
-// Advanced Debounce and Throttle Hooks for Bharatshala Platform
+// Advanced Debounce and Throttle Hooks for Bharatshaala Platform
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import analytics from '../analytics';
 

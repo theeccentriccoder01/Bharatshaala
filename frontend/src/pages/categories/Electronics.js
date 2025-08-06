@@ -1,4 +1,4 @@
-// Electronics Category Page for Bharatshala Platform
+// Electronics Category Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
@@ -171,7 +171,7 @@ const Electronics = () => {
         <title>{categoryInfo.title} - भारतशाला | भारतीय इलेक्ट्रॉनिक्स ब्रांड्स</title>
         <meta name="description" content="भारतीय इलेक्ट्रॉनिक्स ब्रांड्स के स्मार्टफोन, लैपटॉप, हेडफोन्स और अन्य तकनीकी उत्पाद। Micromax, Lava, boAt, Noise और अन्य देसी ब्रांड्स।" />
         <meta name="keywords" content="इलेक्ट्रॉनिक्स, स्मार्टफोन, माइक्रोमैक्स, लावा, बोट, भारतीय ब्रांड, तकनीकी उत्पाद" />
-        <link rel="canonical" href="https://bharatshala.com/categories/electronics" />
+        <link rel="canonical" href="https://bharatshaala.com/categories/electronics" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -1,4 +1,4 @@
-// Bulk Upload Component - Bharatshala Vendor Platform
+// Bulk Upload Component - Bharatshaala Vendor Platform
 import React, { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -116,7 +116,7 @@ const BulkUpload = () => {
     }
   ];
 
-// Bulk Upload Component - Bharatshala Vendor Platform (Continued)
+// Bulk Upload Component - Bharatshaala Vendor Platform (Continued)
 // Previous code truncated, continuing from upload steps...
 
   const uploadSteps = [
@@ -244,7 +244,7 @@ const BulkUpload = () => {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'bharatshala_product_template.csv';
+    link.download = 'bharatshaala_product_template.csv';
     link.click();
     window.URL.revokeObjectURL(url);
 
@@ -499,10 +499,10 @@ const BulkUpload = () => {
                 </p>
                 <div className="space-y-2">
                   <a 
-                    href="mailto:vendor-support@bharatshala.com"
+                    href="mailto:vendor-support@bharatshaala.com"
                     className="block text-yellow-600 hover:text-yellow-800 text-sm font-medium"
                   >
-                    📧 vendor-support@bharatshala.com
+                    📧 vendor-support@bharatshaala.com
                   </a>
                   <a 
                     href="tel:+91-XXXX-XXXXXX"

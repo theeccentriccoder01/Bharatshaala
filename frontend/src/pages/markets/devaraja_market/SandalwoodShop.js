@@ -1,4 +1,4 @@
-// Sandalwood Shop Component for Devaraja Market - Bharatshala Platform
+// Sandalwood Shop Component for Devaraja Market - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -181,7 +181,7 @@ const SandalwoodShop = () => {
         <title>{shopInfo.name} - भारतशाला | मैसूर का प्रसिद्ध चंदन</title>
         <meta name="description" content="मैसूर चंदन शॉप से शुद्ध चंदन का तेल, लकड़ी, पाउडर और हस्तनिर्मित चंदन शिल्प। गवर्नमेंट सर्टिफाइड मैसूर सैंडलवुड प्रोडक्ट्स।" />
         <meta name="keywords" content="मैसूर चंदन, सैंडलवुड ऑयल, चंदन की लकड़ी, देवराज मार्केट, प्राकृतिक चंदन, हैंडकार्व्ड" />
-        <link rel="canonical" href="https://bharatshala.com/markets/devaraja-market/sandalwood-shop" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/devaraja-market/sandalwood-shop" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -1,4 +1,4 @@
-// Incense Store Component for Devaraja Market - Bharatshala Platform
+// Incense Store Component for Devaraja Market - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -180,7 +180,7 @@ const IncenseStore = () => {
         <title>{storeInfo.name} - भारतशाला | मैसूर की प्रसिद्ध अगरबत्ती</title>
         <meta name="description" content="देवराज मार्केट से प्रामाणिक मैसूर चंदन अगरबत्ती, औषधीय धूप और पारंपरिक सुगंधित उत्पाद। शुद्ध चंदन और हर्बल अगरबत्ती।" />
         <meta name="keywords" content="मैसूर अगरबत्ती, चंदन धूप, देवराज मार्केट, हैंडमेड इंसेंस, औषधीय धूप, वैदिक हवन सामग्री" />
-        <link rel="canonical" href="https://bharatshala.com/markets/devaraja-market/incense-store" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/devaraja-market/incense-store" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

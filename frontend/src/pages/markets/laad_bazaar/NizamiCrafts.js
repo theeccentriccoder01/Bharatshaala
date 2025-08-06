@@ -1,4 +1,4 @@
-// Nizami Crafts Component for Laad Bazaar - Bharatshala Platform
+// Nizami Crafts Component for Laad Bazaar - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -224,7 +224,7 @@ const NizamiCrafts = () => {
         <title>{craftsInfo.name} - भारतशाला | निज़ामी हस्तशिल्प</title>
         <meta name="description" content="लाड बाजार से निज़ामी परंपरा के हस्तशिल्प। बिदरी वर्क, ज़रदोज़ी, कैलिग्राफी और रॉयल हैदराबादी क्राफ्ट्स। मास्टर कारीगरों द्वारा निर्मित।" />
         <meta name="keywords" content="निज़ामी शिल्प, बिदरी वर्क, ज़रदोज़ी, हैदराबादी हैंडिक्राफ्ट्स, लाड बाजार, इस्लामिक आर्ट" />
-        <link rel="canonical" href="https://bharatshala.com/markets/laad-bazaar/nizami-crafts" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/laad-bazaar/nizami-crafts" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

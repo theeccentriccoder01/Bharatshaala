@@ -1,4 +1,4 @@
-// Jodhpuri Boutique Component for Pink City - Bharatshala Platform
+// Jodhpuri Boutique Component for Pink City - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -200,7 +200,7 @@ const JodhpuriBoutique = () => {
         <title>{boutiqueInfo.name} - भारतशाला | राजस्थानी जोधपुरी सूट</title>
         <meta name="description" content="जयपुर से प्रीमियम जोधपुरी सूट, शेरवानी और राजस्थानी रॉयल वेयर। हैंडमेड एम्ब्रॉयडरी और ट्रेडिशनल डिज़ाइन्स।" />
         <meta name="keywords" content="जोधपुरी सूट, राजस्थानी शेरवानी, जयपुर फैशन, रॉयल वेयर, इंडियन वेडिंग ड्रेस, बंदगला" />
-        <link rel="canonical" href="https://bharatshala.com/markets/pinkcity/jodhpuri-boutique" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/pinkcity/jodhpuri-boutique" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -1,4 +1,4 @@
-// Mysore Silk Emporium Component for Devaraja Market - Bharatshala Platform
+// Mysore Silk Emporium Component for Devaraja Market - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -181,7 +181,7 @@ const MysoresilkEmporium = () => {
         <title>{emporiumInfo.name} - भारतशाला | मैसूर की प्रसिद्ध सिल्क साड़ियां</title>
         <meta name="description" content="मैसूर सिल्क एम्पोरियम से विश्व प्रसिद्ध मैसूर सिल्क साड़ियां, हैंडलूम फैब्रिक्स और पारंपरिक जरी वर्क। शुद्ध मल्बेरी सिल्क उत्पाद।" />
         <meta name="keywords" content="मैसूर सिल्क, देवराज मार्केट, सिल्क साड़ी, हैंडलूम, जरी वर्क, कर्नाटक सिल्क, मल्बेरी सिल्क" />
-        <link rel="canonical" href="https://bharatshala.com/markets/devaraja-market/mysore-silk-emporium" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/devaraja-market/mysore-silk-emporium" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -1,4 +1,4 @@
-// Cultural Exhibit Component for Dilli Haat - Bharatshala Platform
+// Cultural Exhibit Component for Dilli Haat - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -218,7 +218,7 @@ const CulturalExhibit = () => {
         <title>{exhibitInfo.name} - भारतशाला | भारतीय सांस्कृतिक प्रदर्शनी</title>
         <meta name="description" content="दिल्ली हाट में भारतीय सांस्कृतिक प्रदर्शनी। पारंपरिक नृत्य, संगीत, कला और विभिन्न राज्यों की सांस्कृतिक परंपराओं का जीवंत प्रदर्शन।" />
         <meta name="keywords" content="दिल्ली हाट, सांस्कृतिक प्रदर्शनी, भारतीय कला, लोक नृत्य, पारंपरिक संगीत, सांस्कृतिक कार्यक्रम" />
-        <link rel="canonical" href="https://bharatshala.com/markets/dilli-haat/cultural-exhibit" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/dilli-haat/cultural-exhibit" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

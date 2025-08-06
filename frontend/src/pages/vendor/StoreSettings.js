@@ -1,4 +1,4 @@
-// Store Settings Component - Bharatshala Vendor Platform
+// Store Settings Component - Bharatshaala Vendor Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -832,7 +832,7 @@ const StoreSettings = () => {
                     </label>
                     <div className="flex">
                       <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-                        bharatshala.com/store/
+                        bharatshaala.com/store/
                       </span>
                       <input
                         type="text"

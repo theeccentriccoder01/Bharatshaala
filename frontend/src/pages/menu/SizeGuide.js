@@ -1,4 +1,4 @@
-// Size Guide Component - Bharatshala Platform
+// Size Guide Component - Bharatshaala Platform
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -153,7 +153,7 @@ const SizeGuide = () => {
         <title>साइज़ गाइड - भारतशाला | Size Guide & Measurement Chart</title>
         <meta name="description" content="भारतशाला साइज़ गाइड। कपड़े, जूते, ज्वेलरी और एक्सेसरीज के लिए सही साइज़ चुनने में मदद करने वाला चार्ट।" />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://bharatshala.com/size-guide" />
+        <link rel="canonical" href="https://bharatshaala.com/size-guide" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -325,7 +325,7 @@ const SizeGuide = () => {
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center">
                   <a
-                    href="mailto:size-help@bharatshala.com"
+                    href="mailto:size-help@bharatshaala.com"
                     className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors duration-200"
                   >
                     ईमेल करें

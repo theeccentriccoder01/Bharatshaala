@@ -1,4 +1,4 @@
-// Pearl Shop Component for Laad Bazaar - Bharatshala Platform
+// Pearl Shop Component for Laad Bazaar - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -219,7 +219,7 @@ const PearlShop = () => {
         <title>{shopInfo.name} - भारतशाला | हैदराबाद के प्रसिद्ध मोती</title>
         <meta name="description" content="लाड बाजार से हैदराबाद के विश्व प्रसिद्ध मोती। नेचुरल पर्ल्स, कल्चर्ड पर्ल्स, पर्ल ज्वेलरी और सर्टिफाइड हैदराबादी पर्ल्स।" />
         <meta name="keywords" content="हैदराबाद मोती, लाड बाजार पर्ल्स, नेचुरल पर्ल्स, पर्ल ज्वेलरी, हैदराबादी पर्ल, मोती की दुकान" />
-        <link rel="canonical" href="https://bharatshala.com/markets/laad-bazaar/pearl-shop" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/laad-bazaar/pearl-shop" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -1,4 +1,4 @@
-// Referral Program Component - Bharatshala Platform
+// Referral Program Component - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -162,7 +162,7 @@ const ReferralProgram = () => {
   };
 
   const handleShareToSocial = (platform) => {
-    const referralUrl = `https://bharatshala.com/signup?ref=${referralData.referralCode}`;
+    const referralUrl = `https://bharatshaala.com/signup?ref=${referralData.referralCode}`;
     const shareText = `भारतशाला पर जुड़ें और पारंपरिक भारतीय उत्पादों की खरीदारी करें! मेरा रेफरल कोड: ${referralData.referralCode}`;
     
     const shareUrl = platform.shareUrl + encodeURIComponent(
@@ -389,7 +389,7 @@ const ReferralProgram = () => {
                 <div className="mb-4">
                   <p className="text-sm text-gray-600 mb-2">रेफरल लिंक</p>
                   <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-800 break-all">
-                    https://bharatshala.com/signup?ref={referralData.referralCode}
+                    https://bharatshaala.com/signup?ref={referralData.referralCode}
                   </div>
                 </div>
 

@@ -1,4 +1,4 @@
-// Comprehensive Authentication Hook for Bharatshala Platform
+// Comprehensive Authentication Hook for Bharatshaala Platform
 import { useState, useEffect, useContext, createContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from '../apiService';

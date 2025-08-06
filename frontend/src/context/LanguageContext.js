@@ -107,7 +107,7 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     // Load saved language from localStorage
-    const savedLanguage = localStorage.getItem('bharatshala_language');
+    const savedLanguage = localStorage.getItem('bharatshaala_language');
     if (savedLanguage && languages.find(lang => lang.code === savedLanguage)) {
       setLanguage(savedLanguage);
     } else {
@@ -128,7 +128,7 @@ export const LanguageProvider = ({ children }) => {
       await new Promise(resolve => setTimeout(resolve, 500));
       
       setLanguage(langCode);
-      localStorage.setItem('bharatshala_language', langCode);
+      localStorage.setItem('bharatshaala_language', langCode);
       setIsLoading(false);
       
       // Trigger page reload for full language change

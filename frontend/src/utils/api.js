@@ -1,7 +1,7 @@
-// API Utility Service - Bharatshala Platform
+// API Utility Service - Bharatshaala Platform
 import { authService } from './auth';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api.bharatshala.com/v1';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api.bharatshaala.com/v1';
 
 class ApiService {
   constructor() {

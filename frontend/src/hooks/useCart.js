@@ -1,4 +1,4 @@
-// Comprehensive Shopping Cart Hook for Bharatshala Platform
+// Comprehensive Shopping Cart Hook for Bharatshaala Platform
 import { useState, useEffect, useContext, createContext, useCallback } from 'react';
 import { useAuth } from './useAuth';
 import { useNotification } from './useNotification';

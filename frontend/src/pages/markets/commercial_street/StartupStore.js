@@ -1,4 +1,4 @@
-// Startup Store Component for Commercial Street - Bharatshala Platform
+// Startup Store Component for Commercial Street - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -174,7 +174,7 @@ const StartupStore = () => {
         <title>{storeInfo.name} - भारतशाला | भारतीय स्टार्टअप प्रोडक्ट्स</title>
         <meta name="description" content="भारतीय स्टार्टअप्स के इनोवेटिव प्रोडक्ट्स खरीदें। टेक गैजेट्स, हेल्थ प्रोडक्ट्स, सस्टेनेबल आइटम्स और लाइफस्टाइल प्रोडक्ट्स।" />
         <meta name="keywords" content="भारतीय स्टार्टअप, इनोवेटिव प्रोडक्ट्स, टेक गैजेट्स, सस्टेनेबल प्रोडक्ट्स, बेंगलुरु स्टार्टअप" />
-        <link rel="canonical" href="https://bharatshala.com/markets/commercial-street/startup-store" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/commercial-street/startup-store" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

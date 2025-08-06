@@ -25,7 +25,7 @@ export const NotificationProvider = ({ children }) => {
   const loadNotifications = async () => {
     try {
       // In real app, this would be an API call
-      const savedNotifications = localStorage.getItem('bharatshala_notifications');
+      const savedNotifications = localStorage.getItem('bharatshaala_notifications');
       if (savedNotifications) {
         const parsed = JSON.parse(savedNotifications);
         setNotifications(parsed);
@@ -37,14 +37,14 @@ export const NotificationProvider = ({ children }) => {
   };
 
   const loadSettings = () => {
-    const savedSettings = localStorage.getItem('bharatshala_notification_settings');
+    const savedSettings = localStorage.getItem('bharatshaala_notification_settings');
     if (savedSettings) {
       setSettings(JSON.parse(savedSettings));
     }
   };
 
   const saveNotifications = (newNotifications) => {
-    localStorage.setItem('bharatshala_notifications', JSON.stringify(newNotifications));
+    localStorage.setItem('bharatshaala_notifications', JSON.stringify(newNotifications));
   };
 
   const addNotification = useCallback((notification) => {
@@ -117,13 +117,13 @@ export const NotificationProvider = ({ children }) => {
   const clearAll = useCallback(() => {
     setNotifications([]);
     setUnreadCount(0);
-    localStorage.removeItem('bharatshala_notifications');
+    localStorage.removeItem('bharatshaala_notifications');
   }, []);
 
   const updateSettings = useCallback((newSettings) => {
     setSettings(prev => {
       const updated = { ...prev, ...newSettings };
-      localStorage.setItem('bharatshala_notification_settings', JSON.stringify(updated));
+      localStorage.setItem('bharatshaala_notification_settings', JSON.stringify(updated));
       return updated;
     });
   }, []);

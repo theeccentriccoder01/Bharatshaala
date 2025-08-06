@@ -1,4 +1,4 @@
-// Category Landing Page Component for Bharatshala Platform
+// Category Landing Page Component for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -101,7 +101,7 @@ const CategoryLanding = () => {
         <title>{categoryData.name} - भारतशाला | {categoryData.metaTitle || categoryData.description}</title>
         <meta name="description" content={categoryData.metaDescription || categoryData.description} />
         <meta name="keywords" content={categoryData.keywords || `${categoryData.name}, भारतीय हस्तशिल्प, ऑनलाइन खरीदारी`} />
-        <link rel="canonical" href={`https://bharatshala.com/categories/${categorySlug}`} />
+        <link rel="canonical" href={`https://bharatshaala.com/categories/${categorySlug}`} />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

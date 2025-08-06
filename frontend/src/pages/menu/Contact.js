@@ -1,4 +1,4 @@
-// Contact Page for Bharatshala Platform
+// Contact Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useAnalytics } from '../analytics';
@@ -32,10 +32,10 @@ const Contact = () => {
   const contactMethods = [
     {
       title: 'ईमेल करें',
-      description: 'support@bharatshala.com',
+      description: 'support@bharatshaala.com',
       icon: '📧',
       color: 'emerald',
-      action: () => window.open('mailto:support@bharatshala.com')
+      action: () => window.open('mailto:support@bharatshaala.com')
     },
     {
       title: 'फोन करें',
@@ -68,21 +68,21 @@ const Contact = () => {
       city: 'नई दिल्ली',
       address: 'भारतशाला हाउस, कनॉट प्लेस, नई दिल्ली - 110001',
       phone: '+91 11-4567-8901',
-      email: 'delhi@bharatshala.com',
+      email: 'delhi@bharatshaala.com',
       hours: 'सोमवार - शनिवार: 9:00 AM - 6:00 PM'
     },
     {
       city: 'मुंबई',
       address: 'कला केंद्र, बांद्रा कुर्ला कॉम्प्लेक्स, मुंबई - 400051',
       phone: '+91 22-4567-8902',
-      email: 'mumbai@bharatshala.com',
+      email: 'mumbai@bharatshaala.com',
       hours: 'सोमवार - शनिवार: 9:00 AM - 6:00 PM'
     },
     {
       city: 'बेंगलुरु',
       address: 'टेक पार्क, कोरमंगला, बेंगलुरु - 560034',
       phone: '+91 80-4567-8903',
-      email: 'bangalore@bharatshala.com',
+      email: 'bangalore@bharatshaala.com',
       hours: 'सोमवार - शनिवार: 9:00 AM - 6:00 PM'
     }
   ];

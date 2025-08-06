@@ -1,4 +1,4 @@
-// Support Component - Bharatshala Platform
+// Support Component - Bharatshaala Platform
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -83,7 +83,7 @@ const Support = () => {
     },
     {
       method: 'ईमेल सपोर्ट',
-      details: 'support@bharatshala.com',
+      details: 'support@bharatshaala.com',
       timing: '24 घंटे में जवाब',
       icon: '📧'
     },
@@ -153,7 +153,7 @@ const Support = () => {
         <title>सहायता और सपोर्ट - भारतशाला | Customer Support</title>
         <meta name="description" content="भारतशाला कस्टमर सपोर्ट। आपके सवालों का जवाब, टिकट सबमिशन और लाइव चैट सपोर्ट उपलब्ध है।" />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://bharatshala.com/support" />
+        <link rel="canonical" href="https://bharatshaala.com/support" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -1,4 +1,4 @@
-// Silver Jewelry Category Page for Bharatshala Platform
+// Silver Jewelry Category Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
@@ -180,7 +180,7 @@ const SilverJewelry = () => {
         <title>{categoryInfo.title} - भारतशाला | हस्तनिर्मित चांदी के आभूषण</title>
         <meta name="description" content="पारंपरिक और आधुनिक डिजाइन के हस्तनिर्मित चांदी के आभूषण। 925 स्टर्लिंग सिल्वर के अंगूठियां, हार, कंगन और अन्य आभूषण।" />
         <meta name="keywords" content="चांदी के आभूषण, सिल्वर जूलरी, 925 स्टर्लिंग, हस्तनिर्मित आभूषण, पारंपरिक जूलरी" />
-        <link rel="canonical" href="https://bharatshala.com/categories/silver-jewelry" />
+        <link rel="canonical" href="https://bharatshaala.com/categories/silver-jewelry" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

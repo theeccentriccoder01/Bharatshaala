@@ -119,10 +119,10 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     // Load saved preferences
-    const savedTheme = localStorage.getItem('bharatshala_theme');
-    const savedAccent = localStorage.getItem('bharatshala_accent');
-    const savedFontSize = localStorage.getItem('bharatshala_fontSize');
-    const savedAnimations = localStorage.getItem('bharatshala_animations');
+    const savedTheme = localStorage.getItem('bharatshaala_theme');
+    const savedAccent = localStorage.getItem('bharatshaala_accent');
+    const savedFontSize = localStorage.getItem('bharatshaala_fontSize');
+    const savedAnimations = localStorage.getItem('bharatshaala_animations');
 
     if (savedTheme && themes[savedTheme]) {
       setTheme(savedTheme);
@@ -192,28 +192,28 @@ export const ThemeProvider = ({ children }) => {
   const changeTheme = (newTheme) => {
     if (themes[newTheme]) {
       setTheme(newTheme);
-      localStorage.setItem('bharatshala_theme', newTheme);
+      localStorage.setItem('bharatshaala_theme', newTheme);
     }
   };
 
   const changeAccentColor = (newColor) => {
     if (accentColors[newColor]) {
       setAccentColor(newColor);
-      localStorage.setItem('bharatshala_accent', newColor);
+      localStorage.setItem('bharatshaala_accent', newColor);
     }
   };
 
   const changeFontSize = (newSize) => {
     if (fontSizes[newSize]) {
       setFontSize(newSize);
-      localStorage.setItem('bharatshala_fontSize', newSize);
+      localStorage.setItem('bharatshaala_fontSize', newSize);
     }
   };
 
   const toggleAnimations = () => {
     const newValue = !animations;
     setAnimations(newValue);
-    localStorage.setItem('bharatshala_animations', JSON.stringify(newValue));
+    localStorage.setItem('bharatshaala_animations', JSON.stringify(newValue));
   };
 
   const resetToDefaults = () => {
@@ -222,10 +222,10 @@ export const ThemeProvider = ({ children }) => {
     setFontSize('medium');
     setAnimations(true);
     
-    localStorage.removeItem('bharatshala_theme');
-    localStorage.removeItem('bharatshala_accent');
-    localStorage.removeItem('bharatshala_fontSize');
-    localStorage.removeItem('bharatshala_animations');
+    localStorage.removeItem('bharatshaala_theme');
+    localStorage.removeItem('bharatshaala_accent');
+    localStorage.removeItem('bharatshaala_fontSize');
+    localStorage.removeItem('bharatshaala_animations');
   };
 
   const getCurrentTheme = () => themes[theme];

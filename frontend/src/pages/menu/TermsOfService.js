@@ -1,4 +1,4 @@
-// Terms of Service Component - Bharatshala Platform
+// Terms of Service Component - Bharatshaala Platform
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -15,7 +15,7 @@ const TermsOfService = () => {
     {
       title: 'परिचय',
       content: [
-        'भारतशाला ("हम", "हमारा", या "कंपनी") bharatshala.com वेबसाइट और संबंधित सेवाओं का संचालन करती है।',
+        'भारतशाला ("हम", "हमारा", या "कंपनी") bharatshaala.com वेबसाइट और संबंधित सेवाओं का संचालन करती है।',
         'इन नियमों और शर्तों ("शर्तें") में हमारी सेवा के उपयोग के नियम निर्धारित हैं।',
         'हमारी सेवा का उपयोग करके, आप इन शर्तों से सहमत होते हैं। यदि आप इन शर्तों से सहमत नहीं हैं, तो कृपया हमारी सेवा का उपयोग न करें।'
       ]
@@ -109,7 +109,7 @@ const TermsOfService = () => {
         <title>नियम और शर्तें - भारतशाला | Terms of Service</title>
         <meta name="description" content="भारतशाला की नियम और शर्तें। हमारी सेवाओं के उपयोग के नियम और शर्तों को समझें।" />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://bharatshala.com/terms-of-service" />
+        <link rel="canonical" href="https://bharatshaala.com/terms-of-service" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -197,7 +197,7 @@ const TermsOfService = () => {
                 </p>
                 <div className="space-y-2 text-gray-700">
                   <p><strong>कंपनी:</strong> भारतशाला प्राइवेट लिमिटेड</p>
-                  <p><strong>ईमेल:</strong> legal@bharatshala.com</p>
+                  <p><strong>ईमेल:</strong> legal@bharatshaala.com</p>
                   <p><strong>फोन:</strong> +91-XXXX-XXXXXX</p>
                   <p><strong>पता:</strong> [कंपनी का पूरा पता]</p>
                 </div>

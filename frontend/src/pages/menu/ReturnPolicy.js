@@ -1,4 +1,4 @@
-// Return Policy Component - Bharatshala Platform
+// Return Policy Component - Bharatshaala Platform
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -77,7 +77,7 @@ const ReturnPolicy = () => {
         <title>रिटर्न पॉलिसी - भारतशाला | Return & Exchange Policy</title>
         <meta name="description" content="भारतशाला की रिटर्न और एक्सचेंज पॉलिसी। जानें कि आप कैसे अपने ऑर्डर को वापस कर सकते हैं या एक्सचेंज कर सकते हैं।" />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://bharatshala.com/return-policy" />
+        <link rel="canonical" href="https://bharatshaala.com/return-policy" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -240,7 +240,7 @@ const ReturnPolicy = () => {
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center">
                   <a
-                    href="mailto:returns@bharatshala.com"
+                    href="mailto:returns@bharatshaala.com"
                     className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors duration-200"
                   >
                     ईमेल करें

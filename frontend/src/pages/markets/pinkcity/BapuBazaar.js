@@ -1,4 +1,4 @@
-// Bapu Bazaar Component for Pink City - Bharatshala Platform
+// Bapu Bazaar Component for Pink City - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -210,7 +210,7 @@ const BapuBazaar = () => {
         <title>{bazaarInfo.name} - भारतशाला | जयपुर का प्रसिद्ध बाजार</title>
         <meta name="description" content="बापू बाजार जयपुर से राजस्थानी वस्त्र, जूतियां, हस्तशिल्प खरीदें। बंधनी, ब्लॉक प्रिंट, ब्लू पॉटरी और पारंपरिक राजस्थानी सामान।" />
         <meta name="keywords" content="बापू बाजार, जयपुर शॉपिंग, राजस्थानी वस्त्र, बंधनी, ब्लॉक प्रिंट, राजस्थानी जूतियां, ब्लू पॉटरी" />
-        <link rel="canonical" href="https://bharatshala.com/markets/pinkcity/bapu-bazaar" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/pinkcity/bapu-bazaar" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

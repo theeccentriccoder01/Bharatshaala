@@ -1,4 +1,4 @@
-// Johri Market Component for Pink City - Bharatshala Platform
+// Johri Market Component for Pink City - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -214,7 +214,7 @@ const JohriMarket = () => {
         <title>{marketInfo.name} - भारतशाला | जयपुर की प्रसिद्ध ज्वेलरी मार्केट</title>
         <meta name="description" content="जौहरी मार्केट जयपुर से कुंदन, मीनाकारी, पॉकी स्टोन ज्वेलरी खरीदें। राजस्थानी ट्रेडिशनल आभूषण और हॉलमार्क ज्वेलरी।" />
         <meta name="keywords" content="जौहरी मार्केट, जयपुर ज्वेलरी, कुंदन ज्वेलरी, मीनाकारी, पॉकी स्टोन, राजस्थानी आभूषण, हॉलमार्क ज्वेलरी" />
-        <link rel="canonical" href="https://bharatshala.com/markets/pinkcity/johri-market" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/pinkcity/johri-market" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

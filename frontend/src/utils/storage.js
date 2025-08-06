@@ -1,4 +1,4 @@
-// Storage Utility Service - Bharatshala Platform
+// Storage Utility Service - Bharatshaala Platform
 
 class StorageService {
   constructor() {
@@ -415,43 +415,43 @@ class StorageService {
     }
   }
 
-  // Bharatshala specific storage methods
+  // Bharatshaala specific storage methods
   setUserPreference(key, value) {
-    return this.setItem(`bharatshala_pref_${key}`, value);
+    return this.setItem(`bharatshaala_pref_${key}`, value);
   }
 
   getUserPreference(key, defaultValue = null) {
-    return this.getItem(`bharatshala_pref_${key}`, defaultValue);
+    return this.getItem(`bharatshaala_pref_${key}`, defaultValue);
   }
 
   setCartData(cartData) {
-    return this.setItem('bharatshala_cart', cartData, { ttl: 7 * 24 * 60 * 60 * 1000 }); // 7 days
+    return this.setItem('bharatshaala_cart', cartData, { ttl: 7 * 24 * 60 * 60 * 1000 }); // 7 days
   }
 
   getCartData() {
-    return this.getItem('bharatshala_cart', []);
+    return this.getItem('bharatshaala_cart', []);
   }
 
   clearCartData() {
-    return this.removeItem('bharatshala_cart');
+    return this.removeItem('bharatshaala_cart');
   }
 
   setWishlistData(wishlistData) {
-    return this.setItem('bharatshala_wishlist', wishlistData);
+    return this.setItem('bharatshaala_wishlist', wishlistData);
   }
 
   getWishlistData() {
-    return this.getItem('bharatshala_wishlist', []);
+    return this.getItem('bharatshaala_wishlist', []);
   }
 
   setRecentlyViewed(products) {
     const maxItems = 20;
     const recentProducts = products.slice(0, maxItems);
-    return this.setItem('bharatshala_recent_viewed', recentProducts);
+    return this.setItem('bharatshaala_recent_viewed', recentProducts);
   }
 
   getRecentlyViewed() {
-    return this.getItem('bharatshala_recent_viewed', []);
+    return this.getItem('bharatshaala_recent_viewed', []);
   }
 
   addToRecentlyViewed(product) {
@@ -469,11 +469,11 @@ class StorageService {
   setSearchHistory(searches) {
     const maxItems = 10;
     const recentSearches = searches.slice(0, maxItems);
-    return this.setItem('bharatshala_search_history', recentSearches);
+    return this.setItem('bharatshaala_search_history', recentSearches);
   }
 
   getSearchHistory() {
-    return this.getItem('bharatshala_search_history', []);
+    return this.getItem('bharatshaala_search_history', []);
   }
 
   addToSearchHistory(searchTerm) {
@@ -515,37 +515,37 @@ class StorageService {
 
   // Analytics and tracking data
   setAnalyticsData(key, data) {
-    return this.setSessionItem(`bharatshala_analytics_${key}`, data);
+    return this.setSessionItem(`bharatshaala_analytics_${key}`, data);
   }
 
   getAnalyticsData(key) {
-    return this.getSessionItem(`bharatshala_analytics_${key}`, null);
+    return this.getSessionItem(`bharatshaala_analytics_${key}`, null);
   }
 
   // Cache management
   setCache(key, data, ttl = 60 * 60 * 1000) { // Default 1 hour
-    return this.setItem(`bharatshala_cache_${key}`, data, { ttl });
+    return this.setItem(`bharatshaala_cache_${key}`, data, { ttl });
   }
 
   getCache(key) {
-    return this.getItem(`bharatshala_cache_${key}`, null);
+    return this.getItem(`bharatshaala_cache_${key}`, null);
   }
 
   clearCache() {
-    return this.removeByPrefix('bharatshala_cache_');
+    return this.removeByPrefix('bharatshaala_cache_');
   }
 
   // Vendor specific storage
   setVendorData(vendorId, key, data) {
-    return this.setItem(`bharatshala_vendor_${vendorId}_${key}`, data);
+    return this.setItem(`bharatshaala_vendor_${vendorId}_${key}`, data);
   }
 
   getVendorData(vendorId, key, defaultValue = null) {
-    return this.getItem(`bharatshala_vendor_${vendorId}_${key}`, defaultValue);
+    return this.getItem(`bharatshaala_vendor_${vendorId}_${key}`, defaultValue);
   }
 
   clearVendorData(vendorId) {
-    return this.removeByPrefix(`bharatshala_vendor_${vendorId}_`);
+    return this.removeByPrefix(`bharatshaala_vendor_${vendorId}_`);
   }
 }
 

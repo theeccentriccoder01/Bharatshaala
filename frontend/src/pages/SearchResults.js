@@ -72,18 +72,18 @@ const SearchResults = () => {
   }, [searchParams]);
 
   const loadSearchHistory = () => {
-    const history = JSON.parse(localStorage.getItem('bharatshala_search_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('bharatshaala_search_history') || '[]');
     setSearchHistory(history.slice(0, 10)); // Last 10 searches
   };
 
   const saveToSearchHistory = (query) => {
     if (!query.trim()) return;
     
-    const history = JSON.parse(localStorage.getItem('bharatshala_search_history') || '[]');
+    const history = JSON.parse(localStorage.getItem('bharatshaala_search_history') || '[]');
     const filtered = history.filter(item => item.query !== query);
     const updated = [{ query, timestamp: new Date().toISOString() }, ...filtered].slice(0, 10);
     
-    localStorage.setItem('bharatshala_search_history', JSON.stringify(updated));
+    localStorage.setItem('bharatshaala_search_history', JSON.stringify(updated));
     setSearchHistory(updated);
   };
 

@@ -1,4 +1,4 @@
-// Web Vitals Reporting for Bharatshala Platform
+// Web Vitals Reporting for Bharatshaala Platform
 import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
 import analytics from './analytics';
 import config from './config';
@@ -83,7 +83,7 @@ class PerformanceTracker {
       referrer: document.referrer,
       sessionData: this.sessionData,
       pageLoadTime: Date.now() - this.sessionData.startTime,
-      isFirstVisit: !localStorage.getItem('bharatshala_returning_user')
+      isFirstVisit: !localStorage.getItem('bharatshaala_returning_user')
     };
 
     this.metrics.set(name, enhancedMetric);
@@ -138,7 +138,7 @@ class PerformanceTracker {
           metric_name: metric.name,
           metric_value: metric.value,
           metric_grade: metric.grade,
-          custom_parameter_1: 'bharatshala_performance'
+          custom_parameter_1: 'bharatshaala_performance'
         });
       }
 
@@ -405,7 +405,7 @@ if (config.analytics.trackPerformance) {
 }
 
 // Export for global access
-window.__BHARATSHALA_PERFORMANCE__ = performanceTracker;
+window.__BHARATSHAALA_PERFORMANCE__ = performanceTracker;
 
 export default reportWebVitals;
 export { performanceTracker };

@@ -1,4 +1,4 @@
-// Folk Art Center Component for Dilli Haat - Bharatshala Platform
+// Folk Art Center Component for Dilli Haat - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -245,7 +245,7 @@ const FolkArtCenter = () => {
         <title>{centerInfo.name} - भारतशाला | भारतीय लोक कला केंद्र</title>
         <meta name="description" content="दिल्ली हाट लोक कला केंद्र में भारतीय पारंपरिक लोक कलाओं का संग्रह। मधुबनी, वारली, पट्टचित्र और अन्य हस्तशिल्प कलाकृतियां।" />
         <meta name="keywords" content="दिल्ली हाट, लोक कला, मधुबनी पेंटिंग, वारली आर्ट, पट्टचित्र, भारतीय हस्तशिल्प, पारंपरिक कला" />
-        <link rel="canonical" href="https://bharatshala.com/markets/dilli-haat/folk-art-center" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/dilli-haat/folk-art-center" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

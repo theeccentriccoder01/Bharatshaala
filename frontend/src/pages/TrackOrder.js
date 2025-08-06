@@ -45,7 +45,7 @@ const TrackOrder = () => {
         currentLocation: 'मुंबई सॉर्टिंग हब',
         estimatedDelivery: '2025-08-06',
         trackingNumber: 'TRK123456789',
-        carrier: 'Bharatshala Express',
+        carrier: 'Bharatshaala Express',
         orderDate: '2025-08-02',
         items: [
           {
@@ -129,7 +129,7 @@ const TrackOrder = () => {
         },
         supportContact: {
           phone: '+91 1800-123-4567',
-          email: 'support@bharatshala.com',
+          email: 'support@bharatshaala.com',
           whatsapp: '+91 9876543210'
         }
       });

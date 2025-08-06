@@ -1,4 +1,4 @@
-// About Page for Bharatshala Platform
+// About Page for Bharatshaala Platform
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useAnalytics } from '../analytics';

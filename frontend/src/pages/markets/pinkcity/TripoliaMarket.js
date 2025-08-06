@@ -1,4 +1,4 @@
-// Tripolia Market Component for Pink City - Bharatshala Platform
+// Tripolia Market Component for Pink City - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -232,7 +232,7 @@ const TripoliaMarket = () => {
         <title>{marketInfo.name} - भारतशाला | जयपुर का ऐतिहासिक धातु शिल्प बाजार</title>
         <meta name="description" content="त्रिपोलिया मार्केट जयपुर से पारंपरिक धातु शिल्प। पीतल, तांबा, लोहे के बर्तन और हस्तशिल्प। हैंडमेड मेटल क्राफ्ट्स।" />
         <meta name="keywords" content="त्रिपोलिया मार्केट, जयपुर मेटल क्राफ्ट, पीतल के बर्तन, तांबे के बर्तन, धातु शिल्प, हैंडमेड मेटल आइटम्स" />
-        <link rel="canonical" href="https://bharatshala.com/markets/pinkcity/tripolia-market" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/pinkcity/tripolia-market" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

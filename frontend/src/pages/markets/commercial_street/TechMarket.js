@@ -1,4 +1,4 @@
-// Tech Market Component for Commercial Street - Bharatshala Platform
+// Tech Market Component for Commercial Street - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -181,7 +181,7 @@ const TechMarket = () => {
         <title>{marketInfo.name} - भारतशाला | बेंगलुरु का टेक हब</title>
         <meta name="description" content="कमर्शियल स्ट्रीट टेक मार्केट से लेटेस्ट लैपटॉप्स, स्मार्टफोन्स, गैजेट्स और टेक एक्सेसरीज खरीदें। बेस्ट प्राइसेस और एक्सपर्ट सर्विस।" />
         <meta name="keywords" content="बेंगलुरु टेक मार्केट, लैपटॉप्स, स्मार्टफोन्स, कमर्शियल स्ट्रीट, टेक गैजेट्स, कंप्यूटर रिपेयर" />
-        <link rel="canonical" href="https://bharatshala.com/markets/commercial-street/tech-market" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/commercial-street/tech-market" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

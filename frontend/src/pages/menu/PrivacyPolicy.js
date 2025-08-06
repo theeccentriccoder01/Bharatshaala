@@ -1,4 +1,4 @@
-// Privacy Policy Component - Bharatshala Platform
+// Privacy Policy Component - Bharatshaala Platform
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -85,7 +85,7 @@ const PrivacyPolicy = () => {
         <title>गोपनीयता नीति - भारतशाला | Privacy Policy</title>
         <meta name="description" content="भारतशाला की गोपनीयता नीति। जानें कि हम आपकी व्यक्तिगत जानकारी कैसे एकत्र करते हैं, उपयोग करते हैं और सुरक्षित रखते हैं।" />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://bharatshala.com/privacy-policy" />
+        <link rel="canonical" href="https://bharatshaala.com/privacy-policy" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -122,7 +122,7 @@ const PrivacyPolicy = () => {
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
                   भारतशाला में, हम आपकी गोपनीयता का सम्मान करते हैं और आपकी व्यक्तिगत जानकारी की सुरक्षा के लिए प्रतिबद्ध हैं। 
                   यह गोपनीयता नीति बताती है कि हम आपकी जानकारी कैसे एकत्र करते हैं, उपयोग करते हैं, और सुरक्षित रखते हैं 
-                  जब आप हमारी वेबसाइट bharatshala.com का उपयोग करते हैं।
+                  जब आप हमारी वेबसाइट bharatshaala.com का उपयोग करते हैं।
                 </p>
               </motion.div>
             </div>
@@ -172,7 +172,7 @@ const PrivacyPolicy = () => {
                   यदि आपके पास इस गोपनीयता नीति के बारे में कोई प्रश्न या चिंता है, तो कृपया हमसे संपर्क करें:
                 </p>
                 <div className="space-y-2 text-gray-700">
-                  <p><strong>ईमेल:</strong> privacy@bharatshala.com</p>
+                  <p><strong>ईमेल:</strong> privacy@bharatshaala.com</p>
                   <p><strong>फोन:</strong> +91-XXXX-XXXXXX</p>
                   <p><strong>पता:</strong> भारतशाला प्राइवेट लिमिटेड, [पूरा पता]</p>
                 </div>

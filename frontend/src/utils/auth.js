@@ -1,13 +1,13 @@
-// Authentication Utility Service - Bharatshala Platform
+// Authentication Utility Service - Bharatshaala Platform
 import { storageService } from './storage';
 
-const TOKEN_KEY = 'bharatshala_token';
-const REFRESH_TOKEN_KEY = 'bharatshala_refresh_token';
-const USER_KEY = 'bharatshala_user';
+const TOKEN_KEY = 'bharatshaala_token';
+const REFRESH_TOKEN_KEY = 'bharatshaala_refresh_token';
+const USER_KEY = 'bharatshaala_user';
 
 class AuthService {
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'https://api.bharatshala.com/v1';
+    this.baseURL = process.env.REACT_APP_API_URL || 'https://api.bharatshaala.com/v1';
     this.isAuthenticated = this.checkAuthState();
     this.user = this.getUser();
   }

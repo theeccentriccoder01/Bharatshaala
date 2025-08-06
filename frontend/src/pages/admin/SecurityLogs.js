@@ -1,4 +1,4 @@
-// Security Logs Component for Bharatshala Admin Panel
+// Security Logs Component for Bharatshaala Admin Panel
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';

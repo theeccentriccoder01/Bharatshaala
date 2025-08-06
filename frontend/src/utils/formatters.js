@@ -1,4 +1,4 @@
-// Comprehensive Formatting Utilities for Bharatshala Platform
+// Comprehensive Formatting Utilities for Bharatshaala Platform
 import { format, parseISO, isValid } from 'date-fns';
 import { hi, enUS } from 'date-fns/locale';
 import { INDIAN_STATES } from './constants';

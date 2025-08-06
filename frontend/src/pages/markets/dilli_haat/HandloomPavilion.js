@@ -1,4 +1,4 @@
-// Handloom Pavilion Component for Dilli Haat - Bharatshala Platform
+// Handloom Pavilion Component for Dilli Haat - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -226,7 +226,7 @@ const HandloomPavilion = () => {
         <title>{pavilionInfo.name} - भारतशाला | भारतीय हैंडलूम पवेलियन</title>
         <meta name="description" content="दिल्ली हाट हैंडलूम पवेलियन में भारतीय पारंपरिक हैंडलूम वस्त्र। बनारसी, कांजीवरम, चंदेरी और अन्य हस्तनिर्मित वस्त्र।" />
         <meta name="keywords" content="दिल्ली हाट, हैंडलूम, बनारसी साड़ी, कांजीवरम सिल्क, चंदेरी, पारंपरिक वस्त्र, हस्तनिर्मित कपड़े" />
-        <link rel="canonical" href="https://bharatshala.com/markets/dilli-haat/handloom-pavilion" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/dilli-haat/handloom-pavilion" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

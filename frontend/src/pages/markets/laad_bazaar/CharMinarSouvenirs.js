@@ -1,4 +1,4 @@
-// Char Minar Souvenirs Component for Laad Bazaar - Bharatshala Platform
+// Char Minar Souvenirs Component for Laad Bazaar - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -220,7 +220,7 @@ const CharMinarSouvenirs = () => {
         <title>{shopInfo.name} - भारतशाला | चारमीनार स्मृति चिह्न</title>
         <meta name="description" content="लाड बाजार से चारमीनार और हैदराबाद के स्मृति चिह्न। चारमीनार मॉडल्स, निज़ामी आर्टिफैक्ट्स, हैदराबादी सूवेनियर्स और गिफ्ट आइटम्स।" />
         <meta name="keywords" content="चारमीनार सूवेनियर्स, हैदराबाद स्मृति चिह्न, निज़ामी आर्टिफैक्ट्स, लाड बाजार, हैदराबाद गिफ्ट्स" />
-        <link rel="canonical" href="https://bharatshala.com/markets/laad-bazaar/charminar-souvenirs" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/laad-bazaar/charminar-souvenirs" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

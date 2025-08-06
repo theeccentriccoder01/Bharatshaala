@@ -1,4 +1,4 @@
-// Traditional Sweets Component for Chandni Chowk - Bharatshala Platform
+// Traditional Sweets Component for Chandni Chowk - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -165,7 +165,7 @@ const TraditionalSweets = () => {
         <title>{sweetShopInfo.name} - भारतशाला | चांदनी चौक की प्रसिद्ध मिठाइयां</title>
         <meta name="description" content="चांदनी चौक की 200 साल पुराने मिठाई की दुकानों से घेवर, जलेबी, बेसन लड्डू और अन्य पारंपरिक मिठाइयां।" />
         <meta name="keywords" content="चांदनी चौक मिठाई, जलेबी वाला, घेवर, बेसन लड्डू, दिल्ली स्वीट्स, पारंपरिक मिठाई" />
-        <link rel="canonical" href="https://bharatshala.com/markets/chandni-chowk/traditional-sweets" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/chandni-chowk/traditional-sweets" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

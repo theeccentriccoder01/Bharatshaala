@@ -1,4 +1,4 @@
-// Antique Bazaar Component for Colaba Causeway - Bharatshala Platform
+// Antique Bazaar Component for Colaba Causeway - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -168,7 +168,7 @@ const AntiqueBazaar = () => {
         <title>{bazaarInfo.name} - भारतशाला | कोलाबा के दुर्लभ एंटीक्स</title>
         <meta name="description" content="कोलाबा कॉज़वे के प्रसिद्ध एंटीक बाज़ार से दुर्लभ सिक्के, पेंटिंग्स, मूर्तियां और कलेक्टिबल आइटम्स।" />
         <meta name="keywords" content="कोलाबा एंटीक्स, विंटेज कॉइन्स, पुरानी पेंटिंग्स, एंटीक ज्वेलरी, मुंबई एंटीक्स" />
-        <link rel="canonical" href="https://bharatshala.com/markets/colaba-causeway/antique-bazaar" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/colaba-causeway/antique-bazaar" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

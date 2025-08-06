@@ -1,4 +1,4 @@
-// Comprehensive Validation System for Bharatshala Platform
+// Comprehensive Validation System for Bharatshaala Platform
 import config from './config';
 
 // Indian-specific validation patterns
@@ -460,7 +460,7 @@ class Validator {
 // Create default validator instance
 const validator = new Validator(config.ui.defaultLanguage || 'hi');
 
-// Add custom validators for Bharatshala
+// Add custom validators for Bharatshaala
 validator.addCustomValidator('productSKU', (value) => {
   return PATTERNS.sku.test(value);
 }, 'कृपया वैध SKU डालें');

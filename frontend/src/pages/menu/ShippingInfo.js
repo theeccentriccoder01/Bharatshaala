@@ -1,4 +1,4 @@
-// Shipping Info Component - Bharatshala Platform
+// Shipping Info Component - Bharatshaala Platform
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -100,7 +100,7 @@ const ShippingInfo = () => {
         <title>शिपिंग जानकारी - भारतशाला | Shipping & Delivery Info</title>
         <meta name="description" content="भारतशाला की शिपिंग और डिलीवरी जानकारी। जानें डिलीवरी के विकल्प, समय और शुल्क के बारे में।" />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://bharatshala.com/shipping-info" />
+        <link rel="canonical" href="https://bharatshaala.com/shipping-info" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -265,7 +265,7 @@ const ShippingInfo = () => {
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center">
                   <a
-                    href="mailto:shipping@bharatshala.com"
+                    href="mailto:shipping@bharatshaala.com"
                     className="bg-white text-green-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                   >
                     ईमेल करें

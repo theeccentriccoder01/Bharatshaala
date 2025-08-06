@@ -1,4 +1,4 @@
-// Payment Methods Component - Bharatshala Platform
+// Payment Methods Component - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';

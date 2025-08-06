@@ -1,4 +1,4 @@
-// Book Cafe Component for Commercial Street - Bharatshala Platform
+// Book Cafe Component for Commercial Street - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -180,7 +180,7 @@ const BookCafe = () => {
         <title>{cafeInfo.name} - भारतशाला | बेंगलुरु की प्रसिद्ध बुक कैफे</title>
         <meta name="description" content="कमर्शियल स्ट्रीट बुक कैफे से किताबें खरीदें और कॉफी का आनंद लें। लिटरेरी इवेंट्स, बुक रीडिंग और लेखक चर्चा।" />
         <meta name="keywords" content="बुक कैफे, कमर्शियल स्ट्रीट, बेंगलुरु बुक्स, लिटरेरी इवेंट्स, कॉफी और किताबें" />
-        <link rel="canonical" href="https://bharatshala.com/markets/commercial-street/book-cafe" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/commercial-street/book-cafe" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

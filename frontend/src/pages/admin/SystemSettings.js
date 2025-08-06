@@ -1,4 +1,4 @@
-// System Settings Component for Bharatshala Admin Panel
+// System Settings Component for Bharatshaala Admin Panel
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
@@ -254,7 +254,7 @@ const SystemSettings = () => {
                     value={settings.adminEmail}
                     onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                    placeholder="admin@bharatshala.com"
+                    placeholder="admin@bharatshaala.com"
                   />
                 </div>
               </div>

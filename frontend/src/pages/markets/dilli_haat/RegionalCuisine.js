@@ -1,4 +1,4 @@
-// Regional Cuisine Component for Dilli Haat - Bharatshala Platform
+// Regional Cuisine Component for Dilli Haat - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -245,7 +245,7 @@ const RegionalCuisine = () => {
         <title>{cuisineInfo.name} - भारतशाला | भारतीय क्षेत्रीय व्यंजन</title>
         <meta name="description" content="दिल्ली हाट में भारत के विभिन्न राज्यों के प्रामाणिक व्यंजन। बिरयानी, दोसा, राजस्थानी थाली और अन्य पारंपरिक भारतीय खाना।" />
         <meta name="keywords" content="दिल्ली हाट, भारतीय व्यंजन, क्षेत्रीय खाना, बिरयानी, दोसा, थाली, भारतीय रसोई, पारंपरिक भोजन" />
-        <link rel="canonical" href="https://bharatshala.com/markets/dilli-haat/regional-cuisine" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/dilli-haat/regional-cuisine" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

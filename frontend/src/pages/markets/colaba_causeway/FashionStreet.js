@@ -1,4 +1,4 @@
-// Fashion Street Component for Colaba Causeway - Bharatshala Platform
+// Fashion Street Component for Colaba Causeway - Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -175,7 +175,7 @@ const FashionStreet = () => {
         <title>{streetInfo.name} - भारतशाला | कोलाबा का ट्रेंडी फैशन</title>
         <meta name="description" content="कोलाबा फैशन स्ट्रीट से ट्रेंडी और किफायती फैशन आइटम्स। स्ट्रीट स्टाइल, बोहो चिक, इंडो-वेस्टर्न और एक्सेसरीज़।" />
         <meta name="keywords" content="कोलाबा फैशन स्ट्रीट, ट्रेंडी कपड़े, किफायती फैशन, स्ट्रीट स्टाइल, मुंबई फैशन" />
-        <link rel="canonical" href="https://bharatshala.com/markets/colaba-causeway/fashion-street" />
+        <link rel="canonical" href="https://bharatshaala.com/markets/colaba-causeway/fashion-street" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

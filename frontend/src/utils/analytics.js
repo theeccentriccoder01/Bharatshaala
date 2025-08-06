@@ -1,4 +1,4 @@
-// Advanced Analytics System for Bharatshala Platform
+// Advanced Analytics System for Bharatshaala Platform
 import config from './config';
 
 // Analytics configuration
@@ -8,9 +8,9 @@ const ANALYTICS_CONFIG = {
   flushInterval: config.analytics.flushInterval || 30000,
   maxRetries: 3,
   retryDelay: 1000,
-  storageKey: 'bharatshala_analytics_queue',
-  sessionKey: 'bharatshala_session_id',
-  userKey: 'bharatshala_user_analytics'
+  storageKey: 'bharatshaala_analytics_queue',
+  sessionKey: 'bharatshaala_session_id',
+  userKey: 'bharatshaala_user_analytics'
 };
 
 // Event types for better categorization
@@ -232,7 +232,7 @@ class AnalyticsManager {
         },
         device: this.deviceInfo,
         library: {
-          name: 'bharatshala-analytics',
+          name: 'bharatshaala-analytics',
           version: '1.0.0'
         }
       }
@@ -418,7 +418,7 @@ class AnalyticsManager {
       session_id: this.sessionId,
       user_id: this.userId,
       timestamp: Date.now(),
-      api_key: config.analytics.apiKey || 'bharatshala_web'
+      api_key: config.analytics.apiKey || 'bharatshaala_web'
     };
 
     // Send to multiple endpoints
@@ -444,7 +444,7 @@ class AnalyticsManager {
           window.gtag('event', event.name, event.properties);
         } else {
           window.gtag('event', event.name, {
-            custom_parameter_1: 'bharatshala',
+            custom_parameter_1: 'bharatshaala',
             custom_parameter_2: event.type,
             ...event.properties
           });
@@ -605,7 +605,7 @@ export const useAnalytics = () => {
 
 // Global access for debugging
 if (config.isDev) {
-  window.__BHARATSHALA_ANALYTICS__ = analytics;
+  window.__BHARATSHAALA_ANALYTICS__ = analytics;
 }
 
 export { analytics, EVENT_TYPES, COMMERCE_EVENTS };
