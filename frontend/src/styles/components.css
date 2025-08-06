@@ -1,0 +1,535 @@
+/* Components CSS - Bharatshala Platform */
+
+/* Base Component Styles */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200;
+}
+
+.btn-primary {
+  @apply bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+}
+
+.btn-outline {
+  @apply bg-transparent border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white focus:ring-emerald-500;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-emerald-600 hover:bg-emerald-50 border-transparent focus:ring-emerald-500;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+}
+
+.btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+}
+
+.btn-warning {
+  @apply bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500;
+}
+
+.btn-sm {
+  @apply px-3 py-1.5 text-xs;
+}
+
+.btn-lg {
+  @apply px-6 py-3 text-base;
+}
+
+.btn-xl {
+  @apply px-8 py-4 text-lg;
+}
+
+.btn-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Card Components */
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-gray-200;
+}
+
+.card-body {
+  @apply px-6 py-4;
+}
+
+.card-footer {
+  @apply px-6 py-4 border-t border-gray-200 bg-gray-50;
+}
+
+.card-hover {
+  @apply transition-shadow duration-200 hover:shadow-lg;
+}
+
+/* Form Components */
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-2;
+}
+
+.form-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500;
+}
+
+.form-textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 resize-vertical;
+}
+
+.form-select {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500;
+}
+
+.form-checkbox {
+  @apply h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded;
+}
+
+.form-radio {
+  @apply h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300;
+}
+
+.form-error {
+  @apply text-red-600 text-sm mt-1;
+}
+
+.form-help {
+  @apply text-gray-500 text-sm mt-1;
+}
+
+/* Navigation Components */
+.navbar {
+  @apply bg-white shadow-lg border-b border-gray-200;
+}
+
+.navbar-brand {
+  @apply flex items-center space-x-2 text-xl font-bold text-emerald-600;
+}
+
+.navbar-nav {
+  @apply flex items-center space-x-6;
+}
+
+.navbar-item {
+  @apply text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+}
+
+.navbar-item-active {
+  @apply text-emerald-600 bg-emerald-50;
+}
+
+.sidebar {
+  @apply bg-white shadow-lg h-full overflow-y-auto;
+}
+
+.sidebar-item {
+  @apply flex items-center px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors duration-200;
+}
+
+.sidebar-item-active {
+  @apply bg-emerald-50 text-emerald-600 border-r-4 border-emerald-600;
+}
+
+/* Modal Components */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-lg shadow-xl max-w-md w-full max-h-screen overflow-y-auto;
+}
+
+.modal-header {
+  @apply px-6 py-4 border-b border-gray-200 flex items-center justify-between;
+}
+
+.modal-title {
+  @apply text-lg font-semibold text-gray-900;
+}
+
+.modal-close {
+  @apply text-gray-400 hover:text-gray-600 text-2xl leading-none;
+}
+
+.modal-body {
+  @apply px-6 py-4;
+}
+
+.modal-footer {
+  @apply px-6 py-4 border-t border-gray-200 flex items-center justify-end space-x-3;
+}
+
+/* Alert Components */
+.alert {
+  @apply p-4 rounded-md border-l-4;
+}
+
+.alert-success {
+  @apply bg-green-50 border-green-400 text-green-700;
+}
+
+.alert-error {
+  @apply bg-red-50 border-red-400 text-red-700;
+}
+
+.alert-warning {
+  @apply bg-yellow-50 border-yellow-400 text-yellow-700;
+}
+
+.alert-info {
+  @apply bg-blue-50 border-blue-400 text-blue-700;
+}
+
+/* Badge Components */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-emerald-100 text-emerald-800;
+}
+
+.badge-secondary {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-800;
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.badge-info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Product Card Components */
+.product-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-200 hover:shadow-lg;
+}
+
+.product-image {
+  @apply w-full h-48 object-cover;
+}
+
+.product-content {
+  @apply p-4;
+}
+
+.product-title {
+  @apply text-lg font-semibold text-gray-900 mb-2 line-clamp-2;
+}
+
+.product-price {
+  @apply text-xl font-bold text-emerald-600;
+}
+
+.product-original-price {
+  @apply text-sm text-gray-500 line-through;
+}
+
+.product-discount {
+  @apply text-sm text-red-600 font-medium;
+}
+
+.product-rating {
+  @apply flex items-center space-x-1;
+}
+
+.product-vendor {
+  @apply text-sm text-gray-600;
+}
+
+/* Market Card Components */
+.market-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105;
+}
+
+.market-image {
+  @apply w-full h-32 object-cover;
+}
+
+.market-content {
+  @apply p-4;
+}
+
+.market-title {
+  @apply text-lg font-bold text-gray-900 mb-2;
+}
+
+.market-description {
+  @apply text-sm text-gray-600 mb-3;
+}
+
+.market-location {
+  @apply text-xs text-gray-500 flex items-center;
+}
+
+/* Category Card Components */
+.category-card {
+  @apply bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-6 text-center transition-all duration-200 hover:shadow-lg hover:transform hover:scale-105;
+}
+
+.category-icon {
+  @apply text-4xl mb-3;
+}
+
+.category-name {
+  @apply text-lg font-semibold text-gray-900 mb-2;
+}
+
+.category-count {
+  @apply text-sm text-gray-600;
+}
+
+/* Loading Components */
+.loading-spinner {
+  @apply inline-block w-6 h-6 border-2 border-gray-300 border-t-emerald-600 rounded-full animate-spin;
+}
+
+.loading-skeleton {
+  @apply bg-gray-200 rounded animate-pulse;
+}
+
+.loading-skeleton-text {
+  @apply h-4 bg-gray-200 rounded animate-pulse;
+}
+
+.loading-skeleton-avatar {
+  @apply w-10 h-10 bg-gray-200 rounded-full animate-pulse;
+}
+
+/* Pagination Components */
+.pagination {
+  @apply flex items-center justify-center space-x-1;
+}
+
+.pagination-item {
+  @apply px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 transition-colors duration-200;
+}
+
+.pagination-item-active {
+  @apply bg-emerald-600 text-white border-emerald-600;
+}
+
+.pagination-item-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Search Components */
+.search-bar {
+  @apply relative;
+}
+
+.search-input {
+  @apply w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500;
+}
+
+.search-icon {
+  @apply absolute left-3 top-2.5 text-gray-400;
+}
+
+.search-results {
+  @apply absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-lg shadow-lg mt-1 max-h-64 overflow-y-auto z-50;
+}
+
+.search-result-item {
+  @apply px-4 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0;
+}
+
+/* Filter Components */
+.filter-panel {
+  @apply bg-white rounded-lg shadow-md p-6;
+}
+
+.filter-group {
+  @apply mb-6 last:mb-0;
+}
+
+.filter-title {
+  @apply text-lg font-semibold text-gray-900 mb-3;
+}
+
+.filter-option {
+  @apply flex items-center space-x-2 mb-2;
+}
+
+.filter-checkbox {
+  @apply form-checkbox;
+}
+
+.filter-label {
+  @apply text-sm text-gray-700 cursor-pointer;
+}
+
+/* Cart Components */
+.cart-item {
+  @apply flex items-center space-x-4 p-4 border-b border-gray-200 last:border-b-0;
+}
+
+.cart-item-image {
+  @apply w-16 h-16 object-cover rounded-lg;
+}
+
+.cart-item-details {
+  @apply flex-1;
+}
+
+.cart-item-name {
+  @apply font-semibold text-gray-900;
+}
+
+.cart-item-price {
+  @apply text-emerald-600 font-semibold;
+}
+
+.cart-item-quantity {
+  @apply flex items-center space-x-2;
+}
+
+.quantity-btn {
+  @apply w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50;
+}
+
+.quantity-input {
+  @apply w-16 text-center border border-gray-300 rounded-md py-1;
+}
+
+/* Notification Components */
+.notification {
+  @apply p-4 rounded-lg shadow-lg border-l-4 max-w-sm;
+}
+
+.notification-success {
+  @apply bg-green-50 border-green-400 text-green-700;
+}
+
+.notification-error {
+  @apply bg-red-50 border-red-400 text-red-700;
+}
+
+.notification-warning {
+  @apply bg-yellow-50 border-yellow-400 text-yellow-700;
+}
+
+.notification-info {
+  @apply bg-blue-50 border-blue-400 text-blue-700;
+}
+
+/* Indian Cultural Components */
+.namaste-greeting {
+  @apply flex items-center space-x-2 text-orange-600;
+}
+
+.hindi-text {
+  @apply font-hindi;
+}
+
+.price-indian {
+  @apply font-mono;
+}
+
+.festival-banner {
+  @apply bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 text-white p-4 rounded-lg;
+}
+
+.traditional-border {
+  @apply border-4 border-double border-orange-400;
+}
+
+/* Market Specific Components */
+.market-banner {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-8 rounded-lg;
+}
+
+.vendor-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800;
+}
+
+.handmade-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800;
+}
+
+.certified-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800;
+}
+
+/* Responsive Components */
+@media (max-width: 640px) {
+  .mobile-hide {
+    @apply hidden;
+  }
+  
+  .mobile-full {
+    @apply w-full;
+  }
+  
+  .mobile-stack {
+    @apply flex-col space-y-2 space-x-0;
+  }
+}
+
+@media (min-width: 768px) {
+  .desktop-show {
+    @apply block;
+  }
+}
+
+/* Theme Components */
+.theme-emerald {
+  --primary-color: #059669;
+  --primary-hover: #047857;
+  --primary-light: #d1fae5;
+}
+
+.theme-blue {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #dbeafe;
+}
+
+.theme-purple {
+  --primary-color: #7c3aed;
+  --primary-hover: #6d28d9;
+  --primary-light: #ede9fe;
+}
+
+/* Accessibility Components */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden clip-rect(0, 0, 0, 0) border-0;
+}
+
+.focus-visible {
+  @apply focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+}
+
+/* Print Styles */
+@media print {
+  .print-hide {
+    @apply hidden;
+  }
+  
+  .print-show {
+    @apply block;
+  }
+  
+  .print-break {
+    page-break-after: always;
+  }
+}
