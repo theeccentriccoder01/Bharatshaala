@@ -1,5 +1,5 @@
 // Advanced Analytics System for Bharatshaala Platform
-import config from './config';
+import config from './constants';
 
 // Analytics configuration
 const ANALYTICS_CONFIG = {
@@ -81,10 +81,10 @@ class AnalyticsManager {
       onLine: navigator.onLine,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       screen: {
-        width: screen.width,
-        height: screen.height,
-        colorDepth: screen.colorDepth,
-        orientation: screen.orientation?.type || 'unknown'
+        width: window.screen.width,
+        height: window.screen.height,
+        colorDepth: window.screen.colorDepth,
+        orientation: window.screen.orientation?.type || 'unknown'
       },
       viewport: {
         width: window.innerWidth,
@@ -173,7 +173,7 @@ class AnalyticsManager {
     window.addEventListener('orientationchange', () => {
       setTimeout(() => {
         this.track('orientation_change', {
-          orientation: screen.orientation?.type || window.orientation
+          orientation: window.screen.orientation?.type || window.orientation
         });
       }, 100);
     });

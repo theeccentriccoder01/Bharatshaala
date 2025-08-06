@@ -1,7 +1,7 @@
 // About Page for Bharatshaala Platform
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useAnalytics } from '../analytics';
+import { useAnalytics } from '../../utils/analytics';
 import { motion } from 'framer-motion';
 
 const About = () => {

@@ -1,10 +1,10 @@
 // Comprehensive Shopping Cart Hook for Bharatshaala Platform
-import { useState, useEffect, useContext, createContext, useCallback } from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
 import { useAuth } from './useAuth';
 import { useNotification } from './useNotification';
-import apiService from '../apiService';
-import analytics from '../analytics';
-import config from '../config';
+import apiService from '../utils/api';
+import { useAnalytics } from '../utils/analytics';
+import config from '../utils/constants';
 
 // Cart Context
 const CartContext = createContext(null);
@@ -22,22 +22,7 @@ export const CartProvider = ({ children }) => {
 
   const { user, isAuthenticated } = useAuth();
   const { showSuccess, showError, showWarning } = useNotification();
-
-  // Load cart on mount and when user changes
-  useEffect(() => {
-    loadCart();
-  }, [isAuthenticated, user]);
-
-  // Auto-sync cart periodically for authenticated users
-  useEffect(() => {
-    if (isAuthenticated && items.length > 0) {
-      const interval = setInterval(syncCart, 30000); // Sync every 30 seconds
-      return () => clearInterval(interval);
-    }
-  }, [isAuthenticated, items]);
-
-  // Calculate totals whenever items change
-  const totals = calculateTotals(items, appliedCoupon, shipping, taxes);
+  const { trackCommerce, trackEvent } = useAnalytics();
 
   const loadCart = async () => {
     try {
@@ -108,6 +93,22 @@ export const CartProvider = ({ children }) => {
       setSyncing(false);
     }
   };
+
+  // Load cart on mount and when user changes
+  useEffect(() => {
+    loadCart();
+  }, [isAuthenticated, user]);
+
+  // Auto-sync cart periodically for authenticated users
+  useEffect(() => {
+    if (isAuthenticated && items.length > 0) {
+      const interval = setInterval(syncCart, 30000); // Sync every 30 seconds
+      return () => clearInterval(interval);
+    }
+  }, [isAuthenticated, items]);
+
+  // Calculate totals whenever items change
+  const totals = calculateTotals(items, appliedCoupon, shipping, taxes);
 
   const handleSyncConflicts = (conflicts) => {
     conflicts.forEach(conflict => {
@@ -196,7 +197,7 @@ export const CartProvider = ({ children }) => {
       await saveCart(newItems);
 
       // Track analytics
-      analytics.trackCommerce('add_to_cart', {
+      trackCommerce('add_to_cart', {
         productId: product.id,
         productName: product.name,
         quantity,
@@ -230,7 +231,7 @@ export const CartProvider = ({ children }) => {
 
       await saveCart(newItems);
 
-      analytics.trackCommerce('remove_from_cart', {
+      trackCommerce('remove_from_cart', {
         productId: itemToRemove.productId,
         productName: itemToRemove.name,
         quantity: itemToRemove.quantity,
@@ -268,7 +269,7 @@ export const CartProvider = ({ children }) => {
       setItems(newItems);
       await saveCart(newItems);
 
-      analytics.track('cart_quantity_updated', {
+      trackEvent('cart_quantity_updated', {
         productId: newItems[itemIndex].productId,
         oldQuantity,
         newQuantity,
@@ -294,7 +295,7 @@ export const CartProvider = ({ children }) => {
 
       await saveCart([]);
 
-      analytics.track('cart_cleared', {
+      trackEvent('cart_cleared', {
         itemsCount: oldItemsCount
       });
 
@@ -337,7 +338,7 @@ export const CartProvider = ({ children }) => {
 
         await saveCoupon(coupon);
 
-        analytics.track('coupon_applied', {
+        trackEvent('coupon_applied', {
           couponCode: coupon.code,
           discountAmount: discount,
           cartValue: totals.subtotal
@@ -366,7 +367,7 @@ export const CartProvider = ({ children }) => {
         await apiService.post('/cart/remove-coupon');
       }
 
-      analytics.track('coupon_removed');
+      trackEvent('coupon_removed');
       showSuccess('कूपन हटा दिया गया');
       
       return { success: true };

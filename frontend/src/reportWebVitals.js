@@ -1,7 +1,6 @@
 // Web Vitals Reporting for Bharatshaala Platform
 import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
-import analytics from './analytics';
-import config from './config';
+import config from './utils/constants';
 
 // Performance thresholds (in milliseconds/scores)
 const PERFORMANCE_THRESHOLDS = {
@@ -22,6 +21,31 @@ const getPerformanceGrade = (metric, value) => {
   return 'poor';
 };
 
+// Analytics helper function (not a hook)
+const trackToAnalytics = (eventName, properties) => {
+  try {
+    // Send to Google Analytics if available
+    if (window.gtag && config.analytics?.googleAnalyticsId) {
+      window.gtag('event', eventName, properties);
+    }
+
+    // Send to custom analytics endpoint
+    if (config.api?.baseURL) {
+      fetch(`${config.api.baseURL}/analytics/track`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: eventName,
+          properties,
+          timestamp: Date.now()
+        })
+      }).catch(() => {}); // Silently fail
+    }
+  } catch (error) {
+    console.warn('Failed to track analytics:', error);
+  }
+};
+
 // Enhanced metrics storage
 class PerformanceTracker {
   constructor() {
@@ -33,7 +57,7 @@ class PerformanceTracker {
       connection: this.getConnectionInfo(),
       deviceInfo: this.getDeviceInfo()
     };
-    this.isReportingEnabled = config.analytics.trackPerformance;
+    this.isReportingEnabled = config.analytics?.trackPerformance || false;
   }
 
   getConnectionInfo() {
@@ -58,9 +82,9 @@ class PerformanceTracker {
       cookieEnabled: navigator.cookieEnabled,
       onLine: navigator.onLine,
       screen: {
-        width: screen.width,
-        height: screen.height,
-        colorDepth: screen.colorDepth
+        width: window.screen.width,
+        height: window.screen.height,
+        colorDepth: window.screen.colorDepth
       },
       viewport: {
         width: window.innerWidth,
@@ -72,7 +96,7 @@ class PerformanceTracker {
   recordMetric(metric) {
     if (!this.isReportingEnabled) return;
 
-    const { name, value, rating, delta, id } = metric;
+    const { name, value } = metric;
     const grade = getPerformanceGrade(name, value);
     
     const enhancedMetric = {
@@ -88,14 +112,14 @@ class PerformanceTracker {
 
     this.metrics.set(name, enhancedMetric);
 
-    // Send to analytics
+    // Send to analytics using function instead of hook
     this.sendToAnalytics(enhancedMetric);
 
     // Send to performance monitoring service
     this.sendToPerformanceService(enhancedMetric);
 
     // Log in development
-    if (config.isDev) {
+    if (config.environment?.isDevelopment) {
       this.logMetric(enhancedMetric);
     }
 
@@ -105,7 +129,9 @@ class PerformanceTracker {
 
   sendToAnalytics(metric) {
     try {
-      analytics.trackPerformance(metric.name, metric.value, {
+      trackToAnalytics('performance_metric', {
+        metric_name: metric.name,
+        metric_value: metric.value,
         grade: metric.grade,
         rating: metric.rating,
         id: metric.id,
@@ -120,7 +146,7 @@ class PerformanceTracker {
   }
 
   sendToPerformanceService(metric) {
-    if (!config.monitoring.enabled) return;
+    if (!config.performance?.monitoring?.enabled) return;
 
     try {
       // Send to external performance monitoring (e.g., DataDog, New Relic)
@@ -133,7 +159,7 @@ class PerformanceTracker {
       }
 
       // Send to Google Analytics 4
-      if (window.gtag && config.analytics.googleAnalyticsId) {
+      if (window.gtag && config.analytics?.googleAnalyticsId) {
         window.gtag('event', 'web_vital', {
           metric_name: metric.name,
           metric_value: metric.value,
@@ -143,7 +169,7 @@ class PerformanceTracker {
       }
 
       // Send to custom performance endpoint
-      if (config.api.baseURL) {
+      if (config.api?.baseURL) {
         fetch(`${config.api.baseURL}/performance/metrics`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -228,8 +254,8 @@ class PerformanceTracker {
 
   sendPerformanceAlert(metric) {
     // Send alert to monitoring service
-    if (config.isProd) {
-      fetch(`${config.api.baseURL}/alerts/performance`, {
+    if (config.environment?.isProduction) {
+      fetch(`${config.api?.baseURL || ''}/alerts/performance`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -328,6 +354,8 @@ class PerformanceTracker {
               ]
             });
             break;
+          default:
+            break;
         }
       }
     });
@@ -371,12 +399,12 @@ const reportWebVitals = (onPerfEntry) => {
 };
 
 // Additional performance monitoring
-if (config.analytics.trackPerformance) {
+if (config.analytics?.trackPerformance) {
   // Track page load performance
   window.addEventListener('load', () => {
     const navigationTiming = performance.getEntriesByType('navigation')[0];
     if (navigationTiming) {
-      analytics.track('page_load_complete', {
+      trackToAnalytics('page_load_complete', {
         loadTime: navigationTiming.loadEventEnd - navigationTiming.fetchStart,
         domContentLoaded: navigationTiming.domContentLoadedEventEnd - navigationTiming.fetchStart,
         firstByte: navigationTiming.responseStart - navigationTiming.fetchStart,
@@ -386,22 +414,24 @@ if (config.analytics.trackPerformance) {
   });
 
   // Track resource performance
-  const observer = new PerformanceObserver((list) => {
-    list.getEntries().forEach((entry) => {
-      if (entry.entryType === 'resource') {
-        // Track slow resources
-        if (entry.duration > 1000) {
-          analytics.track('slow_resource_detected', {
-            resource: entry.name,
-            duration: entry.duration,
-            type: entry.initiatorType
-          });
+  if (typeof PerformanceObserver !== 'undefined') {
+    const observer = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        if (entry.entryType === 'resource') {
+          // Track slow resources
+          if (entry.duration > 1000) {
+            trackToAnalytics('slow_resource_detected', {
+              resource: entry.name,
+              duration: entry.duration,
+              type: entry.initiatorType
+            });
+          }
         }
-      }
+      });
     });
-  });
 
-  observer.observe({ entryTypes: ['resource'] });
+    observer.observe({ entryTypes: ['resource'] });
+  }
 }
 
 // Export for global access

@@ -1,4 +1,6 @@
 // Comprehensive Constants for Bharatshaala Platform
+// Updated: 2025-08-06 18:20:54 UTC by eccentriccoder01
+
 export const PLATFORM_SETTINGS = {
   NAME: 'भारतशाला',
   NAME_EN: 'Bharatshaala',
@@ -501,7 +503,93 @@ export const THEME_COLORS = {
   INFO: '#3b82f6' // blue-500
 };
 
-export default {
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
+const isTesting = process.env.NODE_ENV === 'test';
+
+const config = {
+  // Environment
+  environment: {
+    isDevelopment,
+    isProduction,
+    isTesting,
+    nodeEnv: process.env.NODE_ENV || 'development'
+  },
+
+  // API Configuration (structured for your code)
+  api: {
+    baseURL: API_CONFIG.BASE_URL,
+    version: API_CONFIG.VERSION,
+    timeout: API_CONFIG.TIMEOUT,
+    retryAttempts: API_CONFIG.RETRY_ATTEMPTS,
+    retryDelay: API_CONFIG.RETRY_DELAY,
+    endpoints: API_CONFIG.ENDPOINTS
+  },
+
+  // Analytics Configuration (what your analytics.js expects)
+  analytics: {
+    enabled: FEATURES.ANALYTICS,
+    batchSize: 50,
+    flushInterval: 30000,
+    trackPerformance: true,
+    googleAnalyticsId: process.env.REACT_APP_GA_TRACKING_ID,
+    facebookPixelId: process.env.REACT_APP_FB_PIXEL_ID,
+    apiKey: 'bharatshala_web'
+  },
+
+  // Authentication (what your useAuth.js expects)
+  auth: {
+    tokenKey: STORAGE_KEYS.AUTH_TOKEN,
+    refreshTokenKey: STORAGE_KEYS.REFRESH_TOKEN,
+    userKey: STORAGE_KEYS.USER_DATA,
+    maxLoginAttempts: 5,
+    lockoutDuration: 30 * 60 * 1000, // 30 minutes
+    refreshThreshold: 5 * 60 * 1000, // 5 minutes
+    sessionTimeout: 24 * 60 * 60 * 1000 // 24 hours
+  },
+
+  // Performance Monitoring
+  performance: {
+    monitoring: {
+      enabled: isProduction
+    }
+  },
+
+  // Business Configuration
+  business: {
+    maxCartItems: 50,
+    gstRate: 18 // 18% GST
+  },
+
+  // All the original constants for backward compatibility
+  app: PLATFORM_SETTINGS,
+  routes: ROUTES,
+  productCategories: PRODUCT_CATEGORIES,
+  states: INDIAN_STATES,
+  paymentMethods: PAYMENT_METHODS,
+  orderStatus: ORDER_STATUS,
+  errorMessages: ERROR_MESSAGES,
+  successMessages: SUCCESS_MESSAGES,
+  currency: CURRENCY,
+  features: FEATURES,
+  socialLinks: SOCIAL_LINKS,
+  appLinks: APP_LINKS,
+  businessInfo: BUSINESS_INFO,
+  regexPatterns: REGEX_PATTERNS,
+  storageKeys: STORAGE_KEYS,
+  dateFormats: DATE_FORMATS,
+  imageSizes: IMAGE_SIZES,
+  pagination: PAGINATION,
+  fileUpload: FILE_UPLOAD,
+  themeColors: THEME_COLORS
+};
+
+// Export the unified config as default
+export default config;
+
+// Also export the original object structure for any existing code that uses it
+export const BHARATSHAALA_CONFIG = {
   PLATFORM_SETTINGS,
   API_CONFIG,
   ROUTES,

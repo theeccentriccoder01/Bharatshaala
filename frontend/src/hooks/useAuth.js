@@ -1,10 +1,11 @@
 // Comprehensive Authentication Hook for Bharatshaala Platform
 import { useState, useEffect, useContext, createContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiService from '../apiService';
-import analytics from '../analytics';
+import apiService from '../utils/api';
+import { useAnalytics } from '../utils/analytics';
+import { storageService } from '../utils/storage';
+import config from '../utils/constants';
 import { useNotification } from './useNotification';
-import config from '../config';
 
 // Auth Context
 const AuthContext = createContext(null);
@@ -19,28 +20,11 @@ export const AuthProvider = ({ children }) => {
   const [isLocked, setIsLocked] = useState(false);
   const [lockoutEndTime, setLockoutEndTime] = useState(null);
   
-  const { showSuccess, showError, showWarning } = useNotification();
+  const { showSuccess, showError } = useNotification();
+  const { trackEvent } = useAnalytics();
   const navigate = useNavigate();
 
-  // Check authentication status on mount
-  useEffect(() => {
-    checkAuthStatus();
-  }, []);
-
-  // Check for token expiry
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      const interval = setInterval(checkTokenExpiry, 60000); // Check every minute
-      return () => clearInterval(interval);
-    }
-  }, [isAuthenticated, user]);
-
-  // Check lockout status
-  useEffect(() => {
-    checkLockoutStatus();
-  }, []);
-
-  const checkAuthStatus = async () => {
+  const checkAuthStatus = useCallback(async () => {
     try {
       const token = getStoredToken();
       const storedUser = getStoredUser();
@@ -61,7 +45,7 @@ export const AuthProvider = ({ children }) => {
         storeUser(response.data.user);
         
         // Track authentication
-        analytics.track('user_authenticated', {
+        trackEvent('user_authenticated', {
           userId: response.data.user.id,
           userType: response.data.user.role,
           method: 'token_verification'
@@ -77,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       setAuthChecked(true);
     }
-  };
+  }, [trackEvent]);
 
   const checkTokenExpiry = useCallback(async () => {
     const token = getStoredToken();
@@ -99,6 +83,24 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  // Check authentication status on mount
+  useEffect(() => {
+    checkAuthStatus();
+  }, [checkAuthStatus]);
+
+  // Check for token expiry
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      const interval = setInterval(checkTokenExpiry, 60000); // Check every minute
+      return () => clearInterval(interval);
+    }
+  }, [isAuthenticated, user, checkTokenExpiry]);
+
+  // Check lockout status
+  useEffect(() => {
+    checkLockoutStatus();
+  }, []);
+
   const checkLockoutStatus = () => {
     const lockoutData = localStorage.getItem('auth_lockout');
     if (lockoutData) {
@@ -117,7 +119,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (credentials, options = {}) => {
+  const login = useCallback(async (credentials, options = {}) => {
     try {
       // Check if account is locked
       if (isLocked) {
@@ -155,7 +157,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('auth_lockout');
 
         // Track successful login
-        analytics.track('user_login', {
+        trackEvent('user_login', {
           userId: userData.id,
           userType: userData.role,
           method: credentials.email ? 'email' : 'phone',
@@ -189,7 +191,7 @@ export const AuthProvider = ({ children }) => {
           attempts: newAttempts
         }));
 
-        analytics.track('account_locked', {
+        trackEvent('account_locked', {
           attempts: newAttempts,
           lockoutDuration: config.auth.lockoutDuration
         });
@@ -200,7 +202,7 @@ export const AuthProvider = ({ children }) => {
         showError(`${error.message} (${remainingAttempts} प्रयास बचे हैं)`);
       }
 
-      analytics.track('login_failed', {
+      trackEvent('login_failed', {
         error: error.message,
         attempts: newAttempts
       });
@@ -209,7 +211,7 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [isLocked, lockoutEndTime, loginAttempts, showSuccess, showError, trackEvent, navigate]);
 
   const register = async (userData, options = {}) => {
     try {
@@ -225,7 +227,7 @@ export const AuthProvider = ({ children }) => {
         const { user: newUser, accessToken, refreshToken, requiresVerification } = response.data;
 
         if (requiresVerification) {
-          analytics.track('user_registration_pending', {
+          trackEvent('user_registration_pending', {
             userId: newUser.id,
             userType: newUser.role,
             method: userData.email ? 'email' : 'phone'
@@ -245,7 +247,7 @@ export const AuthProvider = ({ children }) => {
         setUser(newUser);
         setIsAuthenticated(true);
 
-        analytics.track('user_registration_complete', {
+        trackEvent('user_registration_complete', {
           userId: newUser.id,
           userType: newUser.role,
           method: userData.email ? 'email' : 'phone'
@@ -264,7 +266,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error(response.error || 'खाता बनाने में त्रुटि');
       }
     } catch (error) {
-      analytics.track('registration_failed', {
+      trackEvent('registration_failed', {
         error: error.message
       });
 
@@ -290,7 +292,7 @@ export const AuthProvider = ({ children }) => {
 
       // Track logout
       if (user) {
-        analytics.track('user_logout', {
+        trackEvent('user_logout', {
           userId: user.id,
           userType: user.role,
           method: options.method || 'manual'
@@ -317,9 +319,9 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  }, [user, isAuthenticated, navigate, showSuccess]);
+  }, [user, isAuthenticated, navigate, showSuccess, trackEvent]);
 
-  const refreshToken = async () => {
+  const refreshToken = useCallback(async () => {
     try {
       const refreshTokenValue = getStoredRefreshToken();
       if (!refreshTokenValue) {
@@ -342,7 +344,7 @@ export const AuthProvider = ({ children }) => {
           setUser(updatedUser);
         }
 
-        analytics.track('token_refreshed', {
+        trackEvent('token_refreshed', {
           userId: user?.id
         });
 
@@ -355,7 +357,7 @@ export const AuthProvider = ({ children }) => {
       logout({ method: 'token_expired' });
       throw error;
     }
-  };
+  }, [user?.id, trackEvent, logout]);
 
   const updateProfile = async (updateData) => {
     try {
@@ -369,7 +371,7 @@ export const AuthProvider = ({ children }) => {
         setUser(updatedUser);
         storeUser(updatedUser);
 
-        analytics.track('profile_updated', {
+        trackEvent('profile_updated', {
           userId: updatedUser.id,
           fields: Object.keys(updateData)
         });
@@ -397,7 +399,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.success) {
-        analytics.track('password_changed', {
+        trackEvent('password_changed', {
           userId: user.id
         });
 
@@ -423,7 +425,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.success) {
-        analytics.track('password_reset_requested', {
+        trackEvent('password_reset_requested', {
           method: identifier.includes('@') ? 'email' : 'phone'
         });
 
@@ -450,7 +452,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.success) {
-        analytics.track('password_reset_completed');
+        trackEvent('password_reset_completed');
 
         showSuccess('पासवर्ड सफलतापूर्वक रीसेट हो गया!');
         navigate('/login');
@@ -476,7 +478,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.success) {
-        analytics.track('account_verified', {
+        trackEvent('account_verified', {
           method: type
         });
 
@@ -509,7 +511,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.success) {
-        analytics.track('verification_resent', {
+        trackEvent('verification_resent', {
           method: type
         });
 
@@ -577,7 +579,7 @@ export const AuthProvider = ({ children }) => {
       platform: navigator.platform,
       language: navigator.language,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      screen: `${screen.width}x${screen.height}`,
+      screen: `${window.screen.width}x${window.screen.height}`,
       timestamp: new Date().toISOString()
     };
   };
