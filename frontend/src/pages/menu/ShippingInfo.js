@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { useAnalytics } from '../utils/analytics';
+import { useAnalytics } from '../../utils/analytics';
 
 const ShippingInfo = () => {
   const { trackPageView } = useAnalytics();

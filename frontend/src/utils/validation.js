@@ -1,5 +1,5 @@
 // Comprehensive Validation System for Bharatshaala Platform
-import config from './config';
+import config from './constants';
 
 // Indian-specific validation patterns
 const PATTERNS = {

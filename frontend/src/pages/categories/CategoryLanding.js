@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import ProductCard from '../components/ProductCard';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { useAnalytics } from '../analytics';
-import { useCart } from '../hooks/useCart';
-import { useWishlist } from '../hooks/useWishlist';
-import apiService from '../apiService';
-import { PRODUCT_CATEGORIES } from '../constants';
+import ProductCard from '../../components/ProductCard';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { useAnalytics } from '../../utils/analytics';
+import { useCart } from '../../hooks/useCart';
+import useWishlist from '../../hooks/useWishlist';
+import useAPI from '../../hooks/useAPI';
+import { PRODUCT_CATEGORIES } from '../../utils/constants';
 
 const CategoryLanding = () => {
   const { categorySlug } = useParams();
@@ -32,9 +32,9 @@ const CategoryLanding = () => {
       setLoading(true);
       
       const [categoryResponse, productsResponse, subcategoriesResponse] = await Promise.all([
-        apiService.get(`/categories/${categorySlug}`),
-        apiService.get(`/categories/${categorySlug}/featured-products`),
-        apiService.get(`/categories/${categorySlug}/subcategories`)
+        useAPI.get(`/categories/${categorySlug}`),
+        useAPI.get(`/categories/${categorySlug}/featured-products`),
+        useAPI.get(`/categories/${categorySlug}/subcategories`)
       ]);
 
       if (categoryResponse.success) {

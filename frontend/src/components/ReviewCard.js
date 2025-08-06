@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dateHelpers, stringHelpers } from '../helpers';
+import { dateHelpers, stringHelpers } from '../utils/helpers';
 import { useAuth } from '../hooks/useAuth';
 import { useNotification } from '../hooks/useNotification';
 

@@ -1,8 +1,8 @@
 // Comprehensive FAQ Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useAnalytics } from '../analytics';
-import { useDebounce } from '../hooks/useDebounce';
+import { useAnalytics } from '../../utils/analytics';
+import { useDebounce } from '../../hooks/useDebounce';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FAQ = () => {

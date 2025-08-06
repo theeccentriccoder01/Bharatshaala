@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { useAPI } from '../hooks/useAPI';
-import { useNotification } from '../hooks/useNotification';
-import LoadingSpinner from '../components/LoadingSpinner';
-import VendorSidebar from '../components/VendorSidebar';
+import { useAuth } from '../../hooks/useAuth';
+import { useAPI } from '../../hooks/useAPI';
+import { useNotification } from '../../hooks/useNotification';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import VendorSidebar from '../../components/VendorSidebar';
 
 const Inventory = () => {
   const navigate = useNavigate();

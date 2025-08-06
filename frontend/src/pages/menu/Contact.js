@@ -1,11 +1,11 @@
 // Contact Page for Bharatshaala Platform
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useAnalytics } from '../analytics';
-import { useNotification } from '../hooks/useNotification';
-import { useValidation } from '../validation';
+import { useAnalytics } from '../../utils/analytics';
+import { useNotification } from '../../hooks/useNotification';
+import { useValidation } from '../../utils/validation';
 import { motion } from 'framer-motion';
-import apiService from '../apiService';
+import useAPI from '../../hooks/useAPI';
 
 const Contact = () => {
   const { trackPageView, trackEvent } = useAnalytics();
@@ -150,7 +150,7 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await apiService.post('/contact/submit', {
+      const response = await useAPI.post('/contact/submit', {
         ...formData,
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent,
