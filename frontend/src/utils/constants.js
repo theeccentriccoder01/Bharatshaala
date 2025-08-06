@@ -562,6 +562,12 @@ const config = {
     gstRate: 18 // 18% GST
   },
 
+    // UI Settings
+  ui: {
+    defaultLanguage: 'hi', // or 'en'
+    supportedLanguages: ['hi', 'en']
+  },
+
   // All the original constants for backward compatibility
   app: PLATFORM_SETTINGS,
   routes: ROUTES,

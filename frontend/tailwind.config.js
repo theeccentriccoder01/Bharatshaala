@@ -34,6 +34,7 @@ module.exports = withMT({
         'body': ['"Cormorant Garamond"', 'serif'],
         'hindi': ['"Noto Sans Devanagari"', 'sans-serif'],
         'english': ['Inter', 'sans-serif'],
+        'mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
       },
     },
   },
