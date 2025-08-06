@@ -517,4 +517,58 @@ const RegionalCuisine = () => {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-200"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{festival.festival}</h3>
+                  <p className="text-red-600 font-medium mb-3">{festival.duration}</p>
+                  <div className="space-y-1">
+                    {festival.highlights.map((highlight, highlightIndex) => (
+                      <div key={highlightIndex} className="bg-red-50 rounded-lg p-2 text-sm text-gray-700">
+                        • {highlight}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Culinary Heritage */}
+        <section className="py-16 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold mb-8">भारतीय पाक विरासत</h2>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-xl leading-relaxed mb-8">
+                30 साल से दिल्ली हाट क्षेत्रीय व्यंजन केंद्र भारत की समृद्ध पाक परंपरा को एक छत के नीचे लाने का काम कर रहा है। 
+                यहाँ हर व्यंजन में छुपा है अपने राज्य का प्रेम, मसालों की खुशबू और पारंपरिक तकनीक का जादू। 
+                भारत की सांस्कृतिक विविधता का स्वादिष्ट प्रतिनिधित्व है यह केंद्र।
+              </p>
+              <div className="grid md:grid-cols-3 gap-8 mt-12">
+                <div>
+                  <div className="text-4xl mb-4">📍</div>
+                  <h3 className="text-xl font-semibold mb-2">स्थान</h3>
+                  <p>दिल्ली हाट, INA, नई दिल्ली</p>
+                </div>
+                <div>
+                  <div className="text-4xl mb-4">🍛</div>
+                  <h3 className="text-xl font-semibold mb-2">राज्य</h3>
+                  <p>28 राज्यों के व्यंजन</p>
+                </div>
+                <div>
+                  <div className="text-4xl mb-4">👨‍🍳</div>
+                  <h3 className="text-xl font-semibold mb-2">शेफ</h3>
+                  <p>100+ विशेषज्ञ रसोइए</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default RegionalCuisine;
