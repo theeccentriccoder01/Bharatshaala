@@ -532,3 +532,235 @@ const OrderManagement = () => {
                 ))}
               </AnimatePresence>
             </tbody>
+          </table>
+        </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="px-6 py-3 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-700">
+                पेज {currentPage} of {totalPages}
+              </div>
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1 text-sm border border-gray-300 rounded disabled:opacity-50"
+                >
+                  पिछला
+                </button>
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1 text-sm border border-gray-300 rounded disabled:opacity-50"
+                >
+                  अगला
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Order Details Modal */}
+      <Modal
+        isOpen={showDetailsModal}
+        onClose={() => setShowDetailsModal(false)}
+        title={`ऑर्डर विवरण - #${selectedOrder?.orderNumber}`}
+        size="large"
+      >
+        {selectedOrder && (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Customer Information */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">ग्राहक जानकारी</h3>
+                <div className="space-y-2 text-sm">
+                  <div><span className="font-medium">नाम:</span> {selectedOrder.customerName}</div>
+                  <div><span className="font-medium">ईमेल:</span> {selectedOrder.customerEmail}</div>
+                  <div><span className="font-medium">फोन:</span> {selectedOrder.customerPhone}</div>
+                </div>
+              </div>
+
+              {/* Shipping Address */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">शिपिंग पता</h3>
+                <div className="text-sm">
+                  <p>{selectedOrder.shippingAddress?.name}</p>
+                  <p>{selectedOrder.shippingAddress?.address}</p>
+                  <p>{selectedOrder.shippingAddress?.city}, {selectedOrder.shippingAddress?.state}</p>
+                  <p>{selectedOrder.shippingAddress?.pincode}</p>
+                  <p>{selectedOrder.shippingAddress?.phone}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Order Items */}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">ऑर्डर आइटम</h3>
+              <div className="space-y-3">
+                {selectedOrder.items?.map((item, index) => (
+                  <div key={index} className="flex items-center space-x-4 p-3 border rounded-lg">
+                    <img
+                      src={item.productImage}
+                      alt={item.productName}
+                      className="w-16 h-16 object-cover rounded"
+                    />
+                    <div className="flex-1">
+                      <h4 className="font-medium">{item.productName}</h4>
+                      <p className="text-sm text-gray-600">
+                        मात्रा: {item.quantity} × {helpers.number.formatCurrency(item.price)}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium">
+                        {helpers.number.formatCurrency(item.quantity * item.price)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Order Summary */}
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">ऑर्डर सारांश</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span>उप-योग:</span>
+                  <span>{helpers.number.formatCurrency(selectedOrder.subtotal)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>शिपिंग:</span>
+                  <span>{helpers.number.formatCurrency(selectedOrder.shippingCharges)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>टैक्स:</span>
+                  <span>{helpers.number.formatCurrency(selectedOrder.tax)}</span>
+                </div>
+                {selectedOrder.discount > 0 && (
+                  <div className="flex justify-between text-green-600">
+                    <span>छूट:</span>
+                    <span>-{helpers.number.formatCurrency(selectedOrder.discount)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between font-semibold text-lg border-t pt-2">
+                  <span>कुल राशि:</span>
+                  <span>{helpers.number.formatCurrency(selectedOrder.totalAmount)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Payment Information */}
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">भुगतान जानकारी</h3>
+              <div className="space-y-2 text-sm">
+                <div><span className="font-medium">भुगतान विधि:</span> {selectedOrder.paymentMethod}</div>
+                <div><span className="font-medium">भुगतान स्टेटस:</span> 
+                  <span className={`ml-2 px-2 py-1 rounded text-xs bg-${getPaymentStatusColor(selectedOrder.paymentStatus)}-100 text-${getPaymentStatusColor(selectedOrder.paymentStatus)}-800`}>
+                    {getPaymentStatusLabel(selectedOrder.paymentStatus)}
+                  </span>
+                </div>
+                {selectedOrder.transactionId && (
+                  <div><span className="font-medium">ट्रांजैक्शन ID:</span> {selectedOrder.transactionId}</div>
+                )}
+              </div>
+            </div>
+
+            {/* Tracking Information */}
+            {selectedOrder.trackingNumber && (
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">ट्रैकिंग जानकारी</h3>
+                <div className="space-y-2 text-sm">
+                  <div><span className="font-medium">ट्रैकिंग नंबर:</span> {selectedOrder.trackingNumber}</div>
+                  <div><span className="font-medium">कूरियर:</span> {selectedOrder.courier}</div>
+                  {selectedOrder.estimatedDelivery && (
+                    <div><span className="font-medium">अनुमानित डिलीवरी:</span> 
+                      {helpers.date.formatDate(selectedOrder.estimatedDelivery, 'DD MMM YYYY')}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </Modal>
+
+      {/* Tracking Information Modal */}
+      <Modal
+        isOpen={showTrackingModal}
+        onClose={() => setShowTrackingModal(false)}
+        title="ट्रैकिंग जानकारी अपडेट करें"
+        size="medium"
+      >
+        <form onSubmit={handleTrackingSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              ट्रैकिंग नंबर *
+            </label>
+            <input
+              type="text"
+              value={trackingInfo.trackingNumber}
+              onChange={(e) => setTrackingInfo(prev => ({ ...prev, trackingNumber: e.target.value }))}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              placeholder="ट्रैकिंग नंबर दर्ज करें"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              कूरियर पार्टनर *
+            </label>
+            <select
+              value={trackingInfo.courier}
+              onChange={(e) => setTrackingInfo(prev => ({ ...prev, courier: e.target.value }))}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              required
+            >
+              <option value="">कूरियर चुनें</option>
+              <option value="bluedart">Blue Dart</option>
+              <option value="dtdc">DTDC</option>
+              <option value="fedex">FedEx</option>
+              <option value="delhivery">Delhivery</option>
+              <option value="ecom">Ecom Express</option>
+              <option value="xpressbees">XpressBees</option>
+              <option value="other">अन्य</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              अनुमानित डिलीवरी तारीख
+            </label>
+            <input
+              type="date"
+              value={trackingInfo.estimatedDelivery}
+              onChange={(e) => setTrackingInfo(prev => ({ ...prev, estimatedDelivery: e.target.value }))}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            />
+          </div>
+
+          <div className="flex justify-end space-x-3 pt-4">
+            <button
+              type="button"
+              onClick={() => setShowTrackingModal(false)}
+              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+            >
+              रद्द करें
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+            >
+              ट्रैकिंग अपडेट करें
+            </button>
+          </div>
+        </form>
+      </Modal>
+    </div>
+  );
+};
+
+export default OrderManagement;
