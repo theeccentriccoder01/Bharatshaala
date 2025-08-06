@@ -52,6 +52,9 @@ export const formatRelativeTime = (date) => {
   return formatDate(date);
 };
 
+// Get relative time - alias for formatRelativeTime
+export const getRelativeTime = formatRelativeTime;
+
 // Debounce function
 export const debounce = (func, wait) => {
   let timeout;
@@ -436,12 +439,69 @@ export const safeSessionStorage = {
   }
 };
 
+// **ADD THESE HELPER OBJECTS THAT REVIEWCARD.JS EXPECTS:**
+
+// Date helpers object
+export const dateHelpers = {
+  formatDate,
+  formatRelativeTime,
+  getRelativeTime,
+  // Add more date-specific helpers
+  isToday: (date) => {
+    const today = new Date();
+    const targetDate = new Date(date);
+    return today.toDateString() === targetDate.toDateString();
+  },
+  isYesterday: (date) => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const targetDate = new Date(date);
+    return yesterday.toDateString() === targetDate.toDateString();
+  },
+  formatTime: (date) => {
+    return new Date(date).toLocaleTimeString('hi-IN', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
+};
+
+// String helpers object
+export const stringHelpers = {
+  capitalize,
+  toTitleCase,
+  truncate,
+  generateSlug,
+  isEmpty,
+  // Add more string-specific helpers
+  removeSpecialChars: (str) => {
+    return str.replace(/[^a-zA-Z0-9\s]/g, '');
+  },
+  wordCount: (str) => {
+    return str.trim().split(/\s+/).length;
+  },
+  camelCase: (str) => {
+    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
+      return index === 0 ? word.toLowerCase() : word.toUpperCase();
+    }).replace(/\s+/g, '');
+  },
+  kebabCase: (str) => {
+    return str.toLowerCase().replace(/\s+/g, '-');
+  },
+  escapeHtml: (str) => {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+};
+
 // Export all helpers as default object
 export default {
   formatCurrency,
   formatIndianNumber,
   formatDate,
   formatRelativeTime,
+  getRelativeTime,
   debounce,
   throttle,
   generateId,
@@ -473,5 +533,7 @@ export default {
   loadImage,
   downloadFile,
   safeLocalStorage,
-  safeSessionStorage
+  safeSessionStorage,
+  dateHelpers,
+  stringHelpers
 };

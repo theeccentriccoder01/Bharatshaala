@@ -14,12 +14,31 @@ module.exports = withMT({
         'brsl_mahogany': '#641900',
         'brsl_vine': '#649619',
         'brsl_moss': '#4B6419',
+        // Add Tailwind Emerald palette
+        emerald: {
+          50:  '#ecfdf5',
+          100: '#d1fae5',
+          200: '#a7f3d0',
+          300: '#6ee7b7',
+          400: '#34d399',
+          500: '#10b981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065f46',
+          900: '#064e3b',
+          950: '#022c22',
+        }
       },
       fontFamily: {
         'bharatshaala': ['"Suranna"', 'serif'],
         'body': ['"Cormorant Garamond"', 'serif'],
+        'hindi': ['"Noto Sans Devanagari"', 'sans-serif'],
+        'english': ['Inter', 'sans-serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+  ],
 });
