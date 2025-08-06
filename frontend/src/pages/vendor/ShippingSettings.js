@@ -1,4 +1,4 @@
-// Shipping Settings Component - Bharatshala Vendor Platform
+// Shipping Settings Component - Bharatshala Vendor Platform (COMPLETED)
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -577,6 +577,8 @@ const ShippingSettings = () => {
                   <li>• प्रोसेसिंग टाइम realistic रखें</li>
                   <li>• COD चार्ज minimal रखें</li>
                   <li>• रिटर्न पॉलिसी clear करें</li>
+                  <li>• रेगुलर रेट रिव्यू करें</li>
+                  <li>• फेस्टिवल सीज़न में स्पेशल रेट्स ऑफर करें</li>
                 </ul>
               </motion.div>
 
@@ -594,4 +596,64 @@ const ShippingSettings = () => {
                 <div className="space-y-2">
                   <a 
                     href="mailto:shipping@bharatshala.com"
-                    className="block text-yellow-600 hover
+                    className="block text-yellow-600 hover:text-yellow-800 text-sm font-medium"
+                  >
+                    📧 shipping@bharatshala.com
+                  </a>
+                  <a 
+                    href="tel:+91-XXXX-XXXXXX"
+                    className="block text-yellow-600 hover:text-yellow-800 text-sm font-medium"
+                  >
+                    📞 +91-XXXX-XXXXXX
+                  </a>
+                  <div className="mt-3 pt-3 border-t border-yellow-200">
+                    <p className="text-yellow-700 text-xs">
+                      सपोर्ट आवर्स: सोमवार से शुक्रवार, 9AM - 6PM IST
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Shipping Calculator Preview */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                className="bg-green-50 rounded-lg p-6"
+              >
+                <h3 className="font-semibold text-green-900 mb-3">📊 रेट कैलकुलेटर प्रीव्यू</h3>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm text-green-800 mb-1">टेस्ट वेट (kg)</label>
+                    <input
+                      type="number"
+                      defaultValue="1"
+                      className="w-full px-3 py-1 text-sm border border-green-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
+                      step="0.1"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-green-800 mb-1">टेस्ट जोन</label>
+                    <select className="w-full px-3 py-1 text-sm border border-green-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500">
+                      <option value="">जोन चुनें</option>
+                      {deliveryZones.map((zone) => (
+                        <option key={zone.id} value={zone.id}>{zone.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="text-center">
+                    <button className="text-green-600 hover:text-green-800 text-sm font-medium">
+                      रेट कैलकुलेट करें
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ShippingSettings;
