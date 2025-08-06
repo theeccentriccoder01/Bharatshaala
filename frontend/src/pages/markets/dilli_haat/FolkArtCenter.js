@@ -518,4 +518,16 @@ const FolkArtCenter = () => {
                 </div>
                 <div>
                   <div className="text-4xl mb-4">👨‍🎨</div>
-                  <h3 className="text-xl font-semibold mb-2">कला
+                  <h3 className="text-xl font-semibold mb-2">कलाकार</h3>
+                  <p>200+ पारंपरिक कलाकार</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default FolkArtCenter;
