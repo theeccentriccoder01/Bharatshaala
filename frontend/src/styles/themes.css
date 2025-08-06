@@ -1,0 +1,595 @@
+/* Themes CSS - Bharatshala Platform */
+
+/* Theme Variables */
+:root {
+  /* Light Theme (Default) */
+  --theme-name: 'light';
+  
+  /* Primary Colors */
+  --primary-50: #ecfdf5;
+  --primary-100: #d1fae5;
+  --primary-200: #a7f3d0;
+  --primary-300: #6ee7b7;
+  --primary-400: #34d399;
+  --primary-500: #10b981;
+  --primary-600: #059669;
+  --primary-700: #047857;
+  --primary-800: #065f46;
+  --primary-900: #064e3b;
+  
+  /* Secondary Colors */
+  --secondary-50: #f9fafb;
+  --secondary-100: #f3f4f6;
+  --secondary-200: #e5e7eb;
+  --secondary-300: #d1d5db;
+  --secondary-400: #9ca3af;
+  --secondary-500: #6b7280;
+  --secondary-600: #4b5563;
+  --secondary-700: #374151;
+  --secondary-800: #1f2937;
+  --secondary-900: #111827;
+  
+  /* Background Colors */
+  --bg-primary: var(--secondary-50);
+  --bg-secondary: #ffffff;
+  --bg-tertiary: var(--secondary-100);
+  --bg-accent: var(--primary-50);
+  
+  /* Text Colors */
+  --text-primary: var(--secondary-900);
+  --text-secondary: var(--secondary-700);
+  --text-tertiary: var(--secondary-500);
+  --text-accent: var(--primary-600);
+  
+  /* Border Colors */
+  --border-primary: var(--secondary-200);
+  --border-secondary: var(--secondary-300);
+  --border-accent: var(--primary-200);
+  
+  /* Status Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+  
+  /* Cultural Colors */
+  --saffron: #ff9933;
+  --white: #ffffff;
+  --green: #138808;
+  --cultural-gold: #ffd700;
+  --cultural-red: #dc143c;
+  --cultural-blue: #000080;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --theme-name: 'dark';
+  
+  /* Background Colors */
+  --bg-primary: var(--secondary-900);
+  --bg-secondary: var(--secondary-800);
+  --bg-tertiary: var(--secondary-700);
+  --bg-accent: var(--secondary-800);
+  
+  /* Text Colors */
+  --text-primary: var(--secondary-50);
+  --text-secondary: var(--secondary-200);
+  --text-tertiary: var(--secondary-400);
+  --text-accent: var(--primary-400);
+  
+  /* Border Colors */
+  --border-primary: var(--secondary-700);
+  --border-secondary: var(--secondary-600);
+  --border-accent: var(--primary-700);
+}
+
+/* Festival Theme */
+[data-theme="festival"] {
+  --theme-name: 'festival';
+  
+  /* Vibrant Festival Colors */
+  --primary-500: #ff6b35;
+  --primary-600: #e55a2b;
+  
+  --bg-primary: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%);
+  --bg-accent: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f);
+  
+  --text-accent: #ff6b35;
+  --border-accent: #ff9933;
+}
+
+/* Royal Theme */
+[data-theme="royal"] {
+  --theme-name: 'royal';
+  
+  /* Royal Colors */
+  --primary-500: #4c1d95;
+  --primary-600: #3c1361;
+  
+  --bg-primary: #faf5ff;
+  --bg-accent: #f3e8ff;
+  
+  --text-accent: #4c1d95;
+  --border-accent: #8b5cf6;
+  
+  /* Gold Accents */
+  --cultural-gold: #fbbf24;
+}
+
+/* Monsoon Theme */
+[data-theme="monsoon"] {
+  --theme-name: 'monsoon';
+  
+  /* Cool Monsoon Colors */
+  --primary-500: #0891b2;
+  --primary-600: #0e7490;
+  
+  --bg-primary: #f0fdfa;
+  --bg-accent: #ccfbf1;
+  
+  --text-accent: #0891b2;
+  --border-accent: #5eead4;
+}
+
+/* Heritage Theme */
+[data-theme="heritage"] {
+  --theme-name: 'heritage';
+  
+  /* Heritage Colors */
+  --primary-500: #92400e;
+  --primary-600: #78350f;
+  
+  --bg-primary: #fefdf8;
+  --bg-accent: #fef3c7;
+  
+  --text-accent: #92400e;
+  --border-accent: #fbbf24;
+}
+
+/* Theme-specific Component Styles */
+
+/* Buttons */
+.btn-themed {
+  background-color: var(--primary-600);
+  color: var(--bg-secondary);
+  border: 1px solid var(--primary-600);
+}
+
+.btn-themed:hover {
+  background-color: var(--primary-700);
+  border-color: var(--primary-700);
+}
+
+.btn-themed-outline {
+  background-color: transparent;
+  color: var(--primary-600);
+  border: 2px solid var(--primary-600);
+}
+
+.btn-themed-outline:hover {
+  background-color: var(--primary-600);
+  color: var(--bg-secondary);
+}
+
+/* Cards */
+.card-themed {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+}
+
+.card-themed-accent {
+  background-color: var(--bg-accent);
+  border: 1px solid var(--border-accent);
+}
+
+/* Navigation */
+.navbar-themed {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.navbar-brand-themed {
+  color: var(--text-accent);
+}
+
+.navbar-item-themed {
+  color: var(--text-secondary);
+}
+
+.navbar-item-themed:hover {
+  color: var(--text-accent);
+  background-color: var(--bg-accent);
+}
+
+.navbar-item-themed.active {
+  color: var(--text-accent);
+  background-color: var(--bg-accent);
+}
+
+/* Forms */
+.form-input-themed {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+}
+
+.form-input-themed:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+/* Alerts */
+.alert-themed-success {
+  background-color: var(--success);
+  color: white;
+}
+
+.alert-themed-warning {
+  background-color: var(--warning);
+  color: white;
+}
+
+.alert-themed-error {
+  background-color: var(--error);
+  color: white;
+}
+
+.alert-themed-info {
+  background-color: var(--info);
+  color: white;
+}
+
+/* Theme-specific Animations */
+@keyframes festival-sparkle {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% { 
+    transform: scale(1.1) rotate(90deg);
+    filter: hue-rotate(90deg);
+  }
+  50% { 
+    transform: scale(1.2) rotate(180deg);
+    filter: hue-rotate(180deg);
+  }
+  75% { 
+    transform: scale(1.1) rotate(270deg);
+    filter: hue-rotate(270deg);
+  }
+}
+
+@keyframes royal-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--cultural-gold);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--cultural-gold), 0 0 60px var(--cultural-gold);
+  }
+}
+
+@keyframes monsoon-wave {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Festival Theme Specific */
+[data-theme="festival"] .festival-element {
+  animation: festival-sparkle 3s ease-in-out infinite;
+}
+
+[data-theme="festival"] .btn-themed {
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="festival"] .btn-themed::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(45deg);
+  animation: shimmer 2s infinite;
+}
+
+/* Royal Theme Specific */
+[data-theme="royal"] .royal-element {
+  animation: royal-glow 4s ease-in-out infinite;
+}
+
+[data-theme="royal"] .btn-themed {
+  background: linear-gradient(135deg, var(--primary-600), var(--cultural-gold));
+  border: 2px solid var(--cultural-gold);
+}
+
+[data-theme="royal"] .card-themed {
+  border: 2px solid var(--cultural-gold);
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.2);
+}
+
+/* Monsoon Theme Specific */
+[data-theme="monsoon"] .monsoon-element {
+  animation: monsoon-wave 2s ease-in-out infinite;
+}
+
+[data-theme="monsoon"] .btn-themed {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+}
+
+/* Heritage Theme Specific */
+[data-theme="heritage"] .heritage-element {
+  position: relative;
+}
+
+[data-theme="heritage"] .heritage-element::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--cultural-gold), var(--primary-600));
+  z-index: -1;
+  border-radius: inherit;
+}
+
+/* Cultural Patterns */
+.pattern-mandala {
+  background-image: radial-gradient(
+    circle at center,
+    var(--primary-500) 0%,
+    transparent 50%
+  );
+  background-size: 50px 50px;
+}
+
+.pattern-paisley {
+  background-image: 
+    radial-gradient(ellipse 25px 15px at 50% 50%, var(--primary-300) 0%, transparent 50%),
+    radial-gradient(ellipse 15px 25px at 50% 50%, var(--primary-200) 0%, transparent 50%);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.pattern-lotus {
+  background-image: 
+    radial-gradient(circle at 50% 50%, var(--primary-400) 0%, transparent 30%);
+  background-size: 60px 60px;
+}
+
+/* Seasonal Theme Transitions */
+.theme-transition {
+  transition: 
+    background-color 0.5s ease,
+    color 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary-600);
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Theme-aware Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-500);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-600);
+}
+
+/* Theme-specific Media Queries */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg-primary: var(--secondary-900);
+    --bg-secondary: var(--secondary-800);
+    --bg-tertiary: var(--secondary-700);
+    --text-primary: var(--secondary-50);
+    --text-secondary: var(--secondary-200);
+    --text-tertiary: var(--secondary-400);
+    --border-primary: var(--secondary-700);
+    --border-secondary: var(--secondary-600);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-500: #000000;
+    --primary-600: #000000;
+    --text-primary: #000000;
+    --border-primary: #000000;
+  }
+  
+  [data-theme="dark"] {
+    --primary-500: #ffffff;
+    --primary-600: #ffffff;
+    --text-primary: #ffffff;
+    --border-primary: #ffffff;
+  }
+}
+
+/* Cultural Calendar Themes */
+.theme-diwali {
+  --primary-500: #ff6b35;
+  --primary-600: #e55a2b;
+  --bg-accent: linear-gradient(45deg, #ff9933, #ffd700);
+}
+
+.theme-holi {
+  --primary-500: #ff1493;
+  --primary-600: #dc143c;
+  --bg-accent: linear-gradient(45deg, #ff1493, #00ff00, #ffff00, #00bfff);
+}
+
+.theme-dussehra {
+  --primary-500: #dc143c;
+  --primary-600: #b91c1c;
+  --bg-accent: linear-gradient(45deg, #dc143c, #ffd700);
+}
+
+.theme-karva-chauth {
+  --primary-500: #ff8c00;
+  --primary-600: #ff7f00;
+  --bg-accent: linear-gradient(45deg, #ff8c00, #ffd700);
+}
+
+.theme-navratri {
+  --primary-500: #ff1493;
+  --primary-600: #dc143c;
+  --bg-accent: linear-gradient(45deg, #ff1493, #ffff00, #00ff00, #ff8c00);
+}
+
+/* Regional Themes */
+.theme-rajasthani {
+  --primary-500: #dc143c;
+  --primary-600: #b91c1c;
+  --bg-accent: linear-gradient(45deg, #dc143c, #ffd700, #ff8c00);
+}
+
+.theme-kerala {
+  --primary-500: #228b22;
+  --primary-600: #006400;
+  --bg-accent: linear-gradient(45deg, #228b22, #ffd700);
+}
+
+.theme-punjabi {
+  --primary-500: #ff8c00;
+  --primary-600: #ff7f00;
+  --bg-accent: linear-gradient(45deg, #ff8c00, #dc143c);
+}
+
+.theme-bengali {
+  --primary-500: #dc143c;
+  --primary-600: #b91c1c;
+  --bg-accent: linear-gradient(45deg, #dc143c, #ffff00);
+}
+
+/* Market-specific Themes */
+.theme-market-chandni {
+  --primary-500: #c9a96e;
+  --primary-600: #b8941f;
+}
+
+.theme-market-colaba {
+  --primary-500: #1e40af;
+  --primary-600: #1e3a8a;
+}
+
+.theme-market-commercial {
+  --primary-500: #059669;
+  --primary-600: #047857;
+}
+
+/* Theme Utility Classes */
+.bg-themed-primary { background-color: var(--bg-primary); }
+.bg-themed-secondary { background-color: var(--bg-secondary); }
+.bg-themed-tertiary { background-color: var(--bg-tertiary); }
+.bg-themed-accent { background-color: var(--bg-accent); }
+
+.text-themed-primary { color: var(--text-primary); }
+.text-themed-secondary { color: var(--text-secondary); }
+.text-themed-tertiary { color: var(--text-tertiary); }
+.text-themed-accent { color: var(--text-accent); }
+
+.border-themed-primary { border-color: var(--border-primary); }
+.border-themed-secondary { border-color: var(--border-secondary); }
+.border-themed-accent { border-color: var(--border-accent); }
+
+/* Theme Performance Optimizations */
+.theme-optimized {
+  will-change: background-color, color, border-color;
+}
+
+.theme-gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Cultural Accessibility */
+.cultural-text-hindi {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-feature-settings: 'deva';
+}
+
+.cultural-text-large {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Theme Debug Mode (Development Only) */
+.theme-debug * {
+  outline: 1px solid red;
+}
+
+.theme-debug *:hover {
+  outline: 2px solid blue;
+}
+
+/* Print Theme Adjustments */
+@media print {
+  :root {
+    --bg-primary: white;
+    --bg-secondary: white;
+    --text-primary: black;
+    --text-secondary: black;
+    --border-primary: black;
+  }
+  
+  [data-theme] {
+    --bg-primary: white !important;
+    --bg-secondary: white !important;
+    --text-primary: black !important;
+    --text-secondary: black !important;
+  }
+}
+
+/* Theme Animation Performance */
+@media (prefers-reduced-motion: reduce) {
+  .festival-element,
+  .royal-element,
+  .monsoon-element,
+  .heritage-element {
+    animation: none !important;
+  }
+  
+  .theme-transition {
+    transition: none !important;
+  }
+}
