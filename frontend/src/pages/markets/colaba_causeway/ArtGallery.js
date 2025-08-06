@@ -378,4 +378,61 @@ const ArtGallery = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="text-4xl mb-4">👁️</div>
-                <h3 className="text-xl
+                <h3 className="text-xl font-semibold mb-2">कला देखना</h3>
+                <p className="text-gray-600">कलाकृति का सही मूल्यांकन और संदेश समझना</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-4">💰</div>
+                <h3 className="text-xl font-semibold mb-2">मूल्य निर्धारण</h3>
+                <p className="text-gray-600">कलाकार की प्रसिद्धि और काम की दुर्लभता के आधार पर</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-4">🏠</div>
+                <h3 className="text-xl font-semibold mb-2">संग्रह रखना</h3>
+                <p className="text-gray-600">सही माहौल और सुरक्षा के साथ कलाकृति का संरक्षण</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-4">📈</div>
+                <h3 className="text-xl font-semibold mb-2">निवेश मूल्य</h3>
+                <p className="text-gray-600">समय के साथ कलाकृति का बढ़ता हुआ मूल्य</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Experience */}
+        <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold mb-8">कोलाबा आर्ट गैलरी का अनुभव</h2>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-xl leading-relaxed mb-8">
+                40 साल से कोलाबा आर्ट गैलरी भारतीय कला को नई ऊंचाइयों तक पहुंचा रही है। 
+                यहाँ हर कलाकृति में छुपी है कलाकार की भावनाएं और समाज की आवाज़। 
+                पारंपरिक से लेकर अत्याधुनिक तक, यहाँ मिलता है हर तरह की कला का अनुभव।
+              </p>
+              <div className="grid md:grid-cols-3 gap-8 mt-12">
+                <div>
+                  <div className="text-4xl mb-4">📍</div>
+                  <h3 className="text-xl font-semibold mb-2">स्थान</h3>
+                  <p>आर्ट डिस्ट्रिक्ट, कोलाबा, मुंबई</p>
+                </div>
+                <div>
+                  <div className="text-4xl mb-4">🕒</div>
+                  <h3 className="text-xl font-semibold mb-2">समय</h3>
+                  <p>सुबह 10:00 - रात 8:00 (सोमवार बंद)</p>
+                </div>
+                <div>
+                  <div className="text-4xl mb-4">🎨</div>
+                  <h3 className="text-xl font-semibold mb-2">विशेषता</h3>
+                  <p>समकालीन और पारंपरिक कला</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default ArtGallery;
