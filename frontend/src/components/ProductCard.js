@@ -76,7 +76,7 @@ const ProductCard = ({
               <div className="absolute inset-0 bg-emerald-100 animate-pulse"></div>
             )}
             <img 
-              src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.jpg'}
+              src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.png'}
               alt={item.name}
               className={`w-full h-full object-cover transition-transform duration-500 ${
                 isHovered ? 'scale-110' : 'scale-100'
@@ -244,7 +244,7 @@ const ProductCard = ({
           <div className="absolute inset-0 bg-emerald-100 animate-pulse"></div>
         )}
         <img 
-          src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.jpg'}
+          src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.png'}
           alt={item.name}
           className={`w-full h-full object-cover transition-transform duration-700 ${
             isHovered ? 'scale-110' : 'scale-100'

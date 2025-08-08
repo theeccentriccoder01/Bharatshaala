@@ -26,7 +26,7 @@ const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
               className={`w-full h-full object-cover transition-transform duration-700 ${
                 isHovered ? 'scale-110' : 'scale-100'
               }`} 
-              src={market.image || '/images/placeholder.jpg'} 
+              src={market.image || '/images/placeholder.png'} 
               alt={market.name || 'Market'}
             />
             <div className='absolute top-4 left-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-medium'>
@@ -120,7 +120,7 @@ const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
           className={`w-full h-full object-cover transition-transform duration-700 ${
             isHovered ? 'scale-110' : 'scale-100'
           }`} 
-          src={market.image || '/images/placeholder.jpg'} 
+          src={market.image || '/images/placeholder.png'} 
           alt={market.name || 'Market'}
         />
         <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-500 ${
