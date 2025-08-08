@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useLanguage } from '../context/LanguageContext';
 import "../App.css";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language, changeLanguage, isLoading } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +16,12 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLanguageToggle = (langCode) => {
+    if (language !== langCode) {
+      changeLanguage(langCode);
+    }
+  };
 
   return (
     <React.StrictMode>
@@ -201,16 +209,45 @@ const Navbar = () => {
               ))}
             </ul>
 
-            {/* Language Toggle */}
-            <div className="mt-8 pt-6 border-t border-emerald-700">
-              <div className="flex items-center justify-between">
-                <span className="text-emerald-200 text-sm">भाषा</span>
-                <div className="flex bg-emerald-700 rounded-full p-1">
-                  <button className="px-3 py-1 rounded-full text-xs font-medium bg-yellow-400 text-emerald-900">हिंदी</button>
-                  <button className="px-3 py-1 rounded-full text-xs font-medium text-emerald-200 hover:text-white transition-colors duration-200">English</button>
-                </div>
-              </div>
+
+        {/* Language Toggle - REPLACE THIS SECTION */}
+        <div className="mt-8 pt-6 border-t border-emerald-700">
+          <div className="flex items-center justify-between">
+            <span className="text-emerald-200 text-sm">भाषा</span>
+            <div className="flex bg-emerald-700 rounded-full p-1">
+              <button 
+                onClick={() => handleLanguageToggle('hi')}
+                disabled={isLoading}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                  language === 'hi' 
+                    ? 'bg-yellow-400 text-emerald-900' 
+                    : 'text-emerald-200 hover:text-white hover:bg-emerald-600'
+                } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                हिंदी
+              </button>
+              <button 
+                onClick={() => handleLanguageToggle('en')}
+                disabled={isLoading}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                  language === 'en' 
+                    ? 'bg-yellow-400 text-emerald-900' 
+                    : 'text-emerald-200 hover:text-white hover:bg-emerald-600'
+                } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                English
+              </button>
             </div>
+          </div>
+          
+          {/* Loading indicator */}
+          {isLoading && (
+            <div className="flex items-center justify-center mt-2">
+              <div className="w-4 h-4 border-2 border-emerald-300 border-t-yellow-400 rounded-full animate-spin"></div>
+              <span className="text-emerald-200 text-xs ml-2">भाषा बदली जा रही है...</span>
+            </div>
+          )}
+        </div>
           </div>
         </div>
       </nav>
