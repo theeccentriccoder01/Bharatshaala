@@ -129,7 +129,7 @@ const ReviewCard = ({
     <div className={`bg-white rounded-lg p-4 border border-gray-200 ${className}`}>
       <div className="flex items-start space-x-3">
         <img
-          src={review.customerAvatar || '/images/default-avatar.png'}
+          src={review.customerAvatar || '/images/default-avatar.jpg'}
           alt={review.customerName}
           className="w-10 h-10 rounded-full object-cover"
         />
@@ -212,7 +212,7 @@ const ReviewCard = ({
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-4">
               <img
-                src={review.customerAvatar || '/images/default-avatar.png'}
+                src={review.customerAvatar || '/images/default-avatar.jpg'}
                 alt={review.customerName}
                 className="w-12 h-12 rounded-full object-cover"
               />
@@ -386,7 +386,7 @@ const ReviewCard = ({
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
           <img
-            src={review.customerAvatar || '/images/default-avatar.png'}
+            src={review.customerAvatar || '/images/default-avatar.jpg'}
             alt={review.customerName}
             className="w-10 h-10 rounded-full object-cover"
           />

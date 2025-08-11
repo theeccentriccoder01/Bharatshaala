@@ -90,7 +90,7 @@ const UserManagement = () => {
           phone: '+91 9876543210',
           role: 'user',
           status: 'active',
-          avatar: '/images/avatars/user1.jpg',
+          avatar: '/images/avatars/customer5.jpg',
           createdAt: '2024-01-15T10:30:00Z',
           lastActive: '2025-08-04T05:45:00Z',
           orders: 23,
@@ -107,7 +107,7 @@ const UserManagement = () => {
           phone: '+91 9876543211',
           role: 'user',
           status: 'active',
-          avatar: '/images/avatars/user2.jpg',
+          avatar: '/images/avatars/customer1.jpg',
           createdAt: '2024-02-20T14:15:00Z',
           lastActive: '2025-08-04T04:30:00Z',
           orders: 67,
@@ -141,7 +141,7 @@ const UserManagement = () => {
           phone: '+91 9876543213',
           role: 'user',
           status: 'suspended',
-          avatar: '/images/avatars/user3.jpg',
+          avatar: '/images/avatars/customer2.jpg',
           createdAt: '2024-03-05T11:20:00Z',
           lastActive: '2025-08-01T08:15:00Z',
           orders: 3,
@@ -158,7 +158,7 @@ const UserManagement = () => {
           phone: '+91 9876543214',
           role: 'user',
           status: 'banned',
-          avatar: '/images/avatars/user4.jpg',
+          avatar: '/images/avatars/customer6.jpg',
           createdAt: '2024-04-12T16:45:00Z',
           lastActive: '2025-07-28T12:30:00Z',
           orders: 1,
@@ -503,7 +503,7 @@ const UserManagement = () => {
                         />
                         <div className="flex items-center">
                           <img
-                            src={user.avatar || '/images/default-avatar.png'}
+                            src={user.avatar || '/images/default-avatar.jpg'}
                             alt={user.name}
                             className="w-10 h-10 rounded-full object-cover"
                           />
@@ -640,7 +640,7 @@ const UserManagement = () => {
                 {/* Basic Info */}
                 <div className="flex items-center space-x-4">
                   <img
-                    src={selectedUser.avatar || '/images/default-avatar.png'}
+                    src={selectedUser.avatar || '/images/default-avatar.jpg'}
                     alt={selectedUser.name}
                     className="w-20 h-20 rounded-full object-cover"
                   />

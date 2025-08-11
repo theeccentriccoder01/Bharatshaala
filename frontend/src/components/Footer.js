@@ -90,7 +90,7 @@ const Footer = () => {
           {/* Bottom Section */}
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-emerald-200 text-sm">
-              &copy; {currYear} NextTech Innovations Inc. सभी अधिकार सुरक्षित।
+              &copy; {currYear} Bharatshaala Inc. सभी अधिकार सुरक्षित।
             </div>
             <div className="flex items-center space-x-6 text-sm text-emerald-200">
               <span>🇮🇳 Made in India with ❤️</span>

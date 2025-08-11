@@ -255,7 +255,7 @@ const UserProfile = () => {
                 <div className="flex items-center space-x-6">
                   <div className="relative">
                     <img
-                      src={profileData.avatar || '/images/default-avatar.png'}
+                      src={profileData.avatar || '/images/default-avatar.jpg'}
                       alt="Profile"
                       className="w-24 h-24 rounded-full object-cover border-4 border-emerald-200"
                     />

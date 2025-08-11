@@ -6,13 +6,17 @@ import SearchBar from '../components/SearchBar';
 import FilterPanel from '../components/FilterPanel';
 import '../App.css';
 
-import img1 from '../images/markets/chandni.png';
-import img2 from '../images/markets/jaipur.png';
-import img3 from '../images/markets/laad.png';
-import img4 from '../images/markets/mysore.png';
-import img5 from '../images/markets/colaba.png';
-import img6 from '../images/markets/commercial.png';
-import img7 from '../images/markets/dilli_haat.png';
+// Import actual market images based on your directory structure
+import chandniChowkImg from '../images/markets/chandni.png';
+import jaipurImg from '../images/markets/jaipur.png';
+import laadBazaarImg from '../images/markets/laad.png';
+import mysoreImg from '../images/markets/mysore.png';
+import colabaImg from '../images/markets/colaba.png';
+import commercialStreetImg from '../images/markets/commercial.png';
+import dilliHaatImg from '../images/markets/dilli_haat.png';
+
+// Import a fallback placeholder image (create this if it doesn't exist)
+import placeholderImg from '../images/placeholder.png';
 
 const Markets = () => {
   const [loading, setLoading] = useState(true);
@@ -24,6 +28,8 @@ const Markets = () => {
   const [sortBy, setSortBy] = useState('popular');
   const [viewMode, setViewMode] = useState('grid');
   const navigate = useNavigate();
+
+  // ... rest of your state and filter arrays remain the same ...
 
   const states = [
     { id: 'all', name: 'सभी राज्य', nameEn: 'All States' },
@@ -65,7 +71,7 @@ const Markets = () => {
         state: 'delhi',
         description: 'भारत के सबसे पुराने और व्यस्त बाजारों में से एक, इसकी संकरी गलियों और भीड़भाड़ के माहौल की खोज करें।',
         descriptionEn: 'One of the oldest and busiest markets in India, explore its narrow lanes and bustling atmosphere.',
-        image: img1,
+        image: chandniChowkImg,
         href: '/markets/chandni_chowk',
         rating: 4.8,
         reviews: 2847,
@@ -90,7 +96,7 @@ const Markets = () => {
         state: 'rajasthan',
         description: 'ये जीवंत बाजार गहने, कपड़े और हस्तशिल्प की विविधता का घर हैं।',
         descriptionEn: 'These vibrant bazaars are host to a variety of jewelry, textiles and handicrafts.',
-        image: img2,
+        image: jaipurImg, // ✅ Fixed: Using imported image
         href: '/markets/pinkcity_bazaar',
         rating: 4.9,
         reviews: 3245,
@@ -115,7 +121,7 @@ const Markets = () => {
         state: 'telangana',
         description: 'प्रतिष्ठित चार मीनार के सामने स्थित, यह बाजार चूड़ियों, मोतियों और पारंपरिक हैदराबादी आभूषण डिजाइन का शानदार संग्रह प्रस्तुत करता है।',
         descriptionEn: 'Facing the iconic Char Minar, this market offers a stunning array of bangles, pearls and traditional Hyderabadi jewelry designs.',
-        image: img3,
+        image: laadBazaarImg, // ✅ Fixed: Using imported image
         href: '/markets/laad_bazaar',
         rating: 4.7,
         reviews: 1876,
@@ -140,7 +146,7 @@ const Markets = () => {
         state: 'karnataka',
         description: 'यह रंग-बिरंगा बाजार एक पर्यटक आकर्षण भी है, जहाँ फूलों के गुच्छे, फल और विभिन्न रंगों का कुमकुम पाउडर मिलता है।',
         descriptionEn: 'This colorful market also doubles as a tourist attraction, with bundles of flowers, fruits and various colored Kumkum powder.',
-        image: img4,
+        image: mysoreImg, // ✅ Fixed: Using imported image
         href: '/markets/devaraja_market',
         rating: 4.6,
         reviews: 1456,
@@ -165,7 +171,7 @@ const Markets = () => {
         state: 'maharashtra',
         description: 'यह लोकप्रिय शॉपिंग गंतव्य अपने ट्रेंडी फैशन बुटीक और प्राचीन वस्तुओं के लिए जाना जाता है।',
         descriptionEn: 'This popular shopping destination is known for its trendy fashion boutiques and antiques.',
-        image: img5,
+        image: colabaImg, // ✅ Fixed: Using imported image
         href: '/markets/colaba_causeway',
         rating: 4.5,
         reviews: 2134,
@@ -190,7 +196,7 @@ const Markets = () => {
         state: 'karnataka',
         description: 'बैंगलोर के दिल में स्थित इस बाजार में दुकानों की विविध श्रृंखला देखने लायक है।',
         descriptionEn: 'The diverse range of shops in this market in the heart of Bangalore is a sight to behold.',
-        image: img6,
+        image: commercialStreetImg, // ✅ Fixed: Using imported image
         href: '/markets/commercial_street',
         rating: 4.4,
         reviews: 1987,
@@ -215,7 +221,7 @@ const Markets = () => {
         state: 'delhi',
         description: 'एक खुला बाजार जो पूरे भारत की हस्तशिल्प और भोजन परंपराओं को एक स्थान पर प्रस्तुत करता है।',
         descriptionEn: 'An open-air market showcasing handicrafts and food traditions from across India in one place.',
-        image: img7,
+        image: dilliHaatImg, // ✅ Fixed: Using imported image
         href: '/markets/dilli_haat',
         rating: 4.7,
         reviews: 3421,
@@ -236,6 +242,7 @@ const Markets = () => {
     setMarkets(marketData);
   };
 
+  // ... rest of your component remains the same ...
   const filterAndSortMarkets = () => {
     let filtered = markets.filter(market => {
       const matchesSearch = market.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -269,6 +276,7 @@ const Markets = () => {
   }
 
   return (
+    // ... rest of your JSX remains exactly the same ...
     <React.StrictMode>
       <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
 

@@ -2,14 +2,44 @@ import React, { useState } from 'react';
 
 const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   // Add safety checks for market data
   if (!market) {
     return null;
   }
 
+  // Debug: Log the market image
+  console.log('MarketCard Debug:', {
+    marketName: market.name,
+    marketImage: market.image,
+    imageType: typeof market.image,
+    imageError
+  });
+
   // Ensure specialties is an array
   const specialties = market.specialties || [];
+
+  // Handle image loading with proper fallback
+  const getImageSrc = () => {
+    // Check if image exists and is not an error state
+    if (!imageError && market.image && typeof market.image === 'string' && market.image.length > 0) {
+      return market.image;
+    }
+    
+    // Return a placeholder SVG
+    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPgo8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSI0OCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn4+qPC90ZXh0Pgo8L3N2Zz4K';
+  };
+
+  const handleImageError = (e) => {
+    console.log('Image load error for:', market.name, 'Image src:', e.target.src);
+    setImageError(true);
+  };
+
+  const handleImageLoad = (e) => {
+    console.log('Image loaded successfully for:', market.name, 'Image src:', e.target.src);
+    setImageError(false);
+  };
 
   if (viewMode === 'list') {
     return (
@@ -26,8 +56,10 @@ const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
               className={`w-full h-full object-cover transition-transform duration-700 ${
                 isHovered ? 'scale-110' : 'scale-100'
               }`} 
-              src={market.image || '/images/placeholder.png'} 
+              src={getImageSrc()}
               alt={market.name || 'Market'}
+              onError={handleImageError}
+              onLoad={handleImageLoad}
             />
             <div className='absolute top-4 left-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-medium'>
               स्थापना {market.established || 'N/A'}
@@ -38,7 +70,7 @@ const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
             </div>
           </div>
 
-          {/* Content Section */}
+          {/* Rest of your list view code remains the same... */}
           <div className='md:w-2/3 p-6'>
             <div className='flex justify-between items-start mb-4'>
               <div>
@@ -75,7 +107,7 @@ const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
               </div>
             </div>
 
-            {/* Specialties - FIXED: Added safety check */}
+            {/* Specialties */}
             <div className='mb-4'>
               <div className='flex flex-wrap gap-2'>
                 {specialties.slice(0, 4).map((specialty, index) => (
@@ -120,9 +152,12 @@ const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
           className={`w-full h-full object-cover transition-transform duration-700 ${
             isHovered ? 'scale-110' : 'scale-100'
           }`} 
-          src={market.image || '/images/placeholder.png'} 
+          src={getImageSrc()}
           alt={market.name || 'Market'}
+          onError={handleImageError}
+          onLoad={handleImageLoad}
         />
+        
         <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-500 ${
           isHovered ? 'opacity-70' : 'opacity-50'
         }`}></div>
@@ -172,7 +207,7 @@ const MarketCard = ({ market, viewMode = 'grid', onClick }) => {
           {market.description || 'No description available'}
         </p>
 
-        {/* Specialties - FIXED: Added safety check */}
+        {/* Specialties */}
         <div className='mb-6'>
           <div className='flex flex-wrap gap-2'>
             {specialties.slice(0, 3).map((specialty, index) => (
