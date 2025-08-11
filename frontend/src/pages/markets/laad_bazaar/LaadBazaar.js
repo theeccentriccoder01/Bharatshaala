@@ -4,7 +4,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
 
-import map from '../../../images/carousel/5.png';
+import map from '../../../images/markets/laad_map.jpeg';
 
 const LaadBazaar = () => {
   const [loading, setLoading] = useState(true);

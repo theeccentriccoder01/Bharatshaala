@@ -4,7 +4,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
 
-import map from '../../../images/carousel/5.png';
+import map from '../../../images/markets/mysore_map.jpeg';
 
 const DevarajaMarket = () => {
   const [loading, setLoading] = useState(true);
