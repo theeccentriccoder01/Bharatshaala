@@ -6,11 +6,11 @@ import MarketCard from '../components/MarketCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import '../App.css';
 
-import car1 from '../images/carousel/1.png';
-import car2 from '../images/carousel/2.png';
-import car3 from '../images/carousel/3.png';
-import car4 from '../images/carousel/4.png';
-import car5 from '../images/carousel/5.png';
+import car1 from '../images/markets/commercial';
+import car2 from '../images/markets/jaipur.png';
+import car3 from '../images/markets/laad.png';
+import car4 from '../images/markets/mysore.png';
+import car5 from '../images/markets/dilli_haat.png';
 
 // Import market images for home page
 import jaipurImg from '../images/markets/jaipur.png';
