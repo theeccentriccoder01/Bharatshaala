@@ -51,7 +51,7 @@ const TrackOrder = () => {
           {
             id: 1,
             name: 'कुंदन पर्ल नेकलेस सेट',
-            image: '/images/products/kundan-necklace-1.jpg',
+            image: '/images/items/kundan-necklace-1.jpg',
             quantity: 1,
             seller: 'राजस्थानी जेम्स'
           }
