@@ -289,7 +289,7 @@ const Markets = () => {
                 <span className='text-emerald-800 font-bold'>भारतीय बाजार</span>
               </div>
               
-              <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-green-600 to-emerald-800 bg-clip-text text-transparent mb-6 leading-tight'>
+              <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-green-600 to-emerald-800 bg-clip-text text-transparent mb-6 pt-6 leading-tight'>
                 भारत के प्रसिद्ध बाजार
               </h1>
               

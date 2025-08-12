@@ -14,10 +14,10 @@ import {
 } from "react-router-dom";
 
 // Context Providers
-import { AuthProvider } from "./context/AuthContext";
-import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./hooks/useAuth";
+import { CartProvider } from "./hooks/useCart";
 import { ThemeProvider } from "./context/ThemeContext";
-import { NotificationProvider } from "./context/NotificationContext";
+import { NotificationProvider } from "./hooks/useNotification";
 import { LanguageProvider } from "./context/LanguageContext";
 
 // Core Components

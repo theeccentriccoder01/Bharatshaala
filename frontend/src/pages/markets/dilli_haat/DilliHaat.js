@@ -187,7 +187,7 @@ const DilliHaat = () => {
                 <span className='text-orange-800 font-bold'>भारत का मिनी इंडिया</span>
               </div>
               
-              <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-orange-700 bg-clip-text text-transparent mb-4 leading-tight'>
+              <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-orange-700 bg-clip-text text-transparent mb-4 pt-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
               <h2 className='text-2xl md:text-3xl text-emerald-700 font-semibold mb-6'>

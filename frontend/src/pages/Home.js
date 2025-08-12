@@ -6,7 +6,7 @@ import MarketCard from '../components/MarketCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import '../App.css';
 
-import car1 from '../images/markets/commercial';
+import car1 from '../images/markets/commercial.png';
 import car2 from '../images/markets/jaipur.png';
 import car3 from '../images/markets/laad.png';
 import car4 from '../images/markets/mysore.png';
