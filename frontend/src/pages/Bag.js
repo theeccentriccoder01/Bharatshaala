@@ -119,7 +119,7 @@ const Bag = () => {
           Quantity: item[3],
           Price: item[4],
           ItemName: item[5],
-          image: item[6] || '/images/items/test_item.png',
+          image: item[6] || '/images/items/earrings.jpg',
           description: item[7] || 'पारंपरिक हस्तनिर्मित उत्पाद',
           seller: item[8] || 'भारतशाला विक्रेता'
         }));
@@ -137,7 +137,7 @@ const Bag = () => {
             Quantity: 2,
             Price: 2500,
             ItemName: "कुंदन हार",
-            image: '/images/items/test_item.png',
+            image: '/images/items/kundan-necklace-1.jpg',
             description: 'पारंपरिक कुंदन और मीनाकारी से सजा हुआ खूबसूरत हार',
             seller: 'राजस्थानी रत्न भंडार'
           },
@@ -148,7 +148,7 @@ const Bag = () => {
             Quantity: 1,
             Price: 1500,
             ItemName: "चांदी के झुमके",
-            image: '/images/items/test_item.png',
+            image: '/images/items/earrings.jpg',
             description: 'हाथ से बने चांदी के झुमके, मीनाकारी के साथ',
             seller: 'राजस्थानी रत्न भंडार'
           }

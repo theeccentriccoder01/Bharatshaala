@@ -40,7 +40,7 @@ const OrderConfirmation = () => {
           {
             id: 1,
             name: 'कुंदन पर्ल नेकलेस सेट',
-            image: '/images/products/kundan-necklace-1.jpg',
+            image: '/images/items/kundan-necklace-1.jpg',
             price: 15999,
             quantity: 1,
             seller: 'राजस्थानी जेम्स'

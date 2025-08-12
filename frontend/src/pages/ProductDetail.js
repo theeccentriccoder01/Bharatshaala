@@ -59,10 +59,9 @@ const ProductDetail = () => {
         originalPrice: 19999,
         discount: 20,
         images: [
-          { url: '/images/products/kundan-necklace-1.jpg', alt: 'मुख्य छवि' },
-          { url: '/images/products/kundan-necklace-2.jpg', alt: 'साइड व्यू' },
-          { url: '/images/products/kundan-necklace-3.jpg', alt: 'डिटेल व्यू' },
-          { url: '/images/products/kundan-necklace-4.jpg', alt: 'बैक व्यू' }
+          { url: '/images/items/kundan-necklace-1.jpg', alt: 'मुख्य छवि' },
+          { url: '/images/items/kundan-necklace-2.jpg', alt: 'साइड व्यू' },
+          { url: '/images/items/kundan-necklace.jpg', alt: 'डिटेल व्यू' }
         ],
         rating: 4.6,
         reviewCount: 89,

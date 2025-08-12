@@ -5,7 +5,11 @@ import ProductCard from "../../../components/ProductCard";
 import QuantitySelector from "../../../components/QuantitySelector";
 import "../../../App.css";
 
-import img from "../../../images/items/test_item.png";
+import necklace from "../../../images/items/kundan-necklace.jpg";
+import earrings from "../../../images/items/earrings.jpg";
+import bangles from "../../../images/items/bangles.jpg";
+import ring from "../../../images/items/ring.jpg";
+import set from "../../../images/items/set.jpeg";
 
 const Shop1 = () => {
   const [profileData, setProfileData] = useState(null);
@@ -82,7 +86,7 @@ const Shop1 = () => {
           name: item[4],
           category: item[5] || 'necklaces',
           description: item[6] || 'हाथ से बना पारंपरिक राजस्थानी आभूषण',
-          image: item[7] || img,
+          image: item[7] || necklace,
           inStock: item[8] || true,
           discount: item[9] || 0,
           originalPrice: item[10] || item[3]
@@ -94,11 +98,11 @@ const Shop1 = () => {
         console.error("Error fetching data:", error);
         // Fallback mock data
         setProfileData([
-          { store_id: 1, id: 1, name: "कुंदन हार", price: 15000, category: 'necklaces', description: 'पारंपरिक कुंदन और मीनाकारी से सजा हुआ खूबसूरत हार', image: img, inStock: true, discount: 10, originalPrice: 16500 },
-          { store_id: 1, id: 2, name: "चांदी के झुमके", price: 3500, category: 'earrings', description: 'हाथ से बने चांदी के झुमके, मीनाकारी के साथ', image: img, inStock: true, discount: 15, originalPrice: 4000 },
-          { store_id: 1, id: 3, name: "राजस्थानी चूड़ी सेट", price: 2800, category: 'bangles', description: 'लाख और मीनाकारी से सजी हुई चूड़ियों का सेट', image: img, inStock: true, discount: 0, originalPrice: 2800 },
-          { store_id: 1, id: 4, name: "नवरत्न अंगूठी", price: 8500, category: 'rings', description: 'प्रामाणिक नवरत्न से सजी हुई चांदी की अंगूठी', image: img, inStock: false, discount: 5, originalPrice: 9000 },
-          { store_id: 1, id: 5, name: "डुलहन जेवर सेट", price: 45000, category: 'sets', description: 'संपूर्ण डुलहन सेट - हार, झुमके, मांगटीका, हाथफूल', image: img, inStock: true, discount: 20, originalPrice: 55000 }
+          { store_id: 1, id: 1, name: "कुंदन हार", price: 15000, category: 'necklaces', description: 'पारंपरिक कुंदन और मीनाकारी से सजा हुआ खूबसूरत हार', image: necklace, inStock: true, discount: 10, originalPrice: 16500 },
+          { store_id: 1, id: 2, name: "चांदी के झुमके", price: 3500, category: 'earrings', description: 'हाथ से बने चांदी के झुमके, मीनाकारी के साथ', image: earrings, inStock: true, discount: 15, originalPrice: 4000 },
+          { store_id: 1, id: 3, name: "राजस्थानी चूड़ी सेट", price: 2800, category: 'bangles', description: 'लाख और मीनाकारी से सजी हुई चूड़ियों का सेट', image: bangles, inStock: true, discount: 0, originalPrice: 2800 },
+          { store_id: 1, id: 4, name: "नवरत्न अंगूठी", price: 8500, category: 'rings', description: 'प्रामाणिक नवरत्न से सजी हुई चांदी की अंगूठी', image: ring, inStock: false, discount: 5, originalPrice: 9000 },
+          { store_id: 1, id: 5, name: "डुलहन जेवर सेट", price: 45000, category: 'sets', description: 'संपूर्ण दुलहन सेट - हार, झुमके, मांगटीका, हाथफूल', image: set, inStock: true, discount: 20, originalPrice: 55000 }
         ]);
       });
   }

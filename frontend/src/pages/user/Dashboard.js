@@ -387,7 +387,7 @@ const Dashboard = () => {
                       <div key={index} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
                         <div className="flex items-center space-x-3">
                           <img
-                            src={product.image || '/images/items/placeholder.png'}
+                            src={product.image || '/images/items/kundan-necklace.jpg'}
                             alt={product.name}
                             className="w-16 h-16 object-cover rounded-lg"
                           />
