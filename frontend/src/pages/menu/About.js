@@ -54,28 +54,10 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: 'राहुल शर्मा',
+      name: 'साग्निक चक्रवर्ती',
       role: 'संस्थापक और CEO',
-      image: '/images/team/rahul.jpg',
-      bio: 'IIT दिल्ली से इंजीनियरिंग और 10+ साल का टेक अनुभव'
-    },
-    {
-      name: 'प्रिया गुप्ता',
-      role: 'CTO',
-      image: '/images/team/priya.jpg',
-      bio: 'तकनीकी नेतृत्व और उत्पाद विकास की विशेषज्ञ'
-    },
-    {
-      name: 'अमित कुमार',
-      role: 'कारीगर संपर्क प्रमुख',
-      image: '/images/team/amit.jpg',
-      bio: 'पारंपरिक कलाओं के संरक्षण में 15 साल का अनुभव'
-    },
-    {
-      name: 'सुमित्रा देवी',
-      role: 'गुणवत्ता नियंत्रण प्रमुख',
-      image: '/images/team/sumitra.jpg',
-      bio: 'हस्तशिल्प की प्रामाणिकता सुनिश्चित करने में विशेषज्ञ'
+      image: '/images/team/me.png',
+      bio: 'तकनीकी नेतृत्व और उत्पाद विकास के विशेषज्ञ'
     }
   ];
 
