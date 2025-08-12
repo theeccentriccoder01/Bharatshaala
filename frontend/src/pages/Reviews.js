@@ -92,9 +92,7 @@ const Reviews = () => {
           rating: 4,
           title: 'अच्छी क्वालिटी',
           comment: 'चूड़ियों की क्वालिटी अच्छी है लेकिन कलर फोटो से थोड़ा अलग है।',
-          images: [
-            { url: '/images/reviews/review-1.jpg', alt: 'Review image' }
-          ],
+          images: [],
           createdAt: '2024-01-18T15:45:00Z',
           isVerifiedPurchase: true,
           helpfulVotes: 8,

@@ -65,7 +65,7 @@ const VendorImages = () => {
         {
           id: 1,
           name: 'कुंदन-हार-मुख्य.jpg',
-          url: '/images/products/kundan-necklace-main.jpg',
+          url: '/images/items/kundan-necklace.jpg',
           category: 'products',
           size: 2.4, // MB
           dimensions: { width: 1920, height: 1080 },
@@ -110,7 +110,7 @@ const VendorImages = () => {
         {
           id: 4,
           name: 'चूड़ी-सेट-विविध.jpg',
-          url: '/images/products/bangle-set-variety.jpg',
+          url: '/images/items/bangles.jpg',
           category: 'products',
           size: 3.2,
           dimensions: { width: 2048, height: 1536 },
