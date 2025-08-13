@@ -99,7 +99,7 @@ const About = () => {
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-orange-50">
         
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20">
+        <section className="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20 pt-32">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="container mx-auto px-6 relative z-10">
             <motion.div 
@@ -111,7 +111,7 @@ const About = () => {
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
                 भारतशाला की कहानी
               </h1>
-              <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
+              <p className="text-xl md:text-2xl opacity-90 leading-relaxed text-white">
                 जहाँ हर हाथ से बना उत्पाद एक कहानी कहता है और हर कारीगर का सपना पूरा होता है
               </p>
               <div className="mt-8 text-6xl">🎨</div>
@@ -256,8 +256,24 @@ const About = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                 >
-                  <div className="w-24 h-24 bg-gradient-to-r from-emerald-400 to-orange-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span className="text-2xl">👤</span>
+                  <div className="w-24 h-24 mx-auto mb-6 overflow-hidden rounded-full border-4 border-gradient-to-r from-emerald-400 to-orange-400">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback to icon if image fails to load
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    {/* Fallback icon (hidden by default) */}
+                    <div 
+                      className="w-full h-full bg-gradient-to-r from-emerald-400 to-orange-400 rounded-full flex items-center justify-center"
+                      style={{ display: 'none' }}
+                    >
+                      <span className="text-2xl">👤</span>
+                    </div>
                   </div>
                   <h3 className="text-xl font-bold text-emerald-800 mb-2">{member.name}</h3>
                   <p className="text-orange-600 font-semibold mb-4">{member.role}</p>

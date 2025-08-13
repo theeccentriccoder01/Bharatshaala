@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { useAnalytics } from '../utils/analytics';
+import { useAnalytics } from '../../utils/analytics';
 
 const Support = () => {
   const { trackPageView, trackEvent } = useAnalytics();
@@ -158,7 +158,7 @@ const Support = () => {
 
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
-        <section className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-16">
+        <section className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-16 pt-32">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

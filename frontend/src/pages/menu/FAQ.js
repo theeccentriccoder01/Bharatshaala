@@ -289,7 +289,7 @@ const FAQ = () => {
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-orange-50">
         
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-16">
+        <section className="bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-16 pt-32">
           <div className="container mx-auto px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

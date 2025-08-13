@@ -441,11 +441,12 @@ const Home = () => {
 
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
             {featuredCategories.map((category, index) => (
-              <div
-                key={category.id}
-                className={`group relative bg-gradient-to-br ${category.gradient} rounded-3xl p-8 shadow-2xl ${category.hoverColor} transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden ${categoriesInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
+                <div
+                  key={category.id}
+                  onClick={() => window.location.href = `/categories/${category.id}`}
+                  className={`group relative bg-gradient-to-br ${category.gradient} rounded-3xl p-8 shadow-2xl ${category.hoverColor} transform hover:scale-105 transition-all duration-500 cursor-pointer overflow-hidden ${categoriesInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700"></div>

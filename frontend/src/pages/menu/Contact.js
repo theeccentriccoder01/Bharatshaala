@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useAnalytics } from '../../utils/analytics';
-import { useNotification } from '../../hooks/useNotification';
+import { useNotification } from '../../context/NotificationContext';
 import { useValidation } from '../../utils/validation';
 import { motion } from 'framer-motion';
 import useAPI from '../../hooks/useAPI';
@@ -197,7 +197,7 @@ const Contact = () => {
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-orange-50">
         
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20">
+        <section className="bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20 pt-32">
           <div className="container mx-auto px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

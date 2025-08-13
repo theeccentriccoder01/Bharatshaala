@@ -73,10 +73,10 @@ const Carousel = ({ images, interval = 5000 }) => {
         {/* Content Overlay */}
         <div className='absolute bottom-20 left-8 right-8 text-white z-20'>
           <div className='max-w-2xl'>
-            <h2 className='text-2xl md:text-4xl font-bold mb-4 animate-fade-in'>
+            <h2 className='text-2xl md:text-4xl font-bold mb-4 animate-fade-in text-white'>
               भारतीय संस्कृति का डिजिटल बाजार
             </h2>
-            <p className='text-lg md:text-xl mb-6 opacity-90 animate-fade-in-delay'>
+            <p className='text-lg md:text-xl mb-6 opacity-90 animate-fade-in-delay text-white'>
               पारंपरिक शिल्प से लेकर आधुनिक नवाचार तक, सभी कुछ एक ही स्थान पर
             </p>
             <button className='bg-gradient-to-r from-yellow-400 to-orange-400 text-emerald-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 animate-fade-in-delay-2'>

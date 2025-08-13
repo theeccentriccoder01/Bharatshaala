@@ -13,6 +13,8 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import { HelmetProvider } from 'react-helmet-async';
+
 // Context Providers
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
@@ -65,6 +67,7 @@ import PrivacyPolicy from "./pages/menu/PrivacyPolicy";
 import TermsOfService from "./pages/menu/TermsOfService";
 import ShippingInfo from "./pages/menu/ShippingInfo";
 import ReturnPolicy from "./pages/menu/ReturnPolicy";
+import Support from "./pages/menu/Support";
 
 // Category Pages
 import Clothing from "./pages/categories/Clothing";
@@ -74,6 +77,7 @@ import Books from "./pages/categories/Books";
 import Accessories from "./pages/categories/Accessories";
 import Houseware from "./pages/categories/Houseware";
 import CategoryLanding from "./pages/categories/CategoryLanding";
+import CategoriesOverview from "./pages/categories/CategoriesOverview";
 
 // Market Pages - All Major Markets
 import PinkCity from "./pages/markets/pinkcity/PinkCity";
@@ -140,6 +144,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
 function App() {
   return (
     <ErrorBoundary>
+    <HelmetProvider>
       <AuthProvider>
         <CartProvider>
           <ThemeProvider>
@@ -184,6 +189,7 @@ function App() {
                             <Route path="/terms" element={<TermsOfService />} />
                             <Route path="/shipping" element={<ShippingInfo />} />
                             <Route path="/returns" element={<ReturnPolicy />} />
+                            <Route path="/support" element={<Support />} />
 
                             {/* User Routes */}
                             <Route path="/user/dashboard" element={<Dashboard />} />
@@ -194,7 +200,8 @@ function App() {
                             <Route path="/user/notifications" element={<Notifications />} />
 
                             {/* Category Routes */}
-                            <Route path="/categories" element={<CategoryLanding />} />
+                            <Route path="/categories" element={<CategoriesOverview />} />
+                            <Route path="/categories/:categorySlug" element={<CategoryLanding />} />
                             <Route path="/categories/clothing" element={<Clothing />} />
                             <Route path="/categories/jewellery" element={<Jewellery />} />
                             <Route path="/categories/jewelry" element={<Navigate to="/categories/jewellery" replace />} />
@@ -298,6 +305,7 @@ function App() {
           </ThemeProvider>
         </CartProvider>
       </AuthProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }
