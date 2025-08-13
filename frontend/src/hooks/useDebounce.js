@@ -1,6 +1,6 @@
 // Advanced Debounce and Throttle Hooks for Bharatshaala Platform
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import analytics from '../../utils/analytics';
+import analytics from '.../utils/analytics';
 
 // Main debounce hook
 export const useDebounce = (value, delay = 300, options = {}) => {
