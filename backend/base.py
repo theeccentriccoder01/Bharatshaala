@@ -1,375 +1,315 @@
-from datetime import datetime
-import json
-from collections import defaultdict
+from flask import Flask, request
+from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
+from flask_cors import CORS
+import os
 
-import database
-import razorpay
-from flask import Flask, jsonify, redirect, request, render_template
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
+# Import configuration and utilities
+from .config import Config
+from .utils import success_response, error_response
 
-receipt_num = 1
-shipping_cost = 100
+# Import blueprints
+from .auth import auth_bp
+from .products import products_bp
+from .cart import cart_bp
+from .orders import orders_bp
+from .vendor import vendor_bp
+from .admin import admin_bp
 
-# Using test mode key and key secret for testing purposes
-client = razorpay.Client(
-    auth=('rzp_test_BXNSan3NdLPrPa', 'jQLMopwxI1FrtqnrHg3j9e3R'))
-client.set_app_details({"title": "Bharatshaala", "version": "0.1.0"})
+# Import database
+from . import database
 
-
-def get_amount(customer_id):
-    cart_items = database.select_user_cart(customer_id)
-    total_amount = 0
-    for item in cart_items:
-        total_amount += item[3] * item[4]
-    return total_amount
-
-
-api = Flask(__name__)
-bcrypt = Bcrypt(api)
-
-api.secret_key = '12aj2k4j3lj5nlsklq24534'
-login_manager = LoginManager(api)
-
-
-class User(UserMixin):
-    def __init__(self, user_id, account_type, email, name, shopid, phone):
-        self.id = user_id
-        self.account_type = account_type
-        self.email = email
-        self.name = name 
-        self.shopid = shopid
-        self.phone = phone
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    userdata = database.get_user_details(user_id)
-    print(1)
-    if userdata:
-        return User(user_id, userdata[1], userdata[2], userdata[3], userdata[4], userdata[5])
-    else:
-        return None
-
-
-@api.route('/Cart')
-def my_profile():
-    if current_user.is_authenticated:
-        print(current_user.id)
-        data = database.select_user_cart(current_user.id)
-        print(data)
-        response_body = jsonify(data)
-        return response_body
-    else:
-        return ('', 204)
-
-
-@api.route('/getTotalAmount')
-def get_total_amount():
-    total_amount = get_amount(int(current_user.id))
-    return jsonify({'totalAmount': total_amount})
-
-
-@api.route('/getShippingCost')
-def get_shipping_cost():
-    global shipping_cost
-    return jsonify({'shippingCost': shipping_cost})
-
-
-@api.route('/createOrder')
-def create_order():
-    global receipt_num
-    global shipping_cost
-    total_amount = (get_amount(int(current_user.id))+shipping_cost)*100
-    currency = "INR"
-    receipt_id = "rp" + str(receipt_num)
-    receipt_num += 1
-    data = {"amount": str(total_amount),
-            "currency": currency, "receipt": receipt_id}
-    order_details = client.order.create(data=data)
-
-    database.add_order_id(int(current_user.id), order_details['id'])
-
-    return jsonify(order_details)
-
-
-@api.route('/authenticate', methods=['GET', 'POST'])
-def authenticate_payment():
-    razorpay_payment_id = request.form['razorpay_payment_id']
-    razorpay_order_id = request.form['razorpay_order_id']
-    razorpay_signature = request.form['razorpay_signature']
-
-    response = client.utility.verify_payment_signature({
-        'razorpay_order_id': razorpay_order_id,
-        'razorpay_payment_id': razorpay_payment_id,
-        'razorpay_signature': razorpay_signature
-    })
-    if response:
-        order_status = "complete"
-        database.update_cart(razorpay_order_id, order_status)
-        return redirect('/bag')
-    else:
-        order_status = "incomplete"
-        database.update_cart(razorpay_order_id, order_status)
-        return redirect('/bag')
-
-
-@api.route('/ChangeQuantity', methods=['POST'])
-def change_quantity():
-    print(request.data)
-    data = request.json
-    database.change_quantity_cart(data["item"], data["selectedValue"])
-    print("Done")
-    return ('', 204)
-
-
-@api.route('/Item', methods=['POST'])
-def add_to_cart():
-    if current_user.is_authenticated:
-        print("USER LOGGED ON")
-        print(request.data)
-        data = request.json
-        data = data["item"]
-        current_cart = database.select_user_cart(current_user.id)
-        for i in current_cart:
-            if i[0] == data["store_id"] and i[1] == data["id"] and i[2] == int(current_user.id):
-                print("dup")
-                return ('', 204)
-        database.insert_into_table_cart(
-            data["store_id"], data["id"], current_user.id, 1, data["price"], data["name"])
-        print("done")
-        return ('', 204)
-    else:
-        return ('', 204)
-
-
-@api.route('/AuthenticateEmail', methods=['POST'])
-def authenticate_email():
-    data = request.json
-    email = data.get("email")
-    if not email:
-        return jsonify({'exists': False, 'message': 'Email missing'}), 200
-    userID = database.check_email(email)
-    if userID < 0:
-        return jsonify({'exists': False, 'message': 'Email is not registered'}), 200
-    else:
-        return jsonify({'exists': True, 'message': 'Email is registered'}), 200
-
-
-@api.route('/AuthenticatePassword', methods=['POST'])
-def authenticate_password():
-    data = request.json
-    email = data['email']
-    password = data['password']
-    if not email or not password:
-        return jsonify({'valid': False, 'message': 'Email or password missing'}), 200
-    userID = database.check_email(email)
-    if userID < 0:
-        return jsonify({'exists': False, 'message': 'Email is not registered'}), 200
-    validity = database.check_password(userID, password)
-    if validity:
-        return jsonify({'valid': True, 'message': 'Password is valid'}), 200
-    else:
-        return jsonify({'valid': False, 'message': 'Invalid password'}), 200
-
-
-@api.route('/Login', methods=['POST'])
-def login():
-    data = request.json
-    email = data['email']
-    password = data['password']
-    if not email or not password:
-        return jsonify({'valid': False, 'message': 'Email or password missing'}), 200
-    userID = database.check_email(email)
-    if userID < 0:
-        return jsonify({'exists': False, 'message': 'Email is not registered'}), 200
-    validity = database.check_password(userID, password)
-    if not validity:
-        return jsonify({'valid': False, 'message': 'Invalid password'}), 200
-    user = load_user(userID)
-    if user:
-        login_user(user)
-        # print(current_user.id, current_user.email, current_user.account_type)
-        return jsonify({'valid': True, 'message': 'Login successful'}), 200
-    else:
-        return jsonify({'valid': False, 'message': 'User not found'}), 200
-
-@api.route('/Logout', methods=['POST'])
-def logout():
-    logout_user()
-    return ('', 204)
-
-@api.route('/AuthenticateEmailSignUp', methods=['POST'])
-def authenticate_email_Signup():
-    data = request.json
-    email = data.get("email")
-    if not email:
-        return jsonify({'exists': False, 'message': 'Email missing'}), 200
-    userID = database.check_email(email)
-    if userID >= 0:
-        return jsonify({'exists': False, 'message': 'Email is not registered'}), 200
-    else:
-        return jsonify({'exists': True, 'message': 'Email is registered'}), 200
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
     
-@api.route('/AuthenticateInvitationCode', methods=['POST'])
-def authenticate_invitation_code():
-    data = request.json
-    code = data.get("value")
-    if not code:
-        return jsonify({'exists': False, 'message': 'Invitation code missing'}), 200
-    shopID = database.check_invitation_code(code)
-    if shopID >= 0:
-        return jsonify({'exists': True, 'message': 'Invitation code is registered'}), 200
-    else:
-        return jsonify({'exists': False, 'message': 'Invitation code is not registered'}), 200
- 
-
-@api.route('/Signup',methods=['POST'])
-def signup():
-    data = request.json
-    print(data)
-    database.add_customer_details(data["email"],data["name"],data["password"],data["accountType"],data["invitationCode"],data["phoneNumber"])
-    userID = database.check_email(data["email"])
-    user=load_user(userID)
-    login_user(user)
-    return ('', 204)
-
-@api.route('/Store')
-def my_shop():
-    store = 1
-    data = database.select_store_items(store)
-    print(data)
-    response_body = jsonify(data)
-    return response_body
-
-# data for vendor dashboard
-@api.route('/inventory')
-def get_inventory_data():
-    inventory_data = database.retrieve_data_from_inventory(1)
-    return jsonify(inventory_data)
-
-
-@api.route('/orderData')
-def get_vendor_orders():
-    order_data = database.retrieve_orders_by_vendor(1)
-    orders = json.loads(order_data)
-
-    item_revenue = {}
-
-    for order in orders:
-        item_id = order["ItemId"]
-        item_name = order["ItemName"]
-        price = order["Price"]
-        quantity = order["Quantity"]
-        revenue = price * quantity
-
-        if item_id in item_revenue:
-            item_revenue[item_id]["revenue"] += revenue
-            item_revenue[item_id]["Quantity"] += quantity
-        else:
-            item_revenue[item_id] = {
-                "ItemName": item_name,
-                "Price": price,
-                "Quantity": quantity,
-                "revenue": revenue
-            }
-
-    sorted_item_revenue = sorted(
-        item_revenue.values(), key=lambda x: x["revenue"], reverse=True)
-
-    return jsonify(sorted_item_revenue)
-
-
-@api.route('/monthlyRevenue')
-def get_monthly_revenue():
-    order_data = database.retrieve_orders_by_vendor(1)
-    orders = json.loads(order_data)
-
-    monthly_revenue = defaultdict(float)
-
-    # Parse order data and calculate revenue per month
-    for order in orders:
-        order_date = datetime.strptime(order["OrderDate"], "%Y-%m-%d")
-        revenue = order["Price"] * order["Quantity"]
-        # Month and year key
-        key = f"{order_date.strftime('%B')} {order_date.year}"
-        monthly_revenue[key] += revenue
-
-    # Prepare data for line plot
-    sales_data = [{"month": month, "revenue": revenue}
-                  for month, revenue in monthly_revenue.items()]
-
-    return jsonify(sales_data)
-
-@api.route('/CustomerOrder')
-def get_vendor_orders_to_ship():
-    order_data = database.retrieve_orders_by_vendor(1)
-    orders = json.loads(order_data)
-
-    item = {}
-    for order in orders:
-        cust_email = database.get_email(order["CustomerId"])
-        item_id = order["ItemId"]
-        item_name = order["ItemName"]
-        price = order["Price"]
-        quantity = order["Quantity"]
-        revenue = price * quantity
-        status = order["OrderStatus"]
-        date = order["OrderDate"]
-        order_id=order["OrderId"]
-        if status=="pending":
-            item[order_id]={
-                "ItemName": item_name,
-                "Price": price,
-                "Quantity": quantity,
-                "Date" : date,
-                "CustomerContact" : cust_email
-            }
-    print(item)
-    return jsonify(item)
-
-@api.route('/delete-item/<int:item_id>', methods=['DELETE'])
-def delete_item(item_id):
-    database.delete(item_id,1)
-    return jsonify({'message': f'Item with ID {item_id} deleted successfully'})
-
-@api.route('/savechanges', methods=['POST'])
-def edititem():
-    data = request.json
-    print(data)
-    if data["quantity"].isnumeric() and data["price"].isnumeric():
-        print("Here")
-        database.updateitem(data["itemId"],1,data["itemName"],int(data["quantity"]),int(data["price"]))
-        return ('', 204)
-    else:
-        print("There")
-        return ('Error',204)
-
-@api.route('/AddItem',methods=['POST'])
-def addnew():
-    data = request.json
-    print(data)
-    items=database.select_store_items(1)
-    print(items)
-    max_second_element = max(items, key=lambda x: x[1])[1]
-    item_id=max_second_element+1
-    database.insert_into_table_Store(1,item_id,int(data["quantity"]),int(data["price"]),data["itemName"])
-    return ('',204)
+    # Initialize extensions
+    jwt = JWTManager(app)
+    CORS(app, origins=app.config['CORS_ORIGINS'])
     
-@api.route('/SendOTP', methods=['POST'])
-def send_otp():
-    phone_number = request.json.get('phone_number')
-    return jsonify({'success': True, 'otp': "1234"}) 
+    # Create upload folders
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], 'products'), exist_ok=True)
+    
+    # Register blueprints
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(products_bp)
+    app.register_blueprint(cart_bp)
+    app.register_blueprint(orders_bp)
+    app.register_blueprint(vendor_bp)
+    app.register_blueprint(admin_bp)
+    
+    # JWT error handlers
+    @jwt.expired_token_loader
+    def expired_token_callback(jwt_header, jwt_payload):
+        return error_response("Token has expired", 401)
+    
+    @jwt.invalid_token_loader
+    def invalid_token_callback(error):
+        return error_response("Invalid token", 401)
+    
+    @jwt.unauthorized_loader
+    def missing_token_callback(error):
+        return error_response("Authorization token is required", 401)
+    
+    # User management endpoints
+    @app.route('/v1/user/profile', methods=['GET'])
+    @jwt_required()
+    def get_user_profile():
+        try:
+            user_id = get_jwt_identity()
+            user = database.get_user_details(user_id)
+            
+            if not user:
+                return error_response("User not found", 404)
+            
+            user_data = {
+                'id': user[0],
+                'email': user[2],
+                'name': user[3],
+                'role': user[1],
+                'phone': user[5],
+                'shop_id': user[4],
+                'is_verified': user[6],
+                'is_active': user[7],
+                'created_at': user[8]
+            }
+            
+            return success_response(user_data, "Profile retrieved successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to retrieve profile: {str(e)}", 500)
+    
+    @app.route('/v1/user/profile', methods=['PUT'])
+    @jwt_required()
+    def update_user_profile():
+        try:
+            user_id = get_jwt_identity()
+            data = request.get_json()
+            
+            name = data.get('name', '').strip()
+            phone = data.get('phone', '').strip()
+            
+            if not name:
+                return error_response("Name is required", 400)
+            
+            success = database.update_user_profile(user_id, name, phone)
+            if not success:
+                return error_response("Failed to update profile", 500)
+            
+            return success_response(None, "Profile updated successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to update profile: {str(e)}", 500)
+    
+    @app.route('/v1/user/change-password', methods=['POST'])
+    @jwt_required()
+    def change_password():
+        try:
+            user_id = get_jwt_identity()
+            data = request.get_json()
+            
+            current_password = data.get('current_password', '')
+            new_password = data.get('new_password', '')
+            
+            if not current_password or not new_password:
+                return error_response("Current and new passwords are required", 400)
+            
+            # Verify current password
+            if not database.check_password(user_id, current_password):
+                return error_response("Current password is incorrect", 400)
+            
+            # Validate new password
+            if len(new_password) < 6:
+                return error_response("New password must be at least 6 characters long", 400)
+            
+            success = database.update_password(user_id, new_password)
+            if not success:
+                return error_response("Failed to change password", 500)
+            
+            return success_response(None, "Password changed successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to change password: {str(e)}", 500)
+    
+    # Address management endpoints
+    @app.route('/v1/user/addresses', methods=['GET'])
+    @jwt_required()
+    def get_user_addresses():
+        try:
+            user_id = get_jwt_identity()
+            addresses = database.get_user_addresses(user_id)
+            
+            return success_response(addresses, "Addresses retrieved successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to retrieve addresses: {str(e)}", 500)
+    
+    @app.route('/v1/user/addresses', methods=['POST'])
+    @jwt_required()
+    def add_user_address():
+        try:
+            user_id = get_jwt_identity()
+            data = request.get_json()
+            
+            required_fields = ['name', 'phone', 'address_line_1', 'city', 'state', 'pincode']
+            for field in required_fields:
+                if not data.get(field, '').strip():
+                    return error_response(f"{field.replace('_', ' ').title()} is required", 400)
+            
+            address_data = {
+                'user_id': user_id,
+                'name': data['name'].strip(),
+                'phone': data['phone'].strip(),
+                'address_line_1': data['address_line_1'].strip(),
+                'address_line_2': data.get('address_line_2', '').strip(),
+                'city': data['city'].strip(),
+                'state': data['state'].strip(),
+                'pincode': data['pincode'].strip(),
+                'country': data.get('country', 'India').strip(),
+                'is_default': data.get('is_default', False)
+            }
+            
+            address_id = database.add_user_address(address_data)
+            if address_id < 0:
+                return error_response("Failed to add address", 500)
+            
+            return success_response({'address_id': address_id}, "Address added successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to add address: {str(e)}", 500)
+    
+    @app.route('/v1/user/addresses/<int:address_id>', methods=['PUT'])
+    @jwt_required()
+    def update_user_address(address_id):
+        try:
+            user_id = get_jwt_identity()
+            data = request.get_json()
+            
+            # Verify address belongs to user
+            address = database.get_user_address(user_id, address_id)
+            if not address:
+                return error_response("Address not found", 404)
+            
+            required_fields = ['name', 'phone', 'address_line_1', 'city', 'state', 'pincode']
+            for field in required_fields:
+                if not data.get(field, '').strip():
+                    return error_response(f"{field.replace('_', ' ').title()} is required", 400)
+            
+            address_data = {
+                'name': data['name'].strip(),
+                'phone': data['phone'].strip(),
+                'address_line_1': data['address_line_1'].strip(),
+                'address_line_2': data.get('address_line_2', '').strip(),
+                'city': data['city'].strip(),
+                'state': data['state'].strip(),
+                'pincode': data['pincode'].strip(),
+                'country': data.get('country', 'India').strip(),
+                'is_default': data.get('is_default', False)
+            }
+            
+            success = database.update_user_address(address_id, address_data)
+            if not success:
+                return error_response("Failed to update address", 500)
+            
+            return success_response(None, "Address updated successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to update address: {str(e)}", 500)
+    
+    @app.route('/v1/user/addresses/<int:address_id>', methods=['DELETE'])
+    @jwt_required()
+    def delete_user_address(address_id):
+        try:
+            user_id = get_jwt_identity()
+            
+            # Verify address belongs to user
+            address = database.get_user_address(user_id, address_id)
+            if not address:
+                return error_response("Address not found", 404)
+            
+            success = database.delete_user_address(address_id)
+            if not success:
+                return error_response("Failed to delete address", 500)
+            
+            return success_response(None, "Address deleted successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to delete address: {str(e)}", 500)
+    
+    # Support and notification endpoints
+    @app.route('/v1/support/tickets', methods=['POST'])
+    @jwt_required()
+    def create_support_ticket():
+        try:
+            user_id = get_jwt_identity()
+            data = request.get_json()
+            
+            subject = data.get('subject', '').strip()
+            message = data.get('message', '').strip()
+            priority = data.get('priority', 'medium')
+            
+            if not subject or not message:
+                return error_response("Subject and message are required", 400)
+            
+            ticket_id = database.create_support_ticket(user_id, subject, message, priority)
+            if ticket_id < 0:
+                return error_response("Failed to create support ticket", 500)
+            
+            return success_response({'ticket_id': ticket_id}, "Support ticket created successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to create support ticket: {str(e)}", 500)
+    
+    @app.route('/v1/notifications', methods=['GET'])
+    @jwt_required()
+    def get_notifications():
+        try:
+            user_id = get_jwt_identity()
+            page, per_page = validate_pagination()
+            
+            notifications, total_count = database.get_user_notifications(user_id, page, per_page)
+            pagination = create_pagination_info(page, per_page, total_count)
+            
+            return success_response(notifications, "Notifications retrieved successfully", pagination)
+            
+        except Exception as e:
+            return error_response(f"Failed to retrieve notifications: {str(e)}", 500)
+    
+    # Blog endpoints
+    @app.route('/v1/blog/posts', methods=['GET'])
+    def get_blog_posts():
+        try:
+            page, per_page = validate_pagination()
+            
+            posts, total_count = database.get_blog_posts(page, per_page)
+            pagination = create_pagination_info(page, per_page, total_count)
+            
+            return success_response(posts, "Blog posts retrieved successfully", pagination)
+            
+        except Exception as e:
+            return error_response(f"Failed to retrieve blog posts: {str(e)}", 500)
+    
+    @app.route('/v1/blog/posts/<int:post_id>', methods=['GET'])
+    def get_blog_post(post_id):
+        try:
+            post = database.get_blog_post_by_id(post_id)
+            if not post:
+                return error_response("Blog post not found", 404)
+            
+            return success_response(post, "Blog post retrieved successfully")
+            
+        except Exception as e:
+            return error_response(f"Failed to retrieve blog post: {str(e)}", 500)
+    
+    # Health check endpoint
+    @app.route('/v1/health', methods=['GET'])
+    def health_check():
+        return success_response({'status': 'healthy'}, "Service is running")
+    
+    return app
 
-@api.route('/GetUser', methods=['GET'])
-def get_user():
-    if current_user.is_authenticated:
-        return jsonify({"loggedIn": True, 
-                        "userID": current_user.id, 
-                        "accountType": current_user.account_type, 
-                        "email": current_user.email, 
-                        "name":  current_user.name, 
-                        "shopID": current_user.shopid, 
-                        "phoneNumber": current_user.phone})
-    else:
-        return jsonify({"loggedIn": False})
+# Create app instance
+app = create_app()
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
