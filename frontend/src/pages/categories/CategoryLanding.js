@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import ProductCard from '../../components/ProductCard';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { useAnalytics } from '../../utils/analytics';
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../context/CartContext';
 import useWishlist from '../../hooks/useWishlist';
 import useAPI from '../../hooks/useAPI';
 import { PRODUCT_CATEGORIES } from '../../utils/constants';
