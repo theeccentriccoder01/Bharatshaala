@@ -41,8 +41,8 @@ Experience Bharatshaala live here:
 
 ## 📸 Screenshots
 
-<div align="center"><img src="App1.jpg" style="width: 300px;"/><img src="App2.jpg" style="width: 300px;"/></div>
-<div align="center"><img src="App3.jpg" style="width: 300px;"/><img src="App4.jpg" style="width: 300px;"/></div>
+<div align="center"><img src="App1.jpg" style="width: 400px;"/><img src="App2.jpg" style="width: 400px;"/></div>
+<div align="center"><img src="App3.jpg" style="width: 400px;"/><img src="App4.jpg" style="width: 400px;"/></div>
 
 ---
 
