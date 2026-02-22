@@ -43,3 +43,27 @@ class Config:
     # Application Settings
     SHIPPING_COST = 100
     CURRENCY = 'INR'
+
+    #Redis connection
+    RATELIMIT_STORAGE_URI = os.environ.get('REDIS_URL', "memory://")
+    RATELIMIT_DEFAULT = ["200 per day", "50 per hour"]
+    RATELIMIT_STRATEGY = 'fixed-window'
+    RATELIMIT_KEY_PREFIX = "rate_limit"
+    RATELIMIT_HEADERS_ENABLED = True
+
+    #Rate Limits
+    LIMIT_AUTH = "5 per 15 minutes"
+    LIMIT_READ_ADMIN = "60 per minute"
+    LIMIT_WRITE_ADMIN = "20 per minute"
+    LIMIT_READ_BASE = "20 per minute"
+    LIMIT_WRITE_BASE = "5 per minute"
+    LIMIT_READ_CART= "50 per minute"
+    LIMIT_WRITE_CART = "20 per minute"
+    LIMIT_ORDERS_PAYMENT= "5 per minute"
+    LIMIT_ORDERS_READ_ORDER= "60 per minute"
+    LIMIT_ORDERS_WRITE_ORDER= "10 per minute"
+    LIMIT_READ_PRODUCTS= "100 per minute"
+    LIMIT_SEARCH_PRODUCTS= "2 per second"
+    LIMIT_WRITE_PRODUCTS= "5 per minute"
+    LIMIT_READ_VENDOR= "60 per minute"
+    LIMIT_WRITE_VENDOR= "20 per minute"

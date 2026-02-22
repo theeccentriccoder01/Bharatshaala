@@ -2,10 +2,11 @@ from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from . import database
 from .utils import success_response, error_response, admin_required, validate_pagination, create_pagination_info
-
+from .extensions import limiter
+from .config import Config
 admin_bp = Blueprint('admin', __name__, url_prefix='/v1/admin')
-
 @admin_bp.route('/dashboard', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_ADMIN )
 @admin_required()
 def get_admin_dashboard():
     try:
@@ -29,6 +30,7 @@ def get_admin_dashboard():
         return error_response(f"Failed to retrieve dashboard data: {str(e)}", 500)
 
 @admin_bp.route('/users', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_ADMIN)
 @admin_required()
 def get_all_users():
     try:
@@ -47,6 +49,7 @@ def get_all_users():
         return error_response(f"Failed to retrieve users: {str(e)}", 500)
 
 @admin_bp.route('/users/<int:user_id>/status', methods=['PATCH'])
+@limiter.limit(Config.LIMIT_WRITE_ADMIN)
 @admin_required()
 def update_user_status(user_id):
     try:
@@ -66,6 +69,7 @@ def update_user_status(user_id):
         return error_response(f"Failed to update user status: {str(e)}", 500)
 
 @admin_bp.route('/vendors', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_VENDOR)
 @admin_required()
 def get_all_vendors():
     try:
@@ -83,6 +87,7 @@ def get_all_vendors():
         return error_response(f"Failed to retrieve vendors: {str(e)}", 500)
 
 @admin_bp.route('/vendors/<int:vendor_id>/approve', methods=['POST'])
+@limiter.limit(Config.LIMIT_WRITE_VENDOR)
 @admin_required()
 def approve_vendor(vendor_id):
     try:
@@ -101,6 +106,7 @@ def approve_vendor(vendor_id):
         return error_response(f"Failed to update vendor approval: {str(e)}", 500)
 
 @admin_bp.route('/products', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_ADMIN)
 @admin_required()
 def get_all_products():
     try:
@@ -122,6 +128,7 @@ def get_all_products():
         return error_response(f"Failed to retrieve products: {str(e)}", 500)
 
 @admin_bp.route('/products/<int:product_id>/status', methods=['PATCH'])
+@limiter.limit(Config.LIMIT_WRITE_ADMIN)
 @admin_required()
 def update_product_status(product_id):
     try:
@@ -141,6 +148,7 @@ def update_product_status(product_id):
         return error_response(f"Failed to update product status: {str(e)}", 500)
 
 @admin_bp.route('/orders', methods=['GET'])
+@limiter.limit(Config.LIMIT_ORDERS_READ_ORDER)
 @admin_required()
 def get_all_orders():
     try:
@@ -162,6 +170,7 @@ def get_all_orders():
         return error_response(f"Failed to retrieve orders: {str(e)}", 500)
 
 @admin_bp.route('/categories', methods=['POST'])
+@limiter.limit(Config.LIMIT_WRITE_ADMIN)
 @admin_required()
 def create_category():
     try:
@@ -184,6 +193,7 @@ def create_category():
         return error_response(f"Failed to create category: {str(e)}", 500)
 
 @admin_bp.route('/categories/<int:category_id>', methods=['PUT'])
+@limiter.limit(Config.LIMIT_WRITE_ADMIN)
 @admin_required()
 def update_category(category_id):
     try:
@@ -206,6 +216,7 @@ def update_category(category_id):
         return error_response(f"Failed to update category: {str(e)}", 500)
 
 @admin_bp.route('/markets', methods=['POST'])
+@limiter.limit(Config.LIMIT_WRITE_ADMIN)
 @admin_required()
 def create_market():
     try:
@@ -228,6 +239,7 @@ def create_market():
         return error_response(f"Failed to create market: {str(e)}", 500)
 
 @admin_bp.route('/markets/<int:market_id>', methods=['PUT'])
+@limiter.limit(Config.LIMIT_WRITE_ADMIN)
 @admin_required()
 def update_market(market_id):
     try:
@@ -251,6 +263,7 @@ def update_market(market_id):
         return error_response(f"Failed to update market: {str(e)}", 500)
 
 @admin_bp.route('/analytics', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_ADMIN)
 @admin_required()
 def get_admin_analytics():
     try:
@@ -266,6 +279,7 @@ def get_admin_analytics():
         return error_response(f"Failed to retrieve admin analytics: {str(e)}", 500)
 
 @admin_bp.route('/system/settings', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_ADMIN)
 @admin_required()
 def get_system_settings():
     try:
@@ -276,6 +290,7 @@ def get_system_settings():
         return error_response(f"Failed to retrieve system settings: {str(e)}", 500)
 
 @admin_bp.route('/system/settings', methods=['PUT'])
+@limiter.limit(Config.LIMIT_WRITE_ADMIN)
 @admin_required()
 def update_system_settings():
     try:
