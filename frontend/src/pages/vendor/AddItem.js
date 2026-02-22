@@ -203,15 +203,15 @@ const AddItem = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         <div className="max-w-7xl mx-auto px-6 py-8">
           
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+            <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
               नया उत्पाद जोड़ें
             </h1>
-            <p className="text-emerald-600 text-lg">
+            <p className="text-emerald-600 dark:text-emerald-400 text-lg">
               अपने स्टोर में एक नया उत्पाद जोड़ने के लिए सभी विवरण भरें
             </p>
           </div>
@@ -226,28 +226,28 @@ const AddItem = () => {
             <div className="flex-1">
               
               {/* Progress Steps */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg mb-8">
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg mb-8">
                 <div className="flex items-center justify-between">
                   {steps.map((step, index) => (
                     <React.Fragment key={step.id}>
                       <div className={`flex flex-col items-center text-center ${
-                        currentStep >= step.id ? 'text-emerald-600' : 'text-gray-400'
+                        currentStep >= step.id ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400'
                       }`}>
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl border-2 transition-all duration-300 mb-2 ${
                           currentStep >= step.id 
                             ? 'bg-emerald-500 text-white border-emerald-500' 
-                            : 'bg-white border-gray-300'
+                            : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600'
                         }`}>
                           {currentStep > step.id ? '✅' : step.icon}
                         </div>
                         <div className="max-w-[120px]">
                           <h4 className="font-semibold text-sm">{step.title}</h4>
-                          <p className="text-xs text-gray-500 mt-1">{step.description}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{step.description}</p>
                         </div>
                       </div>
                       {index < steps.length - 1 && (
                         <div className={`flex-1 h-1 mx-4 rounded transition-all duration-300 ${
-                          currentStep > step.id ? 'bg-emerald-500' : 'bg-gray-300'
+                          currentStep > step.id ? 'bg-emerald-500' : 'bg-gray-300 dark:bg-gray-600'
                         }`}></div>
                       )}
                     </React.Fragment>
@@ -256,16 +256,16 @@ const AddItem = () => {
               </div>
 
               {/* Form Content */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
                 
                 {/* Step 1: Basic Information */}
                 {currentStep === 1 && (
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-emerald-800 mb-6">बेसिक जानकारी</h3>
+                    <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">बेसिक जानकारी</h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           उत्पाद का नाम (हिंदी) *
                         </label>
                         <input
@@ -273,29 +273,29 @@ const AddItem = () => {
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
                           className={`w-full px-4 py-3 border-2 rounded-xl ${
-                            errors.name ? 'border-red-300' : 'border-emerald-200'
-                          } focus:border-emerald-500 focus:outline-none`}
+                            errors.name ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                          } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                           placeholder="जैसे: कुंदन हार"
                         />
-                        {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                        {errors.name && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.name}</p>}
                       </div>
 
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           Product Name (English)
                         </label>
                         <input
                           type="text"
                           value={formData.nameHindi}
                           onChange={(e) => handleInputChange('nameHindi', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           placeholder="e.g.: Kundan Necklace"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         उत्पाद का विवरण (हिंदी) *
                       </label>
                       <textarea
@@ -303,37 +303,37 @@ const AddItem = () => {
                         onChange={(e) => handleInputChange('description', e.target.value)}
                         rows={4}
                         className={`w-full px-4 py-3 border-2 rounded-xl ${
-                          errors.description ? 'border-red-300' : 'border-emerald-200'
-                        } focus:border-emerald-500 focus:outline-none`}
+                          errors.description ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                        } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                         placeholder="उत्पाद का विस्तृत विवरण लिखें..."
                       />
-                      {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
+                      {errors.description && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.description}</p>}
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         Product Description (English)
                       </label>
                       <textarea
                         value={formData.descriptionHindi}
                         onChange={(e) => handleInputChange('descriptionHindi', e.target.value)}
                         rows={4}
-                        className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                        className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         placeholder="Write detailed product description..."
                       />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           मुख्य श्रेणी *
                         </label>
                         <select
                           value={formData.category}
                           onChange={(e) => handleInputChange('category', e.target.value)}
                           className={`w-full px-4 py-3 border-2 rounded-xl ${
-                            errors.category ? 'border-red-300' : 'border-emerald-200'
-                          } focus:border-emerald-500 focus:outline-none`}
+                            errors.category ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                          } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                         >
                           <option value="">श्रेणी चुनें</option>
                           {categories.map(category => (
@@ -342,17 +342,17 @@ const AddItem = () => {
                             </option>
                           ))}
                         </select>
-                        {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
+                        {errors.category && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.category}</p>}
                       </div>
 
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           उप-श्रेणी
                         </label>
                         <select
                           value={formData.subcategory}
                           onChange={(e) => handleInputChange('subcategory', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           disabled={!formData.category}
                         >
                           <option value="">उप-श्रेणी चुनें</option>
@@ -364,43 +364,43 @@ const AddItem = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <label className="flex items-center space-x-3 p-4 border-2 border-emerald-200 rounded-xl cursor-pointer hover:bg-emerald-50">
+                      <label className="flex items-center space-x-3 p-4 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl cursor-pointer hover:bg-emerald-50 dark:hover:bg-gray-700">
                         <input
                           type="checkbox"
                           checked={formData.isHandmade}
                           onChange={(e) => handleInputChange('isHandmade', e.target.checked)}
-                          className="w-5 h-5 text-emerald-600"
+                          className="w-5 h-5 text-emerald-600 dark:text-emerald-400"
                         />
                         <div>
-                          <span className="font-semibold text-emerald-800">हस्तनिर्मित</span>
-                          <p className="text-emerald-600 text-sm">यह उत्पाद हाथ से बना है</p>
+                          <span className="font-semibold text-emerald-800 dark:text-emerald-200">हस्तनिर्मित</span>
+                          <p className="text-emerald-600 dark:text-emerald-400 text-sm">यह उत्पाद हाथ से बना है</p>
                         </div>
                       </label>
 
-                      <label className="flex items-center space-x-3 p-4 border-2 border-emerald-200 rounded-xl cursor-pointer hover:bg-emerald-50">
+                      <label className="flex items-center space-x-3 p-4 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl cursor-pointer hover:bg-emerald-50 dark:hover:bg-gray-700">
                         <input
                           type="checkbox"
                           checked={formData.isCertified}
                           onChange={(e) => handleInputChange('isCertified', e.target.checked)}
-                          className="w-5 h-5 text-emerald-600"
+                          className="w-5 h-5 text-emerald-600 dark:text-emerald-400"
                         />
                         <div>
-                          <span className="font-semibold text-emerald-800">प्रमाणित</span>
-                          <p className="text-emerald-600 text-sm">इस उत्पाद के पास प्रमाणन है</p>
+                          <span className="font-semibold text-emerald-800 dark:text-emerald-200">प्रमाणित</span>
+                          <p className="text-emerald-600 dark:text-emerald-400 text-sm">इस उत्पाद के पास प्रमाणन है</p>
                         </div>
                       </label>
                     </div>
 
                     {formData.isCertified && (
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           प्रमाणन विवरण
                         </label>
                         <input
                           type="text"
                           value={formData.certificationDetails}
                           onChange={(e) => handleInputChange('certificationDetails', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           placeholder="प्रमाणन का प्रकार और जारीकर्ता"
                         />
                       </div>
@@ -411,11 +411,11 @@ const AddItem = () => {
                 {/* Step 2: Price and Stock */}
                 {currentStep === 2 && (
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-emerald-800 mb-6">मूल्य और स्टॉक</h3>
+                    <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">मूल्य और स्टॉक</h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           विक्रय मूल्य (₹) *
                         </label>
                         <input
@@ -423,33 +423,33 @@ const AddItem = () => {
                           value={formData.price}
                           onChange={(e) => handleInputChange('price', e.target.value)}
                           className={`w-full px-4 py-3 border-2 rounded-xl ${
-                            errors.price ? 'border-red-300' : 'border-emerald-200'
-                          } focus:border-emerald-500 focus:outline-none`}
+                            errors.price ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                          } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                           placeholder="2500"
                         />
-                        {errors.price && <p className="text-red-500 text-sm mt-1">{errors.price}</p>}
+                        {errors.price && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.price}</p>}
                       </div>
 
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           मूल मूल्य (₹)
                         </label>
                         <input
                           type="number"
                           value={formData.originalPrice}
                           onChange={(e) => handleInputChange('originalPrice', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           placeholder="3000"
                         />
                         {formData.originalPrice && formData.price && (
-                          <p className="text-emerald-600 text-sm mt-1">
+                          <p className="text-emerald-600 dark:text-emerald-400 text-sm mt-1">
                             छूट: {Math.round(((formData.originalPrice - formData.price) / formData.originalPrice) * 100)}%
                           </p>
                         )}
                       </div>
 
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           उपलब्ध मात्रा *
                         </label>
                         <input
@@ -457,30 +457,30 @@ const AddItem = () => {
                           value={formData.quantity}
                           onChange={(e) => handleInputChange('quantity', e.target.value)}
                           className={`w-full px-4 py-3 border-2 rounded-xl ${
-                            errors.quantity ? 'border-red-300' : 'border-emerald-200'
-                          } focus:border-emerald-500 focus:outline-none`}
+                            errors.quantity ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                          } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                           placeholder="10"
                         />
-                        {errors.quantity && <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>}
+                        {errors.quantity && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.quantity}</p>}
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           वजन (ग्राम)
                         </label>
                         <input
                           type="number"
                           value={formData.weight}
                           onChange={(e) => handleInputChange('weight', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           placeholder="50"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           आयाम (सेमी)
                         </label>
                         <div className="grid grid-cols-3 gap-2">
@@ -488,21 +488,21 @@ const AddItem = () => {
                             type="number"
                             value={formData.dimensions.length}
                             onChange={(e) => handleNestedInputChange('dimensions', 'length', e.target.value)}
-                            className="px-3 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                            className="px-3 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                             placeholder="लंबाई"
                           />
                           <input
                             type="number"
                             value={formData.dimensions.width}
                             onChange={(e) => handleNestedInputChange('dimensions', 'width', e.target.value)}
-                            className="px-3 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                            className="px-3 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                             placeholder="चौड़ाई"
                           />
                           <input
                             type="number"
                             value={formData.dimensions.height}
                             onChange={(e) => handleNestedInputChange('dimensions', 'height', e.target.value)}
-                            className="px-3 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                            className="px-3 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                             placeholder="ऊंचाई"
                           />
                         </div>
@@ -514,10 +514,10 @@ const AddItem = () => {
                 {/* Step 3: Images and Media */}
                 {currentStep === 3 && (
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-emerald-800 mb-6">छवियां और मीडिया</h3>
+                    <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">छवियां और मीडिया</h3>
                     
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-4">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-4">
                         उत्पाद की छवियां * (अधिकतम 8 छवियां)
                       </label>
                       <ImageUploader
@@ -526,12 +526,12 @@ const AddItem = () => {
                         maxImages={8}
                         error={errors.images}
                       />
-                      {errors.images && <p className="text-red-500 text-sm mt-2">{errors.images}</p>}
+                      {errors.images && <p className="text-red-500 dark:text-red-400 text-sm mt-2">{errors.images}</p>}
                     </div>
 
-                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6">
-                      <h4 className="font-semibold text-emerald-800 mb-3">छवि दिशानिर्देश:</h4>
-                      <ul className="text-emerald-700 space-y-2 text-sm">
+                    <div className="bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-xl p-6">
+                      <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-3">छवि दिशानिर्देश:</h4>
+                      <ul className="text-emerald-700 dark:text-emerald-300 space-y-2 text-sm">
                         <li>• उच्च गुणवत्ता वाली छवियां अपलोड करें (न्यूनतम 800x800 पिक्सेल)</li>
                         <li>• पहली छवि मुख्य छवि होगी</li>
                         <li>• विभिन्न कोणों से उत्पाद की तस्वीरें लें</li>
@@ -545,54 +545,54 @@ const AddItem = () => {
                 {/* Step 4: Features */}
                 {currentStep === 4 && (
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-emerald-800 mb-6">विशेषताएं</h3>
+                    <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">विशेषताएं</h3>
                     
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-3">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-3">
                         सामग्री
                       </label>
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
                         {materialOptions.map(material => (
-                          <label key={material} className="flex items-center space-x-2 p-3 border-2 border-emerald-200 rounded-lg cursor-pointer hover:bg-emerald-50 transition-colors duration-200">
+                          <label key={material} className="flex items-center space-x-2 p-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg cursor-pointer hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200">
                             <input
                               type="checkbox"
                               checked={formData.materials.includes(material)}
                               onChange={(e) => handleArrayInputChange('materials', material, e.target.checked ? 'add' : 'remove')}
-                              className="w-4 h-4 text-emerald-600"
+                              className="w-4 h-4 text-emerald-600 dark:text-emerald-400"
                             />
-                            <span className="text-emerald-700 text-sm">{material}</span>
+                            <span className="text-emerald-700 dark:text-emerald-300 text-sm">{material}</span>
                           </label>
                         ))}
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-3">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-3">
                         उपलब्ध रंग
                       </label>
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
                         {colorOptions.map(color => (
-                          <label key={color} className="flex items-center space-x-2 p-3 border-2 border-emerald-200 rounded-lg cursor-pointer hover:bg-emerald-50 transition-colors duration-200">
+                          <label key={color} className="flex items-center space-x-2 p-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg cursor-pointer hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200">
                             <input
                               type="checkbox"
                               checked={formData.colors.includes(color)}
                               onChange={(e) => handleArrayInputChange('colors', color, e.target.checked ? 'add' : 'remove')}
-                              className="w-4 h-4 text-emerald-600"
+                              className="w-4 h-4 text-emerald-600 dark:text-emerald-400"
                             />
-                            <span className="text-emerald-700 text-sm">{color}</span>
+                            <span className="text-emerald-700 dark:text-emerald-300 text-sm">{color}</span>
                           </label>
                         ))}
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         टैग्स (खोज के लिए)
                       </label>
                       <input
                         type="text"
                         placeholder="टैग्स को कॉमा से अलग करें (जैसे: हस्तनिर्मित, पारंपरिक, गिफ्ट)"
-                        className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                        className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ',') {
                             e.preventDefault();
@@ -607,11 +607,11 @@ const AddItem = () => {
                       {formData.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2 mt-3">
                           {formData.tags.map(tag => (
-                            <span key={tag} className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                            <span key={tag} className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
                               <span>{tag}</span>
                               <button
                                 onClick={() => handleArrayInputChange('tags', tag, 'remove')}
-                                className="text-emerald-500 hover:text-emerald-700"
+                                className="text-emerald-500 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
                               >
                                 ×
                               </button>
@@ -626,34 +626,34 @@ const AddItem = () => {
                 {/* Step 5: Shipping and SEO */}
                 {currentStep === 5 && (
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-emerald-800 mb-6">शिपिंग और SEO</h3>
+                    <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">शिपिंग और SEO</h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="flex items-center space-x-3 p-4 border-2 border-emerald-200 rounded-xl cursor-pointer hover:bg-emerald-50">
+                        <label className="flex items-center space-x-3 p-4 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl cursor-pointer hover:bg-emerald-50 dark:hover:bg-gray-700">
                           <input
                             type="checkbox"
                             checked={formData.shippingInfo.freeShipping}
                             onChange={(e) => handleNestedInputChange('shippingInfo', 'freeShipping', e.target.checked)}
-                            className="w-5 h-5 text-emerald-600"
+                            className="w-5 h-5 text-emerald-600 dark:text-emerald-400"
                           />
                           <div>
-                            <span className="font-semibold text-emerald-800">मुफ्त शिपिंग</span>
-                            <p className="text-emerald-600 text-sm">इस उत्पाद की शिपिंग मुफ्त है</p>
+                            <span className="font-semibold text-emerald-800 dark:text-emerald-200">मुफ्त शिपिंग</span>
+                            <p className="text-emerald-600 dark:text-emerald-400 text-sm">इस उत्पाद की शिपिंग मुफ्त है</p>
                           </div>
                         </label>
                       </div>
 
                       {!formData.shippingInfo.freeShipping && (
                         <div>
-                          <label className="block text-emerald-800 font-semibold mb-2">
+                          <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                             शिपिंग लागत (₹)
                           </label>
                           <input
                             type="number"
                             value={formData.shippingInfo.shippingCost}
                             onChange={(e) => handleNestedInputChange('shippingInfo', 'shippingCost', e.target.value)}
-                            className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                            className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                             placeholder="50"
                           />
                         </div>
@@ -662,13 +662,13 @@ const AddItem = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           प्रोसेसिंग समय
                         </label>
                         <select
                           value={formData.shippingInfo.processingTime}
                           onChange={(e) => handleNestedInputChange('shippingInfo', 'processingTime', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         >
                           <option value="">समय चुनें</option>
                           <option value="1-2 दिन">1-2 दिन</option>
@@ -680,25 +680,25 @@ const AddItem = () => {
                       </div>
 
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                           शिप करने का स्थान
                         </label>
                         <input
                           type="text"
                           value={formData.shippingInfo.shippingFrom}
                           onChange={(e) => handleNestedInputChange('shippingInfo', 'shippingFrom', e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           placeholder="जयपुर, राजस्थान"
                         />
                       </div>
                     </div>
 
-                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                      <h4 className="font-semibold text-blue-800 mb-3">SEO अनुकूलन (स्वचालित)</h4>
-                      <p className="text-blue-700 text-sm mb-3">
+                    <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-xl p-6">
+                      <h4 className="font-semibold text-blue-800 dark:text-blue-300 mb-3">SEO अनुकूलन (स्वचालित)</h4>
+                      <p className="text-blue-700 dark:text-blue-300 text-sm mb-3">
                         निम्नलिखित SEO डेटा आपके उत्पाद की जानकारी के आधार पर स्वचालित रूप से जेनरेट होगा:
                       </p>
-                      <ul className="text-blue-700 space-y-1 text-sm">
+                      <ul className="text-blue-700 dark:text-blue-300 space-y-1 text-sm">
                         <li>• मेटा टाइटल: उत्पाद का नाम + श्रेणी + भारतशाला</li>
                         <li>• मेटा विवरण: उत्पाद विवरण का पहला 155 अक्षर</li>
                         <li>• कीवर्ड्स: नाम, श्रेणी, सामग्री और टैग्स</li>
@@ -709,17 +709,17 @@ const AddItem = () => {
                 )}
 
                 {/* Navigation Buttons */}
-                <div className="flex justify-between items-center pt-8 border-t border-emerald-200">
+                <div className="flex justify-between items-center pt-8 border-t border-emerald-200 dark:border-emerald-700">
                   <button
                     onClick={prevStep}
                     disabled={currentStep === 1}
-                    className="flex items-center space-x-2 px-6 py-3 border-2 border-emerald-500 text-emerald-600 rounded-xl hover:bg-emerald-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                    className="flex items-center space-x-2 px-6 py-3 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 rounded-xl hover:bg-emerald-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                   >
                     <span>←</span>
                     <span>पिछला</span>
                   </button>
 
-                  <div className="text-emerald-600 font-medium">
+                  <div className="text-emerald-600 dark:text-emerald-400 font-medium">
                     {currentStep} / {steps.length}
                   </div>
 
@@ -754,8 +754,8 @@ const AddItem = () => {
 
                 {/* General Error */}
                 {errors.general && (
-                  <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <p className="text-red-600 text-center">{errors.general}</p>
+                  <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-xl">
+                    <p className="text-red-600 dark:text-red-400 text-center">{errors.general}</p>
                   </div>
                 )}
               </div>

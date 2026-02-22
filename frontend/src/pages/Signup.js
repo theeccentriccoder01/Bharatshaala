@@ -94,7 +94,7 @@ const Signup = () => {
 
     const isPasswordValid = Object.values(requirements).every(req => req);
     setValidations(prev => ({ ...prev, validPassword: isPasswordValid }));
-    
+
     return isPasswordValid ? '' : 'पासवर्ड आवश्यकताओं को पूरा नहीं करता';
   };
 
@@ -110,7 +110,7 @@ const Signup = () => {
     if (formData.accountType === "vendor" && !code) {
       return "कृपया निमंत्रण कोड दर्ज करें";
     }
-    
+
     if (code && formData.accountType === "vendor") {
       try {
         const response = await axios.post("/AuthenticateInvitationCode", { value: code });
@@ -124,7 +124,7 @@ const Signup = () => {
 
   const handleInputChange = async (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    
+
     // Real-time validation
     let error = '';
     switch (field) {
@@ -147,7 +147,7 @@ const Signup = () => {
         error = await validateInvitationCode(value);
         break;
     }
-    
+
     setErrors(prev => ({ ...prev, [field]: error }));
   };
 
@@ -160,11 +160,11 @@ const Signup = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post("/SendOTP", { 
-        name: formData.name, 
-        phoneNumber: formData.phoneNumber 
+      const response = await axios.post("/SendOTP", {
+        name: formData.name,
+        phoneNumber: formData.phoneNumber
       });
-      
+
       if (response.data.success) {
         setOtpSent(true);
         setCorrectOTP(response.data.otp);
@@ -199,7 +199,7 @@ const Signup = () => {
         phoneNumber: formData.phoneNumber,
         invitationCode: formData.invitationCode
       });
-      
+
       // Success - redirect to success page or login
       navigate('/login?signup=success');
     } catch (error) {
@@ -226,20 +226,20 @@ const Signup = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
         <div className="max-w-2xl mx-auto px-6 py-8">
-          
+
           {/* Header */}
           <div className="text-center mb-8">
-            <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-emerald-200'>
+            <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-100 to-green-100 dark:from-emerald-900/30 dark:to-green-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-emerald-200 dark:border-emerald-700'>
               <span className='text-2xl'>🌟</span>
-              <span className='text-emerald-800 font-bold'>नया सदस्य</span>
+              <span className='text-emerald-800 dark:text-emerald-300 font-bold'>नया सदस्य</span>
             </div>
-            
+
             <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-4">
               साइन अप करें
             </h1>
-            <p className="text-emerald-600 text-lg">
+            <p className="text-emerald-600 dark:text-emerald-400 text-lg">
               सच्चे भारतशाला अनुभव का आनंद लेने के लिए,<br/>
               अपनी जानकारी दर्ज करें
             </p>
@@ -251,12 +251,12 @@ const Signup = () => {
               {steps.map((step, index) => (
                 <React.Fragment key={step.id}>
                   <div className={`flex flex-col items-center ${
-                    currentStep >= step.id ? 'text-emerald-600' : 'text-gray-400'
+                    currentStep >= step.id ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500'
                   }`}>
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl border-2 transition-all duration-300 ${
-                      currentStep >= step.id 
-                        ? 'bg-emerald-500 text-white border-emerald-500' 
-                        : 'bg-white border-gray-300'
+                      currentStep >= step.id
+                        ? 'bg-emerald-500 text-white border-emerald-500'
+                        : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600'
                     }`}>
                       {currentStep > step.id ? '✓' : step.icon}
                     </div>
@@ -264,7 +264,7 @@ const Signup = () => {
                   </div>
                   {index < steps.length - 1 && (
                     <div className={`w-16 h-1 rounded transition-all duration-300 ${
-                      currentStep > step.id ? 'bg-emerald-500' : 'bg-gray-300'
+                      currentStep > step.id ? 'bg-emerald-500' : 'bg-gray-300 dark:bg-gray-600'
                     }`}></div>
                   )}
                 </React.Fragment>
@@ -273,20 +273,20 @@ const Signup = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-emerald-200">
-            
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-emerald-200 dark:border-gray-700">
+
             {/* Step 1: Account Type */}
             {currentStep === 1 && (
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-emerald-800 text-center mb-6">
+                <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-300 text-center mb-6">
                   खाता प्रकार चुनें
                 </h3>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <label className={`cursor-pointer border-2 rounded-xl p-6 transition-all duration-300 ${
-                    formData.accountType === 'customer' 
-                      ? 'border-emerald-500 bg-emerald-50' 
-                      : 'border-emerald-200 hover:border-emerald-300'
+                    formData.accountType === 'customer'
+                      ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30'
+                      : 'border-emerald-200 dark:border-gray-600 hover:border-emerald-300'
                   }`}>
                     <input
                       type="radio"
@@ -298,17 +298,17 @@ const Signup = () => {
                     />
                     <div className="text-center">
                       <div className="text-4xl mb-3">🛍️</div>
-                      <h4 className="text-lg font-semibold text-emerald-800 mb-2">ग्राहक</h4>
-                      <p className="text-emerald-600 text-sm">
+                      <h4 className="text-lg font-semibold text-emerald-800 dark:text-emerald-300 mb-2">ग्राहक</h4>
+                      <p className="text-emerald-600 dark:text-emerald-400 text-sm">
                         खरीदारी करें और भारत के बेहतरीन उत्पादों का आनंद लें
                       </p>
                     </div>
                   </label>
 
                   <label className={`cursor-pointer border-2 rounded-xl p-6 transition-all duration-300 ${
-                    formData.accountType === 'vendor' 
-                      ? 'border-emerald-500 bg-emerald-50' 
-                      : 'border-emerald-200 hover:border-emerald-300'
+                    formData.accountType === 'vendor'
+                      ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30'
+                      : 'border-emerald-200 dark:border-gray-600 hover:border-emerald-300'
                   }`}>
                     <input
                       type="radio"
@@ -320,8 +320,8 @@ const Signup = () => {
                     />
                     <div className="text-center">
                       <div className="text-4xl mb-3">🏪</div>
-                      <h4 className="text-lg font-semibold text-emerald-800 mb-2">विक्रेता</h4>
-                      <p className="text-emerald-600 text-sm">
+                      <h4 className="text-lg font-semibold text-emerald-800 dark:text-emerald-300 mb-2">विक्रेता</h4>
+                      <p className="text-emerald-600 dark:text-emerald-400 text-sm">
                         अपने उत्पाद बेचें और व्यापार बढ़ाएं
                       </p>
                     </div>
@@ -331,7 +331,7 @@ const Signup = () => {
                 {/* Vendor Invitation Code */}
                 {formData.accountType === "vendor" && (
                   <div className="mt-6">
-                    <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                    <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                       निमंत्रण कोड
                     </label>
                     <input
@@ -339,10 +339,10 @@ const Signup = () => {
                       value={formData.invitationCode}
                       onChange={(e) => handleInputChange('invitationCode', e.target.value)}
                       className={`w-full px-4 py-4 border-2 rounded-xl transition-all duration-300 ${
-                        errors.invitationCode 
-                          ? 'border-red-300 focus:border-red-500' 
-                          : 'border-emerald-200 focus:border-emerald-500'
-                      } focus:outline-none bg-white text-lg`}
+                        errors.invitationCode
+                          ? 'border-red-300 focus:border-red-500'
+                          : 'border-emerald-200 dark:border-gray-600 focus:border-emerald-500'
+                      } focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg`}
                       placeholder="विक्रेता निमंत्रण कोड"
                     />
                     {errors.invitationCode && (
@@ -364,13 +364,13 @@ const Signup = () => {
             {/* Step 2: Personal Information */}
             {currentStep === 2 && (
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-emerald-800 text-center mb-6">
+                <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-300 text-center mb-6">
                   व्यक्तिगत जानकारी
                 </h3>
 
                 {/* Name */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     पूरा नाम
                   </label>
                   <input
@@ -378,10 +378,10 @@ const Signup = () => {
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     className={`w-full px-4 py-4 border-2 rounded-xl transition-all duration-300 ${
-                      errors.name 
-                        ? 'border-red-300 focus:border-red-500' 
-                        : 'border-emerald-200 focus:border-emerald-500'
-                    } focus:outline-none bg-white text-lg`}
+                      errors.name
+                        ? 'border-red-300 focus:border-red-500'
+                        : 'border-emerald-200 dark:border-gray-600 focus:border-emerald-500'
+                    } focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg`}
                     placeholder="आपका पूरा नाम"
                   />
                   {errors.name && (
@@ -391,7 +391,7 @@ const Signup = () => {
 
                 {/* Email */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     ईमेल पता
                   </label>
                   <input
@@ -399,10 +399,10 @@ const Signup = () => {
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     className={`w-full px-4 py-4 border-2 rounded-xl transition-all duration-300 ${
-                      errors.email 
-                        ? 'border-red-300 focus:border-red-500' 
-                        : 'border-emerald-200 focus:border-emerald-500'
-                    } focus:outline-none bg-white text-lg`}
+                      errors.email
+                        ? 'border-red-300 focus:border-red-500'
+                        : 'border-emerald-200 dark:border-gray-600 focus:border-emerald-500'
+                    } focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg`}
                     placeholder="आपका ईमेल पता"
                   />
                   {errors.email && (
@@ -412,7 +412,7 @@ const Signup = () => {
 
                 {/* Phone Number */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     फोन नंबर
                   </label>
                   <PhoneInput
@@ -433,7 +433,7 @@ const Signup = () => {
                   {errors.phoneNumber && (
                     <p className="text-red-500 text-sm mt-2">{errors.phoneNumber}</p>
                   )}
-                  
+
                   <button
                     onClick={sendOTP}
                     disabled={!validations.validPhoneNumber || otpSent}
@@ -446,14 +446,14 @@ const Signup = () => {
                 {/* OTP Verification */}
                 {otpSent && (
                   <div>
-                    <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                    <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                       OTP दर्ज करें
                     </label>
                     <input
                       type="text"
                       value={otp}
                       onChange={(e) => setOTP(e.target.value)}
-                      className="w-full px-4 py-4 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none bg-white text-lg text-center tracking-widest"
+                      className="w-full px-4 py-4 border-2 border-emerald-200 dark:border-gray-600 rounded-xl focus:border-emerald-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg text-center tracking-widest"
                       placeholder="6 अंकों का OTP"
                       maxLength={6}
                     />
@@ -465,7 +465,7 @@ const Signup = () => {
 
                 {/* Password */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     पासवर्ड
                   </label>
                   <div className="relative">
@@ -473,7 +473,7 @@ const Signup = () => {
                       type={showPassword ? "text" : "password"}
                       value={formData.password}
                       onChange={(e) => handleInputChange('password', e.target.value)}
-                      className="w-full px-4 py-4 pr-12 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none bg-white text-lg"
+                      className="w-full px-4 py-4 pr-12 border-2 border-emerald-200 dark:border-gray-600 rounded-xl focus:border-emerald-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg"
                       placeholder="मजबूत पासवर्ड बनाएं"
                     />
                     <button
@@ -484,7 +484,7 @@ const Signup = () => {
                       {showPassword ? '🙈' : '👁️'}
                     </button>
                   </div>
-                  
+
                   {/* Password Requirements */}
                   <div className="mt-3 space-y-1">
                     {Object.entries({
@@ -495,7 +495,7 @@ const Signup = () => {
                       lowercase: 'कम से कम एक छोटा अक्षर'
                     }).map(([key, text]) => (
                       <p key={key} className={`text-sm flex items-center ${
-                        passwordRequirements[key] ? 'text-green-600' : 'text-gray-500'
+                        passwordRequirements[key] ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'
                       }`}>
                         <span className="mr-2">{passwordRequirements[key] ? '✅' : '⭕'}</span>
                         {text}
@@ -506,7 +506,7 @@ const Signup = () => {
 
                 {/* Repeat Password */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     पासवर्ड दोहराएं
                   </label>
                   <input
@@ -514,10 +514,10 @@ const Signup = () => {
                     value={formData.repeatPassword}
                     onChange={(e) => handleInputChange('repeatPassword', e.target.value)}
                     className={`w-full px-4 py-4 border-2 rounded-xl transition-all duration-300 ${
-                      errors.repeatPassword 
-                        ? 'border-red-300 focus:border-red-500' 
-                        : 'border-emerald-200 focus:border-emerald-500'
-                    } focus:outline-none bg-white text-lg`}
+                      errors.repeatPassword
+                        ? 'border-red-300 focus:border-red-500'
+                        : 'border-emerald-200 dark:border-gray-600 focus:border-emerald-500'
+                    } focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg`}
                     placeholder="पासवर्ड दोबारा लिखें"
                   />
                   {errors.repeatPassword && (
@@ -528,7 +528,7 @@ const Signup = () => {
                 <div className="flex space-x-4">
                   <button
                     onClick={prevStep}
-                    className="flex-1 border-2 border-emerald-500 text-emerald-600 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-50 transition-all duration-300"
+                    className="flex-1 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-50 dark:hover:bg-gray-700 transition-all duration-300"
                   >
                     पीछे
                   </button>
@@ -552,17 +552,17 @@ const Signup = () => {
             {currentStep === 3 && (
               <div className="text-center space-y-6">
                 <div className="text-6xl mb-4">🎉</div>
-                <h3 className="text-3xl font-bold text-emerald-800 mb-4">
+                <h3 className="text-3xl font-bold text-emerald-800 dark:text-emerald-300 mb-4">
                   बधाई हो!
                 </h3>
-                <p className="text-xl text-emerald-600 mb-8">
+                <p className="text-xl text-emerald-600 dark:text-emerald-400 mb-8">
                   आपका खाता सफलतापूर्वक बन गया है।<br/>
                   अब आप भारतशाला का पूरा आनंद ले सकते हैं।
                 </p>
-                
-                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 mb-8">
-                  <h4 className="font-semibold text-emerald-800 mb-3">आपकी जानकारी:</h4>
-                  <div className="space-y-2 text-emerald-700">
+
+                <div className="bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-xl p-6 mb-8">
+                  <h4 className="font-semibold text-emerald-800 dark:text-emerald-300 mb-3">आपकी जानकारी:</h4>
+                  <div className="space-y-2 text-emerald-700 dark:text-emerald-300">
                     <p><strong>नाम:</strong> {formData.name}</p>
                     <p><strong>ईमेल:</strong> {formData.email}</p>
                     <p><strong>खाता प्रकार:</strong> {formData.accountType === 'customer' ? 'ग्राहक' : 'विक्रेता'}</p>
@@ -580,20 +580,20 @@ const Signup = () => {
 
             {/* General Error */}
             {errors.general && (
-              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
-                <p className="text-red-600 text-center">{errors.general}</p>
+              <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl">
+                <p className="text-red-600 dark:text-red-400 text-center">{errors.general}</p>
               </div>
             )}
           </div>
 
           {/* Login Link */}
           <div className="text-center mt-8">
-            <p className="text-emerald-600 mb-4">
+            <p className="text-emerald-600 dark:text-emerald-400 mb-4">
               पहले से खाता है?
             </p>
             <a
               href="/login"
-              className="text-emerald-600 hover:text-emerald-700 font-semibold text-lg border-b-2 border-transparent hover:border-emerald-600 transition-all duration-300"
+              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold text-lg border-b-2 border-transparent hover:border-emerald-600 transition-all duration-300"
             >
               लॉग इन करें!
             </a>

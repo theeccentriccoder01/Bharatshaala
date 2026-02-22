@@ -107,26 +107,26 @@ const PinkCity = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
 
         {/* Hero Section */}
         <div className='relative overflow-hidden'>
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
               {/* Market Badge */}
-              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-pink-100 to-rose-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-pink-200'>
+              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-pink-100 dark:from-pink-900/30 to-rose-100 dark:to-pink-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-pink-200 dark:border-pink-700'>
                 <span className='text-2xl'>🏰</span>
-                <span className='text-pink-800 font-bold'>ऐतिहासिक बाजार</span>
+                <span className='text-pink-800 dark:text-pink-200 font-bold'>ऐतिहासिक बाजार</span>
               </div>
               
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-600 via-rose-500 to-pink-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
-              <h2 className='text-2xl md:text-3xl text-emerald-700 font-semibold mb-6'>
+              <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Pink City Bazaars, {marketInfo.cityHindi}
               </h2>
               
-              <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
+              <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
                 जयपुर अपने जीवंत बाजारों के लिए प्रसिद्ध है जो ऐतिहासिक गुलाबी शहर में स्थित हैं। 
                 प्रमुख बाजारों में जोहरी बाजार (आभूषणों के लिए प्रसिद्ध), बापू बाजार (कपड़े और हस्तशिल्प के लिए प्रसिद्ध), 
                 और चांदपोल बाजार (संगमरमर की मूर्तियों और पारंपरिक राजस्थानी कलाकृतियों के लिए प्रसिद्ध) शामिल हैं।
@@ -134,21 +134,21 @@ const PinkCity = () => {
 
               {/* Market Stats */}
               <div className='grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-12'>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200'>
-                  <div className='text-2xl font-bold text-pink-600'>{marketInfo.established}</div>
-                  <div className='text-pink-600 text-sm font-medium'>स्थापना वर्ष</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200 dark:border-pink-700'>
+                  <div className='text-2xl font-bold text-pink-600 dark:text-pink-400'>{marketInfo.established}</div>
+                  <div className='text-pink-600 dark:text-pink-400 text-sm font-medium'>स्थापना वर्ष</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200'>
-                  <div className='text-2xl font-bold text-pink-600'>{marketInfo.totalShops}+</div>
-                  <div className='text-pink-600 text-sm font-medium'>कुल दुकानें</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200 dark:border-pink-700'>
+                  <div className='text-2xl font-bold text-pink-600 dark:text-pink-400'>{marketInfo.totalShops}+</div>
+                  <div className='text-pink-600 dark:text-pink-400 text-sm font-medium'>कुल दुकानें</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200'>
-                  <div className='text-2xl font-bold text-pink-600'>{marketInfo.totalVendors}+</div>
-                  <div className='text-pink-600 text-sm font-medium'>विक्रेता</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200 dark:border-pink-700'>
+                  <div className='text-2xl font-bold text-pink-600 dark:text-pink-400'>{marketInfo.totalVendors}+</div>
+                  <div className='text-pink-600 dark:text-pink-400 text-sm font-medium'>विक्रेता</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200'>
-                  <div className='text-2xl font-bold text-pink-600'>4.8⭐</div>
-                  <div className='text-pink-600 text-sm font-medium'>औसत रेटिंग</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200 dark:border-pink-700'>
+                  <div className='text-2xl font-bold text-pink-600 dark:text-pink-400'>4.8⭐</div>
+                  <div className='text-pink-600 dark:text-pink-400 text-sm font-medium'>औसत रेटिंग</div>
                 </div>
               </div>
             </div>
@@ -157,8 +157,8 @@ const PinkCity = () => {
 
         {/* Interactive Map Section */}
         <div className='max-w-7xl mx-auto px-6 mb-16'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
-            <h3 className='text-2xl font-bold text-emerald-800 mb-6 text-center'>बाजार का नक्शा</h3>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
+            <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 text-center'>बाजार का नक्शा</h3>
             <div className='relative flex justify-center'>
               <img 
                 src={map} 
@@ -170,7 +170,7 @@ const PinkCity = () => {
               </div>
             </div>
             <div className='mt-6 text-center'>
-              <p className='text-emerald-600 text-lg'>
+              <p className='text-emerald-600 dark:text-emerald-400 text-lg'>
                 📍 समय: {marketInfo.openingHours} | 🌟 घूमने का सबसे अच्छा समय: {marketInfo.bestTime}
               </p>
             </div>
@@ -180,8 +180,8 @@ const PinkCity = () => {
         {/* Shops Grid */}
         <div className='max-w-7xl mx-auto px-6 pb-20'>
           <div className='text-center mb-12'>
-            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>प्रमुख दुकानें</h3>
-            <p className='text-xl text-emerald-600'>हमारे चुनिंदा और प्रतिष्ठित व्यापारियों से मिलें</p>
+            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
+            <p className='text-xl text-emerald-600 dark:text-emerald-400'>हमारे चुनिंदा और प्रतिष्ठित व्यापारियों से मिलें</p>
           </div>
 
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
@@ -192,7 +192,7 @@ const PinkCity = () => {
                 onMouseEnter={() => setHoveredShop(shop.id)}
                 onMouseLeave={() => setHoveredShop(null)}
               >
-                <div className={`relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+                <div className={`relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
                   hoveredShop === shop.id ? 'scale-[1.02]' : ''
                 }`}>
                   
@@ -207,7 +207,7 @@ const PinkCity = () => {
                           <h2 className='text-2xl font-bold mb-1'>{shop.name}</h2>
                           <p className='text-pink-100 text-lg'>{shop.nameEn}</p>
                         </div>
-                        <div className='bg-white/20 backdrop-blur-sm rounded-full px-3 py-1'>
+                        <div className='bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-full px-3 py-1'>
                           <span className='text-sm font-medium'>{shop.badge}</span>
                         </div>
                       </div>
@@ -228,30 +228,30 @@ const PinkCity = () => {
 
                   {/* Content Section */}
                   <div className='p-8'>
-                    <p className='text-gray-600 leading-relaxed mb-6 text-lg'>
+                    <p className='text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-lg'>
                       {shop.specialty}
                     </p>
 
                     {/* Shop Details */}
                     <div className='grid grid-cols-2 gap-4 mb-6'>
-                      <div className='bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                        <div className='text-emerald-600 text-sm font-medium mb-1'>दुकान मालिक</div>
-                        <div className='text-emerald-800 font-semibold'>{shop.owner}</div>
-                        <div className='text-emerald-600 text-sm'>{shop.experience} का अनुभव</div>
+                      <div className='bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                        <div className='text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-1'>दुकान मालिक</div>
+                        <div className='text-emerald-800 dark:text-emerald-200 font-semibold'>{shop.owner}</div>
+                        <div className='text-emerald-600 dark:text-emerald-400 text-sm'>{shop.experience} का अनुभव</div>
                       </div>
-                      <div className='bg-pink-50 rounded-xl p-4 border border-pink-200'>
-                        <div className='text-pink-600 text-sm font-medium mb-1'>उत्पाद श्रृंखला</div>
-                        <div className='text-pink-800 font-semibold'>{shop.products}+ आइटम्स</div>
-                        <div className='text-pink-600 text-sm'>प्रामाणिक वस्तुएं</div>
+                      <div className='bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4 border border-pink-200 dark:border-pink-700'>
+                        <div className='text-pink-600 dark:text-pink-400 text-sm font-medium mb-1'>उत्पाद श्रृंखला</div>
+                        <div className='text-pink-800 dark:text-pink-200 font-semibold'>{shop.products}+ आइटम्स</div>
+                        <div className='text-pink-600 dark:text-pink-400 text-sm'>प्रामाणिक वस्तुएं</div>
                       </div>
                     </div>
 
                     {/* Specialty Items */}
                     <div className='mb-6'>
-                      <h4 className='text-sm font-semibold text-gray-700 mb-3'>विशेष वस्तुएं:</h4>
+                      <h4 className='text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3'>विशेष वस्तुएं:</h4>
                       <div className='flex flex-wrap gap-2'>
                         {shop.specialty_items.map((item, idx) => (
-                          <span key={idx} className='bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm border border-orange-200'>
+                          <span key={idx} className='bg-gradient-to-r from-yellow-100 dark:from-yellow-900/30 to-orange-100 dark:to-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-1 rounded-full text-sm border border-orange-200 dark:border-orange-700'>
                             ✨ {item}
                           </span>
                         ))}
@@ -284,7 +284,7 @@ const PinkCity = () => {
             
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
               {marketInfo.specialties.map((specialty, index) => (
-                <div key={index} className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+                <div key={index} className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                   <div className='text-3xl mb-3'>
                     {index === 0 && '💎'}
                     {index === 1 && '🎨'}
@@ -297,7 +297,7 @@ const PinkCity = () => {
             </div>
             
             <div className='text-center mt-8'>
-              <button className='bg-white text-pink-600 px-8 py-4 rounded-full font-semibold hover:bg-pink-50 transition-colors duration-300 transform hover:scale-105'>
+              <button className='bg-white dark:bg-gray-800 text-pink-600 dark:text-pink-400 px-8 py-4 rounded-full font-semibold hover:bg-pink-50 dark:hover:bg-gray-700 dark:bg-pink-900/20 transition-colors duration-300 transform hover:scale-105'>
                 सभी श्रेणियां देखें
               </button>
             </div>

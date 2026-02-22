@@ -80,7 +80,7 @@ const ReturnPolicy = () => {
         <link rel="canonical" href="https://bharatshaala.com/return-policy" />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Header */}
         <section className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-16">
           <div className="container mx-auto px-6">
@@ -102,7 +102,7 @@ const ReturnPolicy = () => {
         </section>
 
         {/* Introduction */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <motion.div
@@ -110,7 +110,7 @@ const ReturnPolicy = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                   भारतशाला में हमारा लक्ष्य है कि आप अपनी खरीदारी से पूर्णतः संतुष्ट हों। 
                   यदि किसी कारण से आप अपनी खरीदारी से खुश नहीं हैं, तो हमारी सरल रिटर्न 
                   और एक्सचेंज पॉलिसी आपकी सहायता करेगी।
@@ -121,10 +121,10 @@ const ReturnPolicy = () => {
         </section>
 
         {/* Return Conditions */}
-        <section className="py-12 bg-gray-50">
+        <section className="py-12 bg-gray-50 dark:bg-gray-900">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">रिटर्न की शर्तें</h2>
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">रिटर्न की शर्तें</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 {returnConditions.map((condition, index) => (
                   <motion.div
@@ -132,14 +132,14 @@ const ReturnPolicy = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-white rounded-lg shadow-lg p-6"
+                    className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
                   >
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">{condition.category}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{condition.category}</h3>
                     <ul className="space-y-3">
                       {condition.items.map((item, itemIndex) => (
                         <li key={itemIndex} className="flex items-start space-x-3">
-                          <span className="text-orange-600 text-lg">✓</span>
-                          <span className="text-gray-700">{item}</span>
+                          <span className="text-orange-600 dark:text-orange-400 text-lg">✓</span>
+                          <span className="text-gray-700 dark:text-gray-300">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -151,10 +151,10 @@ const ReturnPolicy = () => {
         </section>
 
         {/* Return Process */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">रिटर्न प्रक्रिया</h2>
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">रिटर्न प्रक्रिया</h2>
               <div className="grid md:grid-cols-4 gap-6">
                 {refundProcess.map((process, index) => (
                   <motion.div
@@ -168,8 +168,8 @@ const ReturnPolicy = () => {
                       {index + 1}
                     </div>
                     <h3 className="text-lg font-semibold mb-2">{process.step}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{process.description}</p>
-                    <p className="text-orange-600 font-medium text-sm">{process.time}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">{process.description}</p>
+                    <p className="text-orange-600 dark:text-orange-400 font-medium text-sm">{process.time}</p>
                   </motion.div>
                 ))}
               </div>
@@ -178,21 +178,21 @@ const ReturnPolicy = () => {
         </section>
 
         {/* Non-Returnable Items */}
-        <section className="py-12 bg-red-50">
+        <section className="py-12 bg-red-50 dark:bg-red-900/20">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white rounded-lg shadow-lg p-8"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">वापसी योग्य नहीं आइटम्स</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">वापसी योग्य नहीं आइटम्स</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {nonReturnableItems.map((item, index) => (
                     <div key={index} className="flex items-start space-x-3">
-                      <span className="text-red-600 text-lg">✗</span>
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-red-600 dark:text-red-400 text-lg">✗</span>
+                      <span className="text-gray-700 dark:text-gray-300">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -202,21 +202,21 @@ const ReturnPolicy = () => {
         </section>
 
         {/* Exchange Policy */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-orange-50 rounded-lg p-8"
+                className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-8"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">एक्सचेंज पॉलिसी</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">एक्सचेंज पॉलिसी</h2>
                 <ul className="space-y-3">
                   {exchangePolicy.map((policy, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <span className="text-orange-600 text-lg">↔</span>
-                      <span className="text-gray-700">{policy}</span>
+                      <span className="text-orange-600 dark:text-orange-400 text-lg">↔</span>
+                      <span className="text-gray-700 dark:text-gray-300">{policy}</span>
                     </li>
                   ))}
                 </ul>
@@ -226,7 +226,7 @@ const ReturnPolicy = () => {
         </section>
 
         {/* Contact Support */}
-        <section className="py-12 bg-gray-100">
+        <section className="py-12 bg-gray-100 dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <motion.div
@@ -234,8 +234,8 @@ const ReturnPolicy = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">सहायता चाहिए?</h2>
-                <p className="text-gray-700 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">सहायता चाहिए?</h2>
+                <p className="text-gray-700 dark:text-gray-300 mb-6">
                   रिटर्न या एक्सचेंज के बारे में कोई सवाल है? हमारी टीम आपकी मदद के लिए तैयार है।
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center">

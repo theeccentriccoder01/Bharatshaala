@@ -30,7 +30,7 @@ const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isVisible, setIsVisible] = useState({});
-  
+
   // Intersection Observer for animations
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: categoriesRef, inView: categoriesInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -70,62 +70,62 @@ const Home = () => {
   const loadFeaturedData = () => {
     // Enhanced category data with more interactivity
     setFeaturedCategories([
-      { 
-        id: 'clothing', 
-        name: 'वस्त्र', 
-        nameEn: 'Clothing', 
-        icon: '👗', 
-        gradient: 'from-pink-500 via-rose-400 to-pink-600', 
+      {
+        id: 'clothing',
+        name: 'वस्त्र',
+        nameEn: 'Clothing',
+        icon: '👗',
+        gradient: 'from-pink-500 via-rose-400 to-pink-600',
         count: '2500+ आइटम्स',
         description: 'पारंपरिक और आधुनिक वस्त्रों का संग्रह',
         hoverColor: 'hover:shadow-pink-500/50'
       },
-      { 
-        id: 'jewellery', 
-        name: 'आभूषण', 
-        nameEn: 'Jewellery', 
-        icon: '💎', 
-        gradient: 'from-yellow-400 via-amber-400 to-orange-500', 
+      {
+        id: 'jewellery',
+        name: 'आभूषण',
+        nameEn: 'Jewellery',
+        icon: '💎',
+        gradient: 'from-yellow-400 via-amber-400 to-orange-500',
         count: '1800+ आइटम्स',
         description: 'हस्तनिर्मित और पारंपरिक आभूषण',
         hoverColor: 'hover:shadow-yellow-500/50'
       },
-      { 
-        id: 'handicrafts', 
-        name: 'हस्तशिल्प', 
-        nameEn: 'Handicrafts', 
-        icon: '🎨', 
-        gradient: 'from-purple-500 via-violet-400 to-indigo-500', 
+      {
+        id: 'handicrafts',
+        name: 'हस्तशिल्प',
+        nameEn: 'Handicrafts',
+        icon: '🎨',
+        gradient: 'from-purple-500 via-violet-400 to-indigo-500',
         count: '3200+ आइटम्स',
         description: 'कलाकारों द्वारा तैयार हस्तशिल्प',
         hoverColor: 'hover:shadow-purple-500/50'
       },
-      { 
-        id: 'books', 
-        name: 'पुस्तकें', 
-        nameEn: 'Books', 
-        icon: '📚', 
-        gradient: 'from-blue-500 via-cyan-400 to-teal-500', 
+      {
+        id: 'books',
+        name: 'पुस्तकें',
+        nameEn: 'Books',
+        icon: '📚',
+        gradient: 'from-blue-500 via-cyan-400 to-teal-500',
         count: '5000+ आइटम्स',
         description: 'ज्ञान और मनोरंजन की पुस्तकें',
         hoverColor: 'hover:shadow-blue-500/50'
       },
-      { 
-        id: 'accessories', 
-        name: 'एक्सेसरीज़', 
-        nameEn: 'Accessories', 
-        icon: '👜', 
-        gradient: 'from-emerald-500 via-green-400 to-teal-500', 
+      {
+        id: 'accessories',
+        name: 'एक्सेसरीज़',
+        nameEn: 'Accessories',
+        icon: '👜',
+        gradient: 'from-emerald-500 via-green-400 to-teal-500',
         count: '1200+ आइटम्स',
         description: 'फैशन और उपयोगी एक्सेसरीज़',
         hoverColor: 'hover:shadow-emerald-500/50'
       },
-      { 
-        id: 'houseware', 
-        name: 'घरेलू सामान', 
-        nameEn: 'Houseware', 
-        icon: '🏠', 
-        gradient: 'from-amber-500 via-orange-400 to-red-500', 
+      {
+        id: 'houseware',
+        name: 'घरेलू सामान',
+        nameEn: 'Houseware',
+        icon: '🏠',
+        gradient: 'from-amber-500 via-orange-400 to-red-500',
         count: '2800+ आइटम्स',
         description: 'घर की सजावट और उपयोगी वस्तुएं',
         hoverColor: 'hover:shadow-amber-500/50'
@@ -260,29 +260,29 @@ const Home = () => {
   return (
     <React.StrictMode>
       <div className='min-h-screen overflow-x-hidden relative'>
-        
+
         {/* Dynamic Multi-Layer Background */}
         <div className="fixed inset-0 z-0">
           {/* Primary animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-green-500 to-emerald-600 animate-gradient-shift"></div>
-          
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-green-500 to-emerald-600 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 animate-gradient-shift"></div>
+
           {/* Secondary overlay with pattern */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-300/40 via-transparent to-green-400/40 animate-gradient-shift-reverse"></div>
-          
+          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-300/40 via-transparent to-green-400/40 dark:from-gray-800/40 dark:to-gray-700/40 animate-gradient-shift-reverse"></div>
+
           {/* Animated geometric shapes */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-emerald-400/30 to-green-500/30 rounded-full blur-3xl animate-blob"></div>
-            <div className="absolute top-20 right-0 w-80 h-80 bg-gradient-to-bl from-green-400/40 to-emerald-600/40 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-            <div className="absolute bottom-0 left-20 w-72 h-72 bg-gradient-to-tr from-emerald-500/35 to-green-400/35 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
-            <div className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-tl from-green-300/30 to-emerald-500/30 rounded-full blur-3xl animate-blob animation-delay-6000"></div>
+            <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-emerald-400/30 to-green-500/30 dark:from-gray-700/30 dark:to-gray-600/30 rounded-full blur-3xl animate-blob"></div>
+            <div className="absolute top-20 right-0 w-80 h-80 bg-gradient-to-bl from-green-400/40 to-emerald-600/40 dark:from-gray-700/40 dark:to-gray-600/40 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute bottom-0 left-20 w-72 h-72 bg-gradient-to-tr from-emerald-500/35 to-green-400/35 dark:from-gray-700/35 dark:to-gray-600/35 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+            <div className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-tl from-green-300/30 to-emerald-500/30 dark:from-gray-700/30 dark:to-gray-600/30 rounded-full blur-3xl animate-blob animation-delay-6000"></div>
           </div>
-          
+
           {/* Subtle texture overlay */}
           <div className="absolute inset-0 opacity-20" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M50 50m-10 0a10 10 0 1 1 20 0a10 10 0 1 1-20 0'/%3E%3Cpath d='M25 25m-5 0a5 5 0 1 1 10 0a5 5 0 1 1-10 0'/%3E%3Cpath d='M75 75m-5 0a5 5 0 1 1 10 0a5 5 0 1 1-10 0'/%3E%3Cpath d='M25 75m-3 0a3 3 0 1 1 6 0a3 3 0 1 1-6 0'/%3E%3Cpath d='M75 25m-3 0a3 3 0 1 1 6 0a3 3 0 1 1-6 0'/%3E%3C/g%3E%3C/svg%3E")`,
             backgroundSize: '100px 100px'
           }}></div>
-          
+
           {/* Light rays effect */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-white via-transparent to-transparent transform rotate-12 animate-pulse"></div>
@@ -312,7 +312,7 @@ const Home = () => {
         {/* Hero Section */}
         <div ref={heroRef} className='relative overflow-hidden pt-20 min-h-screen flex items-center z-20'>
           {/* Dynamic Background with Parallax */}
-          <div 
+          <div
             className="absolute inset-0 opacity-15 transition-transform duration-1000 ease-out"
             style={{
               transform: `translate(${mousePosition.x * 0.05}px, ${mousePosition.y * 0.05}px)`
@@ -340,7 +340,7 @@ const Home = () => {
                   <div className="w-2 h-2 bg-white/60 rounded-full animate-ping delay-150"></div>
                 </div>
               </div>
-              
+
               {/* Interactive Main Heading */}
               <h1 className='text-6xl md:text-8xl font-bold mb-8 leading-tight'>
                 <span className='text-white drop-shadow-2xl bg-size-200 animate-text-glow'>
@@ -351,7 +351,7 @@ const Home = () => {
                   विरासत का द्वार
                 </span>
               </h1>
-              
+
               {/* Animated Subtitle with Typewriter Effect */}
               <div className='text-2xl md:text-3xl text-white/90 max-w-5xl mx-auto leading-relaxed font-medium mb-12 h-20 drop-shadow-lg'>
                 <div className="typewriter-container pt-6 pb-20">
@@ -363,18 +363,18 @@ const Home = () => {
 
               {/* Enhanced CTA Buttons */}
               <div className='flex flex-col sm:flex-row gap-6 justify-center items-center mb-20'>
-                <a 
-                  href='/markets' 
-                  className='group relative bg-white/20 backdrop-blur-md text-white border-2 border-white/50 px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-emerald-600 hover:shadow-2xl hover:shadow-white/50 transform hover:scale-110 transition-all duration-500 flex items-center space-x-3 overflow-hidden'
+                <a
+                  href='/markets'
+                  className='group relative bg-white/20 backdrop-blur-md text-white border-2 border-white/50 px-10 py-5 rounded-full font-bold text-lg hover:bg-white dark:hover:bg-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 hover:shadow-2xl hover:shadow-white/50 transform hover:scale-110 transition-all duration-500 flex items-center space-x-3 overflow-hidden'
                 >
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-white dark:bg-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <span className="relative z-10">🏪 बाजार की यात्रा शुरू करें</span>
                   <svg className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
-                <a 
-                  href='/categories' 
+                <a
+                  href='/categories'
                   className='group border-3 border-white/70 text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 backdrop-blur-md transition-all duration-500 transform hover:scale-110 hover:shadow-2xl hover:shadow-white/30 flex items-center space-x-3'
                 >
                   <span>🎨 श्रेणियां देखें</span>
@@ -434,7 +434,7 @@ const Home = () => {
               अनंत विविधता
             </h2>
             <p className='text-xl text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-md'>
-              भारत की समृद्ध विरासत से प्रेरित विभिन्न उत्पाद श्रेणियों की खोज करें। 
+              भारत की समृद्ध विरासत से प्रेरित विभिन्न उत्पाद श्रेणियों की खोज करें।
               हर श्रेणी में छुपी है अनगिनत कहानियां और परंपराएं।
             </p>
           </div>
@@ -484,7 +484,7 @@ const Home = () => {
         {/* Enhanced Featured Markets Section */}
         <div ref={marketsRef} className='relative py-20 overflow-hidden z-20'>
           {/* Background with Pattern */}
-          <div className="absolute inset-0 bg-black/10"></div>
+          <div className="absolute inset-0 bg-black/10 dark:bg-black/30"></div>
           <div className="absolute inset-0 opacity-10" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}></div>
@@ -499,7 +499,7 @@ const Home = () => {
                 ऐतिहासिक बाजारों की यात्रा
               </h2>
               <p className='text-xl text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-md'>
-                सदियों पुरानी परंपराओं से भरपूर भारत के सबसे प्रतिष्ठित बाजारों का दौरा करें। 
+                सदियों पुरानी परंपराओं से भरपूर भारत के सबसे प्रतिष्ठित बाजारों का दौरा करें।
                 हर बाजार में छुपी है अनगिनत कहानियां।
               </p>
             </div>
@@ -511,8 +511,8 @@ const Home = () => {
                   className={`transform transition-all duration-1000 ${marketsInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
                   style={{ transitionDelay: `${index * 200}ms` }}
                 >
-                  <MarketCard 
-                    market={market} 
+                  <MarketCard
+                    market={market}
                     viewMode="grid"
                     onClick={() => window.location.href = market.href}
                   />
@@ -521,9 +521,9 @@ const Home = () => {
             </div>
 
             <div className='text-center mt-16'>
-              <a 
-                href='/markets' 
-                className='group inline-flex items-center space-x-3 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-emerald-600 hover:shadow-2xl hover:shadow-white/50 transform hover:scale-105 transition-all duration-500'
+              <a
+                href='/markets'
+                className='group inline-flex items-center space-x-3 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white dark:hover:bg-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 hover:shadow-2xl hover:shadow-white/50 transform hover:scale-105 transition-all duration-500'
               >
                 <span>सभी बाजार की खोज करें</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -535,7 +535,7 @@ const Home = () => {
         </div>
 
         {/* Customer Testimonials */}
-        <div className='py-20 bg-white/10 backdrop-blur-md relative z-20'>
+        <div className='py-20 bg-white/10 dark:bg-gray-800/20 backdrop-blur-md relative z-20'>
           <div className='max-w-6xl mx-auto px-6'>
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-4">
@@ -563,8 +563,8 @@ const Home = () => {
                 <div className="text-center">
                   {/* Fixed avatar display */}
                   <div className="mb-6 flex justify-center">
-                    <img 
-                      src={testimonials[currentTestimonial].avatar} 
+                    <img
+                      src={testimonials[currentTestimonial].avatar}
                       alt={testimonials[currentTestimonial].name}
                       className="w-20 h-20 rounded-full object-cover border-4 border-white/30 shadow-2xl"
                     />
@@ -589,10 +589,10 @@ const Home = () => {
 
         {/* Enhanced Newsletter Section */}
         <div className='relative py-20 overflow-hidden z-20'>
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-800/30 via-green-700/30 to-emerald-800/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-800/30 via-green-700/30 to-emerald-800/30 dark:from-gray-900/50 dark:via-gray-800/50 dark:to-gray-900/50"></div>
           <div className="absolute inset-0 opacity-20" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}></div>          
+          }}></div>
           <div className='max-w-5xl mx-auto text-center px-6 relative z-10'>
             <div className="mb-8">
               <div className="text-6xl mb-4">📬</div>
@@ -600,18 +600,18 @@ const Home = () => {
                 अपडेट्स का खजाना पाएं
               </h3>
               <p className='text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md'>
-                नए उत्पादों, विशेष छूट, त्योहारी ऑफर्स और बाजार की ताजा खबरों के लिए 
+                नए उत्पादों, विशेष छूट, त्योहारी ऑफर्स और बाजार की ताजा खबरों के लिए
                 हमारे विशेष न्यूज़लेटर की सदस्यता लें
               </p>
             </div>
 
             <div className='flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-8'>
-              <input 
-                type="email" 
-                placeholder="आपका ईमेल पता डालें" 
-                className="flex-1 px-6 py-4 rounded-full border-none focus:outline-none focus:ring-4 focus:ring-white/50 text-lg shadow-2xl bg-white/90 backdrop-blur-md"
+              <input
+                type="email"
+                placeholder="आपका ईमेल पता डालें"
+                className="flex-1 px-6 py-4 rounded-full border-none focus:outline-none focus:ring-4 focus:ring-white/50 text-lg shadow-2xl bg-white/90 dark:bg-gray-800/90 dark:text-gray-100 dark:placeholder-gray-500 backdrop-blur-md"
               />
-              <button className='bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center space-x-2'>
+              <button className='bg-white dark:bg-gray-200 text-emerald-600 dark:text-emerald-400 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/90 dark:hover:bg-gray-300 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center space-x-2'>
                 <span>सब्सक्राइब करें</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -626,7 +626,7 @@ const Home = () => {
         </div>
 
         {/* Enhanced Values Section */}
-        <div className='py-20 bg-white/10 backdrop-blur-md relative z-20'>
+        <div className='py-20 bg-white/10 dark:bg-gray-800/20 backdrop-blur-md relative z-20'>
           <div className='max-w-7xl mx-auto px-6'>
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg pb-6 pt-6">
@@ -660,15 +660,15 @@ const Home = () => {
               ].map((value, index) => (
                 <div key={index} className='group text-center bg-white/20 backdrop-blur-lg rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-white/30 overflow-hidden relative'>
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
+
                   <div className={`relative z-10 w-20 h-20 bg-gradient-to-br ${value.gradient} rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 transition-transform duration-500`}>
                     <span className='text-white text-3xl'>{value.icon}</span>
                   </div>
-                  
+
                   <h4 className='text-2xl font-bold text-white mb-4 group-hover:text-yellow-200 transition-colors duration-300 drop-shadow-md'>
                     {value.title}
                   </h4>
-                  
+
                   <p className='text-white/80 leading-relaxed group-hover:text-white transition-colors duration-300'>
                     {value.description}
                   </p>
@@ -686,12 +686,12 @@ const Home = () => {
           33% { transform: translateY(-20px) rotate(5deg); }
           66% { transform: translateY(10px) rotate(-3deg); }
         }
-        
+
         @keyframes bounce-slow {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
         }
-        
+
         @keyframes gradient-x {
           0%, 100% { background-size: 200% 200%; background-position: left center; }
           50% { background-size: 200% 200%; background-position: right center; }
@@ -720,15 +720,15 @@ const Home = () => {
           0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1); }
           50% { text-shadow: 0 0 30px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5), 0 0 50px rgba(255,255,255,0.3); }
         }
-        
+
         .animate-float {
           animation: float 8s ease-in-out infinite;
         }
-        
+
         .animate-bounce-slow {
           animation: bounce-slow 4s ease-in-out infinite;
         }
-        
+
         .animate-gradient-x {
           animation: gradient-x 3s ease infinite;
         }
@@ -766,31 +766,31 @@ const Home = () => {
         .animation-delay-1000 {
           animation-delay: 1s;
         }
-        
+
         .bg-size-200 {
           background-size: 200% 200%;
         }
-        
+
         .typewriter-container {
           height: 80px;
           overflow: hidden;
         }
-        
+
         .typewriter-text {
           display: inline-block;
           animation: typewriter 4s steps(60) infinite;
         }
-        
+
         @keyframes typewriter {
           0% { width: 0; }
           50% { width: 100%; }
           100% { width: 0; }
         }
-        
+
         .shadow-3xl {
           box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
         }
-        
+
         .border-3 {
           border-width: 3px;
         }

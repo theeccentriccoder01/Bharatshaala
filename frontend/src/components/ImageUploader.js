@@ -102,10 +102,10 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 8, error }) =>
       <div
         className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer ${
           dragActive 
-            ? 'border-emerald-500 bg-emerald-50' 
+            ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30' 
             : error 
-              ? 'border-red-300 bg-red-50' 
-              : 'border-emerald-300 bg-emerald-50 hover:bg-emerald-100'
+              ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20' 
+              : 'border-emerald-300 dark:border-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 hover:bg-emerald-100 dark:hover:bg-gray-700'
         }`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -124,17 +124,17 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 8, error }) =>
         
         {uploading ? (
           <div className="space-y-4">
-            <div className="w-16 h-16 mx-auto border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
-            <p className="text-emerald-600 font-medium">छवियां अपलोड हो रही हैं...</p>
+            <div className="w-16 h-16 mx-auto border-4 border-emerald-200 dark:border-emerald-700 border-t-emerald-600 rounded-full animate-spin"></div>
+            <p className="text-emerald-600 dark:text-emerald-400 font-medium">छवियां अपलोड हो रही हैं...</p>
           </div>
         ) : (
           <div className="space-y-4">
             <div className="text-6xl text-emerald-400">📸</div>
             <div>
-              <p className="text-emerald-800 font-semibold text-lg mb-2">
+              <p className="text-emerald-800 dark:text-emerald-200 font-semibold text-lg mb-2">
                 छवियां खींचें और छोड़ें या क्लिक करें
               </p>
-              <p className="text-emerald-600 text-sm">
+              <p className="text-emerald-600 dark:text-emerald-400 text-sm">
                 PNG, JPG, WEBP तक 5MB ({maxImages - images.length} और जोड़ सकते हैं)
               </p>
             </div>
@@ -148,7 +148,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 8, error }) =>
           {images.map((image, index) => (
             <div
               key={image.id}
-              className="relative group bg-white rounded-xl overflow-hidden shadow-lg border-2 border-emerald-200"
+              className="relative group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border-2 border-emerald-200 dark:border-emerald-700"
             >
               <img
                 src={image.url}
@@ -166,7 +166,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 8, error }) =>
                         e.stopPropagation();
                         moveImage(index, index - 1);
                       }}
-                      className="p-2 bg-white text-emerald-600 rounded-full hover:bg-emerald-50 transition-colors duration-200"
+                      className="p-2 bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 rounded-full hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200"
                       title="बाएं ले जाएं"
                     >
                       ←
@@ -192,7 +192,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 8, error }) =>
                         e.stopPropagation();
                         moveImage(index, index + 1);
                       }}
-                      className="p-2 bg-white text-emerald-600 rounded-full hover:bg-emerald-50 transition-colors duration-200"
+                      className="p-2 bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 rounded-full hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200"
                       title="दाएं ले जाएं"
                     >
                       →
@@ -219,7 +219,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 8, error }) =>
           {images.length < maxImages && (
             <button
               onClick={onButtonClick}
-              className="h-32 border-2 border-dashed border-emerald-300 rounded-xl flex flex-col items-center justify-center text-emerald-600 hover:bg-emerald-50 transition-all duration-300"
+              className="h-32 border-2 border-dashed border-emerald-300 dark:border-emerald-600 rounded-xl flex flex-col items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 transition-all duration-300"
             >
               <span className="text-2xl mb-2">+</span>
               <span className="text-sm font-medium">और जोड़ें</span>
@@ -229,12 +229,12 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 8, error }) =>
       )}
 
       {/* Image Guidelines */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <h4 className="font-semibold text-blue-800 mb-2 flex items-center space-x-2">
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-xl p-4">
+        <h4 className="font-semibold text-blue-800 dark:text-blue-300 mb-2 flex items-center space-x-2">
           <span>💡</span>
           <span>छवि टिप्स:</span>
         </h4>
-        <ul className="text-blue-700 text-sm space-y-1">
+        <ul className="text-blue-700 dark:text-blue-400 text-sm space-y-1">
           <li>• पहली छवि मुख्य छवि होगी और थंबनेल के रूप में दिखाई जाएगी</li>
           <li>• उत्पाद को अलग-अलग कोणों से दिखाएं</li>
           <li>• अच्छी रोशनी में साफ तस्वीरें लें</li>

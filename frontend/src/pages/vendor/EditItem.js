@@ -201,11 +201,11 @@ const EditItem = () => {
 
   if (!itemData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20 flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">❌</div>
-          <h2 className="text-2xl font-bold text-emerald-800 mb-2">उत्पाद नहीं मिला</h2>
-          <p className="text-emerald-600 mb-6">यह उत्पाद उपलब्ध नहीं है या हटा दिया गया है</p>
+          <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">उत्पाद नहीं मिला</h2>
+          <p className="text-emerald-600 dark:text-emerald-400 mb-6">यह उत्पाद उपलब्ध नहीं है या हटा दिया गया है</p>
           <a href="/vendor/items" className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors">
             वापस जाएं
           </a>
@@ -216,17 +216,17 @@ const EditItem = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         <div className="max-w-7xl mx-auto px-6 py-8">
           
           {/* Header */}
           <div className="mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+                <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                   उत्पाद संपादित करें
                 </h1>
-                <p className="text-emerald-600 text-lg">
+                <p className="text-emerald-600 dark:text-emerald-400 text-lg">
                   {itemData.name} की जानकारी अपडेट करें
                 </p>
               </div>
@@ -236,8 +236,8 @@ const EditItem = () => {
                   onClick={toggleActiveStatus}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                     formData.isActive
-                      ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                      : 'bg-red-100 text-red-700 hover:bg-red-200'
+                      ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-800'
+                      : 'bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-800'
                   }`}
                 >
                   <span>{formData.isActive ? '✅' : '❌'}</span>
@@ -266,13 +266,13 @@ const EditItem = () => {
               
               {/* Unsaved Changes Warning */}
               {hasChanges && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-xl p-4 mb-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <span className="text-yellow-600 text-xl">⚠️</span>
+                      <span className="text-yellow-600 dark:text-yellow-400 text-xl">⚠️</span>
                       <div>
-                        <h4 className="font-semibold text-yellow-800">असहेजे गए परिवर्तन</h4>
-                        <p className="text-yellow-700 text-sm">आपके द्वारा किए गए परिवर्तन अभी तक सहेजे नहीं गए हैं।</p>
+                        <h4 className="font-semibold text-yellow-800 dark:text-yellow-300">असहेजे गए परिवर्तन</h4>
+                        <p className="text-yellow-700 dark:text-yellow-300 text-sm">आपके द्वारा किए गए परिवर्तन अभी तक सहेजे नहीं गए हैं।</p>
                       </div>
                     </div>
                     <button
@@ -287,15 +287,15 @@ const EditItem = () => {
               )}
 
               {/* Form Content */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg space-y-8">
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg space-y-8">
                 
                 {/* Basic Information */}
                 <div>
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-6">बेसिक जानकारी</h3>
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">बेसिक जानकारी</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         उत्पाद का नाम (हिंदी) *
                       </label>
                       <input
@@ -303,29 +303,29 @@ const EditItem = () => {
                         value={formData.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         className={`w-full px-4 py-3 border-2 rounded-xl ${
-                          errors.name ? 'border-red-300' : 'border-emerald-200'
-                        } focus:border-emerald-500 focus:outline-none`}
+                          errors.name ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                        } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                         placeholder="जैसे: कुंदन हार"
                       />
-                      {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                      {errors.name && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.name}</p>}
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         Product Name (English)
                       </label>
                       <input
                         type="text"
                         value={formData.nameHindi}
                         onChange={(e) => handleInputChange('nameHindi', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                        className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         placeholder="e.g.: Kundan Necklace"
                       />
                     </div>
                   </div>
 
                   <div className="mt-6">
-                    <label className="block text-emerald-800 font-semibold mb-2">
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                       उत्पाद का विवरण (हिंदी) *
                     </label>
                     <textarea
@@ -333,21 +333,21 @@ const EditItem = () => {
                       onChange={(e) => handleInputChange('description', e.target.value)}
                       rows={4}
                       className={`w-full px-4 py-3 border-2 rounded-xl ${
-                        errors.description ? 'border-red-300' : 'border-emerald-200'
-                      } focus:border-emerald-500 focus:outline-none`}
+                        errors.description ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                      } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                       placeholder="उत्पाद का विस्तृत विवरण लिखें..."
                     />
-                    {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
+                    {errors.description && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.description}</p>}
                   </div>
                 </div>
 
                 {/* Price and Stock */}
                 <div>
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-6">मूल्य और स्टॉक</h3>
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">मूल्य और स्टॉक</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         विक्रय मूल्य (₹) *
                       </label>
                       <input
@@ -355,33 +355,33 @@ const EditItem = () => {
                         value={formData.price}
                         onChange={(e) => handleInputChange('price', e.target.value)}
                         className={`w-full px-4 py-3 border-2 rounded-xl ${
-                          errors.price ? 'border-red-300' : 'border-emerald-200'
-                        } focus:border-emerald-500 focus:outline-none`}
+                          errors.price ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                        } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                         placeholder="2500"
                       />
-                      {errors.price && <p className="text-red-500 text-sm mt-1">{errors.price}</p>}
+                      {errors.price && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.price}</p>}
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         मूल मूल्य (₹)
                       </label>
                       <input
                         type="number"
                         value={formData.originalPrice}
                         onChange={(e) => handleInputChange('originalPrice', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                        className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         placeholder="3000"
                       />
                       {formData.originalPrice && formData.price && (
-                        <p className="text-emerald-600 text-sm mt-1">
+                        <p className="text-emerald-600 dark:text-emerald-400 text-sm mt-1">
                           छूट: {Math.round(((formData.originalPrice - formData.price) / formData.originalPrice) * 100)}%
                         </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
                         उपलब्ध मात्रा *
                       </label>
                       <input
@@ -389,43 +389,43 @@ const EditItem = () => {
                         value={formData.quantity}
                         onChange={(e) => handleInputChange('quantity', e.target.value)}
                         className={`w-full px-4 py-3 border-2 rounded-xl ${
-                          errors.quantity ? 'border-red-300' : 'border-emerald-200'
-                        } focus:border-emerald-500 focus:outline-none`}
+                          errors.quantity ? 'border-red-300 dark:border-red-600' : 'border-emerald-200 dark:border-emerald-700'
+                        } focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100`}
                         placeholder="10"
                       />
-                      {errors.quantity && <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>}
+                      {errors.quantity && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.quantity}</p>}
                     </div>
                   </div>
                 </div>
 
                 {/* Images */}
                 <div>
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-6">छवियां</h3>
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">छवियां</h3>
                   <ImageUploader
                     images={formData.images}
                     onImagesChange={(images) => handleInputChange('images', images)}
                     maxImages={8}
                     error={errors.images}
                   />
-                  {errors.images && <p className="text-red-500 text-sm mt-2">{errors.images}</p>}
+                  {errors.images && <p className="text-red-500 dark:text-red-400 text-sm mt-2">{errors.images}</p>}
                 </div>
 
                 {/* Materials and Colors */}
                 <div>
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-6">विशेषताएं</h3>
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">विशेषताएं</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-3">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-3">
                         चयनित सामग्री
                       </label>
                       <div className="flex flex-wrap gap-2">
                         {formData.materials.map(material => (
-                          <span key={material} className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                          <span key={material} className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
                             <span>{material}</span>
                             <button
                               onClick={() => handleArrayInputChange('materials', material, 'remove')}
-                              className="text-emerald-500 hover:text-emerald-700"
+                              className="text-emerald-500 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
                             >
                               ×
                             </button>
@@ -435,7 +435,7 @@ const EditItem = () => {
                       <input
                         type="text"
                         placeholder="नई सामग्री जोड़ें (Enter दबाएं)"
-                        className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none mt-3"
+                        className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100 mt-3"
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
                             e.preventDefault();
@@ -450,16 +450,16 @@ const EditItem = () => {
                     </div>
 
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-3">
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-3">
                         उपलब्ध रंग
                       </label>
                       <div className="flex flex-wrap gap-2">
                         {formData.colors.map(color => (
-                          <span key={color} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                          <span key={color} className="bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
                             <span>{color}</span>
                             <button
                               onClick={() => handleArrayInputChange('colors', color, 'remove')}
-                              className="text-blue-500 hover:text-blue-700"
+                              className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
                             >
                               ×
                             </button>
@@ -469,7 +469,7 @@ const EditItem = () => {
                       <input
                         type="text"
                         placeholder="नया रंग जोड़ें (Enter दबाएं)"
-                        className="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none mt-3"
+                        className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100 mt-3"
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
                             e.preventDefault();
@@ -486,11 +486,11 @@ const EditItem = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-emerald-200 gap-4">
+                <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-emerald-200 dark:border-emerald-700 gap-4">
                   <div className="flex items-center space-x-4">
                     <a
                       href="/vendor/items"
-                      className="flex items-center space-x-2 px-6 py-3 border-2 border-emerald-500 text-emerald-600 rounded-xl hover:bg-emerald-50 transition-all duration-300"
+                      className="flex items-center space-x-2 px-6 py-3 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 rounded-xl hover:bg-emerald-50 dark:hover:bg-gray-700 transition-all duration-300"
                     >
                       <span>←</span>
                       <span>वापस जाएं</span>
@@ -526,8 +526,8 @@ const EditItem = () => {
 
                 {/* General Error */}
                 {errors.general && (
-                  <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <p className="text-red-600 text-center">{errors.general}</p>
+                  <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-xl">
+                    <p className="text-red-600 dark:text-red-400 text-center">{errors.general}</p>
                   </div>
                 )}
               </div>

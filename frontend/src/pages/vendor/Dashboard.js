@@ -95,23 +95,23 @@ const VendorDashboard = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         <div className="max-w-7xl mx-auto px-6 py-8">
           
           {/* Header */}
           <div className="mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+                <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                   विक्रेता केंद्र
                 </h1>
-                <p className="text-emerald-600 text-lg">
+                <p className="text-emerald-600 dark:text-emerald-400 text-lg">
                   आपके व्यापार का संपूर्ण विवरण एक स्थान पर
                 </p>
               </div>
               
               {/* Period Selector */}
-              <div className="flex bg-white rounded-xl p-1 shadow-lg">
+              <div className="flex bg-white dark:bg-gray-800 rounded-xl p-1 shadow-lg">
                 {periods.map((period) => (
                   <button
                     key={period.id}
@@ -119,7 +119,7 @@ const VendorDashboard = () => {
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                       selectedPeriod === period.id
                         ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-md'
-                        : 'text-emerald-600 hover:bg-emerald-50'
+                        : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                     }`}
                   >
                     <span>{period.icon}</span>
@@ -215,8 +215,8 @@ const VendorDashboard = () => {
               </div>
 
               {/* Quick Actions */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                <h3 className="text-2xl font-bold text-emerald-800 mb-6">त्वरित कार्य</h3>
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">त्वरित कार्य</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {quickActions.map((action) => (
                     <a
@@ -235,8 +235,8 @@ const VendorDashboard = () => {
 
               {/* Order Status Overview */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-bold text-emerald-800 mb-6 flex items-center space-x-2">
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 flex items-center space-x-2">
                     <span>📋</span>
                     <span>ऑर्डर स्थिति</span>
                   </h3>
@@ -248,14 +248,14 @@ const VendorDashboard = () => {
                       { status: 'shipped', name: 'भेजे गए', count: dashboardData?.orders?.shipped, color: 'purple' },
                       { status: 'delivered', name: 'वितरित', count: dashboardData?.orders?.delivered, color: 'green' }
                     ].map((item) => (
-                      <div key={item.status} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
+                      <div key={item.status} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                         <div className="flex items-center space-x-3">
                           <div className={`w-4 h-4 rounded-full bg-${item.color}-500`}></div>
-                          <span className="font-medium text-gray-800">{item.name}</span>
+                          <span className="font-medium text-gray-800 dark:text-gray-100">{item.name}</span>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <span className="text-lg font-bold text-gray-800">{item.count}</span>
-                          <button className="text-emerald-600 hover:text-emerald-700 font-medium text-sm">
+                          <span className="text-lg font-bold text-gray-800 dark:text-gray-100">{item.count}</span>
+                          <button className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium text-sm">
                             देखें →
                           </button>
                         </div>
@@ -265,27 +265,27 @@ const VendorDashboard = () => {
                 </div>
 
                 {/* Top Selling Products */}
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-bold text-emerald-800 mb-6 flex items-center space-x-2">
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 flex items-center space-x-2">
                     <span>🏆</span>
                     <span>सबसे ज्यादा बिकने वाले उत्पाद</span>
                   </h3>
                   
                   <div className="space-y-4">
                     {dashboardData?.inventory?.topSelling?.map((product, index) => (
-                      <div key={index} className="flex items-center justify-between p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+                      <div key={index} className="flex items-center justify-between p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl border border-emerald-200 dark:border-emerald-700">
                         <div className="flex items-center space-x-3">
                           <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center text-white font-bold">
                             {index + 1}
                           </div>
                           <div>
-                            <h4 className="font-semibold text-emerald-800">{product.name}</h4>
-                            <p className="text-emerald-600 text-sm">{product.sales} बिक्री</p>
+                            <h4 className="font-semibold text-emerald-800 dark:text-emerald-200">{product.name}</h4>
+                            <p className="text-emerald-600 dark:text-emerald-400 text-sm">{product.sales} बिक्री</p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold text-emerald-600">₹{product.revenue.toLocaleString()}</p>
-                          <p className="text-emerald-500 text-sm">राजस्व</p>
+                          <p className="font-bold text-emerald-600 dark:text-emerald-400">₹{product.revenue.toLocaleString()}</p>
+                          <p className="text-emerald-500 dark:text-emerald-400 text-sm">राजस्व</p>
                         </div>
                       </div>
                     ))}
@@ -294,8 +294,8 @@ const VendorDashboard = () => {
               </div>
 
               {/* Recent Activity */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                <h3 className="text-xl font-bold text-emerald-800 mb-6 flex items-center space-x-2">
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 flex items-center space-x-2">
                   <span>⚡</span>
                   <span>हाल की गतिविधि</span>
                 </h3>
@@ -307,12 +307,12 @@ const VendorDashboard = () => {
                     { time: '1 घंटा पहले', action: 'ऑर्डर शिप किया गया', details: '#ORD-12344 - ट्रैकिंग: TR123456789', type: 'shipping' },
                     { time: '3 घंटे पहले', action: 'नई समीक्षा प्राप्त', details: '5⭐ - मीनाकारी झुमके', type: 'review' }
                   ].map((activity, index) => (
-                    <div key={index} className="flex items-start space-x-4 p-4 hover:bg-emerald-50 rounded-xl transition-colors duration-200">
+                    <div key={index} className="flex items-start space-x-4 p-4 hover:bg-emerald-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                        activity.type === 'order' ? 'bg-blue-100 text-blue-600' :
-                        activity.type === 'inventory' ? 'bg-purple-100 text-purple-600' :
-                        activity.type === 'shipping' ? 'bg-green-100 text-green-600' :
-                        'bg-yellow-100 text-yellow-600'
+                        activity.type === 'order' ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' :
+                        activity.type === 'inventory' ? 'bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400' :
+                        activity.type === 'shipping' ? 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400' :
+                        'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400'
                       }`}>
                         {activity.type === 'order' && '📦'}
                         {activity.type === 'inventory' && '📊'}
@@ -320,9 +320,9 @@ const VendorDashboard = () => {
                         {activity.type === 'review' && '⭐'}
                       </div>
                       <div className="flex-1">
-                        <p className="font-medium text-gray-800">{activity.action}</p>
-                        <p className="text-gray-600 text-sm">{activity.details}</p>
-                        <p className="text-gray-500 text-xs mt-1">{activity.time}</p>
+                        <p className="font-medium text-gray-800 dark:text-gray-100">{activity.action}</p>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm">{activity.details}</p>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{activity.time}</p>
                       </div>
                     </div>
                   ))}

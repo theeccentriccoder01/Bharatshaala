@@ -195,7 +195,7 @@ const ChandniChowk = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
 
         {/* Hero Section */}
         <div className='relative overflow-hidden'>
@@ -210,19 +210,19 @@ const ChandniChowk = () => {
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
               {/* Historical Badge */}
-              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-amber-100 to-orange-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-amber-200'>
+              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-amber-100 dark:from-amber-900/30 to-orange-100 dark:to-orange-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-amber-200 dark:border-amber-700'>
                 <span className='text-2xl'>🏛️</span>
-                <span className='text-amber-800 font-bold'>मुगल काल से</span>
+                <span className='text-amber-800 dark:text-amber-200 font-bold'>मुगल काल से</span>
               </div>
               
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-600 via-orange-500 to-red-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
-              <h2 className='text-2xl md:text-3xl text-emerald-700 font-semibold mb-6'>
+              <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Chandni Chowk, {marketInfo.cityHindi}
               </h2>
               
-              <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
+              <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
                 भारत के सबसे पुराने और व्यस्त बाजारों में से एक, इसकी संकरी गलियों और भीड़भाड़ के माहौल की खोज करें। 
                 मुगल सम्राट शाहजहाँ द्वारा बसाया गया यह बाजार आज भी अपनी पुरानी रौनक बनाए हुए है। 
                 यहाँ आपको मसालों की सुगंध, चांदी के गहनों की चमक और पारंपरिक मिठाइयों का स्वाद मिलेगा।
@@ -230,21 +230,21 @@ const ChandniChowk = () => {
 
               {/* Market Stats */}
               <div className='grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12'>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-red-200'>
-                  <div className='text-2xl font-bold text-red-600'>{marketInfo.established}</div>
-                  <div className='text-red-600 text-sm font-medium'>स्थापना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-red-200 dark:border-red-700'>
+                  <div className='text-2xl font-bold text-red-600 dark:text-red-400'>{marketInfo.established}</div>
+                  <div className='text-red-600 dark:text-red-400 text-sm font-medium'>स्थापना</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-red-200'>
-                  <div className='text-2xl font-bold text-red-600'>{marketInfo.totalShops.toLocaleString()}+</div>
-                  <div className='text-red-600 text-sm font-medium'>कुल दुकानें</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-red-200 dark:border-red-700'>
+                  <div className='text-2xl font-bold text-red-600 dark:text-red-400'>{marketInfo.totalShops.toLocaleString()}+</div>
+                  <div className='text-red-600 dark:text-red-400 text-sm font-medium'>कुल दुकानें</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-red-200'>
-                  <div className='text-2xl font-bold text-red-600'>{marketInfo.totalVendors}+</div>
-                  <div className='text-red-600 text-sm font-medium'>विक्रेता</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-red-200 dark:border-red-700'>
+                  <div className='text-2xl font-bold text-red-600 dark:text-red-400'>{marketInfo.totalVendors}+</div>
+                  <div className='text-red-600 dark:text-red-400 text-sm font-medium'>विक्रेता</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-red-200'>
-                  <div className='text-2xl font-bold text-red-600'>375</div>
-                  <div className='text-red-600 text-sm font-medium'>साल पुराना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-red-200 dark:border-red-700'>
+                  <div className='text-2xl font-bold text-red-600 dark:text-red-400'>375</div>
+                  <div className='text-red-600 dark:text-red-400 text-sm font-medium'>साल पुराना</div>
                 </div>
               </div>
             </div>
@@ -253,8 +253,8 @@ const ChandniChowk = () => {
 
         {/* Interactive Map Section */}
         <div className='max-w-7xl mx-auto px-6 mb-16'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
-            <h3 className='text-2xl font-bold text-emerald-800 mb-6 text-center flex items-center justify-center space-x-3'>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
+            <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 text-center flex items-center justify-center space-x-3'>
               <span>🗺️</span>
               <span>चांदनी चौक का नक्शा</span>
             </h3>
@@ -271,20 +271,20 @@ const ChandniChowk = () => {
             
             {/* Market Info */}
             <div className='mt-8 grid grid-cols-1 md:grid-cols-3 gap-6'>
-              <div className='text-center bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                <h4 className='font-semibold text-emerald-800 mb-2'>⏰ समय</h4>
-                <p className='text-emerald-700'>{marketInfo.openingHours}</p>
-                <p className='text-emerald-600 text-sm mt-1'>सोमवार से रविवार</p>
+              <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                <h4 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-2'>⏰ समय</h4>
+                <p className='text-emerald-700 dark:text-emerald-300'>{marketInfo.openingHours}</p>
+                <p className='text-emerald-600 dark:text-emerald-400 text-sm mt-1'>सोमवार से रविवार</p>
               </div>
-              <div className='text-center bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                <h4 className='font-semibold text-emerald-800 mb-2'>🌤️ बेस्ट टाइम</h4>
-                <p className='text-emerald-700'>{marketInfo.bestTime}</p>
-                <p className='text-emerald-600 text-sm mt-1'>ठंडा मौसम</p>
+              <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                <h4 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-2'>🌤️ बेस्ट टाइम</h4>
+                <p className='text-emerald-700 dark:text-emerald-300'>{marketInfo.bestTime}</p>
+                <p className='text-emerald-600 dark:text-emerald-400 text-sm mt-1'>ठंडा मौसम</p>
               </div>
-              <div className='text-center bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                <h4 className='font-semibold text-emerald-800 mb-2'>🅿️ पार्किंग</h4>
-                <p className='text-emerald-700'>उपलब्ध</p>
-                <p className='text-emerald-600 text-sm mt-1'>मेट्रो पार्किंग</p>
+              <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                <h4 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-2'>🅿️ पार्किंग</h4>
+                <p className='text-emerald-700 dark:text-emerald-300'>उपलब्ध</p>
+                <p className='text-emerald-600 dark:text-emerald-400 text-sm mt-1'>मेट्रो पार्किंग</p>
               </div>
             </div>
           </div>
@@ -292,8 +292,8 @@ const ChandniChowk = () => {
 
         {/* Category Filter */}
         <div className='max-w-7xl mx-auto px-6 mb-12'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-            <h3 className='text-xl font-bold text-emerald-800 mb-4 text-center'>दुकान श्रेणियां</h3>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+            <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4 text-center'>दुकान श्रेणियां</h3>
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3'>
               {categories.map((category) => (
                 <button
@@ -302,15 +302,15 @@ const ChandniChowk = () => {
                   className={`flex flex-col items-center space-y-2 p-4 rounded-xl transition-all duration-300 ${
                     activeFilter === category.id
                       ? 'bg-gradient-to-br from-red-500 to-orange-500 text-white shadow-lg scale-105'
-                      : 'bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-200 hover:border-emerald-300'
+                      : 'bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-300'
                   }`}
                 >
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     activeFilter === category.id 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-emerald-100 text-emerald-600'
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
+                      : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}
                   </span>
@@ -323,8 +323,8 @@ const ChandniChowk = () => {
         {/* Shops Grid */}
         <div className='max-w-7xl mx-auto px-6 pb-20'>
           <div className='text-center mb-12'>
-            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>प्रमुख दुकानें</h3>
-            <p className='text-xl text-emerald-600'>
+            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
+            <p className='text-xl text-emerald-600 dark:text-emerald-400'>
               {activeFilter === 'all' 
                 ? 'चांदनी चौक की सभी प्रसिद्ध दुकानें' 
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
@@ -348,8 +348,8 @@ const ChandniChowk = () => {
           ) : (
             <div className='text-center py-20'>
               <div className='text-6xl mb-4'>🔍</div>
-              <h3 className='text-2xl font-bold text-emerald-800 mb-2'>कोई दुकान नहीं मिली</h3>
-              <p className='text-emerald-600'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
+              <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2'>कोई दुकान नहीं मिली</h3>
+              <p className='text-emerald-600 dark:text-emerald-400'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
             </div>
           )}
 
@@ -363,17 +363,17 @@ const ChandniChowk = () => {
             </div>
             
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🏛️</div>
                 <h4 className='text-lg font-semibold mb-2'>मुगल विरासत</h4>
                 <p className='text-red-100 text-sm'>375 साल का समृद्ध इतिहास</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🕌</div>
                 <h4 className='text-lg font-semibold mb-2'>लाल किला</h4>
                 <p className='text-red-100 text-sm'>500 मीटर की दूरी पर</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🚇</div>
                 <h4 className='text-lg font-semibold mb-2'>मेट्रो कनेक्टिविटी</h4>
                 <p className='text-red-100 text-sm'>रेड लाइन और यलो लाइन</p>
@@ -381,7 +381,7 @@ const ChandniChowk = () => {
             </div>
             
             <div className='text-center mt-8'>
-              <button className='bg-white text-red-600 px-8 py-4 rounded-full font-semibold hover:bg-red-50 transition-colors duration-300 transform hover:scale-105'>
+              <button className='bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 px-8 py-4 rounded-full font-semibold hover:bg-red-50 dark:hover:bg-gray-700 dark:bg-red-900/20 transition-colors duration-300 transform hover:scale-105'>
                 और जानें
               </button>
             </div>

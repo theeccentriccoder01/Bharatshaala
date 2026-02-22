@@ -44,10 +44,10 @@ const InventoryTable = () => {
     const LoadingSpinner = () => (
         <div className="flex items-center justify-center py-12">
             <div className="relative">
-                <div className="w-12 h-12 border-4 border-emerald-200 rounded-full animate-spin border-t-emerald-600"></div>
+                <div className="w-12 h-12 border-4 border-emerald-200 dark:border-emerald-700 rounded-full animate-spin border-t-emerald-600"></div>
                 <div className="absolute inset-0 w-12 h-12 border-4 border-transparent rounded-full animate-ping border-t-emerald-400"></div>
             </div>
-            <span className="ml-3 text-emerald-600 font-medium">डेटा लोड हो रहा है...</span>
+            <span className="ml-3 text-emerald-600 dark:text-emerald-400 font-medium">डेटा लोड हो रहा है...</span>
         </div>
     );
 
@@ -67,13 +67,13 @@ const InventoryTable = () => {
 
     return (
         <React.StrictMode>
-            <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 p-6">
+            <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 p-6">
                 <div className="max-w-7xl mx-auto">
                     
                     {/* Header Section */}
                     <div className="mb-8">
-                        <h1 className="text-4xl font-bold text-emerald-800 mb-2">व्यापार डैशबोर्ड</h1>
-                        <p className="text-emerald-600 text-lg">अपने उत्पादों और बिक्री का विश्लेषण करें</p>
+                        <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">व्यापार डैशबोर्ड</h1>
+                        <p className="text-emerald-600 dark:text-emerald-400 text-lg">अपने उत्पादों और बिक्री का विश्लेषण करें</p>
                     </div>
 
                     {/* Stats Cards */}
@@ -105,15 +105,15 @@ const InventoryTable = () => {
                     </div>
 
                     {/* Tab Navigation */}
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                        <div className="border-b border-gray-200">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+                        <div className="border-b border-gray-200 dark:border-gray-700">
                             <nav className="flex space-x-8 px-6">
                                 <button
                                     onClick={() => setActiveTab('inventory')}
                                     className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                                         activeTab === 'inventory'
-                                            ? 'border-emerald-500 text-emerald-600'
-                                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                            ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                                            : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
                                     }`}
                                 >
                                     <div className="flex items-center space-x-2">
@@ -127,8 +127,8 @@ const InventoryTable = () => {
                                     onClick={() => setActiveTab('sales')}
                                     className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                                         activeTab === 'sales'
-                                            ? 'border-emerald-500 text-emerald-600'
-                                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                            ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                                            : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
                                     }`}
                                 >
                                     <div className="flex items-center space-x-2">
@@ -150,7 +150,7 @@ const InventoryTable = () => {
                                     {activeTab === 'inventory' && (
                                         <div className="overflow-hidden">
                                             <div className="overflow-x-auto">
-                                                <table className="min-w-full divide-y divide-gray-200">
+                                                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                                     <thead>
                                                         <tr className="bg-gradient-to-r from-emerald-600 to-green-600">
                                                             <th className="px-6 py-4 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tl-lg">
@@ -167,10 +167,10 @@ const InventoryTable = () => {
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody className="divide-y divide-gray-200">
+                                                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                         {inventoryData !== null && JSON.parse(inventoryData).map((item, index) => (
-                                                            <tr key={index} className={`hover:bg-emerald-50 transition-colors duration-200 ${
-                                                                index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                                                            <tr key={index} className={`hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                                                                index % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-900'
                                                             }`}>
                                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                                     <div className="flex items-center">
@@ -179,26 +179,26 @@ const InventoryTable = () => {
                                                                                 {item.ItemName.charAt(0)}
                                                                             </span>
                                                                         </div>
-                                                                        <div className="text-sm font-medium text-gray-900">{item.ItemName}</div>
+                                                                        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.ItemName}</div>
                                                                     </div>
                                                                 </td>
                                                                 <td className="px-6 py-4">
-                                                                    <div className="text-sm text-gray-900 max-w-xs truncate" title={item.ItemDesc}>
+                                                                    <div className="text-sm text-gray-900 dark:text-gray-100 max-w-xs truncate" title={item.ItemDesc}>
                                                                         {item.ItemDesc}
                                                                     </div>
                                                                 </td>
                                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                                     <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
                                                                         item.Quantity > 10 
-                                                                            ? 'bg-green-100 text-green-800' 
+                                                                            ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400' 
                                                                             : item.Quantity > 5 
-                                                                                ? 'bg-yellow-100 text-yellow-800'
-                                                                                : 'bg-red-100 text-red-800'
+                                                                                ? 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300'
+                                                                                : 'bg-red-100 dark:bg-red-900/20 text-red-800'
                                                                     }`}>
                                                                         {item.Quantity} यूनिट
                                                                     </span>
                                                                 </td>
-                                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-emerald-600">
+                                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-emerald-600 dark:text-emerald-400">
                                                                     ₹{item.Price.toLocaleString()}
                                                                 </td>
                                                             </tr>
@@ -213,7 +213,7 @@ const InventoryTable = () => {
                                     {activeTab === 'sales' && (
                                         <div className="overflow-hidden">
                                             <div className="overflow-x-auto">
-                                                <table className="min-w-full divide-y divide-gray-200">
+                                                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                                     <thead>
                                                         <tr className="bg-gradient-to-r from-emerald-600 to-green-600">
                                                             <th className="px-6 py-4 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tl-lg">
@@ -230,10 +230,10 @@ const InventoryTable = () => {
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody className="divide-y divide-gray-200">
+                                                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                         {orderData !== null && orderData.map((item, index) => (
-                                                            <tr key={index} className={`hover:bg-emerald-50 transition-colors duration-200 ${
-                                                                index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                                                            <tr key={index} className={`hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                                                                index % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-900'
                                                             }`}>
                                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                                     <div className="flex items-center">
@@ -242,24 +242,24 @@ const InventoryTable = () => {
                                                                                 {item.ItemName.charAt(0)}
                                                                             </span>
                                                                         </div>
-                                                                        <div className="text-sm font-medium text-gray-900">{item.ItemName}</div>
+                                                                        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.ItemName}</div>
                                                                     </div>
                                                                 </td>
-                                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                                                     ₹{item.Price.toLocaleString()}
                                                                 </td>
                                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                                     <div className="flex items-center">
-                                                                        <div className="w-16 bg-gray-200 rounded-full h-2 mr-3">
+                                                                        <div className="w-16 bg-gray-200 dark:bg-gray-700 rounded-full h-2 mr-3">
                                                                             <div 
                                                                                 className="bg-gradient-to-r from-emerald-500 to-green-500 h-2 rounded-full" 
                                                                                 style={{ width: `${Math.min((item.Quantity / 50) * 100, 100)}%` }}
                                                                             ></div>
                                                                         </div>
-                                                                        <span className="text-sm text-gray-900">{item.Quantity}</span>
+                                                                        <span className="text-sm text-gray-900 dark:text-gray-100">{item.Quantity}</span>
                                                                     </div>
                                                                 </td>
-                                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-emerald-600">
+                                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-emerald-600 dark:text-emerald-400">
                                                                     ₹{item.revenue.toLocaleString()}
                                                                 </td>
                                                             </tr>

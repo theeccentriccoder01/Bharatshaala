@@ -259,12 +259,12 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
       <div className="max-w-7xl mx-auto px-6 py-8">
         
         {/* Search Header */}
         <div className="mb-8">
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
             
             {/* Search Bar */}
             <div className="relative mb-6">
@@ -273,7 +273,7 @@ const SearchResults = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="उत्पाद, ब्रांड या श्रेणी खोजें..."
-                className="w-full px-6 py-4 pl-12 pr-20 text-lg border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                className="w-full px-6 py-4 pl-12 pr-20 text-lg border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none"
               />
               <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -281,7 +281,7 @@ const SearchResults = () => {
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-400 hover:text-gray-600"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -293,13 +293,13 @@ const SearchResults = () => {
             {/* Search Suggestions */}
             {suggestions.length > 0 && searchQuery && (
               <div className="mb-4">
-                <h3 className="text-sm font-semibold text-emerald-800 mb-2">सुझाव:</h3>
+                <h3 className="text-sm font-semibold text-emerald-800 dark:text-emerald-200 mb-2">सुझाव:</h3>
                 <div className="flex flex-wrap gap-2">
                   {suggestions.map((suggestion, index) => (
                     <button
                       key={index}
                       onClick={() => handleSearch(suggestion)}
-                      className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm hover:bg-emerald-200 transition-colors duration-200"
+                      className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-sm hover:bg-emerald-200 dark:hover:bg-gray-700 transition-colors duration-200"
                     >
                       {suggestion}
                     </button>
@@ -311,13 +311,13 @@ const SearchResults = () => {
             {/* Search History */}
             {searchHistory.length > 0 && !searchQuery && (
               <div className="mb-4">
-                <h3 className="text-sm font-semibold text-emerald-800 mb-2">हाल की खोजें:</h3>
+                <h3 className="text-sm font-semibold text-emerald-800 dark:text-emerald-200 mb-2">हाल की खोजें:</h3>
                 <div className="flex flex-wrap gap-2">
                   {searchHistory.map((item, index) => (
                     <button
                       key={index}
                       onClick={() => handleSearch(item.query)}
-                      className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors duration-200 flex items-center space-x-1"
+                      className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 flex items-center space-x-1"
                     >
                       <span>🕒</span>
                       <span>{item.query}</span>
@@ -331,22 +331,22 @@ const SearchResults = () => {
             {searchQuery && (
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-emerald-800">
+                  <p className="text-emerald-800 dark:text-emerald-200">
                     <span className="font-bold">{totalResults.toLocaleString()}</span> परिणाम मिले 
                     <span className="font-semibold"> "{searchQuery}"</span> के लिए
                   </p>
-                  {loading && <p className="text-emerald-600 text-sm">खोज रही है...</p>}
+                  {loading && <p className="text-emerald-600 dark:text-emerald-400 text-sm">खोज रही है...</p>}
                 </div>
                 
                 <div className="flex items-center space-x-4">
                   {/* View Mode Toggle */}
-                  <div className="flex bg-emerald-100 rounded-lg p-1">
+                  <div className="flex bg-emerald-100 dark:bg-gray-800 rounded-lg p-1">
                     <button
                       onClick={() => setViewMode('grid')}
                       className={`p-2 rounded-lg transition-all duration-200 ${
                         viewMode === 'grid' 
                           ? 'bg-emerald-500 text-white' 
-                          : 'text-emerald-600 hover:bg-emerald-200'
+                          : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-gray-700'
                       }`}
                     >
                       ⊞
@@ -356,7 +356,7 @@ const SearchResults = () => {
                       className={`p-2 rounded-lg transition-all duration-200 ${
                         viewMode === 'list' 
                           ? 'bg-emerald-500 text-white' 
-                          : 'text-emerald-600 hover:bg-emerald-200'
+                          : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-gray-700'
                       }`}
                     >
                       ☰
@@ -367,7 +367,7 @@ const SearchResults = () => {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="px-4 py-2 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                    className="px-4 py-2 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
                   >
                     {sortOptions.map(option => (
                       <option key={option.id} value={option.id}>
@@ -380,7 +380,7 @@ const SearchResults = () => {
                   <button
                     onClick={() => setShowFilters(!showFilters)}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                      showFilters ? 'bg-emerald-500 text-white' : 'border border-emerald-500 text-emerald-600 hover:bg-emerald-50'
+                      showFilters ? 'bg-emerald-500 text-white' : 'border border-emerald-500 dark:border-emerald-400 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                     }`}
                   >
                     <span>🔧</span>
@@ -434,7 +434,7 @@ const SearchResults = () => {
                       <button
                         onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className="px-4 py-2 border border-emerald-200 rounded-lg text-emerald-600 hover:bg-emerald-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-4 py-2 border border-emerald-200 dark:border-emerald-700 rounded-lg text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         पिछला
                       </button>
@@ -446,7 +446,7 @@ const SearchResults = () => {
                           className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                             currentPage === page
                               ? 'bg-emerald-500 text-white'
-                              : 'border border-emerald-200 text-emerald-600 hover:bg-emerald-50'
+                              : 'border border-emerald-200 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                           }`}
                         >
                           {page}
@@ -456,7 +456,7 @@ const SearchResults = () => {
                       <button
                         onClick={() => setCurrentPage(currentPage + 1)}
                         disabled={currentPage === totalPages}
-                        className="px-4 py-2 border border-emerald-200 rounded-lg text-emerald-600 hover:bg-emerald-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-4 py-2 border border-emerald-200 dark:border-emerald-700 rounded-lg text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         अगला
                       </button>
@@ -465,14 +465,14 @@ const SearchResults = () => {
 
                   {/* Related Searches */}
                   {relatedSearches.length > 0 && (
-                    <div className="mt-12 bg-white rounded-2xl p-6 shadow-lg">
-                      <h3 className="text-xl font-bold text-emerald-800 mb-4">संबंधित खोजें</h3>
+                    <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                      <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4">संबंधित खोजें</h3>
                       <div className="flex flex-wrap gap-3">
                         {relatedSearches.map((relatedQuery, index) => (
                           <button
                             key={index}
                             onClick={() => handleSearch(relatedQuery)}
-                            className="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg hover:bg-emerald-200 transition-colors duration-200"
+                            className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-lg hover:bg-emerald-200 dark:hover:bg-gray-700 transition-colors duration-200"
                           >
                             {relatedQuery}
                           </button>
@@ -485,17 +485,17 @@ const SearchResults = () => {
                 /* No Results */
                 <div className="text-center py-20">
                   <div className="text-8xl mb-6">🔍</div>
-                  <h2 className="text-3xl font-bold text-emerald-800 mb-4">
+                  <h2 className="text-3xl font-bold text-emerald-800 dark:text-emerald-200 mb-4">
                     कोई परिणाम नहीं मिला
                   </h2>
-                  <p className="text-emerald-600 text-lg mb-8">
+                  <p className="text-emerald-600 dark:text-emerald-400 text-lg mb-8">
                     "{searchQuery}" के लिए कोई उत्पाद नहीं मिला
                   </p>
                   
                   <div className="max-w-md mx-auto space-y-4">
-                    <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
-                      <h3 className="font-semibold text-blue-800 mb-2">खोज सुझाव:</h3>
-                      <ul className="text-blue-700 text-sm space-y-1 text-left">
+                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+                      <h3 className="font-semibold text-blue-800 dark:text-blue-400 mb-2">खोज सुझाव:</h3>
+                      <ul className="text-blue-700 dark:text-blue-400 text-sm space-y-1 text-left">
                         <li>• वर्तनी की जांच करें</li>
                         <li>• अधिक सामान्य शब्दों का उपयोग करें</li>
                         <li>• कम शब्दों का उपयोग करें</li>
@@ -518,10 +518,10 @@ const SearchResults = () => {
           /* Empty Search State */
           <div className="text-center py-20">
             <div className="text-8xl mb-6">🛍️</div>
-            <h2 className="text-3xl font-bold text-emerald-800 mb-4">
+            <h2 className="text-3xl font-bold text-emerald-800 dark:text-emerald-200 mb-4">
               कुछ खोजें
             </h2>
-            <p className="text-emerald-600 text-lg mb-8">
+            <p className="text-emerald-600 dark:text-emerald-400 text-lg mb-8">
               लाखों उत्पादों में से अपनी पसंद का सामान खोजें
             </p>
             
@@ -531,14 +531,14 @@ const SearchResults = () => {
                   <button
                     key={category}
                     onClick={() => handleSearch(category)}
-                    className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                   >
                     <div className="text-3xl mb-2">
                       {category === 'jewelry' ? '💎' :
                        category === 'clothing' ? '👗' :
                        category === 'handicrafts' ? '🎨' : '📚'}
                     </div>
-                    <p className="text-emerald-800 font-medium">
+                    <p className="text-emerald-800 dark:text-emerald-200 font-medium">
                       {category === 'jewelry' ? 'आभूषण' :
                        category === 'clothing' ? 'कपड़े' :
                        category === 'handicrafts' ? 'हस्तशिल्प' : 'किताबें'}

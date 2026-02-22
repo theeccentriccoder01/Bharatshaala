@@ -186,11 +186,11 @@ const TrackOrder = () => {
 
   if (!orderTracking) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
         <div className="text-center">
           <div className="text-6xl mb-4">📦</div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">ऑर्डर नहीं मिला</h2>
-          <p className="text-gray-600 mb-6">कृपया सही ऑर्डर नंबर डालें</p>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">ऑर्डर नहीं मिला</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-6">कृपया सही ऑर्डर नंबर डालें</p>
           <button
             onClick={() => navigate('/user/orders')}
             className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600"
@@ -203,20 +203,20 @@ const TrackOrder = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
       <div className="max-w-4xl mx-auto px-6 py-8">
         
         {/* Header */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-emerald-800 mb-2">
+              <h1 className="text-3xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                 ऑर्डर ट्रैकिंग
               </h1>
-              <p className="text-emerald-600">
+              <p className="text-emerald-600 dark:text-emerald-400">
                 ऑर्डर नंबर: <span className="font-bold">{orderTracking.orderNumber}</span>
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 ट्रैकिंग नंबर: <span className="font-mono">{orderTracking.trackingNumber}</span>
               </p>
             </div>
@@ -236,19 +236,19 @@ const TrackOrder = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold mb-2">वर्तमान स्थिति</h2>
-                <p className="text-emerald-100 mb-1">
+                <p className="text-emerald-100 dark:text-emerald-300 mb-1">
                   {orderTracking.timeline.find(t => t.current)?.statusHindi || 'अपडेट हो रहा है...'}
                 </p>
-                <p className="text-emerald-100 text-sm">
+                <p className="text-emerald-100 dark:text-emerald-300 text-sm">
                   स्थान: {orderTracking.currentLocation}
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-emerald-100 text-sm">अनुमानित डिलीवरी</p>
+                <p className="text-emerald-100 dark:text-emerald-300 text-sm">अनुमानित डिलीवरी</p>
                 <p className="text-xl font-bold">
                   {new Date(orderTracking.estimatedDelivery).toLocaleDateString('hi-IN')}
                 </p>
-                <p className="text-emerald-100 text-sm">
+                <p className="text-emerald-100 dark:text-emerald-300 text-sm">
                   {getEstimatedDeliveryMessage()}
                 </p>
               </div>
@@ -257,19 +257,19 @@ const TrackOrder = () => {
 
           {/* Items */}
           <div className="mb-6">
-            <h3 className="font-bold text-emerald-800 mb-4">ऑर्डर किए गए आइटम</h3>
+            <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4">ऑर्डर किए गए आइटम</h3>
             <div className="space-y-3">
               {orderTracking.items.map((item) => (
-                <div key={item.id} className="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl">
+                <div key={item.id} className="flex items-center space-x-4 p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
                   <img 
                     src={item.image} 
                     alt={item.name}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
                   <div className="flex-1">
-                    <h4 className="font-semibold text-emerald-800">{item.name}</h4>
-                    <p className="text-gray-600">विक्रेता: {item.seller}</p>
-                    <p className="text-gray-600">मात्रा: {item.quantity}</p>
+                    <h4 className="font-semibold text-emerald-800 dark:text-emerald-200">{item.name}</h4>
+                    <p className="text-gray-600 dark:text-gray-300">विक्रेता: {item.seller}</p>
+                    <p className="text-gray-600 dark:text-gray-300">मात्रा: {item.quantity}</p>
                   </div>
                 </div>
               ))}
@@ -278,12 +278,12 @@ const TrackOrder = () => {
         </div>
 
         {/* Tracking Timeline */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h3 className="text-2xl font-bold text-emerald-800 mb-8">ट्रैकिंग टाइमलाइन</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
+          <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-8">ट्रैकिंग टाइमलाइन</h3>
           
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-600"></div>
             
             <div className="space-y-8">
               {orderTracking.timeline.map((event, index) => (
@@ -291,16 +291,16 @@ const TrackOrder = () => {
                   
                   {/* Timeline Dot */}
                   <div className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center text-white text-xl ${
-                    event.completed ? getStatusColor(event.status) : 'bg-gray-300'
-                  } ${event.current ? 'ring-4 ring-yellow-300 animate-pulse' : ''}`}>
+                    event.completed ? getStatusColor(event.status) : 'bg-gray-300 dark:bg-gray-600'
+                  } ${event.current ? 'ring-4 ring-yellow-300 dark:ring-yellow-600 animate-pulse' : ''}`}>
                     {event.icon}
                   </div>
                   
                   {/* Event Content */}
                   <div className={`flex-1 ${event.completed ? '' : 'opacity-50'}`}>
-                    <div className="bg-emerald-50 rounded-xl p-6 border-l-4 border-emerald-500">
+                    <div className="bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-6 border-l-4 border-emerald-500 dark:border-emerald-400">
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className={`text-lg font-bold ${event.completed ? 'text-emerald-800' : 'text-gray-600'}`}>
+                        <h4 className={`text-lg font-bold ${event.completed ? 'text-emerald-800 dark:text-emerald-200' : 'text-gray-600 dark:text-gray-300'}`}>
                           {event.statusHindi}
                           {event.current && (
                             <span className="ml-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
@@ -309,22 +309,22 @@ const TrackOrder = () => {
                           )}
                         </h4>
                         {event.timestamp && (
-                          <span className="text-emerald-600 text-sm font-medium">
+                          <span className="text-emerald-600 dark:text-emerald-400 text-sm font-medium">
                             {formatDate(event.timestamp)}
                           </span>
                         )}
                       </div>
                       
-                      <p className="text-gray-700 mb-2">{event.description}</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-2">{event.description}</p>
                       
-                      <div className="flex items-center space-x-1 text-emerald-600 text-sm">
+                      <div className="flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 text-sm">
                         <span>📍</span>
                         <span>{event.location}</span>
                       </div>
                       
                       {event.current && (
-                        <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                          <p className="text-yellow-800 text-sm font-medium">
+                        <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg">
+                          <p className="text-yellow-800 dark:text-yellow-400 text-sm font-medium">
                             📱 अगला अपडेट 2-4 घंटे में मिलेगा
                           </p>
                         </div>
@@ -341,33 +341,33 @@ const TrackOrder = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           
           {/* Delivery Address */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="font-bold text-emerald-800 mb-4 flex items-center space-x-2">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
+            <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4 flex items-center space-x-2">
               <span>📍</span>
               <span>डिलीवरी पता</span>
             </h3>
-            <div className="bg-emerald-50 rounded-xl p-4">
-              <h4 className="font-semibold text-emerald-800">{orderTracking.deliveryAddress.name}</h4>
-              <p className="text-gray-700 mt-1">{orderTracking.deliveryAddress.phone}</p>
-              <p className="text-gray-700 mt-2">{orderTracking.deliveryAddress.address}</p>
+            <div className="bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4">
+              <h4 className="font-semibold text-emerald-800 dark:text-emerald-200">{orderTracking.deliveryAddress.name}</h4>
+              <p className="text-gray-700 dark:text-gray-300 mt-1">{orderTracking.deliveryAddress.phone}</p>
+              <p className="text-gray-700 dark:text-gray-300 mt-2">{orderTracking.deliveryAddress.address}</p>
             </div>
           </div>
 
           {/* Support Contact */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="font-bold text-emerald-800 mb-4 flex items-center space-x-2">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
+            <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4 flex items-center space-x-2">
               <span>📞</span>
               <span>सहायता संपर्क</span>
             </h3>
             <div className="space-y-3">
               <a
                 href={`tel:${orderTracking.supportContact.phone}`}
-                className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200"
+                className="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-200"
               >
-                <span className="text-blue-600 text-xl">📱</span>
+                <span className="text-blue-600 dark:text-blue-400 text-xl">📱</span>
                 <div>
-                  <p className="font-medium text-blue-800">कॉल करें</p>
-                  <p className="text-blue-600 text-sm">{orderTracking.supportContact.phone}</p>
+                  <p className="font-medium text-blue-800 dark:text-blue-400">कॉल करें</p>
+                  <p className="text-blue-600 dark:text-blue-400 text-sm">{orderTracking.supportContact.phone}</p>
                 </div>
               </a>
               
@@ -375,23 +375,23 @@ const TrackOrder = () => {
                 href={`https://wa.me/${orderTracking.supportContact.whatsapp.replace(/[^0-9]/g, '')}?text=ऑर्डर%20नंबर:%20${orderTracking.orderNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg hover:bg-green-100 transition-colors duration-200"
+                className="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-gray-700 transition-colors duration-200"
               >
-                <span className="text-green-600 text-xl">💬</span>
+                <span className="text-green-600 dark:text-green-400 text-xl">💬</span>
                 <div>
-                  <p className="font-medium text-green-800">WhatsApp</p>
-                  <p className="text-green-600 text-sm">तुरंत सहायता पाएं</p>
+                  <p className="font-medium text-green-800 dark:text-green-400">WhatsApp</p>
+                  <p className="text-green-600 dark:text-green-400 text-sm">तुरंत सहायता पाएं</p>
                 </div>
               </a>
               
               <a
                 href={`mailto:${orderTracking.supportContact.email}?subject=ऑर्डर%20${orderTracking.orderNumber}%20सहायता`}
-                className="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors duration-200"
+                className="flex items-center space-x-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:bg-purple-100 dark:hover:bg-gray-700 transition-colors duration-200"
               >
-                <span className="text-purple-600 text-xl">✉️</span>
+                <span className="text-purple-600 dark:text-purple-400 text-xl">✉️</span>
                 <div>
-                  <p className="font-medium text-purple-800">ईमेल करें</p>
-                  <p className="text-purple-600 text-sm">{orderTracking.supportContact.email}</p>
+                  <p className="font-medium text-purple-800 dark:text-purple-400">ईमेल करें</p>
+                  <p className="text-purple-600 dark:text-purple-400 text-sm">{orderTracking.supportContact.email}</p>
                 </div>
               </a>
             </div>
@@ -399,12 +399,12 @@ const TrackOrder = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-          <h3 className="font-bold text-emerald-800 mb-4">त्वरित कार्य</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
+          <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4">त्वरित कार्य</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <button
               onClick={() => navigate(`/order-confirmation/${orderId}`)}
-              className="bg-emerald-100 text-emerald-700 p-4 rounded-xl hover:bg-emerald-200 transition-colors duration-200 text-center"
+              className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 p-4 rounded-xl hover:bg-emerald-200 dark:hover:bg-gray-700 transition-colors duration-200 text-center"
             >
               <div className="text-2xl mb-2">📄</div>
               <div className="text-sm font-medium">ऑर्डर विवरण</div>
@@ -412,7 +412,7 @@ const TrackOrder = () => {
             
             <button
               onClick={() => window.open(`/api/orders/${orderId}/invoice`, '_blank')}
-              className="bg-blue-100 text-blue-700 p-4 rounded-xl hover:bg-blue-200 transition-colors duration-200 text-center"
+              className="bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 p-4 rounded-xl hover:bg-blue-200 transition-colors duration-200 text-center"
             >
               <div className="text-2xl mb-2">📊</div>
               <div className="text-sm font-medium">इनवॉइस डाउनलोड</div>
@@ -428,7 +428,7 @@ const TrackOrder = () => {
                   });
                 }
               }}
-              className="bg-purple-100 text-purple-700 p-4 rounded-xl hover:bg-purple-200 transition-colors duration-200 text-center"
+              className="bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 p-4 rounded-xl hover:bg-purple-200 transition-colors duration-200 text-center"
             >
               <div className="text-2xl mb-2">📤</div>
               <div className="text-sm font-medium">शेयर करें</div>
@@ -436,7 +436,7 @@ const TrackOrder = () => {
             
             <button
               onClick={() => navigate('/user/orders')}
-              className="bg-gray-100 text-gray-700 p-4 rounded-xl hover:bg-gray-200 transition-colors duration-200 text-center"
+              className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-4 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 text-center"
             >
               <div className="text-2xl mb-2">📋</div>
               <div className="text-sm font-medium">सभी ऑर्डर्स</div>
@@ -446,10 +446,10 @@ const TrackOrder = () => {
 
         {/* Carrier Info */}
         <div className="mt-8 text-center">
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-600 dark:text-gray-300 text-sm">
             परिवहन साथी: <span className="font-semibold">{orderTracking.carrier}</span>
           </p>
-          <p className="text-gray-500 text-xs mt-1">
+          <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
             ट्रैकिंग जानकारी हर 30 सेकंड में अपडेट होती है
           </p>
         </div>

@@ -29,15 +29,15 @@ const SearchBar = ({ value, onChange, placeholder = "खोजें...", sugges
           }}
           className={`w-full px-6 py-4 pl-14 pr-16 rounded-full border-2 transition-all duration-300 ${
             isFocused 
-              ? 'border-emerald-500 bg-white shadow-lg' 
-              : 'border-emerald-200 bg-white/80'
+              ? 'border-emerald-500 bg-white dark:bg-gray-800 shadow-lg' 
+              : 'border-emerald-200 dark:border-emerald-700 bg-white/80 dark:bg-gray-800/80'
           } focus:outline-none text-lg`}
         />
         
         {/* Search Icon */}
         <svg 
           className={`absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 transition-colors duration-300 ${
-            isFocused ? 'text-emerald-500' : 'text-emerald-400'
+            isFocused ? 'text-emerald-500 dark:text-emerald-400' : 'text-emerald-400'
           }`} 
           fill="none" 
           stroke="currentColor" 
@@ -50,7 +50,7 @@ const SearchBar = ({ value, onChange, placeholder = "खोजें...", sugges
         {value && (
           <button
             onClick={() => onChange('')}
-            className="absolute right-5 top-1/2 transform -translate-y-1/2 text-emerald-400 hover:text-emerald-600 transition-colors duration-200"
+            className="absolute right-5 top-1/2 transform -translate-y-1/2 text-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -60,17 +60,17 @@ const SearchBar = ({ value, onChange, placeholder = "खोजें...", sugges
 
         {/* Animated Border */}
         <div className={`absolute inset-0 rounded-full transition-all duration-300 ${
-          isFocused ? 'ring-4 ring-emerald-100' : ''
+          isFocused ? 'ring-4 ring-emerald-100 dark:ring-emerald-800' : ''
         }`}></div>
       </div>
 
       {/* Suggestions Dropdown */}
       {showSuggestions && (
-        <div className='absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-emerald-200 overflow-hidden z-50 animate-fade-in'>
+        <div className='absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-emerald-200 dark:border-emerald-700 overflow-hidden z-50 animate-fade-in'>
           
           {/* Popular Searches */}
-          <div className='p-4 border-b border-emerald-100'>
-            <h4 className='text-sm font-semibold text-emerald-800 mb-3'>लोकप्रिय खोजें</h4>
+          <div className='p-4 border-b border-emerald-100 dark:border-gray-700'>
+            <h4 className='text-sm font-semibold text-emerald-800 dark:text-emerald-200 mb-3'>लोकप्रिय खोजें</h4>
             <div className='flex flex-wrap gap-2'>
               {popularSearches.slice(0, 6).map((search, index) => (
                 <button
@@ -79,7 +79,7 @@ const SearchBar = ({ value, onChange, placeholder = "खोजें...", sugges
                     onChange(search);
                     setShowSuggestions(false);
                   }}
-                  className='bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm hover:bg-emerald-100 transition-colors duration-200 border border-emerald-200'
+                  className='bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-sm hover:bg-emerald-100 dark:hover:bg-gray-700 transition-colors duration-200 border border-emerald-200 dark:border-emerald-700'
                 >
                   {search}
                 </button>
@@ -89,7 +89,7 @@ const SearchBar = ({ value, onChange, placeholder = "खोजें...", sugges
 
           {/* Quick Categories */}
           <div className='p-4'>
-            <h4 className='text-sm font-semibold text-emerald-800 mb-3'>त्वरित श्रेणियां</h4>
+            <h4 className='text-sm font-semibold text-emerald-800 dark:text-emerald-200 mb-3'>त्वरित श्रेणियां</h4>
             <div className='grid grid-cols-2 gap-2'>
               {[
                 { name: 'आभूषण', icon: '💎', href: '/categories/jewellery' },
@@ -99,10 +99,10 @@ const SearchBar = ({ value, onChange, placeholder = "खोजें...", sugges
               ].map((category, index) => (
                 <button
                   key={index}
-                  className='flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-50 transition-colors duration-200 text-left'
+                  className='flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 text-left'
                 >
                   <span className='text-xl'>{category.icon}</span>
-                  <span className='text-emerald-700 font-medium'>{category.name}</span>
+                  <span className='text-emerald-700 dark:text-emerald-300 font-medium'>{category.name}</span>
                 </button>
               ))}
             </div>

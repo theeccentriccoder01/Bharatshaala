@@ -112,7 +112,7 @@ const TermsOfService = () => {
         <link rel="canonical" href="https://bharatshaala.com/terms-of-service" />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Header */}
         <section className="bg-gradient-to-r from-gray-600 to-gray-800 text-white py-16">
           <div className="container mx-auto px-6">
@@ -134,7 +134,7 @@ const TermsOfService = () => {
         </section>
 
         {/* Introduction */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -143,7 +143,7 @@ const TermsOfService = () => {
                 transition={{ duration: 0.6 }}
                 className="prose prose-lg max-w-none"
               >
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
                   भारतशाला वेबसाइट में आपका स्वागत है। कृपया इन नियमों और शर्तों को ध्यान से पढ़ें 
                   क्योंकि ये आपके और भारतशाला के बीच कानूनी समझौते का निर्माण करती हैं। हमारी 
                   सेवाओं का उपयोग करके आप इन शर्तों से सहमत होते हैं।
@@ -154,7 +154,7 @@ const TermsOfService = () => {
         </section>
 
         {/* Terms Sections */}
-        <section className="py-12 bg-gray-50">
+        <section className="py-12 bg-gray-50 dark:bg-gray-900">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               {sections.map((section, index) => (
@@ -163,14 +163,14 @@ const TermsOfService = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-lg shadow-lg p-8 mb-8"
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-8"
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                     {index + 1}. {section.title}
                   </h2>
                   <div className="space-y-4">
                     {section.content.map((paragraph, paragraphIndex) => (
-                      <p key={paragraphIndex} className="text-gray-700 leading-relaxed">
+                      <p key={paragraphIndex} className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {paragraph}
                       </p>
                     ))}
@@ -182,26 +182,26 @@ const TermsOfService = () => {
         </section>
 
         {/* Contact Information */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-gray-50 rounded-lg p-8"
+                className="bg-gray-50 dark:bg-gray-900 rounded-lg p-8"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">संपर्क जानकारी</h2>
-                <p className="text-gray-700 mb-4">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">संपर्क जानकारी</h2>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
                   यदि आपके पास इन नियमों और शर्तों के बारे में कोई प्रश्न है, तो कृपया हमसे संपर्क करें:
                 </p>
-                <div className="space-y-2 text-gray-700">
+                <div className="space-y-2 text-gray-700 dark:text-gray-300">
                   <p><strong>कंपनी:</strong> भारतशाला प्राइवेट लिमिटेड</p>
                   <p><strong>ईमेल:</strong> legal@bharatshaala.com</p>
                   <p><strong>फोन:</strong> +91-XXXX-XXXXXX</p>
                   <p><strong>पता:</strong> [कंपनी का पूरा पता]</p>
                 </div>
-                <p className="text-sm text-gray-600 mt-6">
+                <p className="text-sm text-gray-600 dark:text-gray-300 mt-6">
                   हम आपके कानूनी प्रश्नों का उत्तर 5-7 कार्य दिवसों में देने का प्रयास करते हैं।
                 </p>
               </motion.div>
@@ -210,10 +210,10 @@ const TermsOfService = () => {
         </section>
 
         {/* Agreement Acceptance */}
-        <section className="py-8 bg-gray-100">
+        <section className="py-8 bg-gray-100 dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
                 इस वेबसाइट का उपयोग करके, आप पुष्टि करते हैं कि आपने इन नियमों और शर्तों को पढ़ा, समझा और स्वीकार किया है।
               </p>
             </div>

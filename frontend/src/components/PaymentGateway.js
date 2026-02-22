@@ -238,7 +238,7 @@ const PaymentGateway = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div className="bg-white dark:bg-gray-800 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
         
         {/* Header */}
         <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-6 text-white">
@@ -259,30 +259,30 @@ const PaymentGateway = ({
           <div className="p-8">
             
             {/* Order Summary */}
-            <div className="mb-8 p-6 bg-emerald-50 rounded-2xl border border-emerald-200">
-              <h3 className="text-lg font-bold text-emerald-800 mb-4">ऑर्डर सारांश</h3>
+            <div className="mb-8 p-6 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl border border-emerald-200 dark:border-emerald-700">
+              <h3 className="text-lg font-bold text-emerald-800 dark:text-emerald-200 mb-4">ऑर्डर सारांश</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-emerald-700">उत्पाद राशि:</span>
+                  <span className="text-emerald-700 dark:text-emerald-300">उत्पाद राशि:</span>
                   <span className="font-semibold">₹{orderDetails?.subtotal?.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-emerald-700">शिपिंग:</span>
+                  <span className="text-emerald-700 dark:text-emerald-300">शिपिंग:</span>
                   <span className="font-semibold">₹{orderDetails?.shipping?.toLocaleString()}</span>
                 </div>
                 {orderDetails?.discount > 0 && (
-                  <div className="flex justify-between text-green-600">
+                  <div className="flex justify-between text-green-600 dark:text-green-400">
                     <span>छूट:</span>
                     <span className="font-semibold">-₹{orderDetails?.discount?.toLocaleString()}</span>
                   </div>
                 )}
                 {selectedMethod === 'cod' && (
-                  <div className="flex justify-between text-orange-600">
+                  <div className="flex justify-between text-orange-600 dark:text-orange-400">
                     <span>COD शुल्क:</span>
                     <span className="font-semibold">₹25</span>
                   </div>
                 )}
-                <div className="border-t border-emerald-200 pt-2 flex justify-between text-lg font-bold text-emerald-800">
+                <div className="border-t border-emerald-200 dark:border-emerald-700 pt-2 flex justify-between text-lg font-bold text-emerald-800 dark:text-emerald-200">
                   <span>कुल राशि:</span>
                   <span>₹{(orderDetails?.total + (selectedMethod === 'cod' ? 25 : 0))?.toLocaleString()}</span>
                 </div>
@@ -291,7 +291,7 @@ const PaymentGateway = ({
 
             {/* Payment Methods */}
             <div className="mb-8">
-              <h3 className="text-xl font-bold text-emerald-800 mb-6">भुगतान विधि चुनें</h3>
+              <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">भुगतान विधि चुनें</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {paymentMethods.map((method) => (
                   <button
@@ -299,8 +299,8 @@ const PaymentGateway = ({
                     onClick={() => setSelectedMethod(method.id)}
                     className={`relative p-6 border-2 rounded-2xl transition-all duration-300 text-left ${
                       selectedMethod === method.id
-                        ? 'border-emerald-500 bg-emerald-50 shadow-lg scale-105'
-                        : 'border-emerald-200 hover:border-emerald-300 hover:bg-emerald-25'
+                        ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 shadow-lg scale-105'
+                        : 'border-emerald-200 dark:border-emerald-700 hover:border-emerald-300 dark:hover:border-emerald-600 hover:bg-emerald-25'
                     }`}
                   >
                     {method.popular && (
@@ -312,12 +312,12 @@ const PaymentGateway = ({
                     <div className="flex items-center space-x-4 mb-3">
                       <img src={method.icon} alt={method.name} className="w-8 h-8" />
                       <div>
-                        <h4 className="font-bold text-emerald-800">{method.name}</h4>
-                        <p className="text-sm text-emerald-600">{method.description}</p>
+                        <h4 className="font-bold text-emerald-800 dark:text-emerald-200">{method.name}</h4>
+                        <p className="text-sm text-emerald-600 dark:text-emerald-400">{method.description}</p>
                       </div>
                     </div>
                     
-                    <div className="text-sm text-gray-600 space-y-1">
+                    <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
                       <div>⏱️ प्रोसेसिंग टाइम: {method.processingTime}</div>
                       <div>💰 शुल्क: {method.fees > 0 ? `₹${method.fees}` : 'मुफ्त'}</div>
                     </div>
@@ -328,25 +328,25 @@ const PaymentGateway = ({
 
             {/* Payment Method Details */}
             {selectedMethod === 'upi' && (
-              <div className="mb-8 p-6 bg-blue-50 rounded-2xl border border-blue-200">
-                <h4 className="font-bold text-blue-800 mb-4">UPI भुगतान</h4>
+              <div className="mb-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-200 dark:border-blue-700">
+                <h4 className="font-bold text-blue-800 dark:text-blue-300 mb-4">UPI भुगतान</h4>
                 
                 {/* UPI Apps */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                   {upiApps.map((app) => (
                     <button
                       key={app.id}
-                      className="flex flex-col items-center p-4 border border-blue-200 rounded-xl hover:bg-blue-100 transition-colors duration-200"
+                      className="flex flex-col items-center p-4 border border-blue-200 dark:border-blue-700 rounded-xl hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors duration-200"
                     >
                       <img src={app.icon} alt={app.name} className="w-8 h-8 mb-2" />
-                      <span className="text-sm font-medium text-blue-800">{app.name}</span>
+                      <span className="text-sm font-medium text-blue-800 dark:text-blue-300">{app.name}</span>
                     </button>
                   ))}
                 </div>
                 
                 {/* UPI ID Input */}
                 <div>
-                  <label className="block text-blue-800 font-semibold mb-2">
+                  <label className="block text-blue-800 dark:text-blue-300 font-semibold mb-2">
                     UPI ID दर्ज करें
                   </label>
                   <input
@@ -355,21 +355,21 @@ const PaymentGateway = ({
                     onChange={(e) => setUpiId(e.target.value)}
                     placeholder="example@paytm"
                     className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none ${
-                      errors.upi ? 'border-red-300' : 'border-blue-200 focus:border-blue-500'
+                      errors.upi ? 'border-red-300 dark:border-red-600' : 'border-blue-200 dark:border-blue-700 focus:border-blue-500'
                     }`}
                   />
-                  {errors.upi && <p className="text-red-500 text-sm mt-1">{errors.upi}</p>}
+                  {errors.upi && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.upi}</p>}
                 </div>
               </div>
             )}
 
             {selectedMethod === 'card' && (
-              <div className="mb-8 p-6 bg-purple-50 rounded-2xl border border-purple-200">
-                <h4 className="font-bold text-purple-800 mb-4">कार्ड विवरण</h4>
+              <div className="mb-8 p-6 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-200 dark:border-purple-700">
+                <h4 className="font-bold text-purple-800 dark:text-purple-300 mb-4">कार्ड विवरण</h4>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="md:col-span-2">
-                    <label className="block text-purple-800 font-semibold mb-2">
+                    <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
                       कार्ड नंबर
                     </label>
                     <input
@@ -379,14 +379,14 @@ const PaymentGateway = ({
                       placeholder="1234 5678 9012 3456"
                       maxLength="19"
                       className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none font-mono ${
-                        errors.number ? 'border-red-300' : 'border-purple-200 focus:border-purple-500'
+                        errors.number ? 'border-red-300 dark:border-red-600' : 'border-purple-200 dark:border-purple-700 focus:border-purple-500'
                       }`}
                     />
-                    {errors.number && <p className="text-red-500 text-sm mt-1">{errors.number}</p>}
+                    {errors.number && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.number}</p>}
                   </div>
                   
                   <div>
-                    <label className="block text-purple-800 font-semibold mb-2">
+                    <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
                       एक्सपायरी डेट
                     </label>
                     <input
@@ -396,14 +396,14 @@ const PaymentGateway = ({
                       placeholder="MM/YY"
                       maxLength="5"
                       className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none font-mono ${
-                        errors.expiry ? 'border-red-300' : 'border-purple-200 focus:border-purple-500'
+                        errors.expiry ? 'border-red-300 dark:border-red-600' : 'border-purple-200 dark:border-purple-700 focus:border-purple-500'
                       }`}
                     />
-                    {errors.expiry && <p className="text-red-500 text-sm mt-1">{errors.expiry}</p>}
+                    {errors.expiry && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.expiry}</p>}
                   </div>
                   
                   <div>
-                    <label className="block text-purple-800 font-semibold mb-2">
+                    <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
                       CVV
                     </label>
                     <input
@@ -413,14 +413,14 @@ const PaymentGateway = ({
                       placeholder="123"
                       maxLength="4"
                       className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none font-mono ${
-                        errors.cvv ? 'border-red-300' : 'border-purple-200 focus:border-purple-500'
+                        errors.cvv ? 'border-red-300 dark:border-red-600' : 'border-purple-200 dark:border-purple-700 focus:border-purple-500'
                       }`}
                     />
-                    {errors.cvv && <p className="text-red-500 text-sm mt-1">{errors.cvv}</p>}
+                    {errors.cvv && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.cvv}</p>}
                   </div>
                   
                   <div className="md:col-span-2">
-                    <label className="block text-purple-800 font-semibold mb-2">
+                    <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
                       कार्डधारक का नाम
                     </label>
                     <input
@@ -429,30 +429,30 @@ const PaymentGateway = ({
                       onChange={(e) => handleCardInputChange('name', e.target.value)}
                       placeholder="कार्ड पर लिखा नाम"
                       className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none ${
-                        errors.name ? 'border-red-300' : 'border-purple-200 focus:border-purple-500'
+                        errors.name ? 'border-red-300 dark:border-red-600' : 'border-purple-200 dark:border-purple-700 focus:border-purple-500'
                       }`}
                     />
-                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                    {errors.name && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.name}</p>}
                   </div>
                 </div>
               </div>
             )}
 
             {selectedMethod === 'cod' && (
-              <div className="mb-8 p-6 bg-orange-50 rounded-2xl border border-orange-200">
-                <h4 className="font-bold text-orange-800 mb-4">Cash on Delivery</h4>
+              <div className="mb-8 p-6 bg-orange-50 dark:bg-orange-900/20 rounded-2xl border border-orange-200 dark:border-orange-700">
+                <h4 className="font-bold text-orange-800 dark:text-orange-300 mb-4">Cash on Delivery</h4>
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xl">💵</span>
                   </div>
                   <div>
-                    <p className="text-orange-800 font-medium">डिलीवरी के समय भुगतान करें</p>
-                    <p className="text-orange-600 text-sm">अतिरिक्त शुल्क: ₹25</p>
+                    <p className="text-orange-800 dark:text-orange-300 font-medium">डिलीवरी के समय भुगतान करें</p>
+                    <p className="text-orange-600 dark:text-orange-400 text-sm">अतिरिक्त शुल्क: ₹25</p>
                   </div>
                 </div>
-                <div className="bg-orange-100 border border-orange-300 rounded-xl p-4">
-                  <h5 className="font-semibold text-orange-800 mb-2">📋 COD नियम:</h5>
-                  <ul className="text-sm text-orange-700 space-y-1">
+                <div className="bg-orange-100 dark:bg-orange-900/20 border border-orange-300 dark:border-orange-600 rounded-xl p-4">
+                  <h5 className="font-semibold text-orange-800 dark:text-orange-300 mb-2">📋 COD नियम:</h5>
+                  <ul className="text-sm text-orange-700 dark:text-orange-400 space-y-1">
                     <li>• सटीक राशि तैयार रखें</li>
                     <li>• डिलीवरी बॉय के पास चेंज नहीं होगा</li>
                     <li>• ऑर्डर refuse करने पर ₹50 पेनल्टी</li>
@@ -463,12 +463,12 @@ const PaymentGateway = ({
             )}
 
             {/* Security Info */}
-            <div className="mb-8 p-6 bg-green-50 rounded-2xl border border-green-200">
-              <h4 className="font-bold text-green-800 mb-3 flex items-center space-x-2">
+            <div className="mb-8 p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl border border-green-200 dark:border-green-700">
+              <h4 className="font-bold text-green-800 dark:text-green-400 mb-3 flex items-center space-x-2">
                 <span>🔒</span>
                 <span>सुरक्षा गारंटी</span>
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-green-700">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-green-700 dark:text-green-400">
                 <div className="flex items-center space-x-2">
                   <span>✅</span>
                   <span>256-bit SSL एन्क्रिप्शन</span>
@@ -488,7 +488,7 @@ const PaymentGateway = ({
             <div className="flex items-center justify-between">
               <button
                 onClick={onCancel}
-                className="px-8 py-3 border-2 border-emerald-500 text-emerald-600 rounded-xl hover:bg-emerald-50 transition-colors duration-300"
+                className="px-8 py-3 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 rounded-xl hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-300"
               >
                 रद्द करें
               </button>
@@ -509,19 +509,19 @@ const PaymentGateway = ({
         {paymentStep === 'processing' && (
           <div className="p-8 text-center">
             <LoadingSpinner />
-            <h3 className="text-2xl font-bold text-emerald-800 mt-6 mb-4">
+            <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mt-6 mb-4">
               भुगतान प्रोसेस हो रहा है...
             </h3>
-            <p className="text-emerald-600 mb-8">
+            <p className="text-emerald-600 dark:text-emerald-400 mb-8">
               कृपया प्रतीक्षा करें, यह प्रक्रिया कुछ समय ले सकती है
             </p>
             
-            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-              <div className="flex items-center justify-center space-x-2 text-yellow-800">
+            <div className="bg-yellow-50 border border-yellow-200 dark:border-yellow-700 rounded-xl p-6">
+              <div className="flex items-center justify-center space-x-2 text-yellow-800 dark:text-yellow-300">
                 <span>⚠️</span>
                 <span className="font-semibold">महत्वपूर्ण:</span>
               </div>
-              <p className="text-yellow-700 mt-2">
+              <p className="text-yellow-700 dark:text-yellow-400 mt-2">
                 इस पेज को बंद न करें या refresh न करें
               </p>
             </div>
@@ -535,30 +535,30 @@ const PaymentGateway = ({
               <span className="text-white text-3xl">✅</span>
             </div>
             
-            <h3 className="text-2xl font-bold text-green-800 mb-4">
+            <h3 className="text-2xl font-bold text-green-800 dark:text-green-400 mb-4">
               भुगतान सफल!
             </h3>
-            <p className="text-green-600 mb-6">
+            <p className="text-green-600 dark:text-green-400 mb-6">
               आपका भुगतान सफलतापूर्वक पूरा हो गया है
             </p>
             
-            <div className="bg-green-50 border border-green-200 rounded-xl p-6 mb-6">
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-xl p-6 mb-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="text-green-600">Transaction ID:</span>
-                  <div className="font-mono font-bold text-green-800">{transactionId}</div>
+                  <span className="text-green-600 dark:text-green-400">Transaction ID:</span>
+                  <div className="font-mono font-bold text-green-800 dark:text-green-400">{transactionId}</div>
                 </div>
                 <div>
-                  <span className="text-green-600">राशि:</span>
-                  <div className="font-bold text-green-800">₹{(orderDetails?.total + (selectedMethod === 'cod' ? 25 : 0))?.toLocaleString()}</div>
+                  <span className="text-green-600 dark:text-green-400">राशि:</span>
+                  <div className="font-bold text-green-800 dark:text-green-400">₹{(orderDetails?.total + (selectedMethod === 'cod' ? 25 : 0))?.toLocaleString()}</div>
                 </div>
                 <div>
-                  <span className="text-green-600">भुगतान विधि:</span>
-                  <div className="font-bold text-green-800">{paymentMethods.find(m => m.id === selectedMethod)?.name}</div>
+                  <span className="text-green-600 dark:text-green-400">भुगतान विधि:</span>
+                  <div className="font-bold text-green-800 dark:text-green-400">{paymentMethods.find(m => m.id === selectedMethod)?.name}</div>
                 </div>
                 <div>
-                  <span className="text-green-600">समय:</span>
-                  <div className="font-bold text-green-800">{new Date().toLocaleString('hi-IN')}</div>
+                  <span className="text-green-600 dark:text-green-400">समय:</span>
+                  <div className="font-bold text-green-800 dark:text-green-400">{new Date().toLocaleString('hi-IN')}</div>
                 </div>
               </div>
             </div>
@@ -582,13 +582,13 @@ const PaymentGateway = ({
             <h3 className="text-2xl font-bold text-red-800 mb-4">
               भुगतान असफल
             </h3>
-            <p className="text-red-600 mb-6">
+            <p className="text-red-600 dark:text-red-400 mb-6">
               आपका भुगतान पूरा नहीं हो सका, कृपया पुनः प्रयास करें
             </p>
             
-            <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-xl p-6 mb-6">
               <h4 className="font-semibold text-red-800 mb-2">संभावित कारण:</h4>
-              <ul className="text-sm text-red-700 space-y-1 text-left">
+              <ul className="text-sm text-red-700 dark:text-red-400 space-y-1 text-left">
                 <li>• अपर्याप्त बैलेंस</li>
                 <li>• इंटरनेट कनेक्शन की समस्या</li>
                 <li>• बैंक सर्वर डाउन</li>
@@ -606,7 +606,7 @@ const PaymentGateway = ({
               
               <button
                 onClick={onCancel}
-                className="border-2 border-gray-300 text-gray-600 px-6 py-3 rounded-xl hover:bg-gray-50 transition-colors duration-300"
+                className="border-2 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 px-6 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-300"
               >
                 बाद में करें
               </button>

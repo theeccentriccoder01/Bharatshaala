@@ -126,7 +126,7 @@ const Shop1 = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         
         {/* Notification */}
         {notification && (
@@ -145,31 +145,31 @@ const Shop1 = () => {
               {/* Shop Info */}
               <div className='lg:col-span-2'>
 
-                <div className='bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 inline-flex items-center space-x-2 mb-4'>
-                  <span className='text-yellow-900'>🏆</span>
-                  <span className='text-yellow-900 font-medium text-sm'>प्रमाणित विक्रेता</span>
+                <div className='bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-full px-4 py-2 inline-flex items-center space-x-2 mb-4'>
+                  <span className='text-yellow-900 dark:text-yellow-200'>🏆</span>
+                  <span className='text-yellow-900 dark:text-yellow-200 font-medium text-sm'>प्रमाणित विक्रेता</span>
                 </div>
                 
-                <h1 className='text-4xl md:text-5xl font-bold text-yellow-900 mb-2'>
+                <h1 className='text-4xl md:text-5xl font-bold text-yellow-900 dark:text-yellow-200 mb-2'>
                   {shopInfo.name}
                 </h1>
-                <h2 className='text-xl text-yellow-800 mb-4'>{shopInfo.nameEn}</h2>
+                <h2 className='text-xl text-yellow-800 dark:text-yellow-200 mb-4'>{shopInfo.nameEn}</h2>
                 
-                <p className='text-lg text-yellow-800 mb-6 leading-relaxed'>
+                <p className='text-lg text-yellow-800 dark:text-yellow-200 mb-6 leading-relaxed'>
                   {shopInfo.description}
                 </p>
 
                 <div className='flex flex-wrap gap-4 mb-6'>
-                  <div className='bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
+                  <div className='bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
                     <span>⭐</span>
                     <span className='font-semibold'>{shopInfo.rating}</span>
                     <span className='text-sm'>({shopInfo.reviews} समीक्षाएं)</span>
                   </div>
-                  <div className='bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
+                  <div className='bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
                     <span>📅</span>
                     <span className='text-sm'>स्थापना {shopInfo.established}</span>
                   </div>
-                  <div className='bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
+                  <div className='bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
                     <span>📍</span>
                     <span className='text-sm'>{shopInfo.location}</span>
                   </div>
@@ -184,7 +184,7 @@ const Shop1 = () => {
                     <span>💬</span>
                     <span>WhatsApp</span>
                   </button>
-                  <button className='bg-white/30 backdrop-blur-sm text-yellow-900 px-6 py-3 rounded-full font-semibold hover:bg-white/40 transition-colors duration-300'>
+                  <button className='bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm text-yellow-900 dark:text-yellow-200 px-6 py-3 rounded-full font-semibold hover:bg-white/40 transition-colors duration-300'>
                     दुकान के बारे में
                   </button>
                 </div>
@@ -193,7 +193,7 @@ const Shop1 = () => {
               {/* Shop Image/Logo */}
               <div className='text-center'>
                 <div className='relative'>
-                  <div className='w-48 h-48 mx-auto bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border-4 border-white/50'>
+                  <div className='w-48 h-48 mx-auto bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-full flex items-center justify-center border-4 border-white/50'>
                     <span className='text-6xl'>💎</span>
                   </div>
                   <div className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-yellow-600 text-white px-4 py-1 rounded-full text-sm font-medium'>
@@ -206,16 +206,16 @@ const Shop1 = () => {
         </div>
 
         {/* Shop Credentials */}
-        <div className='bg-white/80 backdrop-blur-sm border-b border-emerald-200'>
+        <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-emerald-200 dark:border-emerald-700'>
           <div className='max-w-7xl mx-auto px-6 py-6'>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
               
               {/* Specialties */}
               <div>
-                <h3 className='font-semibold text-emerald-800 mb-3'>विशेषताएं</h3>
+                <h3 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-3'>विशेषताएं</h3>
                 <div className='flex flex-wrap gap-2'>
                   {shopInfo.specialties.map((specialty, index) => (
-                    <span key={index} className='bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm border border-emerald-200'>
+                    <span key={index} className='bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-sm border border-emerald-200 dark:border-emerald-700'>
                       {specialty}
                     </span>
                   ))}
@@ -224,10 +224,10 @@ const Shop1 = () => {
 
               {/* Awards */}
               <div>
-                <h3 className='font-semibold text-emerald-800 mb-3'>पुरस्कार</h3>
+                <h3 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-3'>पुरस्कार</h3>
                 <div className='space-y-1'>
                   {shopInfo.awards.slice(0, 3).map((award, index) => (
-                    <div key={index} className='text-sm text-emerald-600 flex items-center space-x-2'>
+                    <div key={index} className='text-sm text-emerald-600 dark:text-emerald-400 flex items-center space-x-2'>
                       <span>🏆</span>
                       <span>{award}</span>
                     </div>
@@ -237,10 +237,10 @@ const Shop1 = () => {
 
               {/* Certifications */}
               <div>
-                <h3 className='font-semibold text-emerald-800 mb-3'>प्रमाणन</h3>
+                <h3 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-3'>प्रमाणन</h3>
                 <div className='space-y-1'>
                   {shopInfo.certifications.map((cert, index) => (
-                    <div key={index} className='text-sm text-emerald-600 flex items-center space-x-2'>
+                    <div key={index} className='text-sm text-emerald-600 dark:text-emerald-400 flex items-center space-x-2'>
                       <span>✅</span>
                       <span>{cert}</span>
                     </div>
@@ -253,12 +253,12 @@ const Shop1 = () => {
 
         {/* Filters and Sort */}
         <div className='max-w-7xl mx-auto px-6 py-8'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg mb-8'>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg mb-8'>
             <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-6'>
               
               {/* Categories */}
               <div>
-                <h3 className='text-lg font-semibold text-emerald-800 mb-4'>श्रेणी चुनें</h3>
+                <h3 className='text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-4'>श्रेणी चुनें</h3>
                 <div className='flex flex-wrap gap-3'>
                   {categories.map((category) => (
                     <button
@@ -267,7 +267,7 @@ const Shop1 = () => {
                       className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
                         selectedCategory === category.id
                           ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-lg scale-105'
-                          : 'bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-200'
+                          : 'bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700'
                       }`}
                     >
                       <span>{category.icon}</span>
@@ -279,11 +279,11 @@ const Shop1 = () => {
 
               {/* Sort */}
               <div>
-                <h3 className='text-lg font-semibold text-emerald-800 mb-4'>क्रमबद्ध करें</h3>
+                <h3 className='text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-4'>क्रमबद्ध करें</h3>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className='px-4 py-2 rounded-lg border border-emerald-200 focus:border-emerald-500 focus:outline-none bg-white'
+                  className='px-4 py-2 rounded-lg border border-emerald-200 dark:border-emerald-700 focus:border-emerald-500 dark:focus:border-emerald-400 focus:outline-none bg-white dark:bg-gray-800'
                 >
                   <option value="name">नाम के अनुसार</option>
                   <option value="price-low">कम कीमत पहले</option>
@@ -297,7 +297,7 @@ const Shop1 = () => {
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
             {sortedData.map((item, index) => (
               <div key={item.id} className='group'>
-                <div className='bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2'>
+                <div className='bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2'>
                   
                   {/* Product Image */}
                   <div className='relative h-64 overflow-hidden'>
@@ -327,7 +327,7 @@ const Shop1 = () => {
 
                     {/* Quick View Overlay */}
                     <div className='absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
-                      <button className='bg-white text-emerald-600 px-6 py-2 rounded-full font-semibold transform scale-0 group-hover:scale-100 transition-transform duration-300'>
+                      <button className='bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 px-6 py-2 rounded-full font-semibold transform scale-0 group-hover:scale-100 transition-transform duration-300'>
                         विस्तार से देखें
                       </button>
                     </div>
@@ -335,16 +335,16 @@ const Shop1 = () => {
 
                   {/* Product Details */}
                   <div className='p-6'>
-                    <h3 className='font-bold text-xl text-gray-800 mb-2 group-hover:text-emerald-600 transition-colors duration-300'>
+                    <h3 className='font-bold text-xl text-gray-800 dark:text-gray-100 mb-2 group-hover:text-emerald-600 dark:text-emerald-400 transition-colors duration-300'>
                       {item.name}
                     </h3>
-                    <p className='text-gray-600 text-sm mb-4 line-clamp-2'>
+                    <p className='text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2'>
                       {item.description}
                     </p>
 
                     {/* Price Section */}
                     <div className='flex items-center space-x-3 mb-4'>
-                      <span className='text-2xl font-bold text-emerald-600'>
+                      <span className='text-2xl font-bold text-emerald-600 dark:text-emerald-400'>
                         ₹{item.price.toLocaleString()}
                       </span>
                       {item.discount > 0 && (
@@ -361,7 +361,7 @@ const Shop1 = () => {
                       className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 ${
                         item.inStock
                           ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white hover:shadow-lg transform hover:scale-105'
-                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                          : 'bg-gray-300 text-gray-500 dark:text-gray-400 cursor-not-allowed'
                       }`}
                     >
                       {item.inStock ? 'कार्ट में जोड़ें' : 'स्टॉक में नहीं'}
@@ -376,8 +376,8 @@ const Shop1 = () => {
           {sortedData.length === 0 && (
             <div className='text-center py-20'>
               <div className='text-6xl mb-4'>🔍</div>
-              <h3 className='text-2xl font-bold text-emerald-800 mb-2'>कोई उत्पाद नहीं मिला</h3>
-              <p className='text-emerald-600'>कृपया अपना फ़िल्टर बदलें या बाद में कोशिश करें</p>
+              <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2'>कोई उत्पाद नहीं मिला</h3>
+              <p className='text-emerald-600 dark:text-emerald-400'>कृपया अपना फ़िल्टर बदलें या बाद में कोशिश करें</p>
             </div>
           )}
 
@@ -389,17 +389,17 @@ const Shop1 = () => {
             </div>
             
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8 text-center'>
-              <div className='bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>📞</div>
                 <h4 className='text-lg font-semibold mb-2'>फोन</h4>
                 <p className='text-emerald-100'>{shopInfo.phone}</p>
               </div>
-              <div className='bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>💬</div>
                 <h4 className='text-lg font-semibold mb-2'>WhatsApp</h4>
                 <p className='text-emerald-100'>{shopInfo.whatsapp}</p>
               </div>
-              <div className='bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>📍</div>
                 <h4 className='text-lg font-semibold mb-2'>पता</h4>
                 <p className='text-emerald-100'>{shopInfo.location}</p>

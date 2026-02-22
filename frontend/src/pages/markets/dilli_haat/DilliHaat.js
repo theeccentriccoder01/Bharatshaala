@@ -177,43 +177,43 @@ const DilliHaat = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
         {/* Hero Section with unique Dilli Haat theme */}
         <div className='relative overflow-hidden'>
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
-              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-orange-200'>
+              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-orange-100 dark:from-orange-900/30 to-red-100 dark:to-red-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-orange-200 dark:border-orange-700'>
                 <span className='text-2xl'>🇮🇳</span>
-                <span className='text-orange-800 font-bold'>भारत का मिनी इंडिया</span>
+                <span className='text-orange-800 dark:text-orange-200 font-bold'>भारत का मिनी इंडिया</span>
               </div>
               
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-orange-700 bg-clip-text text-transparent mb-4 pt-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
-              <h2 className='text-2xl md:text-3xl text-emerald-700 font-semibold mb-6'>
+              <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Dilli Haat, {marketInfo.cityHindi}
               </h2>
               
-              <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
+              <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
                 भारत सरकार का एक अनूठा प्रयास - जहाँ पूरे देश की कला, संस्कृति और स्वाद एक ही छत के नीचे मिलते हैं। 
                 यहाँ हर राज्य के कारीगर अपने हुनर का प्रदर्शन करते हैं। गुजरात से असम तक, राजस्थान से केरल तक - 
                 सभी की अनूठी विरासत यहाँ संजोई गई है।
               </p>
 
               <div className='grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12'>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200'>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200 dark:border-orange-700'>
                   <div className='text-2xl font-bold text-orange-600'>{marketInfo.established}</div>
                   <div className='text-orange-600 text-sm font-medium'>स्थापना</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200'>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200 dark:border-orange-700'>
                   <div className='text-2xl font-bold text-orange-600'>{marketInfo.totalShops.toLocaleString()}+</div>
                   <div className='text-orange-600 text-sm font-medium'>स्टॉल्स</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200'>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200 dark:border-orange-700'>
                   <div className='text-2xl font-bold text-orange-600'>28</div>
                   <div className='text-orange-600 text-sm font-medium'>राज्य प्रतिनिधित्व</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200'>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-orange-200 dark:border-orange-700'>
                   <div className='text-2xl font-bold text-orange-600'>31</div>
                   <div className='text-orange-600 text-sm font-medium'>साल पुराना</div>
                 </div>
@@ -233,22 +233,22 @@ const DilliHaat = () => {
             </div>
             
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🎯</div>
                 <h4 className='text-lg font-semibold mb-2'>मिशन</h4>
                 <p className='text-orange-100 text-sm'>कारीगरों को प्रत्यक्ष बाज़ार</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🌍</div>
                 <h4 className='text-lg font-semibold mb-2'>वैश्विक पहुंच</h4>
                 <p className='text-orange-100 text-sm'>अंतर्राष्ट्रीय पर्यटकों का केंद्र</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>💰</div>
                 <h4 className='text-lg font-semibold mb-2'>आर्थिक सशक्तिकरण</h4>
                 <p className='text-orange-100 text-sm'>कारीगरों की आजीविका</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🏆</div>
                 <h4 className='text-lg font-semibold mb-2'>गुणवत्ता</h4>
                 <p className='text-orange-100 text-sm'>प्रमाणित उत्पाद</p>
@@ -259,8 +259,8 @@ const DilliHaat = () => {
 
         {/* Category Filter */}
         <div className='max-w-7xl mx-auto px-6 mb-12'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-            <h3 className='text-xl font-bold text-emerald-800 mb-4 text-center'>स्टॉल श्रेणियां</h3>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+            <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4 text-center'>स्टॉल श्रेणियां</h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3'>
               {categories.map((category) => (
                 <button
@@ -269,15 +269,15 @@ const DilliHaat = () => {
                   className={`flex flex-col items-center space-y-2 p-4 rounded-xl transition-all duration-300 ${
                     activeFilter === category.id
                       ? 'bg-gradient-to-br from-orange-500 to-red-500 text-white shadow-lg scale-105'
-                      : 'bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-200 hover:border-emerald-300'
+                      : 'bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-300'
                   }`}
                 >
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     activeFilter === category.id 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-emerald-100 text-emerald-600'
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
+                      : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}
                   </span>
@@ -290,8 +290,8 @@ const DilliHaat = () => {
         {/* Shops Grid */}
         <div className='max-w-7xl mx-auto px-6 pb-20'>
           <div className='text-center mb-12'>
-            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>मुख्य स्टॉल्स</h3>
-            <p className='text-xl text-emerald-600'>
+            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>मुख्य स्टॉल्स</h3>
+            <p className='text-xl text-emerald-600 dark:text-emerald-400'>
               भारत के विभिन्न राज्यों की कला और संस्कृति
             </p>
           </div>
@@ -312,8 +312,8 @@ const DilliHaat = () => {
           ) : (
             <div className='text-center py-20'>
               <div className='text-6xl mb-4'>🔍</div>
-              <h3 className='text-2xl font-bold text-emerald-800 mb-2'>कोई स्टॉल नहीं मिला</h3>
-              <p className='text-emerald-600'>इस श्रेणी में कोई स्टॉल उपलब्ध नहीं है</p>
+              <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2'>कोई स्टॉल नहीं मिला</h3>
+              <p className='text-emerald-600 dark:text-emerald-400'>इस श्रेणी में कोई स्टॉल उपलब्ध नहीं है</p>
             </div>
           )}
         </div>

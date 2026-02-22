@@ -158,7 +158,7 @@ const VendorAnalytics = () => {
   };
 
   const getGrowthColor = (growth) => {
-    return growth >= 0 ? 'text-green-600' : 'text-red-600';
+    return growth >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400';
   };
 
   const getGrowthIcon = (growth) => {
@@ -171,23 +171,23 @@ const VendorAnalytics = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         <div className="max-w-7xl mx-auto px-6 py-8">
           
           {/* Header */}
           <div className="mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+                <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                   एनालिटिक्स डैशबोर्ड
                 </h1>
-                <p className="text-emerald-600 text-lg">
+                <p className="text-emerald-600 dark:text-emerald-400 text-lg">
                   आपके बिज़नेस की विस्तृत जानकारी और ट्रेंड्स
                 </p>
               </div>
               
               {/* Period Selector */}
-              <div className="flex bg-white rounded-xl p-1 shadow-lg">
+              <div className="flex bg-white dark:bg-gray-800 rounded-xl p-1 shadow-lg">
                 {periods.map((period) => (
                   <button
                     key={period.id}
@@ -195,7 +195,7 @@ const VendorAnalytics = () => {
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                       selectedPeriod === period.id
                         ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-md'
-                        : 'text-emerald-600 hover:bg-emerald-50'
+                        : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                     }`}
                   >
                     <span>{period.icon}</span>
@@ -343,8 +343,8 @@ const VendorAnalytics = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
                 {/* Revenue by Category */}
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-bold text-emerald-800 mb-6">श्रेणी के अनुसार राजस्व</h3>
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">श्रेणी के अनुसार राजस्व</h3>
                   <div className="space-y-4">
                     {analyticsData?.revenue?.byCategory?.map((item, index) => (
                       <div key={index} className="flex items-center justify-between">
@@ -355,11 +355,11 @@ const VendorAnalytics = () => {
                             index === 2 ? 'from-purple-400 to-pink-500' :
                             'from-orange-400 to-red-500'
                           }`}></div>
-                          <span className="font-medium text-gray-800 capitalize">{item.category}</span>
+                          <span className="font-medium text-gray-800 dark:text-gray-100 capitalize">{item.category}</span>
                         </div>
                         <div className="text-right">
-                          <div className="font-bold text-gray-800">{formatCurrency(item.amount)}</div>
-                          <div className="text-sm text-gray-500">{item.percentage}%</div>
+                          <div className="font-bold text-gray-800 dark:text-gray-100">{formatCurrency(item.amount)}</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">{item.percentage}%</div>
                         </div>
                       </div>
                     ))}
@@ -367,11 +367,11 @@ const VendorAnalytics = () => {
                 </div>
 
                 {/* Order Status */}
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-bold text-emerald-800 mb-6">ऑर्डर स्थिति</h3>
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">ऑर्डर स्थिति</h3>
                   <div className="space-y-4">
                     {Object.entries(analyticsData?.orders?.status || {}).map(([status, count], index) => (
-                      <div key={status} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                      <div key={status} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-xl">
                         <div className="flex items-center space-x-3">
                           <div className={`w-3 h-3 rounded-full ${
                             status === 'pending' ? 'bg-yellow-500' :
@@ -381,7 +381,7 @@ const VendorAnalytics = () => {
                             status === 'cancelled' ? 'bg-red-500' :
                             'bg-orange-500'
                           }`}></div>
-                          <span className="font-medium text-gray-800 capitalize">
+                          <span className="font-medium text-gray-800 dark:text-gray-100 capitalize">
                             {status === 'pending' ? 'लंबित' :
                              status === 'processing' ? 'प्रक्रिया में' :
                              status === 'shipped' ? 'भेजे गए' :
@@ -389,7 +389,7 @@ const VendorAnalytics = () => {
                              status === 'cancelled' ? 'रद्द' : 'वापस'}
                           </span>
                         </div>
-                        <span className="font-bold text-gray-800">{count}</span>
+                        <span className="font-bold text-gray-800 dark:text-gray-100">{count}</span>
                       </div>
                     ))}
                   </div>
@@ -397,35 +397,35 @@ const VendorAnalytics = () => {
               </div>
 
               {/* Top Products */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                <h3 className="text-xl font-bold text-emerald-800 mb-6">सबसे ज्यादा बिकने वाले उत्पाद</h3>
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">सबसे ज्यादा बिकने वाले उत्पाद</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-emerald-200">
-                        <th className="text-left py-3 px-4 font-semibold text-emerald-800">उत्पाद</th>
-                        <th className="text-center py-3 px-4 font-semibold text-emerald-800">बिक्री</th>
-                        <th className="text-center py-3 px-4 font-semibold text-emerald-800">राजस्व</th>
-                        <th className="text-center py-3 px-4 font-semibold text-emerald-800">व्यूज़</th>
-                        <th className="text-center py-3 px-4 font-semibold text-emerald-800">कन्वर्शन</th>
+                      <tr className="border-b border-emerald-200 dark:border-emerald-700">
+                        <th className="text-left py-3 px-4 font-semibold text-emerald-800 dark:text-emerald-200">उत्पाद</th>
+                        <th className="text-center py-3 px-4 font-semibold text-emerald-800 dark:text-emerald-200">बिक्री</th>
+                        <th className="text-center py-3 px-4 font-semibold text-emerald-800 dark:text-emerald-200">राजस्व</th>
+                        <th className="text-center py-3 px-4 font-semibold text-emerald-800 dark:text-emerald-200">व्यूज़</th>
+                        <th className="text-center py-3 px-4 font-semibold text-emerald-800 dark:text-emerald-200">कन्वर्शन</th>
                       </tr>
                     </thead>
                     <tbody>
                       {analyticsData?.topProducts?.map((product, index) => (
-                        <tr key={product.id} className="border-b border-emerald-100 hover:bg-emerald-50">
+                        <tr key={product.id} className="border-b border-emerald-100 dark:border-emerald-700 hover:bg-emerald-50 dark:hover:bg-gray-700">
                           <td className="py-4 px-4">
                             <div className="flex items-center space-x-3">
                               <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                                 {index + 1}
                               </div>
-                              <span className="font-medium text-gray-800">{product.name}</span>
+                              <span className="font-medium text-gray-800 dark:text-gray-100">{product.name}</span>
                             </div>
                           </td>
-                          <td className="text-center py-4 px-4 font-medium text-gray-800">{product.sales}</td>
-                          <td className="text-center py-4 px-4 font-medium text-gray-800">{formatCurrency(product.revenue)}</td>
-                          <td className="text-center py-4 px-4 font-medium text-gray-800">{product.views}</td>
+                          <td className="text-center py-4 px-4 font-medium text-gray-800 dark:text-gray-100">{product.sales}</td>
+                          <td className="text-center py-4 px-4 font-medium text-gray-800 dark:text-gray-100">{formatCurrency(product.revenue)}</td>
+                          <td className="text-center py-4 px-4 font-medium text-gray-800 dark:text-gray-100">{product.views}</td>
                           <td className="text-center py-4 px-4">
-                            <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-sm font-medium">
+                            <span className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-full text-sm font-medium">
                               {((product.sales / product.views) * 100).toFixed(1)}%
                             </span>
                           </td>
@@ -440,8 +440,8 @@ const VendorAnalytics = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
                 {/* Traffic Sources */}
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-bold text-emerald-800 mb-6">ट्रैफिक स्रोत</h3>
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">ट्रैफिक स्रोत</h3>
                   <div className="space-y-4">
                     {analyticsData?.traffic?.sources?.map((source, index) => (
                       <div key={index} className="flex items-center justify-between">
@@ -452,11 +452,11 @@ const VendorAnalytics = () => {
                             index === 2 ? 'bg-purple-500' :
                             index === 3 ? 'bg-orange-500' : 'bg-red-500'
                           }`}></div>
-                          <span className="font-medium text-gray-800">{source.source}</span>
+                          <span className="font-medium text-gray-800 dark:text-gray-100">{source.source}</span>
                         </div>
                         <div className="text-right">
-                          <div className="font-bold text-gray-800">{source.visits.toLocaleString()}</div>
-                          <div className="text-sm text-gray-500">{source.percentage}%</div>
+                          <div className="font-bold text-gray-800 dark:text-gray-100">{source.visits.toLocaleString()}</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">{source.percentage}%</div>
                         </div>
                       </div>
                     ))}
@@ -464,8 +464,8 @@ const VendorAnalytics = () => {
                 </div>
 
                 {/* Customer Geography */}
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-bold text-emerald-800 mb-6">ग्राहक भूगोल</h3>
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">ग्राहक भूगोल</h3>
                   <div className="space-y-4">
                     {analyticsData?.customers?.geography?.map((location, index) => (
                       <div key={index} className="flex items-center justify-between">
@@ -476,11 +476,11 @@ const VendorAnalytics = () => {
                             index === 2 ? 'bg-purple-500' :
                             index === 3 ? 'bg-orange-500' : 'bg-red-500'
                           }`}></div>
-                          <span className="font-medium text-gray-800">{location.state}</span>
+                          <span className="font-medium text-gray-800 dark:text-gray-100">{location.state}</span>
                         </div>
                         <div className="text-right">
-                          <div className="font-bold text-gray-800">{location.count}</div>
-                          <div className="text-sm text-gray-500">{location.percentage}%</div>
+                          <div className="font-bold text-gray-800 dark:text-gray-100">{location.count}</div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">{location.percentage}%</div>
                         </div>
                       </div>
                     ))}

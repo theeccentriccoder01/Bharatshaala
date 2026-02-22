@@ -156,7 +156,7 @@ const Support = () => {
         <link rel="canonical" href="https://bharatshaala.com/support" />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Header */}
         <section className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-16 pt-32">
           <div className="container mx-auto px-6">
@@ -175,7 +175,7 @@ const Support = () => {
         </section>
 
         {/* Support Tabs */}
-        <section className="py-8 bg-white border-b">
+        <section className="py-8 bg-white dark:bg-gray-800 border-b">
           <div className="container mx-auto px-6">
             <div className="flex flex-wrap gap-4 justify-center">
               {supportTabs.map((tab) => (
@@ -185,7 +185,7 @@ const Support = () => {
                   className={`flex items-center space-x-2 px-6 py-3 rounded-full transition-colors duration-200 ${
                     activeTab === tab.id
                       ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
                   <span>{tab.icon}</span>
@@ -200,7 +200,7 @@ const Support = () => {
         <section className="py-12">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              
+
               {/* FAQ Tab */}
               {activeTab === 'faq' && (
                 <motion.div
@@ -209,27 +209,27 @@ const Support = () => {
                   transition={{ duration: 0.6 }}
                 >
                   <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">सामान्य प्रश्न</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">सामान्य प्रश्न</h2>
                     <input
                       type="text"
                       placeholder="प्रश्न खोजें..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
 
                   <div className="space-y-6">
                     {filteredFAQs.map((category, categoryIndex) => (
-                      <div key={categoryIndex} className="bg-white rounded-lg shadow-lg p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">{category.category}</h3>
+                      <div key={categoryIndex} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{category.category}</h3>
                         <div className="space-y-4">
                           {category.questions.map((faq, index) => (
-                            <details key={index} className="border-b border-gray-200 pb-4">
-                              <summary className="cursor-pointer font-semibold text-gray-900 hover:text-blue-600">
+                            <details key={index} className="border-b border-gray-200 dark:border-gray-700 pb-4">
+                              <summary className="cursor-pointer font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400">
                                 {faq.q}
                               </summary>
-                              <p className="mt-2 text-gray-700 leading-relaxed">{faq.a}</p>
+                              <p className="mt-2 text-gray-700 dark:text-gray-300 leading-relaxed">{faq.a}</p>
                             </details>
                           ))}
                         </div>
@@ -246,14 +246,14 @@ const Support = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">संपर्क विकल्प</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">संपर्क विकल्प</h2>
                   <div className="grid md:grid-cols-2 gap-6">
                     {contactMethods.map((method, index) => (
-                      <div key={index} className="bg-white rounded-lg shadow-lg p-6 text-center">
+                      <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
                         <div className="text-4xl mb-4">{method.icon}</div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">{method.method}</h3>
-                        <p className="text-blue-600 font-semibold mb-2">{method.details}</p>
-                        <p className="text-gray-600 text-sm">{method.timing}</p>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{method.method}</h3>
+                        <p className="text-blue-600 dark:text-blue-400 font-semibold mb-2">{method.details}</p>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm">{method.timing}</p>
                       </div>
                     ))}
                   </div>
@@ -267,12 +267,12 @@ const Support = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <div className="bg-white rounded-lg shadow-lg p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">सपोर्ट टिकट बनाएं</h2>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">सपोर्ट टिकट बनाएं</h2>
                     <form onSubmit={handleTicketSubmit} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             नाम *
                           </label>
                           <input
@@ -280,11 +280,11 @@ const Support = () => {
                             required
                             value={ticketForm.name}
                             onChange={(e) => setTicketForm({...ticketForm, name: e.target.value})}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             ईमेल *
                           </label>
                           <input
@@ -292,21 +292,21 @@ const Support = () => {
                             required
                             value={ticketForm.email}
                             onChange={(e) => setTicketForm({...ticketForm, email: e.target.value})}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
                           />
                         </div>
                       </div>
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             श्रेणी *
                           </label>
                           <select
                             required
                             value={ticketForm.category}
                             onChange={(e) => setTicketForm({...ticketForm, category: e.target.value})}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
                           >
                             <option value="">श्रेणी चुनें</option>
                             {ticketCategories.map((category, index) => (
@@ -315,13 +315,13 @@ const Support = () => {
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             प्राथमिकता
                           </label>
                           <select
                             value={ticketForm.priority}
                             onChange={(e) => setTicketForm({...ticketForm, priority: e.target.value})}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
                           >
                             <option value="low">कम</option>
                             <option value="medium">मध्यम</option>
@@ -331,7 +331,7 @@ const Support = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                           विषय *
                         </label>
                         <input
@@ -339,12 +339,12 @@ const Support = () => {
                           required
                           value={ticketForm.subject}
                           onChange={(e) => setTicketForm({...ticketForm, subject: e.target.value})}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                           विवरण *
                         </label>
                         <textarea
@@ -352,7 +352,7 @@ const Support = () => {
                           rows={5}
                           value={ticketForm.description}
                           onChange={(e) => setTicketForm({...ticketForm, description: e.target.value})}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
                           placeholder="अपनी समस्या का विस्तृत विवरण दें..."
                         />
                       </div>
@@ -374,18 +374,18 @@ const Support = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="bg-white rounded-lg shadow-lg p-8 text-center"
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center"
                 >
                   <div className="text-6xl mb-6">💬</div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">लाइव चैट सपोर्ट</h2>
-                  <p className="text-gray-700 mb-6">
-                    हमारे कस्टमर सपोर्ट एजेंट्स से तुरंत बात करें। 
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">लाइव चैट सपोर्ट</h2>
+                  <p className="text-gray-700 dark:text-gray-300 mb-6">
+                    हमारे कस्टमर सपोर्ट एजेंट्स से तुरंत बात करें।
                     सुबह 8:00 से रात 10:00 तक उपलब्ध।
                   </p>
                   <button className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-semibold">
                     चैट शुरू करें
                   </button>
-                  <div className="mt-6 text-sm text-gray-600">
+                  <div className="mt-6 text-sm text-gray-600 dark:text-gray-300">
                     <p>औसत प्रतीक्षा समय: 2-3 मिनट</p>
                     <p>उपलब्ध एजेंट्स: 5</p>
                   </div>
@@ -397,31 +397,31 @@ const Support = () => {
         </section>
 
         {/* Quick Help Section */}
-        <section className="py-12 bg-blue-50">
+        <section className="py-12 bg-blue-50 dark:bg-blue-900/20">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">त्वरित सहायता</h2>
+              <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">त्वरित सहायता</h2>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
                   <div className="text-3xl mb-4">📋</div>
                   <h3 className="text-lg font-semibold mb-2">ऑर्डर ट्रैकिंग</h3>
-                  <p className="text-gray-600 mb-4">अपने ऑर्डर की स्थिति देखें</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">अपने ऑर्डर की स्थिति देखें</p>
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                     ट्रैक करें
                   </button>
                 </div>
-                <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
                   <div className="text-3xl mb-4">↩️</div>
                   <h3 className="text-lg font-semibold mb-2">रिटर्न/एक्सचेंज</h3>
-                  <p className="text-gray-600 mb-4">प्रोडक्ट वापस करें या बदलें</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">प्रोडक्ट वापस करें या बदलें</p>
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                     रिटर्न करें
                   </button>
                 </div>
-                <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
                   <div className="text-3xl mb-4">📊</div>
                   <h3 className="text-lg font-semibold mb-2">साइज़ गाइड</h3>
-                  <p className="text-gray-600 mb-4">सही साइज़ चुनने में मदद</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">सही साइज़ चुनने में मदद</p>
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                     गाइड देखें
                   </button>

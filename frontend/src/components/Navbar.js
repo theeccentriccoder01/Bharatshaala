@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 import "../App.css";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { language, changeLanguage, isLoading } = useLanguage();
+  const { theme, changeTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,11 +28,11 @@ const Navbar = () => {
   return (
     <React.StrictMode>
       <nav className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-emerald-100' 
+        scrolled
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-emerald-100 dark:border-gray-700'
           : 'bg-gradient-to-r from-emerald-600 via-green-500 to-emerald-700'
       }`}>
-        
+
         {/* Top Banner */}
         {!scrolled && (
           <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-emerald-900 text-center py-2 text-sm font-medium">
@@ -40,23 +42,23 @@ const Navbar = () => {
 
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            
+
             {/* Left Section - Logo & Menu */}
             <div className="flex items-center space-x-4">
               {/* Hamburger Menu */}
               <button
                 onClick={() => setMenu(!menu)}
                 className={`relative p-2 rounded-lg transition-all duration-300 ${
-                  scrolled ? 'text-emerald-600 hover:bg-emerald-50' : 'text-white hover:bg-white/10'
+                  scrolled ? 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700' : 'text-white hover:bg-white/10'
                 }`}
               >
                 <div className="w-6 h-6 relative">
                   <span className={`absolute block h-0.5 w-6 transform transition-all duration-300 ${
                     menu ? 'rotate-45 translate-y-2' : 'translate-y-0'
-                  } ${scrolled ? 'bg-emerald-600' : 'bg-white'}`}></span>
+                  } ${scrolled ? 'bg-emerald-600 dark:bg-emerald-400' : 'bg-white'}`}></span>
                   <span className={`absolute block h-0.5 w-6 transform transition-all duration-300 translate-y-2 ${
                     menu ? 'opacity-0' : 'opacity-100'
-                  } ${scrolled ? 'bg-emerald-600' : 'bg-white'}`}></span>
+                  } ${scrolled ? 'bg-emerald-600 dark:bg-emerald-400' : 'bg-white'}`}></span>
                   <span className={`absolute block h-0.5 w-6 transform transition-all duration-300 ${
                     menu ? '-rotate-45 translate-y-2' : 'translate-y-4'
                   } ${scrolled ? 'bg-emerald-600' : 'bg-white'}`}></span>
@@ -66,8 +68,8 @@ const Navbar = () => {
               {/* Logo */}
               <a href="/" className="flex items-center space-x-3 group">
                 <div className={`relative w-10 h-10 rounded-full transition-all duration-300 group-hover:scale-110 ${
-                  scrolled 
-                    ? 'bg-gradient-to-br from-emerald-500 to-green-600' 
+                  scrolled
+                    ? 'bg-gradient-to-br from-emerald-500 to-green-600'
                     : 'bg-gradient-to-br from-yellow-400 to-orange-400'
                 }`}>
                   <svg className={`w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
@@ -78,7 +80,7 @@ const Navbar = () => {
                   <div className="absolute inset-0 rounded-full animate-ping bg-white/20"></div>
                 </div>
                 <h1 className={`text-2xl font-bold tracking-wide transition-colors duration-300 ${
-                  scrolled ? 'text-emerald-700' : 'text-white'
+                  scrolled ? 'text-emerald-700 dark:text-emerald-400' : 'text-white'
                 }`}>
                   भारतशाला
                 </h1>
@@ -108,10 +110,31 @@ const Navbar = () => {
 
             {/* Right Section - Actions */}
             <div className="flex items-center space-x-4">
+              {/* Dark Mode Toggle */}
+              <button
+                onClick={() => changeTheme(theme === 'dark' ? 'light' : 'dark')}
+                className={`p-2 rounded-full transition-all duration-300 ${
+                  scrolled
+                    ? 'text-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-gray-700'
+                    : 'text-white hover:bg-white/10'
+                }`}
+                title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                {theme === 'dark' ? (
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd"/>
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                  </svg>
+                )}
+              </button>
+
               {/* Markets Button */}
               <a href="/markets" className={`hidden sm:flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
-                scrolled 
-                  ? 'text-emerald-600 hover:bg-emerald-50' 
+                scrolled
+                  ? 'text-emerald-600 hover:bg-emerald-50'
                   : 'text-white hover:bg-white/10'
               }`}>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -123,8 +146,8 @@ const Navbar = () => {
 
               {/* Shopping Bag */}
               <a href="/bag" className={`relative p-2 rounded-full transition-all duration-300 ${
-                scrolled 
-                  ? 'text-emerald-600 hover:bg-emerald-50' 
+                scrolled
+                  ? 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                   : 'text-white hover:bg-white/10'
               }`}>
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -135,8 +158,8 @@ const Navbar = () => {
 
               {/* Account */}
               <a href="/login" className={`p-2 rounded-full transition-all duration-300 ${
-                scrolled 
-                  ? 'text-emerald-600 hover:bg-emerald-50' 
+                scrolled
+                  ? 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                   : 'text-white hover:bg-white/10'
               }`}>
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -156,7 +179,7 @@ const Navbar = () => {
         <div className={`fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-emerald-900 via-green-800 to-emerald-950 transform transition-transform duration-500 ease-in-out ${
           menu ? 'translate-x-0' : '-translate-x-full'
         }`}>
-          
+
           {/* Menu Header */}
           <div className="p-6 border-b border-emerald-700">
             <div className="flex items-center justify-between">
@@ -192,8 +215,8 @@ const Navbar = () => {
                 { name: 'FAQ', href: '/faq', icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
               ].map((item, index) => (
                 <li key={item.name}>
-                  <a 
-                    href={item.href} 
+                  <a
+                    href={item.href}
                     className="flex items-center space-x-4 p-3 rounded-xl text-emerald-100 hover:text-white hover:bg-emerald-700/50 transition-all duration-300 group"
                     onClick={() => setMenu(false)}
                   >
@@ -215,23 +238,23 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <span className="text-emerald-200 text-sm">भाषा</span>
             <div className="flex bg-emerald-700 rounded-full p-1">
-              <button 
+              <button
                 onClick={() => handleLanguageToggle('hi')}
                 disabled={isLoading}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                  language === 'hi' 
-                    ? 'bg-yellow-400 text-emerald-900' 
+                  language === 'hi'
+                    ? 'bg-yellow-400 text-emerald-900'
                     : 'text-emerald-200 hover:text-white hover:bg-emerald-600'
                 } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 हिंदी
               </button>
-              <button 
+              <button
                 onClick={() => handleLanguageToggle('en')}
                 disabled={isLoading}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                  language === 'en' 
-                    ? 'bg-yellow-400 text-emerald-900' 
+                  language === 'en'
+                    ? 'bg-yellow-400 text-emerald-900'
                     : 'text-emerald-200 hover:text-white hover:bg-emerald-600'
                 } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
@@ -239,7 +262,7 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-          
+
           {/* Loading indicator */}
           {isLoading && (
             <div className="flex items-center justify-center mt-2">
@@ -247,6 +270,35 @@ const Navbar = () => {
               <span className="text-emerald-200 text-xs ml-2">भाषा बदली जा रही है...</span>
             </div>
           )}
+
+          {/* Dark Mode Toggle */}
+          <div className="mt-4 pt-4 border-t border-emerald-700">
+            <div className="flex items-center justify-between">
+              <span className="text-emerald-200 text-sm">🌙 थीम</span>
+              <div className="flex bg-emerald-700 rounded-full p-1">
+                <button
+                  onClick={() => changeTheme('light')}
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                    theme === 'light'
+                      ? 'bg-yellow-400 text-emerald-900'
+                      : 'text-emerald-200 hover:text-white hover:bg-emerald-600'
+                  }`}
+                >
+                  ☀️ लाइट
+                </button>
+                <button
+                  onClick={() => changeTheme('dark')}
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                    theme === 'dark'
+                      ? 'bg-yellow-400 text-emerald-900'
+                      : 'text-emerald-200 hover:text-white hover:bg-emerald-600'
+                  }`}
+                >
+                  🌙 डार्क
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
           </div>
         </div>

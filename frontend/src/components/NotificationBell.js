@@ -164,7 +164,7 @@ const NotificationBell = () => {
       {/* Notification Bell Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 text-emerald-600 hover:text-emerald-700 transition-colors duration-200"
+        className="relative p-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -180,7 +180,7 @@ const NotificationBell = () => {
 
       {/* Notification Dropdown */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-emerald-200 z-50 max-h-96 overflow-hidden">
+        <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-emerald-200 dark:border-emerald-700 z-50 max-h-96 overflow-hidden">
           
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-4 text-white">
@@ -206,15 +206,15 @@ const NotificationBell = () => {
           <div className="max-h-80 overflow-y-auto">
             {loading ? (
               <div className="p-4 text-center">
-                <div className="w-6 h-6 border-2 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto"></div>
-                <p className="text-emerald-600 text-sm mt-2">लोड हो रहा है...</p>
+                <div className="w-6 h-6 border-2 border-emerald-200 dark:border-emerald-700 border-t-emerald-600 rounded-full animate-spin mx-auto"></div>
+                <p className="text-emerald-600 dark:text-emerald-400 text-sm mt-2">लोड हो रहा है...</p>
               </div>
             ) : notifications.length > 0 ? (
-              <div className="divide-y divide-emerald-100">
+              <div className="divide-y divide-emerald-100 dark:divide-gray-700">
                 {notifications.map((notification) => (
                   <div
                     key={notification.id}
-                    className={`p-4 hover:bg-emerald-50 transition-colors duration-200 cursor-pointer ${
+                    className={`p-4 hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer ${
                       !notification.isRead ? 'bg-emerald-25 border-l-4 border-l-emerald-500' : ''
                     }`}
                     onClick={() => {
@@ -236,15 +236,15 @@ const NotificationBell = () => {
 
                       {/* Content */}
                       <div className="flex-1 min-w-0">
-                        <h4 className={`font-semibold text-emerald-800 ${
+                        <h4 className={`font-semibold text-emerald-800 dark:text-emerald-200 ${
                           !notification.isRead ? 'font-bold' : ''
                         }`}>
                           {notification.title}
                         </h4>
-                        <p className="text-gray-600 text-sm mt-1 line-clamp-2">
+                        <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 line-clamp-2">
                           {notification.message}
                         </p>
-                        <p className="text-emerald-500 text-xs mt-2">
+                        <p className="text-emerald-500 dark:text-emerald-400 text-xs mt-2">
                           {getTimeAgo(notification.createdAt)}
                         </p>
                       </div>
@@ -259,7 +259,7 @@ const NotificationBell = () => {
                             e.stopPropagation();
                             deleteNotification(notification.id);
                           }}
-                          className="text-gray-400 hover:text-red-500 transition-colors duration-200 p-1"
+                          className="text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200 p-1"
                           title="हटाएं"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -274,7 +274,7 @@ const NotificationBell = () => {
             ) : (
               <div className="p-8 text-center">
                 <div className="text-4xl mb-3">🔔</div>
-                <p className="text-gray-500 font-medium">कोई अधिसूचना नहीं</p>
+                <p className="text-gray-500 dark:text-gray-400 font-medium">कोई अधिसूचना नहीं</p>
                 <p className="text-gray-400 text-sm mt-1">आपकी सभी अधिसूचनाएं यहाँ दिखेंगी</p>
               </div>
             )}
@@ -282,10 +282,10 @@ const NotificationBell = () => {
 
           {/* Footer */}
           {notifications.length > 0 && (
-            <div className="border-t border-emerald-200 p-3">
+            <div className="border-t border-emerald-200 dark:border-emerald-700 p-3">
               <a
                 href="/user/notifications"
-                className="block text-center text-emerald-600 hover:text-emerald-700 font-medium text-sm"
+                className="block text-center text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium text-sm"
                 onClick={() => setIsOpen(false)}
               >
                 सभी अधिसूचनाएं देखें

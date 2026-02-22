@@ -89,7 +89,7 @@ const QuantitySelector = ({
     <div className="space-y-2">
       {/* Label */}
       {showLabel && (
-        <label className={`block font-medium text-emerald-800 ${sizeConfig.label}`}>
+        <label className={`block font-medium text-emerald-800 dark:text-emerald-200 ${sizeConfig.label}`}>
           {label}:
         </label>
       )}
@@ -98,8 +98,8 @@ const QuantitySelector = ({
       <div className={`relative ${sizeConfig.container}`}>
         <div className={`flex items-center border-2 rounded-lg transition-all duration-200 ${
           error 
-            ? 'border-red-300 focus-within:border-red-500' 
-            : 'border-emerald-200 focus-within:border-emerald-500'
+            ? 'border-red-300 dark:border-red-600 focus-within:border-red-500' 
+            : 'border-emerald-200 dark:border-emerald-700 focus-within:border-emerald-500'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}>
           
           {/* Decrement Button */}
@@ -107,7 +107,7 @@ const QuantitySelector = ({
             type="button"
             onClick={handleDecrement}
             disabled={disabled || quantity <= min}
-            className={`${sizeConfig.button} flex items-center justify-center bg-emerald-50 text-emerald-600 hover:bg-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 border-r border-emerald-200`}
+            className={`${sizeConfig.button} flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 border-r border-emerald-200 dark:border-emerald-700`}
             aria-label="मात्रा घटाएं"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +125,7 @@ const QuantitySelector = ({
             max={max}
             step={step}
             disabled={disabled}
-            className={`${sizeConfig.input} flex-1 text-center border-0 focus:outline-none bg-white text-emerald-800 font-semibold`}
+            className={`${sizeConfig.input} flex-1 text-center border-0 focus:outline-none bg-white dark:bg-gray-800 text-emerald-800 dark:text-emerald-200 font-semibold`}
             aria-label={`${label} (${min} से ${max} तक)`}
           />
 
@@ -134,7 +134,7 @@ const QuantitySelector = ({
             type="button"
             onClick={handleIncrement}
             disabled={disabled || quantity >= max}
-            className={`${sizeConfig.button} flex items-center justify-center bg-emerald-50 text-emerald-600 hover:bg-emerald-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 border-l border-emerald-200`}
+            className={`${sizeConfig.button} flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 border-l border-emerald-200 dark:border-emerald-700`}
             aria-label="मात्रा बढ़ाएं"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,7 +155,7 @@ const QuantitySelector = ({
 
       {/* Error Message */}
       {error && (
-        <p className="text-red-500 text-sm flex items-center space-x-1">
+        <p className="text-red-500 dark:text-red-400 text-sm flex items-center space-x-1">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -165,7 +165,7 @@ const QuantitySelector = ({
 
       {/* Help Text */}
       {!error && (
-        <p className="text-gray-500 text-xs">
+        <p className="text-gray-500 dark:text-gray-400 text-xs">
           न्यूनतम: {min}, अधिकतम: {max}
         </p>
       )}
@@ -208,7 +208,7 @@ export const BulkQuantitySelector = ({
 
       {/* Bulk Options */}
       <div>
-        <h4 className="text-sm font-medium text-emerald-800 mb-2">थोक मात्रा:</h4>
+        <h4 className="text-sm font-medium text-emerald-800 dark:text-emerald-200 mb-2">थोक मात्रा:</h4>
         <div className="flex flex-wrap gap-2">
           {bulkOptions.map((bulkValue) => (
             <button
@@ -218,7 +218,7 @@ export const BulkQuantitySelector = ({
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 value === bulkValue
                   ? 'bg-emerald-500 text-white'
-                  : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'
+                  : 'bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-800'
               } disabled:opacity-50 disabled:cursor-not-allowed`}
             >
               {bulkValue}
@@ -232,12 +232,12 @@ export const BulkQuantitySelector = ({
 
       {/* Bulk Discount Info */}
       {showBulkDiscounts && value >= Math.min(...bulkOptions) && (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+        <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-3">
           <div className="flex items-center space-x-2">
-            <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
             </svg>
-            <span className="text-green-700 font-medium text-sm">
+            <span className="text-green-700 dark:text-green-400 font-medium text-sm">
               {getBulkDiscount(value)}% छूट लागू!
             </span>
           </div>

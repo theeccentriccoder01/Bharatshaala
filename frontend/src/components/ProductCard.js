@@ -62,7 +62,7 @@ const ProductCard = ({
   if (viewMode === 'list') {
     return (
       <div 
-        className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 ${
+        className={`bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 ${
           isSelected ? 'border-emerald-500' : 'border-transparent'
         }`}
         onClick={handleCardClick}
@@ -73,7 +73,7 @@ const ProductCard = ({
           {/* Image Section */}
           <div className="w-48 h-32 relative overflow-hidden flex-shrink-0">
             {imageLoading && (
-              <div className="absolute inset-0 bg-emerald-100 animate-pulse"></div>
+              <div className="absolute inset-0 bg-emerald-100 dark:bg-gray-800 animate-pulse"></div>
             )}
             <img 
               src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.png'}
@@ -99,7 +99,7 @@ const ProductCard = ({
                   type="checkbox"
                   checked={isSelected}
                   onChange={(e) => handleActionClick(e, 'select')}
-                  className="w-5 h-5 text-emerald-600 bg-white rounded border-2 border-emerald-300"
+                  className="w-5 h-5 text-emerald-600 dark:text-emerald-400 bg-white dark:bg-gray-800 rounded border-2 border-emerald-300 dark:border-emerald-600"
                 />
               </div>
             )}
@@ -109,28 +109,28 @@ const ProductCard = ({
           <div className="flex-1 p-6">
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-emerald-800 mb-2 hover:text-emerald-600 transition-colors duration-300">
+                <h3 className="text-lg font-bold text-emerald-800 dark:text-emerald-200 mb-2 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-300">
                   {item.name}
                 </h3>
                 {item.nameEn && (
-                  <p className="text-emerald-600 text-sm mb-2">{item.nameEn}</p>
+                  <p className="text-emerald-600 dark:text-emerald-400 text-sm mb-2">{item.nameEn}</p>
                 )}
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
                   {item.description}
                 </p>
 
                 {/* Category and Tags */}
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-xs">
+                  <span className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-full text-xs">
                     {item.category}
                   </span>
                   {item.subcategory && (
-                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
+                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 px-2 py-1 rounded-full text-xs">
                       {item.subcategory}
                     </span>
                   )}
                   {item.isHandmade && (
-                    <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs">
+                    <span className="bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 px-2 py-1 rounded-full text-xs">
                       हस्तनिर्मित
                     </span>
                   )}
@@ -138,7 +138,7 @@ const ProductCard = ({
 
                 {/* Price */}
                 <div className="flex items-center space-x-3 mb-3">
-                  <span className="text-2xl font-bold text-emerald-600">
+                  <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                     ₹{item.price?.toLocaleString()}
                   </span>
                   {item.originalPrice && item.originalPrice > item.price && (
@@ -151,17 +151,17 @@ const ProductCard = ({
                 {/* Vendor View Stats */}
                 {isVendorView && (
                   <div className="grid grid-cols-3 gap-4 text-center">
-                    <div className="bg-gray-50 rounded-lg p-2">
-                      <div className="text-sm font-bold text-gray-800">{item.sales || 0}</div>
-                      <div className="text-xs text-gray-600">बिक्री</div>
+                    <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+                      <div className="text-sm font-bold text-gray-800 dark:text-gray-100">{item.sales || 0}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-300">बिक्री</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-2">
-                      <div className="text-sm font-bold text-gray-800">{item.views || 0}</div>
-                      <div className="text-xs text-gray-600">व्यू</div>
+                    <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+                      <div className="text-sm font-bold text-gray-800 dark:text-gray-100">{item.views || 0}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-300">व्यू</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-2">
-                      <div className="text-sm font-bold text-gray-800">{item.rating || 0}⭐</div>
-                      <div className="text-xs text-gray-600">रेटिंग</div>
+                    <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+                      <div className="text-sm font-bold text-gray-800 dark:text-gray-100">{item.rating || 0}⭐</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-300">रेटिंग</div>
                     </div>
                   </div>
                 )}
@@ -180,8 +180,8 @@ const ProductCard = ({
                 {isVendorView && (
                   <div className={`px-3 py-1 rounded-full text-xs font-medium ${
                     item.isActive 
-                      ? 'bg-green-100 text-green-700' 
-                      : 'bg-red-100 text-red-700'
+                      ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400' 
+                      : 'bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-400'
                   }`}>
                     {item.isActive ? 'सक्रिय' : 'निष्क्रिय'}
                   </div>
@@ -189,8 +189,8 @@ const ProductCard = ({
 
                 {/* Stock Count */}
                 <div className="text-center">
-                  <div className="text-lg font-bold text-gray-800">{item.quantity || 0}</div>
-                  <div className="text-xs text-gray-600">स्टॉक</div>
+                  <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{item.quantity || 0}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-300">स्टॉक</div>
                 </div>
 
                 {/* Action Buttons */}
@@ -213,7 +213,7 @@ const ProductCard = ({
                       </button>
                       <button
                         onClick={(e) => handleActionClick(e, 'wishlist')}
-                        className="border-2 border-emerald-500 text-emerald-600 px-4 py-2 rounded-lg hover:bg-emerald-50 transition-colors duration-200 text-sm"
+                        className="border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 text-sm"
                       >
                         पसंदीदा
                       </button>
@@ -231,7 +231,7 @@ const ProductCard = ({
   // Grid View (Default)
   return (
     <div 
-      className={`group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer border-2 ${
+      className={`group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer border-2 ${
         isSelected ? 'border-emerald-500' : 'border-transparent'
       }`}
       onClick={handleCardClick}
@@ -241,7 +241,7 @@ const ProductCard = ({
       {/* Image Section */}
       <div className="relative h-64 overflow-hidden">
         {imageLoading && (
-          <div className="absolute inset-0 bg-emerald-100 animate-pulse"></div>
+          <div className="absolute inset-0 bg-emerald-100 dark:bg-gray-800 animate-pulse"></div>
         )}
         <img 
           src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.png'}
@@ -272,7 +272,7 @@ const ProductCard = ({
               type="checkbox"
               checked={isSelected}
               onChange={(e) => handleActionClick(e, 'select')}
-              className="w-5 h-5 text-emerald-600 bg-white rounded border-2 border-emerald-300"
+              className="w-5 h-5 text-emerald-600 dark:text-emerald-400 bg-white dark:bg-gray-800 rounded border-2 border-emerald-300 dark:border-emerald-600"
             />
           </div>
         )}
@@ -320,7 +320,7 @@ const ProductCard = ({
               </button>
               <button
                 onClick={(e) => handleActionClick(e, 'wishlist')}
-                className="bg-white text-emerald-600 p-3 rounded-full hover:bg-emerald-50 transition-colors duration-200 transform hover:scale-110"
+                className="bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 p-3 rounded-full hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 transform hover:scale-110"
               >
                 ❤️
               </button>
@@ -332,25 +332,25 @@ const ProductCard = ({
       {/* Content Section */}
       <div className="p-6">
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-emerald-800 mb-2 group-hover:text-emerald-600 transition-colors duration-300 line-clamp-2">
+          <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 dark:hover:text-emerald-400 transition-colors duration-300 line-clamp-2">
             {item.name}
           </h3>
           {item.nameEn && (
-            <p className="text-emerald-600 font-medium">{item.nameEn}</p>
+            <p className="text-emerald-600 dark:text-emerald-400 font-medium">{item.nameEn}</p>
           )}
         </div>
 
-        <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 line-clamp-3">
           {item.description}
         </p>
 
         {/* Category and Features */}
         <div className="flex flex-wrap gap-2 mb-4">
-          <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs border border-emerald-200">
+          <span className="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-xs border border-emerald-200 dark:border-emerald-700">
             {item.category}
           </span>
           {item.subcategory && (
-            <span className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs border border-blue-200">
+            <span className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-full text-xs border border-blue-200 dark:border-blue-700">
               {item.subcategory}
             </span>
           )}
@@ -358,7 +358,7 @@ const ProductCard = ({
 
         {/* Price Section */}
         <div className="flex items-center space-x-3 mb-4">
-          <span className="text-2xl font-bold text-emerald-600">
+          <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
             ₹{item.price?.toLocaleString()}
           </span>
           {item.originalPrice && item.originalPrice > item.price && (
@@ -371,17 +371,17 @@ const ProductCard = ({
         {/* Vendor View Stats */}
         {isVendorView && (
           <div className="grid grid-cols-3 gap-3 mb-4">
-            <div className="text-center bg-emerald-50 rounded-lg p-3">
-              <div className="text-lg font-bold text-emerald-600">{item.sales || 0}</div>
-              <div className="text-emerald-600 text-xs">बिक्री</div>
+            <div className="text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-lg p-3">
+              <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{item.sales || 0}</div>
+              <div className="text-emerald-600 dark:text-emerald-400 text-xs">बिक्री</div>
             </div>
-            <div className="text-center bg-emerald-50 rounded-lg p-3">
-              <div className="text-lg font-bold text-emerald-600">{item.views || 0}</div>
-              <div className="text-emerald-600 text-xs">व्यू</div>
+            <div className="text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-lg p-3">
+              <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{item.views || 0}</div>
+              <div className="text-emerald-600 dark:text-emerald-400 text-xs">व्यू</div>
             </div>
-            <div className="text-center bg-emerald-50 rounded-lg p-3">
-              <div className="text-lg font-bold text-emerald-600">{item.rating || 0}⭐</div>
-              <div className="text-emerald-600 text-xs">रेटिंग</div>
+            <div className="text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-lg p-3">
+              <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{item.rating || 0}⭐</div>
+              <div className="text-emerald-600 dark:text-emerald-400 text-xs">रेटिंग</div>
             </div>
           </div>
         )}
@@ -396,7 +396,7 @@ const ProductCard = ({
                 </span>
               ))}
             </div>
-            <span className="text-emerald-600 text-sm">
+            <span className="text-emerald-600 dark:text-emerald-400 text-sm">
               {item.rating} ({item.reviewCount || 0} समीक्षाएं)
             </span>
           </div>
@@ -404,11 +404,11 @@ const ProductCard = ({
 
         {/* Stock Information */}
         <div className="flex justify-between items-center mb-4">
-          <div className="text-emerald-600 text-sm">
+          <div className="text-emerald-600 dark:text-emerald-400 text-sm">
             स्टॉक: <span className="font-semibold">{item.quantity || 0}</span>
           </div>
           {isVendorView && (
-            <div className="text-emerald-600 text-sm">
+            <div className="text-emerald-600 dark:text-emerald-400 text-sm">
               आईडी: <span className="font-mono">{item.id}</span>
             </div>
           )}
@@ -431,7 +431,7 @@ const ProductCard = ({
               disabled={item.quantity === 0}
               className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 ${
                 item.quantity === 0
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  ? 'bg-gray-300 text-gray-500 dark:text-gray-400 cursor-not-allowed'
                   : 'bg-gradient-to-r from-emerald-500 to-green-500 text-white hover:shadow-lg transform hover:scale-105'
               }`}
             >
