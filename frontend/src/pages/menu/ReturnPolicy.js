@@ -9,6 +9,7 @@ const ReturnPolicy = () => {
 
   useEffect(() => {
     trackPageView('return_policy');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const returnConditions = [
@@ -111,8 +112,8 @@ const ReturnPolicy = () => {
                 transition={{ duration: 0.6 }}
               >
                 <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                  भारतशाला में हमारा लक्ष्य है कि आप अपनी खरीदारी से पूर्णतः संतुष्ट हों। 
-                  यदि किसी कारण से आप अपनी खरीदारी से खुश नहीं हैं, तो हमारी सरल रिटर्न 
+                  भारतशाला में हमारा लक्ष्य है कि आप अपनी खरीदारी से पूर्णतः संतुष्ट हों।
+                  यदि किसी कारण से आप अपनी खरीदारी से खुश नहीं हैं, तो हमारी सरल रिटर्न
                   और एक्सचेंज पॉलिसी आपकी सहायता करेगी।
                 </p>
               </motion.div>

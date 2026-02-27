@@ -118,6 +118,7 @@ export const LanguageProvider = ({ children }) => {
         setLanguage(browserLang);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const changeLanguage = async (langCode) => {

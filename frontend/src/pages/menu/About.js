@@ -1,13 +1,11 @@
 // About Page for Bharatshaala Platform
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useAnalytics } from '../../utils/analytics';
 import { motion } from 'framer-motion';
 
 const About = () => {
   const { trackPageView, trackEvent } = useAnalytics();
-  const [currentSlide, setCurrentSlide] = useState(0);
-
   useEffect(() => {
     trackPageView('about');
   }, [trackPageView]);

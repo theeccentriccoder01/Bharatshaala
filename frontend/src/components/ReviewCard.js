@@ -16,7 +16,7 @@ const ReviewCard = ({
 }) => {
   const { user } = useAuth();
   const { showSuccess, showError } = useNotification();
-  
+
   const [showFullReview, setShowFullReview] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editData, setEditData] = useState({
@@ -156,7 +156,7 @@ const ReviewCard = ({
         /* Edit Form */
         <div className="space-y-4">
           <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">समीक्षा संपादित करें</h3>
-          
+
           {/* Rating */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">रेटिंग</label>
@@ -227,7 +227,7 @@ const ReviewCard = ({
                 </div>
               </div>
             </div>
-            
+
             {/* Badges */}
             <div className="flex flex-col space-y-2">
               {review.isVerifiedPurchase && (
@@ -269,14 +269,14 @@ const ReviewCard = ({
             {review.title && (
               <h4 className="font-semibold text-gray-800 dark:text-gray-100 text-lg">{review.title}</h4>
             )}
-            
+
             <div className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {showFullReview || !shouldShowReadMore ? (
                 <p>{review.comment}</p>
               ) : (
                 <p>{truncatedComment}</p>
               )}
-              
+
               {shouldShowReadMore && (
                 <button
                   onClick={() => setShowFullReview(!showFullReview)}
@@ -294,7 +294,7 @@ const ReviewCard = ({
                   <img
                     key={index}
                     src={image.url || image}
-                    alt={`Review image ${index + 1}`}
+                    alt={`Review ${index + 1}`}
                     className="w-20 h-20 rounded-lg object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
                     onClick={() => window.open(image.url || image, '_blank')}
                   />
@@ -325,15 +325,15 @@ const ReviewCard = ({
                 onClick={handleHelpfulVote}
                 disabled={hasVoted || (user && user.id === review.userId)}
                 className={`flex items-center space-x-2 px-3 py-1 rounded-lg text-sm transition-colors duration-200 ${
-                  hasVoted 
-                    ? 'bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300' 
+                  hasVoted
+                    ? 'bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300'
                 } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 <span>👍</span>
                 <span>सहायक ({review.helpfulVotes || 0})</span>
               </button>
-              
+
               {review.totalVotes > 0 && (
                 <span className="text-gray-500 dark:text-gray-400 text-sm">
                   कुल वोट: {review.totalVotes}
@@ -362,7 +362,7 @@ const ReviewCard = ({
                     </button>
                   </>
                 )}
-                
+
                 {user && user.id !== review.userId && (
                   <button
                     onClick={handleReport}
@@ -398,7 +398,7 @@ const ReviewCard = ({
             </div>
           </div>
         </div>
-        
+
         {review.isVerifiedPurchase && (
           <span className="bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 px-2 py-1 rounded-full text-xs font-medium">
             ✓ सत्यापित
@@ -410,7 +410,7 @@ const ReviewCard = ({
       {review.title && (
         <h4 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">{review.title}</h4>
       )}
-      
+
       <p className="text-gray-700 dark:text-gray-300 mb-4">{review.comment}</p>
 
       {/* Images */}
@@ -420,7 +420,7 @@ const ReviewCard = ({
             <img
               key={index}
               src={image.url || image}
-              alt={`Review image ${index + 1}`}
+              alt={`Review ${index + 1}`}
               className="w-16 h-16 rounded-lg object-cover"
             />
           ))}
@@ -442,7 +442,7 @@ const ReviewCard = ({
           <span>👍</span>
           <span>सहायक ({review.helpfulVotes || 0})</span>
         </button>
-        
+
         {showActions && isEditable && (
           <div className="flex space-x-2">
             <button

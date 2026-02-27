@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
 
-import map from '../../../images/markets/colaba_map.jpg';
-
 const ColabaCauseway = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedShop, setSelectedShop] = useState(null);
   const [hoveredShop, setHoveredShop] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -192,8 +187,8 @@ const ColabaCauseway = () => {
     { id: 'souvenirs', name: 'सुवेनिर्स', icon: '🗽', count: shops.filter(s => s.category === 'souvenirs').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -221,17 +216,17 @@ const ColabaCauseway = () => {
                 <span className='text-2xl'>🌊</span>
                 <span className='text-blue-800 dark:text-blue-200 font-bold'>मुंबई की आत्मा</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
               <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Colaba Causeway, {marketInfo.cityHindi}
               </h2>
-              
+
               <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
-                गेटवे ऑफ इंडिया के बगल में स्थित यह बाजार मुंबई का दिल है। यहाँ आपको फैशन से लेकर एंटीक्स तक, 
-                स्ट्रीट फूड से लेकर हैंडीक्राफ्ट्स तक सब कुछ मिलेगा। मुंबई की स्पिरिट को जानना है तो कॉलाबा कॉज़वे आना ज़रूरी है। 
+                गेटवे ऑफ इंडिया के बगल में स्थित यह बाजार मुंबई का दिल है। यहाँ आपको फैशन से लेकर एंटीक्स तक,
+                स्ट्रीट फूड से लेकर हैंडीक्राफ्ट्स तक सब कुछ मिलेगा। मुंबई की स्पिरिट को जानना है तो कॉलाबा कॉज़वे आना ज़रूरी है।
                 यहाँ की हर गली में कुछ नया और दिलचस्प छुपा हुआ है।
               </p>
 
@@ -286,7 +281,7 @@ const ColabaCauseway = () => {
                 भारत के प्रवेश द्वार से सिर्फ 200 मीटर की दूरी पर स्थित यह बाजार मुंबई का गौरव है
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
               <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🗽</div>
@@ -330,8 +325,8 @@ const ColabaCauseway = () => {
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
+                    activeFilter === category.id
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white'
                       : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}
@@ -347,8 +342,8 @@ const ColabaCauseway = () => {
           <div className='text-center mb-12'>
             <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
             <p className='text-xl text-emerald-600 dark:text-emerald-400'>
-              {activeFilter === 'all' 
-                ? 'कॉलाबा कॉज़वे की सभी प्रसिद्ध दुकानें' 
+              {activeFilter === 'all'
+                ? 'कॉलाबा कॉज़वे की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>
@@ -383,7 +378,7 @@ const ColabaCauseway = () => {
                 कॉलाबा कॉज़वे सिर्फ एक बाज़ार नहीं, यह मुंबई की आत्मा है - जहाँ सपने मिलते हैं और यादें बनती हैं
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🎭</div>
@@ -401,7 +396,7 @@ const ColabaCauseway = () => {
                 <p className='text-orange-100 text-sm'>दुनिया भर के सैलानियों की पसंद</p>
               </div>
             </div>
-            
+
             <div className='text-center mt-8'>
               <button className='bg-white dark:bg-gray-800 text-orange-600 px-8 py-4 rounded-full font-semibold hover:bg-orange-50 dark:hover:bg-gray-700 dark:bg-orange-900/20 transition-colors duration-300 transform hover:scale-105'>
                 मुंबई एक्सप्लोर करें

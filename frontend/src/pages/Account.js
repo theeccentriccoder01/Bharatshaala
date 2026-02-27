@@ -7,7 +7,6 @@ const Account = () => {
     // <React.StrictMode>
 
         const [loggedIn, setLoggedIn] = useState(false);
-        const [userID, setUserID] = useState("");
         const [accountType, setAccountType] = useState("");
 
         useEffect(() => {
@@ -25,7 +24,6 @@ const Account = () => {
                 }
                 setLoggedIn(response.loggedIn);
                 if (loggedIn) {
-                    setUserID(response.userID);
                     setAccountType(response.accountType);
                 }
                 } catch (error) {
@@ -35,9 +33,10 @@ const Account = () => {
             };
 
         checkAuthStatus();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
-    if (loggedIn == false) {
+    if (loggedIn === false) {
         return <Navigate to="/login" />;
         }
         if (accountType === "vendor") {

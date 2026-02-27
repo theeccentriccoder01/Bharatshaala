@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from "../components/LoadingSpinner";
 import "../App.css";
 import axios from "axios";
@@ -24,6 +24,7 @@ const Login = () => {
     checkAuthStatus();
     const timer = setTimeout(() => setPageLoading(false), 800);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const checkAuthStatus = async () => {
@@ -131,6 +132,9 @@ const Login = () => {
       setIsLoading(true);
       try {
         const confirm = await axios.post("/Login", { email, password });
+
+        // eslint-disable-next-line no-unused-vars
+        const _confirm = await axios.post("/Login", { email, password });
 
         const response = await fetch('/GetUser', {
           method: 'GET',

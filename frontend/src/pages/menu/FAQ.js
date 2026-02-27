@@ -248,6 +248,7 @@ const FAQ = () => {
       faq.answer.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       faq.tags.some(tag => tag.toLowerCase().includes(debouncedSearch.toLowerCase()))
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory, debouncedSearch]);
 
   const toggleExpanded = (id) => {

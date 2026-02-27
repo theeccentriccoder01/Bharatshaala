@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAPI } from '../hooks/useAPI';
 import { useDebounce } from '../hooks/useDebounce';
-import { useNotification } from '../hooks/useNotification';
 import { useCart } from '../hooks/useCart';
 import ProductCard from '../components/ProductCard';
 import FilterPanel from '../components/FilterPanel';
@@ -12,7 +11,6 @@ const SearchResults = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const { get } = useAPI();
-  const { showError } = useNotification();
   const { addToCart } = useCart();
 
   const [loading, setLoading] = useState(true);
@@ -62,6 +60,7 @@ const SearchResults = () => {
       performSearch();
       updateURL();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchQuery, currentPage, sortBy, filters]);
 
   useEffect(() => {
@@ -69,6 +68,7 @@ const SearchResults = () => {
     if (query && query !== searchQuery) {
       setSearchQuery(query);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const loadSearchHistory = () => {
@@ -78,11 +78,11 @@ const SearchResults = () => {
 
   const saveToSearchHistory = (query) => {
     if (!query.trim()) return;
-    
+
     const history = JSON.parse(localStorage.getItem('bharatshaala_search_history') || '[]');
     const filtered = history.filter(item => item.query !== query);
     const updated = [{ query, timestamp: new Date().toISOString() }, ...filtered].slice(0, 10);
-    
+
     localStorage.setItem('bharatshaala_search_history', JSON.stringify(updated));
     setSearchHistory(updated);
   };
@@ -106,7 +106,7 @@ const SearchResults = () => {
       };
 
       const response = await get('/search', { params: searchFilters });
-      
+
       if (response.success) {
         setResults(response.results);
         setTotalResults(response.totalResults);
@@ -189,7 +189,7 @@ const SearchResults = () => {
     ];
 
     // Filter results based on query
-    return baseProducts.filter(product => 
+    return baseProducts.filter(product =>
       product.name.toLowerCase().includes(query.toLowerCase()) ||
       product.nameEn.toLowerCase().includes(query.toLowerCase()) ||
       product.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase())) ||
@@ -199,7 +199,7 @@ const SearchResults = () => {
 
   const updateURL = () => {
     const params = new URLSearchParams();
-    
+
     if (debouncedSearchQuery) params.set('q', debouncedSearchQuery);
     if (currentPage > 1) params.set('page', currentPage.toString());
     if (sortBy !== 'relevance') params.set('sort', sortBy);
@@ -261,11 +261,11 @@ const SearchResults = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
       <div className="max-w-7xl mx-auto px-6 py-8">
-        
+
         {/* Search Header */}
         <div className="mb-8">
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-            
+
             {/* Search Bar */}
             <div className="relative mb-6">
               <input
@@ -332,20 +332,20 @@ const SearchResults = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-emerald-800 dark:text-emerald-200">
-                    <span className="font-bold">{totalResults.toLocaleString()}</span> परिणाम मिले 
+                    <span className="font-bold">{totalResults.toLocaleString()}</span> परिणाम मिले
                     <span className="font-semibold"> "{searchQuery}"</span> के लिए
                   </p>
                   {loading && <p className="text-emerald-600 dark:text-emerald-400 text-sm">खोज रही है...</p>}
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   {/* View Mode Toggle */}
                   <div className="flex bg-emerald-100 dark:bg-gray-800 rounded-lg p-1">
                     <button
                       onClick={() => setViewMode('grid')}
                       className={`p-2 rounded-lg transition-all duration-200 ${
-                        viewMode === 'grid' 
-                          ? 'bg-emerald-500 text-white' 
+                        viewMode === 'grid'
+                          ? 'bg-emerald-500 text-white'
                           : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-gray-700'
                       }`}
                     >
@@ -354,8 +354,8 @@ const SearchResults = () => {
                     <button
                       onClick={() => setViewMode('list')}
                       className={`p-2 rounded-lg transition-all duration-200 ${
-                        viewMode === 'list' 
-                          ? 'bg-emerald-500 text-white' 
+                        viewMode === 'list'
+                          ? 'bg-emerald-500 text-white'
                           : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-gray-700'
                       }`}
                     >
@@ -394,7 +394,7 @@ const SearchResults = () => {
 
         {searchQuery ? (
           <div className="flex gap-8">
-            
+
             {/* Filters Sidebar */}
             {showFilters && (
               <div className="w-80">
@@ -413,8 +413,8 @@ const SearchResults = () => {
               ) : results.length > 0 ? (
                 <>
                   {/* Results Grid */}
-                  <div className={viewMode === 'grid' 
-                    ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8' 
+                  <div className={viewMode === 'grid'
+                    ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8'
                     : 'space-y-4 mb-8'
                   }>
                     {results.map((product) => (
@@ -491,7 +491,7 @@ const SearchResults = () => {
                   <p className="text-emerald-600 dark:text-emerald-400 text-lg mb-8">
                     "{searchQuery}" के लिए कोई उत्पाद नहीं मिला
                   </p>
-                  
+
                   <div className="max-w-md mx-auto space-y-4">
                     <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
                       <h3 className="font-semibold text-blue-800 dark:text-blue-400 mb-2">खोज सुझाव:</h3>
@@ -502,7 +502,7 @@ const SearchResults = () => {
                         <li>• फ़िल्टर हटाकर देखें</li>
                       </ul>
                     </div>
-                    
+
                     <button
                       onClick={() => navigate('/markets')}
                       className="bg-emerald-500 text-white px-8 py-3 rounded-lg hover:bg-emerald-600 transition-colors duration-200"
@@ -524,7 +524,7 @@ const SearchResults = () => {
             <p className="text-emerald-600 dark:text-emerald-400 text-lg mb-8">
               लाखों उत्पादों में से अपनी पसंद का सामान खोजें
             </p>
-            
+
             <div className="max-w-2xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {['jewelry', 'clothing', 'handicrafts', 'books'].map((category, index) => (

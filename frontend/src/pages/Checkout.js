@@ -14,7 +14,8 @@ const Checkout = () => {
   const { user, isAuthenticated } = useAuth();
   const { post } = useAPI();
   const { showSuccess, showError } = useNotification();
-  const { deliveryAddress, setDeliveryFromCurrentLocation } = useGeolocation();
+  // eslint-disable-next-line no-unused-vars
+  const { deliveryAddress: _deliveryAddress, setDeliveryFromCurrentLocation: _setDeliveryFromCurrentLocation } = useGeolocation();
 
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -85,7 +86,7 @@ const Checkout = () => {
       // In real app, this would be an API call
       const savedAddresses = JSON.parse(localStorage.getItem('user_addresses') || '[]');
       setAddresses(savedAddresses);
-      
+
       if (savedAddresses.length > 0) {
         setSelectedAddress(savedAddresses[0]);
       }
@@ -110,7 +111,7 @@ const Checkout = () => {
     setAddresses(updatedAddresses);
     setSelectedAddress(addressToAdd);
     localStorage.setItem('user_addresses', JSON.stringify(updatedAddresses));
-    
+
     setShowAddAddress(false);
     setNewAddress({
       name: '',
@@ -122,7 +123,7 @@ const Checkout = () => {
       pincode: '',
       type: 'home'
     });
-    
+
     showSuccess('पता सफलतापूर्वक जोड़ा गया');
   };
 
@@ -131,25 +132,25 @@ const Checkout = () => {
       showError('कृपया डिलीवरी पता चुनें');
       return;
     }
-    
+
     if (currentStep === 2 && !deliveryOption) {
       showError('कृपया डिलीवरी विकल्प चुनें');
       return;
     }
-    
+
     if (currentStep === 3) {
       // Prepare order and show payment
       prepareOrder();
       return;
     }
-    
+
     setCurrentStep(currentStep + 1);
   };
 
   const prepareOrder = () => {
     const cartSummary = getCartSummary();
     const selectedDelivery = deliveryOptions.find(opt => opt.id === deliveryOption);
-    
+
     const order = {
       userId: user.id,
       items: items.map(item => ({
@@ -171,7 +172,7 @@ const Checkout = () => {
         total: cartSummary.subtotal + selectedDelivery.price - cartSummary.discount
       }
     };
-    
+
     setOrderData(order);
     setShowPaymentGateway(true);
   };
@@ -188,7 +189,7 @@ const Checkout = () => {
 
       // Create order
       const response = await post('/orders', orderWithPayment);
-      
+
       if (response.success) {
         clearCart();
         showSuccess('ऑर्डर सफलतापूर्वक प्लेस हो गया!');
@@ -213,18 +214,18 @@ const Checkout = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
       <div className="max-w-6xl mx-auto px-6 py-8">
-        
+
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4">चेकआउट</h1>
-          
+
           {/* Progress Steps */}
           <div className="flex items-center justify-between bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
             {steps.map((step, index) => (
               <div key={step.id} className="flex items-center">
                 <div className={`flex items-center justify-center w-12 h-12 rounded-full ${
-                  currentStep >= step.id 
-                    ? 'bg-emerald-500 text-white' 
+                  currentStep >= step.id
+                    ? 'bg-emerald-500 text-white'
                     : 'bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400'
                 }`}>
                   {currentStep > step.id ? '✓' : step.icon}
@@ -247,15 +248,15 @@ const Checkout = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            
+
             {/* Step 1: Address Selection */}
             {currentStep === 1 && (
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
                 <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">डिलीवरी पता</h2>
-                
+
                 {/* Existing Addresses */}
                 {addresses.length > 0 && (
                   <div className="space-y-4 mb-6">
@@ -288,7 +289,7 @@ const Checkout = () => {
                     ))}
                   </div>
                 )}
-                
+
                 {/* Add New Address */}
                 <button
                   onClick={() => setShowAddAddress(!showAddAddress)}
@@ -296,7 +297,7 @@ const Checkout = () => {
                 >
                   + नया पता जोड़ें
                 </button>
-                
+
                 {showAddAddress && (
                   <div className="mt-6 p-6 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
                     <h3 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-4">नया पता</h3>
@@ -382,7 +383,7 @@ const Checkout = () => {
             {currentStep === 2 && (
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
                 <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">डिलीवरी विकल्प</h2>
-                
+
                 <div className="space-y-4">
                   {deliveryOptions.map((option) => (
                     <div
@@ -421,13 +422,13 @@ const Checkout = () => {
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
                   अगले स्टेप में आप अपनी पसंदीदा भुगतान विधि चुन सकेंगे।
                 </p>
-                
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {['UPI', 'Cards', 'NetBanking', 'Wallets'].map((method) => (
                     <div key={method} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg text-center">
                       <div className="text-2xl mb-2">
-                        {method === 'UPI' ? '📱' : 
-                         method === 'Cards' ? '💳' : 
+                        {method === 'UPI' ? '📱' :
+                         method === 'Cards' ? '💳' :
                          method === 'NetBanking' ? '🏦' : '💰'}
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-300">{method}</p>
@@ -447,7 +448,7 @@ const Checkout = () => {
                   पिछला
                 </button>
               )}
-              
+
               <button
                 onClick={handleStepComplete}
                 className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors duration-200 ml-auto"
@@ -460,13 +461,13 @@ const Checkout = () => {
           {/* Order Summary Sidebar */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg h-fit">
             <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">ऑर्डर सारांश</h3>
-            
+
             <div className="space-y-4 mb-6">
               {items.map((item) => (
                 <div key={item.id} className="flex items-center space-x-3">
-                  <img 
-                    src={item.image} 
-                    alt={item.name} 
+                  <img
+                    src={item.image}
+                    alt={item.name}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
                   <div className="flex-1">
@@ -488,11 +489,11 @@ const Checkout = () => {
               <div className="flex justify-between">
                 <span>डिलीवरी:</span>
                 <span>
-                  {deliveryOption ? 
-                    (deliveryOptions.find(opt => opt.id === deliveryOption)?.price === 0 ? 
-                      'मुफ्त' : 
+                  {deliveryOption ?
+                    (deliveryOptions.find(opt => opt.id === deliveryOption)?.price === 0 ?
+                      'मुफ्त' :
                       `₹${deliveryOptions.find(opt => opt.id === deliveryOption)?.price}`
-                    ) : 
+                    ) :
                     '₹0'
                   }
                 </span>
@@ -507,7 +508,7 @@ const Checkout = () => {
                 <span>कुल राशि:</span>
                 <span>
                   ₹{(
-                    getCartSummary().total + 
+                    getCartSummary().total +
                     (deliveryOption ? deliveryOptions.find(opt => opt.id === deliveryOption)?.price || 0 : 0)
                   ).toLocaleString()}
                 </span>

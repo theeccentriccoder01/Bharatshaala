@@ -41,6 +41,7 @@ const Notifications = () => {
   useEffect(() => {
     trackPageView('user_notifications');
     loadNotifications();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadNotifications = async () => {
@@ -61,7 +62,7 @@ const Notifications = () => {
     try {
       const response = await apiService.markNotificationRead(notificationId);
       if (response.success) {
-        setNotifications(notifications.map(notif => 
+        setNotifications(notifications.map(notif =>
           notif.id === notificationId ? { ...notif, read: true } : notif
         ));
         trackEvent('notification_marked_read', { notificationId });
@@ -93,12 +94,12 @@ const Notifications = () => {
     try {
       if (action === 'mark_read') {
         await Promise.all(selectedIds.map(id => apiService.markNotificationRead(id)));
-        setNotifications(notifications.map(notif => 
+        setNotifications(notifications.map(notif =>
           selectedIds.includes(notif.id) ? { ...notif, read: true } : notif
         ));
         trackEvent('bulk_notifications_marked_read', { count: selectedIds.length });
       }
-      
+
       setSelectedIds([]);
     } catch (error) {
       console.error('Failed to perform bulk action:', error);
@@ -115,8 +116,8 @@ const Notifications = () => {
   };
 
   const getFilteredNotifications = () => {
-    return filter === 'all' 
-      ? notifications 
+    return filter === 'all'
+      ? notifications
       : notifications.filter(notif => notif.type === filter);
   };
 
@@ -205,7 +206,7 @@ const Notifications = () => {
                 <div className="text-4xl mb-4">🔔</div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">कोई नोटिफिकेशन नहीं मिला</h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  {filter === 'all' 
+                  {filter === 'all'
                     ? 'अभी तक कोई नोटिफिकेशन नहीं आया है'
                     : `${notificationTypes.find(t => t.value === filter)?.label} श्रेणी में कोई नोटिफिकेशन नहीं`
                   }
@@ -274,14 +275,14 @@ const Notifications = () => {
                               }`}>
                                 {notification.message}
                               </p>
-                              
+
                               {/* Metadata */}
                               <div className="mt-2 flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
                                 <span>{formatRelativeTime(notification.createdAt)}</span>
                                 {notification.priority && notification.priority !== 'normal' && (
                                   <span className={`px-2 py-1 rounded-full bg-${priorityColors[notification.priority]}-100 text-${priorityColors[notification.priority]}-800`}>
-                                    {notification.priority === 'high' ? 'उच्च' : 
-                                     notification.priority === 'urgent' ? 'अत्यावश्यक' : 
+                                    {notification.priority === 'high' ? 'उच्च' :
+                                     notification.priority === 'urgent' ? 'अत्यावश्यक' :
                                      notification.priority === 'low' ? 'कम' : notification.priority}
                                   </span>
                                 )}
@@ -343,7 +344,7 @@ const Notifications = () => {
                   className="h-4 w-4 text-blue-600 dark:text-blue-400 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded"
                 />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">SMS नोटिफिकेशन</h3>
@@ -355,7 +356,7 @@ const Notifications = () => {
                   className="h-4 w-4 text-blue-600 dark:text-blue-400 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded"
                 />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">प्रमोशनल नोटिफिकेशन</h3>

@@ -44,6 +44,7 @@ const AddressBook = () => {
   useEffect(() => {
     trackPageView('address_book');
     loadAddresses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadAddresses = async () => {
@@ -62,7 +63,7 @@ const AddressBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       let response;
       if (editingAddress) {
@@ -168,7 +169,7 @@ const AddressBook = () => {
               <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 {editingAddress ? 'पता एडिट करें' : 'नया पता जोड़ें'}
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Address Type */}
                 <div>
@@ -395,7 +396,7 @@ const AddressBook = () => {
                           </span>
                         )}
                       </div>
-                      
+
                       <div className="text-gray-700 dark:text-gray-300 space-y-1">
                         <p className="font-medium">{address.firstName} {address.lastName}</p>
                         <p>{address.addressLine1}</p>
@@ -405,7 +406,7 @@ const AddressBook = () => {
                         <p>फोन: {address.phone}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex space-x-2 ml-4">
                       <button
                         onClick={() => handleEdit(address)}

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
 
-import map from '../../../images/markets/dilli_haat_map.jpg';
-
 const DilliHaat = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedShop, setSelectedShop] = useState(null);
   const [hoveredShop, setHoveredShop] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -167,8 +162,8 @@ const DilliHaat = () => {
     { id: 'food', name: 'फूड', icon: '🍛', count: shops.filter(s => s.category === 'food').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -186,17 +181,17 @@ const DilliHaat = () => {
                 <span className='text-2xl'>🇮🇳</span>
                 <span className='text-orange-800 dark:text-orange-200 font-bold'>भारत का मिनी इंडिया</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-orange-700 bg-clip-text text-transparent mb-4 pt-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
               <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Dilli Haat, {marketInfo.cityHindi}
               </h2>
-              
+
               <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
-                भारत सरकार का एक अनूठा प्रयास - जहाँ पूरे देश की कला, संस्कृति और स्वाद एक ही छत के नीचे मिलते हैं। 
-                यहाँ हर राज्य के कारीगर अपने हुनर का प्रदर्शन करते हैं। गुजरात से असम तक, राजस्थान से केरल तक - 
+                भारत सरकार का एक अनूठा प्रयास - जहाँ पूरे देश की कला, संस्कृति और स्वाद एक ही छत के नीचे मिलते हैं।
+                यहाँ हर राज्य के कारीगर अपने हुनर का प्रदर्शन करते हैं। गुजरात से असम तक, राजस्थान से केरल तक -
                 सभी की अनूठी विरासत यहाँ संजोई गई है।
               </p>
 
@@ -231,7 +226,7 @@ const DilliHaat = () => {
                 हस्तशिल्प निकास संवर्धन परिषद (EPCH) द्वारा संचालित यह हाट कारीगरों को सीधे ग्राहकों से जोड़ता है
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
               <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🎯</div>
@@ -275,8 +270,8 @@ const DilliHaat = () => {
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
+                    activeFilter === category.id
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white'
                       : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}

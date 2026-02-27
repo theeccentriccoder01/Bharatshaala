@@ -79,12 +79,13 @@ const Dashboard = () => {
   useEffect(() => {
     trackPageView('user_dashboard');
     loadDashboardData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadDashboardData = async () => {
     try {
       setLoading(true);
-      
+
       const [ordersResponse, wishlistResponse, notificationsResponse, recommendationsResponse] = await Promise.all([
         apiService.getOrders({ limit: 5 }),
         apiService.getWishlist(),
@@ -285,7 +286,7 @@ const Dashboard = () => {
                     सभी देखें
                   </Link>
                 </div>
-                
+
                 {dashboardData.notifications.length === 0 ? (
                   <div className="text-center py-4">
                     <div className="text-3xl mb-2">🔔</div>
@@ -349,7 +350,7 @@ const Dashboard = () => {
                             </span>
                           </div>
                         </div>
-                        
+
                         <div className="flex items-center justify-between">
                           <p className="text-sm text-gray-600 dark:text-gray-300">
                             {order.items?.length || 0} आइटम्स
@@ -374,8 +375,8 @@ const Dashboard = () => {
                 transition={{ delay: 0.8 }}
                 className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
               >
-                <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">आपके लिए सुझाव</h2>
-                
+                <h2 className="text-xl font-bold text-gray-900 mb-4">आपके लिए सुझाव</h2>
+
                 {dashboardData.recommendations.length === 0 ? (
                   <div className="text-center py-8">
                     <div className="text-4xl mb-4">🎯</div>

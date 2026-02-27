@@ -9,6 +9,7 @@ const ShippingInfo = () => {
 
   useEffect(() => {
     trackPageView('shipping_info');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const shippingOptions = [

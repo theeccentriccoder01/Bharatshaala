@@ -9,7 +9,6 @@ import { useAnalytics } from '../../utils/analytics';
 import { useCart } from '../../context/CartContext';
 import useWishlist from '../../hooks/useWishlist';
 import useAPI from '../../hooks/useAPI';
-import { PRODUCT_CATEGORIES } from '../../utils/constants';
 
 const CategoryLanding = () => {
   const { categorySlug } = useParams();
@@ -25,12 +24,13 @@ const CategoryLanding = () => {
   useEffect(() => {
     trackPageView(`category_${categorySlug}`);
     loadCategoryData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categorySlug]);
 
   const loadCategoryData = async () => {
     try {
       setLoading(true);
-      
+
       const [categoryResponse, productsResponse, subcategoriesResponse] = await Promise.all([
         useAPI.get(`/categories/${categorySlug}`),
         useAPI.get(`/categories/${categorySlug}/featured-products`),
@@ -109,12 +109,12 @@ const CategoryLanding = () => {
         <section className="relative bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20">
           <div className="absolute inset-0 bg-black/20"></div>
           {categoryData.bannerImage && (
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center opacity-30"
               style={{ backgroundImage: `url(${categoryData.bannerImage})` }}
             ></div>
           )}
-          
+
           <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -127,7 +127,7 @@ const CategoryLanding = () => {
               <p className="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
                 {categoryData.description}
               </p>
-              
+
               <div className="flex flex-wrap justify-center gap-6 text-emerald-200">
                 <div className="flex items-center space-x-2">
                   <span>📦</span>

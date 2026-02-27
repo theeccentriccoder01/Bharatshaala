@@ -9,6 +9,7 @@ const TermsOfService = () => {
 
   useEffect(() => {
     trackPageView('terms_of_service');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sections = [
@@ -143,9 +144,9 @@ const TermsOfService = () => {
                 transition={{ duration: 0.6 }}
                 className="prose prose-lg max-w-none"
               >
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
-                  भारतशाला वेबसाइट में आपका स्वागत है। कृपया इन नियमों और शर्तों को ध्यान से पढ़ें 
-                  क्योंकि ये आपके और भारतशाला के बीच कानूनी समझौते का निर्माण करती हैं। हमारी 
+                <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                  भारतशाला वेबसाइट में आपका स्वागत है। कृपया इन नियमों और शर्तों को ध्यान से पढ़ें
+                  क्योंकि ये आपके और भारतशाला के बीच कानूनी समझौते का निर्माण करती हैं। हमारी
                   सेवाओं का उपयोग करके आप इन शर्तों से सहमत होते हैं।
                 </p>
               </motion.div>

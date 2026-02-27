@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
 
-import map from '../../../images/markets/commercial_map.jpeg';
-
 const CommercialStreet = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedShop, setSelectedShop] = useState(null);
   const [hoveredShop, setHoveredShop] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -192,8 +187,8 @@ const CommercialStreet = () => {
     { id: 'books', name: 'किताबें', icon: '📚', count: shops.filter(s => s.category === 'books').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -212,17 +207,17 @@ const CommercialStreet = () => {
                 <span className='text-2xl'>🏙️</span>
                 <span className='text-gray-800 dark:text-gray-100 font-bold'>IT शहर का दिल</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-600 via-slate-500 to-gray-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
               <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Commercial Street, {marketInfo.cityHindi}
               </h2>
-              
-              <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
-                भारत की IT राजधानी बेंगलुरु का यह प्रसिद्ध शॉपिंग स्ट्रीट पुराने और नए का संगम है। 
-                यहाँ आपको पारंपरिक कांचीपुरम सिल्क से लेकर मॉडर्न फैशन तक, हर चीज़ मिलेगी। 
+
+              <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
+                भारत की IT राजधानी बेंगलुरु का यह प्रसिद्ध शॉपिंग स्ट्रीट पुराने और नए का संगम है।
+                यहाँ आपको पारंपरिक कांचीपुरम सिल्क से लेकर मॉडर्न फैशन तक, हर चीज़ मिलेगी।
                 MG Road के पास स्थित यह बाजार टेक सिटी के युवाओं और पारंपरिक खरीदारों दोनों की पसंद है।
               </p>
 
@@ -266,9 +261,9 @@ const CommercialStreet = () => {
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
-                      : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
+                    activeFilter === category.id
+                      ? 'bg-white/20 text-white'
+                      : 'bg-emerald-100 text-emerald-600'
                   }`}>
                     {category.count}
                   </span>
@@ -281,10 +276,10 @@ const CommercialStreet = () => {
         {/* Shops Grid */}
         <div className='max-w-7xl mx-auto px-6 pb-20'>
           <div className='text-center mb-12'>
-            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
-            <p className='text-xl text-emerald-600 dark:text-emerald-400'>
-              {activeFilter === 'all' 
-                ? 'कमर्शियल स्ट्रीट की सभी प्रसिद्ध दुकानें' 
+            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>प्रमुख दुकानें</h3>
+            <p className='text-xl text-emerald-600'>
+              {activeFilter === 'all'
+                ? 'कमर्शियल स्ट्रीट की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>

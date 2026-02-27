@@ -65,11 +65,13 @@ const Inventory = () => {
       return;
     }
     loadInventory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, user]);
 
   useEffect(() => {
     filterAndSortInventory();
     checkLowStockItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventory, searchTerm, filterStatus, filterCategory, sortBy]);
 
   const loadInventory = async () => {
@@ -304,11 +306,11 @@ const Inventory = () => {
   };
 
   const checkLowStockItems = () => {
-    const lowStock = inventory.filter(item => 
+    const lowStock = inventory.filter(item =>
       item.currentStock <= item.minStockLevel && item.currentStock > 0
     );
     setLowStockItems(lowStock);
-    
+
     if (lowStock.length > 0 && !showStockAlert) {
       setShowStockAlert(true);
       showWarning(`${lowStock.length} उत्पादों में कम स्टॉक है!`);
@@ -390,21 +392,6 @@ const Inventory = () => {
     }
   };
 
-  const handleStatusUpdate = async (itemId, newStatus) => {
-    try {
-      const response = await put(`/vendor/inventory/${itemId}/status`, {
-        status: newStatus
-      });
-
-      if (response.success) {
-        showSuccess('स्टेटस अपडेट हो गया');
-        loadInventory();
-      }
-    } catch (error) {
-      showError('स्टेटस अपडेट करने में त्रुटि');
-    }
-  };
-
   const getStatusBadge = (status) => {
     const statusConfig = {
       active: { bg: 'bg-green-100 dark:bg-green-900/20', text: 'text-green-800 dark:text-green-400', label: 'सक्रिय' },
@@ -412,7 +399,7 @@ const Inventory = () => {
       out_of_stock: { bg: 'bg-red-100 dark:bg-red-900/20', text: 'text-red-800 dark:text-red-400', label: 'स्टॉक खत्म' },
       low_stock: { bg: 'bg-yellow-100 dark:bg-yellow-900/20', text: 'text-yellow-800 dark:text-yellow-300', label: 'कम स्टॉक' }
     };
-    
+
     const config = statusConfig[status] || statusConfig.inactive;
     return (
       <span className={`px-2 py-1 rounded-full text-xs font-medium ${config.bg} ${config.text}`}>
@@ -446,7 +433,7 @@ const Inventory = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
       <div className="max-w-7xl mx-auto px-6 py-8">
-        
+
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
@@ -458,7 +445,7 @@ const Inventory = () => {
         </div>
 
         <div className="flex gap-8">
-          
+
           {/* Sidebar */}
           <div className="hidden lg:block">
             <VendorSidebar />
@@ -466,7 +453,7 @@ const Inventory = () => {
 
           {/* Main Content */}
           <div className="flex-1 space-y-8">
-            
+
             {/* Low Stock Alert */}
             {lowStockItems.length > 0 && showStockAlert && (
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-6 rounded-lg">
@@ -557,7 +544,7 @@ const Inventory = () => {
             {/* Filters and Controls */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                
+
                 {/* Search */}
                 <div>
                   <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">खोजें</label>
@@ -647,7 +634,7 @@ const Inventory = () => {
                       बल्क अपडेट ({selectedItems.length})
                     </button>
                   )}
-                  
+
                   <button
                     onClick={() => navigate('/vendor/add-item')}
                     className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm"

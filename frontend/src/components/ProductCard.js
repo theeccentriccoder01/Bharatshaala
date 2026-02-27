@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({ 
-  item, 
-  viewMode = 'grid', 
-  isSelected = false, 
-  onSelect, 
-  onEdit, 
-  stockStatus, 
+const ProductCard = ({
+  item,
+  viewMode = 'grid',
+  isSelected = false,
+  onSelect,
+  onEdit,
+  stockStatus,
   isVendorView = false,
   onAddToCart,
-  onAddToWishlist 
+  onAddToWishlist
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
@@ -39,6 +39,8 @@ const ProductCard = ({
       case 'select':
         onSelect?.();
         break;
+      default:
+        break;
     }
   };
 
@@ -61,7 +63,7 @@ const ProductCard = ({
 
   if (viewMode === 'list') {
     return (
-      <div 
+      <div
         className={`bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 ${
           isSelected ? 'border-emerald-500' : 'border-transparent'
         }`}
@@ -75,7 +77,7 @@ const ProductCard = ({
             {imageLoading && (
               <div className="absolute inset-0 bg-emerald-100 dark:bg-gray-800 animate-pulse"></div>
             )}
-            <img 
+            <img
               src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.png'}
               alt={item.name}
               className={`w-full h-full object-cover transition-transform duration-500 ${
@@ -84,7 +86,7 @@ const ProductCard = ({
               onLoad={() => setImageLoading(false)}
               onError={() => setImageLoading(false)}
             />
-            
+
             {/* Discount Badge */}
             {getDiscountPercent() > 0 && (
               <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
@@ -179,8 +181,8 @@ const ProductCard = ({
                 {/* Active Status for Vendor */}
                 {isVendorView && (
                   <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    item.isActive 
-                      ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400' 
+                    item.isActive
+                      ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400'
                       : 'bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-400'
                   }`}>
                     {item.isActive ? 'सक्रिय' : 'निष्क्रिय'}
@@ -230,7 +232,7 @@ const ProductCard = ({
 
   // Grid View (Default)
   return (
-    <div 
+    <div
       className={`group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer border-2 ${
         isSelected ? 'border-emerald-500' : 'border-transparent'
       }`}
@@ -243,7 +245,7 @@ const ProductCard = ({
         {imageLoading && (
           <div className="absolute inset-0 bg-emerald-100 dark:bg-gray-800 animate-pulse"></div>
         )}
-        <img 
+        <img
           src={item.images?.[0]?.url || item.images?.[0] || '/images/placeholder.png'}
           alt={item.name}
           className={`w-full h-full object-cover transition-transform duration-700 ${
@@ -252,12 +254,12 @@ const ProductCard = ({
           onLoad={() => setImageLoading(false)}
           onError={() => setImageLoading(false)}
         />
-        
+
         {/* Overlay */}
         <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-opacity duration-500 ${
           isHovered ? 'opacity-70' : 'opacity-50'
         }`}></div>
-        
+
         {/* Discount Badge */}
         {getDiscountPercent() > 0 && (
           <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
@@ -284,7 +286,7 @@ const ProductCard = ({
               {stockStatus.text}
             </div>
           )}
-          
+
           {item.isHandmade && (
             <div className="bg-amber-500/90 backdrop-blur-sm rounded-full px-3 py-1">
               <span className="text-white text-xs font-medium">हस्तनिर्मित</span>
@@ -296,8 +298,8 @@ const ProductCard = ({
         {isVendorView && (
           <div className="absolute bottom-4 right-4">
             <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-              item.isActive 
-                ? 'bg-green-500/90 text-white' 
+              item.isActive
+                ? 'bg-green-500/90 text-white'
                 : 'bg-red-500/90 text-white'
             }`}>
               {item.isActive ? 'सक्रिय' : 'निष्क्रिय'}

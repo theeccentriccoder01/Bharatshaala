@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import ProductCard from "../../../components/ProductCard";
-import QuantitySelector from "../../../components/QuantitySelector";
 import "../../../App.css";
 
 import necklace from "../../../images/items/kundan-necklace.jpg";
@@ -14,7 +12,6 @@ import set from "../../../images/items/set.jpeg";
 const Shop1 = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [cartItems, setCartItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [notification, setNotification] = useState(null);

@@ -22,7 +22,7 @@ const QuantitySelector = ({
 
   const handleIncrement = () => {
     if (disabled) return;
-    
+
     const newValue = Math.min(quantity + step, max);
     if (newValue !== quantity) {
       setQuantity(newValue);
@@ -33,7 +33,7 @@ const QuantitySelector = ({
 
   const handleDecrement = () => {
     if (disabled) return;
-    
+
     const newValue = Math.max(quantity - step, min);
     if (newValue !== quantity) {
       setQuantity(newValue);
@@ -45,7 +45,7 @@ const QuantitySelector = ({
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    
+
     // Validate and update quantity
     const numValue = parseInt(value);
     if (!isNaN(numValue) && numValue >= min && numValue <= max) {
@@ -97,11 +97,11 @@ const QuantitySelector = ({
       {/* Quantity Selector */}
       <div className={`relative ${sizeConfig.container}`}>
         <div className={`flex items-center border-2 rounded-lg transition-all duration-200 ${
-          error 
-            ? 'border-red-300 dark:border-red-600 focus-within:border-red-500' 
+          error
+            ? 'border-red-300 dark:border-red-600 focus-within:border-red-500'
             : 'border-emerald-200 dark:border-emerald-700 focus-within:border-emerald-500'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}>
-          
+
           {/* Decrement Button */}
           <button
             type="button"
@@ -184,7 +184,7 @@ export const BulkQuantitySelector = ({
   showBulkDiscounts = false,
   bulkDiscounts = {}
 }) => {
-  const [selectedBulk, setSelectedBulk] = useState(null);
+  const [, setSelectedBulk] = useState(null);
 
   const handleBulkSelect = (bulkValue) => {
     setSelectedBulk(bulkValue);

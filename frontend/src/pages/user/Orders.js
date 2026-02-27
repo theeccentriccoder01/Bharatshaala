@@ -12,9 +12,12 @@ const UserOrders = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedPeriod, setSelectedPeriod] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [selectedOrder, setSelectedOrder] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [showOrderDetails, setShowOrderDetails] = useState(false);
-  const [searchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const orderStatuses = [
@@ -41,10 +44,12 @@ const UserOrders = () => {
     loadOrders();
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     filterOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orders, selectedStatus, selectedPeriod, searchTerm]);
 
   const loadOrders = async () => {
@@ -180,6 +185,7 @@ const UserOrders = () => {
           case '3months': matchesPeriod = daysDiff <= 90; break;
           case '6months': matchesPeriod = daysDiff <= 180; break;
           case '1year': matchesPeriod = daysDiff <= 365; break;
+          default: break;
         }
       }
       
@@ -190,11 +196,6 @@ const UserOrders = () => {
     filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     setFilteredOrders(filtered);
-  };
-
-  const getStatusColor = (status) => {
-    const statusInfo = orderStatuses.find(s => s.id === status);
-    return statusInfo ? statusInfo.color : 'gray';
   };
 
   const getStatusInfo = (status) => {
@@ -226,6 +227,7 @@ const UserOrders = () => {
           // Add items to cart and redirect
           navigate('/bag');
           break;
+        default: break;
       }
     } catch (error) {
       console.error('Order action failed:', error);

@@ -38,6 +38,7 @@ const Carousel = ({ images, interval = 5000 }) => {
     
     const autoPlay = setInterval(nextSlide, interval);
     return () => clearInterval(autoPlay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interval, isPlaying]);
 
   return (

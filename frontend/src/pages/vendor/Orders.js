@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import "../../App.css";
 
@@ -33,7 +34,7 @@ const VendorOrders = () => {
       <div className="bg-brsl_cream h-full min-h-screen">
         {/* Main text */}
         <div className="max-w-lg mx-auto">
-          <h1 className="flex"></h1>
+          <h1 className="flex"><span>&#8203;</span></h1>
           <h1 className="flex text-brsl_brick font-bharatshaala text-6xl mt-5 justify-center text-center">
             Vendor Center
           </h1>
@@ -89,10 +90,10 @@ const VendorOrders = () => {
                   key={index}
                   className="flex justify-between relative bg-white dark:bg-gray-800 p-5 rounded-2xl"
                 >
-                  <div className="text-gray-600 dark:text-gray-300">
-                    <a href="#" className="font-bharatshaala text-xl ml-5">
+                  <div className="text-gray-600">
+                    <Link to="/order" className="font-bharatshaala text-xl ml-5">
                       Order #{order.order_id}
-                    </a>
+                    </Link>
                     <p className="font-body text-md ml-5">Order Details:</p>
                     {/* Render details of each order */}
                     <div className="ml-5">

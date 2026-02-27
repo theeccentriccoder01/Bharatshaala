@@ -64,6 +64,7 @@ const PaymentMethods = () => {
   useEffect(() => {
     trackPageView('payment_methods');
     loadPaymentMethods();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadPaymentMethods = async () => {
@@ -82,7 +83,7 @@ const PaymentMethods = () => {
 
   const handleAddPaymentMethod = async (e) => {
     e.preventDefault();
-    
+
     try {
       const data = selectedType === 'card' ? cardForm : upiForm;
       const response = await apiService.post('/user/payment-methods', {
@@ -208,8 +209,8 @@ const PaymentMethods = () => {
               animate={{ opacity: 1, y: 0 }}
               className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6"
             >
-              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">नया पेमेंट मेथड जोड़ें</h2>
-              
+              <h2 className="text-xl font-bold text-gray-900 mb-4">नया पेमेंट मेथड जोड़ें</h2>
+
               {/* Payment Type Selection */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -448,14 +449,14 @@ const PaymentMethods = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
                         <div className="text-3xl">
-                          {method.type === 'card' ? '💳' : 
-                           method.type === 'upi' ? '📱' : 
+                          {method.type === 'card' ? '💳' :
+                           method.type === 'upi' ? '📱' :
                            method.type === 'netbanking' ? '🏦' : '👛'}
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                              {method.type === 'card' ? 
+                            <h3 className="font-semibold text-gray-900">
+                              {method.type === 'card' ?
                                 `${getCardBrand(method.cardNumber)} ${method.cardType}` :
                                 method.type === 'upi' ? 'UPI' : method.type}
                             </h3>
@@ -465,9 +466,9 @@ const PaymentMethods = () => {
                               </span>
                             )}
                           </div>
-                          <p className="text-gray-600 dark:text-gray-300">
-                            {method.type === 'card' ? 
-                              maskCardNumber(method.cardNumber) : 
+                          <p className="text-gray-600">
+                            {method.type === 'card' ?
+                              maskCardNumber(method.cardNumber) :
                               method.upiId || method.accountNumber}
                           </p>
                           <p className="text-sm text-gray-500 dark:text-gray-400">{method.holderName}</p>
@@ -478,7 +479,7 @@ const PaymentMethods = () => {
                           )}
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center space-x-2">
                         {!method.isDefault && (
                           <button

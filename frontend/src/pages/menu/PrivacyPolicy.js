@@ -9,6 +9,7 @@ const PrivacyPolicy = () => {
 
   useEffect(() => {
     trackPageView('privacy_policy');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sections = [
@@ -120,8 +121,8 @@ const PrivacyPolicy = () => {
                 className="prose prose-lg max-w-none"
               >
                 <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
-                  भारतशाला में, हम आपकी गोपनीयता का सम्मान करते हैं और आपकी व्यक्तिगत जानकारी की सुरक्षा के लिए प्रतिबद्ध हैं। 
-                  यह गोपनीयता नीति बताती है कि हम आपकी जानकारी कैसे एकत्र करते हैं, उपयोग करते हैं, और सुरक्षित रखते हैं 
+                  भारतशाला में, हम आपकी गोपनीयता का सम्मान करते हैं और आपकी व्यक्तिगत जानकारी की सुरक्षा के लिए प्रतिबद्ध हैं।
+                  यह गोपनीयता नीति बताती है कि हम आपकी जानकारी कैसे एकत्र करते हैं, उपयोग करते हैं, और सुरक्षित रखते हैं
                   जब आप हमारी वेबसाइट bharatshaala.com का उपयोग करते हैं।
                 </p>
               </motion.div>

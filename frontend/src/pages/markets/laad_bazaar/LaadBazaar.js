@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
@@ -8,10 +7,8 @@ import map from '../../../images/markets/laad_map.jpeg';
 
 const LaadBazaar = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedShop, setSelectedShop] = useState(null);
   const [hoveredShop, setHoveredShop] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -192,8 +189,8 @@ const LaadBazaar = () => {
     { id: 'textiles', name: 'कपड़े', icon: '🧵', count: shops.filter(s => s.category === 'textiles').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -221,17 +218,17 @@ const LaadBazaar = () => {
                 <span className='text-2xl'>👑</span>
                 <span className='text-purple-800 dark:text-purple-200 font-bold'>निज़ामी विरासत</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
               <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Laad Bazaar, {marketInfo.cityHindi}
               </h2>
-              
+
               <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
-                प्रतिष्ठित चार मीनार के सामने स्थित, यह बाजार चूड़ियों, मोतियों और पारंपरिक हैदराबादी आभूषण डिज़ाइन का शानदार संग्रह प्रस्तुत करता है। 
-                निज़ामों के समय से चली आ रही यह परंपरा आज भी जीवंत है। यहाँ आपको विश्व प्रसिद्ध हैदराबादी मोती और लाख की चूड़ियों का 
+                प्रतिष्ठित चार मीनार के सामने स्थित, यह बाजार चूड़ियों, मोतियों और पारंपरिक हैदराबादी आभूषण डिज़ाइन का शानदार संग्रह प्रस्तुत करता है।
+                निज़ामों के समय से चली आ रही यह परंपरा आज भी जीवंत है। यहाँ आपको विश्व प्रसिद्ध हैदराबादी मोती और लाख की चूड़ियों का
                 अनुपम संग्रह मिलेगा।
               </p>
 
@@ -286,16 +283,16 @@ const LaadBazaar = () => {
               <span>🕌</span>
             </h3>
             <div className='relative flex justify-center'>
-              <img 
-                src={map} 
-                alt='Laad Bazaar Map' 
-                className='rounded-2xl w-full max-w-4xl shadow-lg hover:scale-105 transition-transform duration-500' 
+              <img
+                src={map}
+                alt='Laad Bazaar Map'
+                className='rounded-2xl w-full max-w-4xl shadow-lg hover:scale-105 transition-transform duration-500'
               />
               <div className='absolute top-4 right-4 bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-medium'>
                 🕌 चार मीनार के सामने
               </div>
             </div>
-            
+
             {/* Char Minar Connection */}
             <div className='mt-8 bg-gradient-to-r from-purple-50 dark:from-purple-900/30 to-indigo-50 dark:to-indigo-900/30 rounded-xl p-6 border border-purple-200 dark:border-purple-700'>
               <div className='text-center'>
@@ -304,12 +301,12 @@ const LaadBazaar = () => {
                   <span>चार मीनार से दूरी: केवल 50 मीटर</span>
                 </h4>
                 <p className='text-purple-700 dark:text-purple-300 max-w-2xl mx-auto'>
-                  इस ऐतिहासिक बाजार का मुख्य आकर्षण चार मीनार के ठीक सामने होना है। 
+                  इस ऐतिहासिक बाजार का मुख्य आकर्षण चार मीनार के ठीक सामने होना है।
                   पर्यटक चार मीनार देखने के साथ-साथ इस प्रसिद्ध बाजार की खरीदारी का भी आनंद ले सकते हैं।
                 </p>
               </div>
             </div>
-            
+
             {/* Market Info */}
             <div className='mt-6 grid grid-cols-1 md:grid-cols-3 gap-6'>
               <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
@@ -340,7 +337,7 @@ const LaadBazaar = () => {
                 हैदराबाद के निज़ामों द्वारा संरक्षित यह बाजार आज भी अपनी मूल परंपरा को जीवित रखे हुए है
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
               <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>👑</div>
@@ -384,8 +381,8 @@ const LaadBazaar = () => {
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
+                    activeFilter === category.id
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white'
                       : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}
@@ -401,8 +398,8 @@ const LaadBazaar = () => {
           <div className='text-center mb-12'>
             <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
             <p className='text-xl text-emerald-600 dark:text-emerald-400'>
-              {activeFilter === 'all' 
-                ? 'लाड़ बाजार की सभी प्रसिद्ध दुकानें' 
+              {activeFilter === 'all'
+                ? 'लाड़ बाजार की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>
@@ -437,7 +434,7 @@ const LaadBazaar = () => {
                 लाड़ बाजार के मोती अपनी चमक, आकार और गुणवत्ता के लिए विश्व भर में प्रसिद्ध हैं
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🐚</div>
@@ -455,7 +452,7 @@ const LaadBazaar = () => {
                 <p className='text-indigo-100 text-sm'>हर मोती प्रमाणपत्र के साथ</p>
               </div>
             </div>
-            
+
             <div className='text-center mt-8'>
               <button className='bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 dark:hover:bg-gray-700 dark:bg-purple-900/20 transition-colors duration-300 transform hover:scale-105'>
                 मोती की जानकारी
@@ -479,4 +476,4 @@ const LaadBazaar = () => {
   );
 };
 
-export default LaadBazaar;              
+export default LaadBazaar;

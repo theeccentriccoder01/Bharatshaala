@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { useCart } from '../hooks/useCart';
 import { useNotification } from '../hooks/useNotification';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -23,9 +21,7 @@ const PaymentGateway = ({
   });
   const [errors, setErrors] = useState({});
   const [transactionId, setTransactionId] = useState('');
-  
-  const { user } = useAuth();
-  const { getCartSummary } = useCart();
+
   const { showSuccess, showError } = useNotification();
 
   const paymentMethods = [
@@ -104,27 +100,27 @@ const PaymentGateway = ({
 
   const validateCard = (cardDetails) => {
     const errors = {};
-    
+
     // Card number validation (simplified)
     if (!cardDetails.number || cardDetails.number.replace(/\s/g, '').length < 16) {
       errors.number = 'वैध कार्ड नंबर डालें';
     }
-    
+
     // Expiry validation
     if (!cardDetails.expiry || !/^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(cardDetails.expiry)) {
       errors.expiry = 'MM/YY फॉर्मेट में डालें';
     }
-    
+
     // CVV validation
     if (!cardDetails.cvv || cardDetails.cvv.length < 3) {
       errors.cvv = 'वैध CVV डालें';
     }
-    
+
     // Name validation
     if (!cardDetails.name || cardDetails.name.trim().length < 2) {
       errors.name = 'कार्डधारक का नाम डालें';
     }
-    
+
     return errors;
   };
 
@@ -149,6 +145,8 @@ const PaymentGateway = ({
         case 'cod':
           // No validation needed for COD
           break;
+        default:
+          break;
       }
 
       if (Object.keys(validationErrors).length > 0) {
@@ -159,8 +157,8 @@ const PaymentGateway = ({
       }
 
       // Simulate payment processing
-      const processingTime = selectedMethod === 'upi' ? 3000 : 
-                           selectedMethod === 'card' ? 5000 : 
+      const processingTime = selectedMethod === 'upi' ? 3000 :
+                           selectedMethod === 'card' ? 5000 :
                            selectedMethod === 'cod' ? 1000 : 4000;
 
       await new Promise(resolve => setTimeout(resolve, processingTime));
@@ -177,7 +175,7 @@ const PaymentGateway = ({
           timestamp: new Date().toISOString(),
           status: selectedMethod === 'cod' ? 'pending' : 'completed'
         };
-        
+
         showSuccess(`भुगतान सफल! Transaction ID: ${transactionId}`);
         onPaymentSuccess?.(paymentData);
       } else {
@@ -188,7 +186,7 @@ const PaymentGateway = ({
           error: 'Payment failed due to insufficient funds or network error',
           timestamp: new Date().toISOString()
         };
-        
+
         showError('भुगतान असफल! कृपया पुनः प्रयास करें');
         onPaymentFailure?.(errorData);
       }
@@ -205,7 +203,7 @@ const PaymentGateway = ({
   const formatCardNumber = (value) => {
     const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
     const matches = v.match(/\d{4,16}/g);
-    const match = matches && matches[0] || '';
+    const match = (matches && matches[0]) || '';
     const parts = [];
     for (let i = 0, len = match.length; i < len; i += 4) {
       parts.push(match.substring(i, i + 4));
@@ -219,7 +217,7 @@ const PaymentGateway = ({
 
   const handleCardInputChange = (field, value) => {
     let formattedValue = value;
-    
+
     if (field === 'number') {
       formattedValue = formatCardNumber(value);
     } else if (field === 'expiry') {
@@ -227,7 +225,7 @@ const PaymentGateway = ({
     } else if (field === 'cvv') {
       formattedValue = value.replace(/\D/g, '').substr(0, 4);
     }
-    
+
     setCardDetails(prev => ({
       ...prev,
       [field]: formattedValue
@@ -239,7 +237,7 @@ const PaymentGateway = ({
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-white dark:bg-gray-800 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-        
+
         {/* Header */}
         <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-6 text-white">
           <div className="flex justify-between items-center">
@@ -257,7 +255,7 @@ const PaymentGateway = ({
         {/* Payment Method Selection */}
         {paymentStep === 'method' && (
           <div className="p-8">
-            
+
             {/* Order Summary */}
             <div className="mb-8 p-6 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl border border-emerald-200 dark:border-emerald-700">
               <h3 className="text-lg font-bold text-emerald-800 dark:text-emerald-200 mb-4">ऑर्डर सारांश</h3>
@@ -308,7 +306,7 @@ const PaymentGateway = ({
                         लोकप्रिय
                       </div>
                     )}
-                    
+
                     <div className="flex items-center space-x-4 mb-3">
                       <img src={method.icon} alt={method.name} className="w-8 h-8" />
                       <div>
@@ -316,7 +314,7 @@ const PaymentGateway = ({
                         <p className="text-sm text-emerald-600 dark:text-emerald-400">{method.description}</p>
                       </div>
                     </div>
-                    
+
                     <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
                       <div>⏱️ प्रोसेसिंग टाइम: {method.processingTime}</div>
                       <div>💰 शुल्क: {method.fees > 0 ? `₹${method.fees}` : 'मुफ्त'}</div>
@@ -330,7 +328,7 @@ const PaymentGateway = ({
             {selectedMethod === 'upi' && (
               <div className="mb-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-200 dark:border-blue-700">
                 <h4 className="font-bold text-blue-800 dark:text-blue-300 mb-4">UPI भुगतान</h4>
-                
+
                 {/* UPI Apps */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                   {upiApps.map((app) => (
@@ -343,7 +341,7 @@ const PaymentGateway = ({
                     </button>
                   ))}
                 </div>
-                
+
                 {/* UPI ID Input */}
                 <div>
                   <label className="block text-blue-800 dark:text-blue-300 font-semibold mb-2">
@@ -366,7 +364,7 @@ const PaymentGateway = ({
             {selectedMethod === 'card' && (
               <div className="mb-8 p-6 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-200 dark:border-purple-700">
                 <h4 className="font-bold text-purple-800 dark:text-purple-300 mb-4">कार्ड विवरण</h4>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="md:col-span-2">
                     <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
@@ -384,7 +382,7 @@ const PaymentGateway = ({
                     />
                     {errors.number && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.number}</p>}
                   </div>
-                  
+
                   <div>
                     <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
                       एक्सपायरी डेट
@@ -401,7 +399,7 @@ const PaymentGateway = ({
                     />
                     {errors.expiry && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.expiry}</p>}
                   </div>
-                  
+
                   <div>
                     <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
                       CVV
@@ -418,7 +416,7 @@ const PaymentGateway = ({
                     />
                     {errors.cvv && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.cvv}</p>}
                   </div>
-                  
+
                   <div className="md:col-span-2">
                     <label className="block text-purple-800 dark:text-purple-300 font-semibold mb-2">
                       कार्डधारक का नाम
@@ -492,7 +490,7 @@ const PaymentGateway = ({
               >
                 रद्द करें
               </button>
-              
+
               <button
                 onClick={processPayment}
                 disabled={isProcessing}
@@ -515,7 +513,7 @@ const PaymentGateway = ({
             <p className="text-emerald-600 dark:text-emerald-400 mb-8">
               कृपया प्रतीक्षा करें, यह प्रक्रिया कुछ समय ले सकती है
             </p>
-            
+
             <div className="bg-yellow-50 border border-yellow-200 dark:border-yellow-700 rounded-xl p-6">
               <div className="flex items-center justify-center space-x-2 text-yellow-800 dark:text-yellow-300">
                 <span>⚠️</span>
@@ -534,14 +532,14 @@ const PaymentGateway = ({
             <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-white text-3xl">✅</span>
             </div>
-            
+
             <h3 className="text-2xl font-bold text-green-800 dark:text-green-400 mb-4">
               भुगतान सफल!
             </h3>
             <p className="text-green-600 dark:text-green-400 mb-6">
               आपका भुगतान सफलतापूर्वक पूरा हो गया है
             </p>
-            
+
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-xl p-6 mb-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
@@ -578,14 +576,14 @@ const PaymentGateway = ({
             <div className="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-white text-3xl">❌</span>
             </div>
-            
+
             <h3 className="text-2xl font-bold text-red-800 mb-4">
               भुगतान असफल
             </h3>
             <p className="text-red-600 dark:text-red-400 mb-6">
               आपका भुगतान पूरा नहीं हो सका, कृपया पुनः प्रयास करें
             </p>
-            
+
             <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-xl p-6 mb-6">
               <h4 className="font-semibold text-red-800 mb-2">संभावित कारण:</h4>
               <ul className="text-sm text-red-700 dark:text-red-400 space-y-1 text-left">
@@ -603,7 +601,7 @@ const PaymentGateway = ({
               >
                 पुनः प्रयास करें
               </button>
-              
+
               <button
                 onClick={onCancel}
                 className="border-2 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 px-6 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-300"

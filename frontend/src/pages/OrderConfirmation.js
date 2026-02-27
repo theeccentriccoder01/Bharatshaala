@@ -18,6 +18,7 @@ const OrderConfirmation = () => {
       loadOrderDetails();
       showSuccess('ऑर्डर सफलतापूर्वक प्लेस हो गया!');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
   const loadOrderDetails = async () => {
@@ -109,7 +110,7 @@ const OrderConfirmation = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
       <div className="max-w-4xl mx-auto px-6 py-8">
-        
+
         {/* Success Header */}
         <div className="text-center mb-12">
           <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -128,7 +129,7 @@ const OrderConfirmation = () => {
 
         {/* Order Details Card */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden mb-8">
-          
+
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-6 text-white">
             <div className="flex justify-between items-center">
@@ -156,11 +157,11 @@ const OrderConfirmation = () => {
                 <p className="text-xs mt-2 text-center">ऑर्डर प्लेसड</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">आज</p>
               </div>
-              
+
               <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-600 mx-2">
                 <div className="h-1 bg-green-500 w-0"></div>
               </div>
-              
+
               <div className="flex flex-col items-center">
                 <div className="w-8 h-8 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
                   <span className="text-gray-500 dark:text-gray-400 text-sm">📦</span>
@@ -168,9 +169,9 @@ const OrderConfirmation = () => {
                 <p className="text-xs mt-2 text-center">पैकेजिंग</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">1-2 दिन</p>
               </div>
-              
+
               <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-600 mx-2"></div>
-              
+
               <div className="flex flex-col items-center">
                 <div className="w-8 h-8 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
                   <span className="text-gray-500 dark:text-gray-400 text-sm">🚚</span>
@@ -178,9 +179,9 @@ const OrderConfirmation = () => {
                 <p className="text-xs mt-2 text-center">शिप्ड</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">2-3 दिन</p>
               </div>
-              
+
               <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-600 mx-2"></div>
-              
+
               <div className="flex flex-col items-center">
                 <div className="w-8 h-8 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
                   <span className="text-gray-500 dark:text-gray-400 text-sm">🏠</span>
@@ -199,8 +200,8 @@ const OrderConfirmation = () => {
             <div className="space-y-4">
               {order.items.map((item) => (
                 <div key={item.id} className="flex items-center space-x-4 p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.name}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
@@ -241,7 +242,7 @@ const OrderConfirmation = () => {
                   <span>₹{order.summary.total.toLocaleString()}</span>
                 </div>
               </div>
-              
+
               <div className="mt-4 pt-4 border-t border-emerald-200 dark:border-emerald-700">
                 <div className="flex justify-between items-center">
                   <span className="font-semibold">भुगतान विधि:</span>
@@ -281,21 +282,21 @@ const OrderConfirmation = () => {
           >
             📍 ऑर्डर ट्रैक करें
           </button>
-          
+
           <button
             onClick={downloadInvoice}
             className="bg-blue-500 text-white py-3 px-6 rounded-xl hover:bg-blue-600 transition-colors duration-200 text-center"
           >
             📄 इनवॉइस डाउनलोड करें
           </button>
-          
+
           <button
             onClick={shareOrder}
             className="bg-purple-500 text-white py-3 px-6 rounded-xl hover:bg-purple-600 transition-colors duration-200 text-center"
           >
             📤 शेयर करें
           </button>
-          
+
           <button
             onClick={() => navigate('/user/orders')}
             className="bg-gray-500 text-white py-3 px-6 rounded-xl hover:bg-gray-600 transition-colors duration-200 text-center"

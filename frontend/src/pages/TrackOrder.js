@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAPI } from '../hooks/useAPI';
-import { useNotification } from '../hooks/useNotification';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const TrackOrder = () => {
   const { orderId } = useParams();
   const navigate = useNavigate();
   const { get } = useAPI();
-  const { showError } = useNotification();
 
   const [orderTracking, setOrderTracking] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,6 +19,7 @@ const TrackOrder = () => {
       const interval = setInterval(loadTrackingInfo, 30000);
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
   const loadTrackingInfo = async (isRefresh = false) => {
@@ -134,7 +133,7 @@ const TrackOrder = () => {
         }
       });
     }
-    
+
     setLoading(false);
     setRefreshing(false);
   };
@@ -173,7 +172,7 @@ const TrackOrder = () => {
     const deliveryDate = new Date(orderTracking.estimatedDelivery);
     const diffTime = deliveryDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays === 0) return 'आज डिलीवरी होगी';
     if (diffDays === 1) return 'कल डिलीवरी होगी';
     if (diffDays > 1) return `${diffDays} दिन में डिलीवरी होगी`;
@@ -205,7 +204,7 @@ const TrackOrder = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
       <div className="max-w-4xl mx-auto px-6 py-8">
-        
+
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex justify-between items-start mb-6">
@@ -220,7 +219,7 @@ const TrackOrder = () => {
                 ट्रैकिंग नंबर: <span className="font-mono">{orderTracking.trackingNumber}</span>
               </p>
             </div>
-            
+
             <button
               onClick={handleRefresh}
               disabled={refreshing}
@@ -261,8 +260,8 @@ const TrackOrder = () => {
             <div className="space-y-3">
               {orderTracking.items.map((item) => (
                 <div key={item.id} className="flex items-center space-x-4 p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.name}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
@@ -280,22 +279,22 @@ const TrackOrder = () => {
         {/* Tracking Timeline */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
           <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-8">ट्रैकिंग टाइमलाइन</h3>
-          
+
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-600"></div>
-            
+
             <div className="space-y-8">
               {orderTracking.timeline.map((event, index) => (
                 <div key={index} className="relative flex items-start space-x-6">
-                  
+
                   {/* Timeline Dot */}
                   <div className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center text-white text-xl ${
                     event.completed ? getStatusColor(event.status) : 'bg-gray-300 dark:bg-gray-600'
                   } ${event.current ? 'ring-4 ring-yellow-300 dark:ring-yellow-600 animate-pulse' : ''}`}>
                     {event.icon}
                   </div>
-                  
+
                   {/* Event Content */}
                   <div className={`flex-1 ${event.completed ? '' : 'opacity-50'}`}>
                     <div className="bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-6 border-l-4 border-emerald-500 dark:border-emerald-400">
@@ -314,14 +313,14 @@ const TrackOrder = () => {
                           </span>
                         )}
                       </div>
-                      
+
                       <p className="text-gray-700 dark:text-gray-300 mb-2">{event.description}</p>
-                      
+
                       <div className="flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 text-sm">
                         <span>📍</span>
                         <span>{event.location}</span>
                       </div>
-                      
+
                       {event.current && (
                         <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg">
                           <p className="text-yellow-800 dark:text-yellow-400 text-sm font-medium">
@@ -339,7 +338,7 @@ const TrackOrder = () => {
 
         {/* Delivery Address & Support */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          
+
           {/* Delivery Address */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
             <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4 flex items-center space-x-2">
@@ -370,7 +369,7 @@ const TrackOrder = () => {
                   <p className="text-blue-600 dark:text-blue-400 text-sm">{orderTracking.supportContact.phone}</p>
                 </div>
               </a>
-              
+
               <a
                 href={`https://wa.me/${orderTracking.supportContact.whatsapp.replace(/[^0-9]/g, '')}?text=ऑर्डर%20नंबर:%20${orderTracking.orderNumber}`}
                 target="_blank"
@@ -383,7 +382,7 @@ const TrackOrder = () => {
                   <p className="text-green-600 dark:text-green-400 text-sm">तुरंत सहायता पाएं</p>
                 </div>
               </a>
-              
+
               <a
                 href={`mailto:${orderTracking.supportContact.email}?subject=ऑर्डर%20${orderTracking.orderNumber}%20सहायता`}
                 className="flex items-center space-x-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:bg-purple-100 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -409,7 +408,7 @@ const TrackOrder = () => {
               <div className="text-2xl mb-2">📄</div>
               <div className="text-sm font-medium">ऑर्डर विवरण</div>
             </button>
-            
+
             <button
               onClick={() => window.open(`/api/orders/${orderId}/invoice`, '_blank')}
               className="bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 p-4 rounded-xl hover:bg-blue-200 transition-colors duration-200 text-center"
@@ -417,7 +416,7 @@ const TrackOrder = () => {
               <div className="text-2xl mb-2">📊</div>
               <div className="text-sm font-medium">इनवॉइस डाउनलोड</div>
             </button>
-            
+
             <button
               onClick={() => {
                 if (navigator.share) {
@@ -433,7 +432,7 @@ const TrackOrder = () => {
               <div className="text-2xl mb-2">📤</div>
               <div className="text-sm font-medium">शेयर करें</div>
             </button>
-            
+
             <button
               onClick={() => navigate('/user/orders')}
               className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-4 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 text-center"

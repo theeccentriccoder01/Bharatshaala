@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import VendorSidebar from "../../components/VendorSidebar";
@@ -9,9 +8,6 @@ const VendorAnalytics = () => {
   const [loading, setLoading] = useState(true);
   const [analyticsData, setAnalyticsData] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState('last_30_days');
-  const [selectedMetric, setSelectedMetric] = useState('revenue');
-  const [chartData, setChartData] = useState([]);
-  const navigate = useNavigate();
 
   const periods = [
     { id: 'today', name: 'आज', icon: '📅' },
@@ -22,18 +18,11 @@ const VendorAnalytics = () => {
     { id: 'this_year', name: 'इस साल', icon: '🗓️' }
   ];
 
-  const metrics = [
-    { id: 'revenue', name: 'राजस्व', icon: '💰', color: 'emerald' },
-    { id: 'orders', name: 'ऑर्डर', icon: '📦', color: 'blue' },
-    { id: 'customers', name: 'ग्राहक', icon: '👥', color: 'purple' },
-    { id: 'views', name: 'व्यू', icon: '👁️', color: 'orange' },
-    { id: 'conversion', name: 'कन्वर्शन', icon: '📊', color: 'green' }
-  ];
-
   useEffect(() => {
     loadAnalyticsData();
     const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPeriod]);
 
   const loadAnalyticsData = async () => {
@@ -41,7 +30,6 @@ const VendorAnalytics = () => {
       const response = await axios.get(`/vendor/analytics?period=${selectedPeriod}`);
       if (response.data.success) {
         setAnalyticsData(response.data.analytics);
-        setChartData(response.data.chartData);
       }
     } catch (error) {
       console.error("Analytics data fetch error:", error);
@@ -157,10 +145,6 @@ const VendorAnalytics = () => {
     return `${value > 0 ? '+' : ''}${value.toFixed(1)}%`;
   };
 
-  const getGrowthColor = (growth) => {
-    return growth >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400';
-  };
-
   const getGrowthIcon = (growth) => {
     return growth >= 0 ? '📈' : '📉';
   };
@@ -173,7 +157,7 @@ const VendorAnalytics = () => {
     <React.StrictMode>
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         <div className="max-w-7xl mx-auto px-6 py-8">
-          
+
           {/* Header */}
           <div className="mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -185,7 +169,7 @@ const VendorAnalytics = () => {
                   आपके बिज़नेस की विस्तृत जानकारी और ट्रेंड्स
                 </p>
               </div>
-              
+
               {/* Period Selector */}
               <div className="flex bg-white dark:bg-gray-800 rounded-xl p-1 shadow-lg">
                 {periods.map((period) => (
@@ -214,10 +198,10 @@ const VendorAnalytics = () => {
 
             {/* Main Content */}
             <div className="flex-1 space-y-8">
-              
+
               {/* Overview Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
+
                 {/* Revenue Card */}
                 <div className="bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl p-6 text-white shadow-lg">
                   <div className="flex items-center justify-between mb-4">
@@ -341,7 +325,7 @@ const VendorAnalytics = () => {
 
               {/* Charts Section */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
+
                 {/* Revenue by Category */}
                 <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
                   <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">श्रेणी के अनुसार राजस्व</h3>
@@ -438,7 +422,7 @@ const VendorAnalytics = () => {
 
               {/* Traffic Sources & Customer Demographics */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
+
                 {/* Traffic Sources */}
                 <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
                   <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">ट्रैफिक स्रोत</h3>
@@ -491,7 +475,7 @@ const VendorAnalytics = () => {
               {/* Insights & Recommendations */}
               <div className="bg-gradient-to-r from-emerald-600 to-green-600 rounded-2xl p-8 text-white">
                 <h3 className="text-2xl font-bold mb-6">📊 इनसाइट्स और सुझाव</h3>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
                     <h4 className="font-semibold mb-3 flex items-center space-x-2">
@@ -499,18 +483,18 @@ const VendorAnalytics = () => {
                       <span>बेस्ट परफॉर्मिंग कैटेगरी</span>
                     </h4>
                     <p className="text-emerald-100">
-                      ज्वेलरी आपकी सबसे अच्छी कैटेगरी है जो कुल राजस्व का 46.5% हिस्सा है। 
+                      ज्वेलरी आपकी सबसे अच्छी कैटेगरी है जो कुल राजस्व का 46.5% हिस्सा है।
                       इस कैटेगरी में और उत्पाद जोड़ने से अच्छे परिणाम मिल सकते हैं।
                     </p>
                   </div>
-                  
+
                   <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
                     <h4 className="font-semibold mb-3 flex items-center space-x-2">
                       <span>🎯</span>
                       <span>कन्वर्शन सुधार</span>
                     </h4>
                     <p className="text-emerald-100">
-                      आपका कन्वर्शन रेट 4.8% है जो अच्छा है, लेकिन बेहतर उत्पाद फोटो और विवरण 
+                      आपका कन्वर्शन रेट 4.8% है जो अच्छा है, लेकिन बेहतर उत्पाद फोटो और विवरण
                       से इसे और बेहतर बनाया जा सकता है।
                     </p>
                   </div>

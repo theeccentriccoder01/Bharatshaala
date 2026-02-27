@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
@@ -8,10 +7,8 @@ import map from '../../../images/markets/chandni_map.jpeg';
 
 const ChandniChowk = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedShop, setSelectedShop] = useState(null);
   const [hoveredShop, setHoveredShop] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -185,8 +182,8 @@ const ChandniChowk = () => {
     { id: 'electronics', name: 'इलेक्ट्रॉनिक्स', icon: '📱', count: shops.filter(s => s.category === 'electronics').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -214,17 +211,17 @@ const ChandniChowk = () => {
                 <span className='text-2xl'>🏛️</span>
                 <span className='text-amber-800 dark:text-amber-200 font-bold'>मुगल काल से</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-600 via-orange-500 to-red-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
               <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Chandni Chowk, {marketInfo.cityHindi}
               </h2>
-              
-              <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
-                भारत के सबसे पुराने और व्यस्त बाजारों में से एक, इसकी संकरी गलियों और भीड़भाड़ के माहौल की खोज करें। 
-                मुगल सम्राट शाहजहाँ द्वारा बसाया गया यह बाजार आज भी अपनी पुरानी रौनक बनाए हुए है। 
+
+              <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
+                भारत के सबसे पुराने और व्यस्त बाजारों में से एक, इसकी संकरी गलियों और भीड़भाड़ के माहौल की खोज करें।
+                मुगल सम्राट शाहजहाँ द्वारा बसाया गया यह बाजार आज भी अपनी पुरानी रौनक बनाए हुए है।
                 यहाँ आपको मसालों की सुगंध, चांदी के गहनों की चमक और पारंपरिक मिठाइयों का स्वाद मिलेगा।
               </p>
 
@@ -259,16 +256,16 @@ const ChandniChowk = () => {
               <span>चांदनी चौक का नक्शा</span>
             </h3>
             <div className='relative flex justify-center'>
-              <img 
-                src={map} 
-                alt='Chandni Chowk Map' 
-                className='rounded-2xl w-full max-w-4xl shadow-lg hover:scale-105 transition-transform duration-500' 
+              <img
+                src={map}
+                alt='Chandni Chowk Map'
+                className='rounded-2xl w-full max-w-4xl shadow-lg hover:scale-105 transition-transform duration-500'
               />
               <div className='absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium'>
                 🚇 मेट्रो: चांदनी चौक
               </div>
             </div>
-            
+
             {/* Market Info */}
             <div className='mt-8 grid grid-cols-1 md:grid-cols-3 gap-6'>
               <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
@@ -308,9 +305,9 @@ const ChandniChowk = () => {
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
-                      : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
+                    activeFilter === category.id
+                      ? 'bg-white/20 text-white'
+                      : 'bg-emerald-100 text-emerald-600'
                   }`}>
                     {category.count}
                   </span>
@@ -323,10 +320,10 @@ const ChandniChowk = () => {
         {/* Shops Grid */}
         <div className='max-w-7xl mx-auto px-6 pb-20'>
           <div className='text-center mb-12'>
-            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
-            <p className='text-xl text-emerald-600 dark:text-emerald-400'>
-              {activeFilter === 'all' 
-                ? 'चांदनी चौक की सभी प्रसिद्ध दुकानें' 
+            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>प्रमुख दुकानें</h3>
+            <p className='text-xl text-emerald-600'>
+              {activeFilter === 'all'
+                ? 'चांदनी चौक की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>
@@ -361,7 +358,7 @@ const ChandniChowk = () => {
                 मुगल सम्राट शाहजहाँ की बेटी जहांआरा बेगम द्वारा डिज़ाइन किया गया यह बाजार
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🏛️</div>
@@ -379,7 +376,7 @@ const ChandniChowk = () => {
                 <p className='text-red-100 text-sm'>रेड लाइन और यलो लाइन</p>
               </div>
             </div>
-            
+
             <div className='text-center mt-8'>
               <button className='bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 px-8 py-4 rounded-full font-semibold hover:bg-red-50 dark:hover:bg-gray-700 dark:bg-red-900/20 transition-colors duration-300 transform hover:scale-105'>
                 और जानें

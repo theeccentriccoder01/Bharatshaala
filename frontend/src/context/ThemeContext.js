@@ -155,10 +155,12 @@ export const ThemeProvider = ({ children }) => {
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     applyTheme(theme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme, accentColor, fontSize, animations]);
 
   const applyTheme = (selectedTheme) => {

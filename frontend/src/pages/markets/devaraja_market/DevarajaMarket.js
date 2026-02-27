@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import ShopCard from '../../../components/ShopCard';
 import '../../../App.css';
 
-import map from '../../../images/markets/mysore_map.jpeg';
-
 const DevarajaMarket = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedShop, setSelectedShop] = useState(null);
   const [hoveredShop, setHoveredShop] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -192,8 +187,8 @@ const DevarajaMarket = () => {
     { id: 'handicrafts', name: 'हस्तशिल्प', icon: '🎨', count: shops.filter(s => s.category === 'handicrafts').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -221,17 +216,17 @@ const DevarajaMarket = () => {
                 <span className='text-2xl'>👑</span>
                 <span className='text-amber-800 dark:text-amber-200 font-bold'>शाही विरासत</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
               <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Devaraja Market, {marketInfo.cityHindi}
               </h2>
-              
+
               <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
-                यह रंग-बिरंगा बाजार एक पर्यटक आकर्षण भी है, जहाँ फूलों के गुच्छे, फल और विभिन्न रंगों का कुमकुम पाउडर मिलता है। 
-                मैसूर के महाराजाओं के समय से चला आ रहा यह बाजार आज भी अपने मूल स्वरूप में जीवित है। 
+                यह रंग-बिरंगा बाजार एक पर्यटक आकर्षण भी है, जहाँ फूलों के गुच्छे, फल और विभिन्न रंगों का कुमकुम पाउडर मिलता है।
+                मैसूर के महाराजाओं के समय से चला आ रहा यह बाजार आज भी अपने मूल स्वरूप में जीवित है।
                 यहाँ आपको विश्व प्रसिद्ध मैसूर चंदन, सिल्क साड़ियां और पारंपरिक मैसूर पाक मिलेगा।
               </p>
 
@@ -286,7 +281,7 @@ const DevarajaMarket = () => {
                 मैसूर पैलेस से केवल 2 किमी दूर स्थित यह बाजार शाही परिवार की पसंदीदा खरीदारी का स्थान था
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
               <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🏰</div>
@@ -330,8 +325,8 @@ const DevarajaMarket = () => {
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 dark:bg-gray-800/20 text-white' 
+                    activeFilter === category.id
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white'
                       : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}
@@ -347,8 +342,8 @@ const DevarajaMarket = () => {
           <div className='text-center mb-12'>
             <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
             <p className='text-xl text-emerald-600 dark:text-emerald-400'>
-              {activeFilter === 'all' 
-                ? 'देवराज मार्केट की सभी प्रसिद्ध दुकानें' 
+              {activeFilter === 'all'
+                ? 'देवराज मार्केट की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>
