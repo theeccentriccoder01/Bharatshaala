@@ -1,9 +1,11 @@
-from flask import Blueprint, request
+from flask import Blueprint, request,current_app
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 from werkzeug.security import check_password_hash, generate_password_hash
 import re
+from .extensions import limiter
 from . import database
 from .utils import success_response, error_response
+from .config import Config
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/v1/auth')
 
@@ -18,7 +20,9 @@ def validate_password(password):
         return False, "Password must be at least 6 characters long"
     return True, "Valid password"
 
+
 @auth_bp.route('/login', methods=['POST'])
+@limiter.limit(Config.LIMIT_AUTH)
 def login():
     try:
         data = request.get_json()
@@ -72,6 +76,7 @@ def login():
         return error_response(f"Login failed: {str(e)}", 500)
 
 @auth_bp.route('/register', methods=['POST'])
+@limiter.limit(Config.LIMIT_AUTH)
 def register():
     try:
         data = request.get_json()
@@ -134,6 +139,7 @@ def register():
         return error_response(f"Registration failed: {str(e)}", 500)
 
 @auth_bp.route('/refresh', methods=['POST'])
+@limiter.limit(Config.LIMIT_AUTH)
 @jwt_required(refresh=True)
 def refresh():
     try:
@@ -148,12 +154,14 @@ def refresh():
         return error_response(f"Token refresh failed: {str(e)}", 500)
 
 @auth_bp.route('/logout', methods=['POST'])
+@limiter.limit("5 per 15 minutes")
 @jwt_required()
 def logout():
     # In a real implementation, you'd add the token to a blacklist
     return success_response(None, "Logged out successfully")
 
 @auth_bp.route('/forgot-password', methods=['POST'])
+@limiter.limit(Config.LIMIT_AUTH)
 def forgot_password():
     try:
         data = request.get_json()
@@ -179,6 +187,7 @@ def forgot_password():
         return error_response(f"Password reset failed: {str(e)}", 500)
 
 @auth_bp.route('/reset-password', methods=['POST'])
+@limiter.limit(Config.LIMIT_AUTH)
 def reset_password():
     try:
         data = request.get_json()

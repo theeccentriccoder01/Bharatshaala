@@ -1,3 +1,5 @@
+from base64 import decode
+
 from flask import Flask, request
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
 from flask_cors import CORS
@@ -6,6 +8,7 @@ import os
 # Import configuration and utilities
 from .config import Config
 from .utils import success_response, error_response
+from .extensions import limiter
 
 # Import blueprints
 from .auth import auth_bp
@@ -18,10 +21,20 @@ from .admin import admin_bp
 # Import database
 from . import database
 
+def register_error_handlers(flask_app):
+    @flask_app.errorhandler(429)
+    def ratelimit_handler(e):
+        return error_response(
+            message=f"Rate limit exceeded: {e.description}",
+            status_code=429,
+            error_code="TOO_MANY_REQUESTS"
+        )
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    
+
+
     # Initialize extensions
     jwt = JWTManager(app)
     CORS(app, origins=app.config['CORS_ORIGINS'])
@@ -29,7 +42,9 @@ def create_app():
     # Create upload folders
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], 'products'), exist_ok=True)
-    
+    #init rate-limiter
+    limiter.init_app(app)
+    register_error_handlers(app)
     # Register blueprints
     app.register_blueprint(auth_bp)
     app.register_blueprint(products_bp)
@@ -37,7 +52,7 @@ def create_app():
     app.register_blueprint(orders_bp)
     app.register_blueprint(vendor_bp)
     app.register_blueprint(admin_bp)
-    
+
     # JWT error handlers
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
@@ -53,6 +68,7 @@ def create_app():
     
     # User management endpoints
     @app.route('/v1/user/profile', methods=['GET'])
+    @limiter.limit(Config.LIMIT_READ_BASE)
     @jwt_required()
     def get_user_profile():
         try:
@@ -80,6 +96,7 @@ def create_app():
             return error_response(f"Failed to retrieve profile: {str(e)}", 500)
     
     @app.route('/v1/user/profile', methods=['PUT'])
+    @limiter.limit(Config.LIMIT_WRITE_BASE)
     @jwt_required()
     def update_user_profile():
         try:
@@ -102,6 +119,7 @@ def create_app():
             return error_response(f"Failed to update profile: {str(e)}", 500)
     
     @app.route('/v1/user/change-password', methods=['POST'])
+    @limiter.limit(Config.LIMIT_WRITE_BASE)
     @jwt_required()
     def change_password():
         try:
@@ -133,6 +151,7 @@ def create_app():
     
     # Address management endpoints
     @app.route('/v1/user/addresses', methods=['GET'])
+    @limiter.limit(Config.LIMIT_READ_BASE)
     @jwt_required()
     def get_user_addresses():
         try:
@@ -145,6 +164,7 @@ def create_app():
             return error_response(f"Failed to retrieve addresses: {str(e)}", 500)
     
     @app.route('/v1/user/addresses', methods=['POST'])
+    @limiter.limit(Config.LIMIT_WRITE_BASE)
     @jwt_required()
     def add_user_address():
         try:
@@ -179,6 +199,7 @@ def create_app():
             return error_response(f"Failed to add address: {str(e)}", 500)
     
     @app.route('/v1/user/addresses/<int:address_id>', methods=['PUT'])
+    @limiter.limit(Config.LIMIT_WRITE_BASE)
     @jwt_required()
     def update_user_address(address_id):
         try:
@@ -217,6 +238,7 @@ def create_app():
             return error_response(f"Failed to update address: {str(e)}", 500)
     
     @app.route('/v1/user/addresses/<int:address_id>', methods=['DELETE'])
+    @limiter.limit(Config.LIMIT_WRITE_BASE)
     @jwt_required()
     def delete_user_address(address_id):
         try:
@@ -238,6 +260,7 @@ def create_app():
     
     # Support and notification endpoints
     @app.route('/v1/support/tickets', methods=['POST'])
+    @limiter.limit(Config.LIMIT_WRITE_BASE)
     @jwt_required()
     def create_support_ticket():
         try:
@@ -261,6 +284,7 @@ def create_app():
             return error_response(f"Failed to create support ticket: {str(e)}", 500)
     
     @app.route('/v1/notifications', methods=['GET'])
+    @limiter.limit(Config.LIMIT_READ_BASE)
     @jwt_required()
     def get_notifications():
         try:
@@ -277,6 +301,7 @@ def create_app():
     
     # Blog endpoints
     @app.route('/v1/blog/posts', methods=['GET'])
+    @limiter.limit(Config.LIMIT_READ_BASE)
     def get_blog_posts():
         try:
             page, per_page = validate_pagination()
@@ -290,6 +315,7 @@ def create_app():
             return error_response(f"Failed to retrieve blog posts: {str(e)}", 500)
     
     @app.route('/v1/blog/posts/<int:post_id>', methods=['GET'])
+    @limiter.limit(Config.LIMIT_READ_BASE)
     def get_blog_post(post_id):
         try:
             post = database.get_blog_post_by_id(post_id)
@@ -303,6 +329,7 @@ def create_app():
     
     # Health check endpoint
     @app.route('/v1/health', methods=['GET'])
+    @limiter.limit(Config.LIMIT_READ_BASE)
     def health_check():
         return success_response({'status': 'healthy'}, "Service is running")
     

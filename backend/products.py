@@ -1,11 +1,14 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Config
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from . import database
+from .extensions import limiter
+from .config import Config
 from .utils import success_response, error_response, validate_pagination, create_pagination_info
 
 products_bp = Blueprint('products', __name__, url_prefix='/v1')
 
 @products_bp.route('/products', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_products():
     try:
         page, per_page = validate_pagination()
@@ -38,6 +41,7 @@ def get_products():
         return error_response(f"Failed to retrieve products: {str(e)}", 500)
 
 @products_bp.route('/products/<int:product_id>', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_product(product_id):
     try:
         product = database.get_product_by_id(product_id)
@@ -50,6 +54,7 @@ def get_product(product_id):
         return error_response(f"Failed to retrieve product: {str(e)}", 500)
 
 @products_bp.route('/products/search', methods=['GET'])
+@limiter.limit(Config.LIMIT_SEARCH_PRODUCTS)
 def search_products():
     try:
         query = request.args.get('query', '').strip()
@@ -83,6 +88,7 @@ def search_products():
         return error_response(f"Search failed: {str(e)}", 500)
 
 @products_bp.route('/categories', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_categories():
     try:
         categories = database.get_all_categories()
@@ -92,6 +98,7 @@ def get_categories():
         return error_response(f"Failed to retrieve categories: {str(e)}", 500)
 
 @products_bp.route('/categories/<int:category_id>/products', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_category_products(category_id):
     try:
         page, per_page = validate_pagination()
@@ -110,6 +117,7 @@ def get_category_products(category_id):
         return error_response(f"Failed to retrieve category products: {str(e)}", 500)
 
 @products_bp.route('/markets', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_markets():
     try:
         markets = database.get_all_markets()
@@ -119,6 +127,7 @@ def get_markets():
         return error_response(f"Failed to retrieve markets: {str(e)}", 500)
 
 @products_bp.route('/markets/<int:market_id>', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_market(market_id):
     try:
         market = database.get_market_by_id(market_id)
@@ -131,6 +140,7 @@ def get_market(market_id):
         return error_response(f"Failed to retrieve market: {str(e)}", 500)
 
 @products_bp.route('/markets/<int:market_id>/products', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_market_products(market_id):
     try:
         page, per_page = validate_pagination()
@@ -150,6 +160,7 @@ def get_market_products(market_id):
 
 # Review endpoints
 @products_bp.route('/products/<int:product_id>/reviews', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_PRODUCTS)
 def get_product_reviews(product_id):
     try:
         page, per_page = validate_pagination()
@@ -163,6 +174,7 @@ def get_product_reviews(product_id):
         return error_response(f"Failed to retrieve reviews: {str(e)}", 500)
 
 @products_bp.route('/products/<int:product_id>/reviews', methods=['POST'])
+@limiter.limit(Config.LIMIT_WRITE_PRODUCTS)
 @jwt_required()
 def add_product_review(product_id):
     try:

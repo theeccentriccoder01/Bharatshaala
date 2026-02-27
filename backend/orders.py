@@ -2,6 +2,8 @@ from flask import Blueprint, request, current_app
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import razorpay
 from . import database
+from .extensions import limiter
+from .config import Config
 from .utils import success_response, error_response, validate_pagination, create_pagination_info
 
 orders_bp = Blueprint('orders', __name__, url_prefix='/v1')
@@ -14,6 +16,7 @@ def get_razorpay_client():
     ))
 
 @orders_bp.route('/orders', methods=['GET'])
+@limiter.limit(Config.LIMIT_ORDERS_READ_ORDER)
 @jwt_required()
 def get_orders():
     try:
@@ -31,6 +34,7 @@ def get_orders():
         return error_response(f"Failed to retrieve orders: {str(e)}", 500)
 
 @orders_bp.route('/orders/<int:order_id>', methods=['GET'])
+@limiter.limit(Config.LIMIT_ORDERS_READ_ORDER)
 @jwt_required()
 def get_order(order_id):
     try:
@@ -50,6 +54,7 @@ def get_order(order_id):
         return error_response(f"Failed to retrieve order: {str(e)}", 500)
 
 @orders_bp.route('/orders', methods=['POST'])
+@limiter.limit(Config.LIMIT_ORDERS_WRITE_ORDER)
 @jwt_required()
 def create_order():
     try:
@@ -119,6 +124,7 @@ def create_order():
         return error_response(f"Failed to create order: {str(e)}", 500)
 
 @orders_bp.route('/orders/<int:order_id>/cancel', methods=['POST'])
+@limiter.limit(Config.LIMIT_ORDERS_WRITE_ORDER)
 @jwt_required()
 def cancel_order(order_id):
     try:
@@ -148,6 +154,7 @@ def cancel_order(order_id):
         return error_response(f"Failed to cancel order: {str(e)}", 500)
 
 @orders_bp.route('/orders/<int:order_id>/tracking', methods=['GET'])
+@limiter.limit(Config.LIMIT_ORDERS_READ_ORDER)
 @jwt_required()
 def track_order(order_id):
     try:
@@ -168,6 +175,7 @@ def track_order(order_id):
 
 # Payment endpoints
 @orders_bp.route('/payments/initiate', methods=['POST'])
+@limiter.limit(Config.LIMIT_ORDERS_PAYMENT)
 @jwt_required()
 def initiate_payment():
     try:
@@ -196,6 +204,7 @@ def initiate_payment():
         return error_response(f"Failed to initiate payment: {str(e)}", 500)
 
 @orders_bp.route('/payments/verify', methods=['POST'])
+@limiter.limit(Config.LIMIT_ORDERS_PAYMENT)
 @jwt_required()
 def verify_payment():
     try:

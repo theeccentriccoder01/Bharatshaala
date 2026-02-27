@@ -1,11 +1,14 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from . import database
+from .extensions import limiter
+from .config import Config
 from .utils import success_response, error_response, vendor_required, validate_pagination, create_pagination_info, save_file
 
 vendor_bp = Blueprint('vendor', __name__, url_prefix='/v1/vendor')
 
 @vendor_bp.route('/products', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_VENDOR)
 @vendor_required()
 def get_vendor_products():
     try:
@@ -24,6 +27,7 @@ def get_vendor_products():
         return error_response(f"Failed to retrieve vendor products: {str(e)}", 500)
 
 @vendor_bp.route('/products', methods=['POST'])
+@limiter.limit(Config.LIMIT_WRITE_VENDOR)
 @vendor_required()
 def add_vendor_product():
     try:
@@ -87,6 +91,7 @@ def add_vendor_product():
         return error_response(f"Failed to add product: {str(e)}", 500)
 
 @vendor_bp.route('/products/<int:product_id>', methods=['PUT'])
+@limiter.limit(Config.LIMIT_WRITE_VENDOR)
 @vendor_required()
 def update_vendor_product(product_id):
     try:
@@ -156,6 +161,7 @@ def update_vendor_product(product_id):
         return error_response(f"Failed to update product: {str(e)}", 500)
 
 @vendor_bp.route('/products/<int:product_id>', methods=['DELETE'])
+@limiter.limit(Config.LIMIT_WRITE_VENDOR)
 @vendor_required()
 def delete_vendor_product(product_id):
     try:
@@ -176,6 +182,7 @@ def delete_vendor_product(product_id):
         return error_response(f"Failed to delete product: {str(e)}", 500)
 
 @vendor_bp.route('/orders', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_VENDOR)
 @vendor_required()
 def get_vendor_orders():
     try:
@@ -193,6 +200,7 @@ def get_vendor_orders():
         return error_response(f"Failed to retrieve vendor orders: {str(e)}", 500)
 
 @vendor_bp.route('/orders/<int:order_id>/status', methods=['PATCH'])
+@limiter.limit(Config.LIMIT_WRITE_VENDOR)
 @vendor_required()
 def update_order_status(order_id):
     try:
@@ -225,6 +233,7 @@ def update_order_status(order_id):
         return error_response(f"Failed to update order status: {str(e)}", 500)
 
 @vendor_bp.route('/analytics', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_VENDOR)
 @vendor_required()
 def get_vendor_analytics():
     try:
