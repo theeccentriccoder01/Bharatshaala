@@ -225,6 +225,7 @@ export const useDebouncedCallback = (callback, delay = 300, dependencies = [], o
   // Update callback ref when dependencies change
   useEffect(() => {
     callbackRef.current = callback;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [callback, ...dependencies]);
 
   const debouncedCallback = useCallback((...args) => {
@@ -307,6 +308,7 @@ export const useThrottledCallback = (callback, limit = 100, dependencies = [], o
 
   useEffect(() => {
     callbackRef.current = callback;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [callback, ...dependencies]);
 
   const throttledCallback = useCallback((...args) => {

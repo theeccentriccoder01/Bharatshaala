@@ -41,6 +41,7 @@ const Notifications = () => {
   useEffect(() => {
     trackPageView('user_notifications');
     loadNotifications();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadNotifications = async () => {

@@ -294,7 +294,7 @@ const ReviewCard = ({
                   <img
                     key={index}
                     src={image.url || image}
-                    alt={`Review image ${index + 1}`}
+                    alt={`Review ${index + 1}`}
                     className="w-20 h-20 rounded-lg object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
                     onClick={() => window.open(image.url || image, '_blank')}
                   />
@@ -420,7 +420,7 @@ const ReviewCard = ({
             <img
               key={index}
               src={image.url || image}
-              alt={`Review image ${index + 1}`}
+              alt={`Review ${index + 1}`}
               className="w-16 h-16 rounded-lg object-cover"
             />
           ))}

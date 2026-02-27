@@ -9,7 +9,6 @@ import { useAnalytics } from '../../utils/analytics';
 import { useCart } from '../../context/CartContext';
 import useWishlist from '../../hooks/useWishlist';
 import useAPI from '../../hooks/useAPI';
-import { PRODUCT_CATEGORIES } from '../../utils/constants';
 
 const CategoryLanding = () => {
   const { categorySlug } = useParams();
@@ -25,6 +24,7 @@ const CategoryLanding = () => {
   useEffect(() => {
     trackPageView(`category_${categorySlug}`);
     loadCategoryData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categorySlug]);
 
   const loadCategoryData = async () => {

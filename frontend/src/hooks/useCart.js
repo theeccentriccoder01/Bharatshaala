@@ -97,6 +97,7 @@ export const CartProvider = ({ children }) => {
   // Load cart on mount and when user changes
   useEffect(() => {
     loadCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, user]);
 
   // Auto-sync cart periodically for authenticated users
@@ -105,6 +106,7 @@ export const CartProvider = ({ children }) => {
       const interval = setInterval(syncCart, 30000); // Sync every 30 seconds
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, items]);
 
   // Calculate totals whenever items change

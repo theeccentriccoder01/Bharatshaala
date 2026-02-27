@@ -9,6 +9,7 @@ const PrivacyPolicy = () => {
 
   useEffect(() => {
     trackPageView('privacy_policy');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sections = [

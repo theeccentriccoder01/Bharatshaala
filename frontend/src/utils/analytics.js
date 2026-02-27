@@ -515,7 +515,7 @@ class AnalyticsManager {
     this.userId = userId;
   }
 
-  getUserId() {
+  getCachedUserId() {
     return this.userId;
   }
 

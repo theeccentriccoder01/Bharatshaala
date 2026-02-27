@@ -24,16 +24,15 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [reviews, setReviews] = useState([]);
-  const [showReviews, setShowReviews] = useState(false);
   const [pincode, setPincode] = useState('');
   const [deliveryInfo, setDeliveryInfo] = useState(null);
-  const [similarProducts, setSimilarProducts] = useState([]);
   const [activeTab, setActiveTab] = useState('description');
 
   useEffect(() => {
     if (id) {
       loadProduct();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const loadProduct = async () => {

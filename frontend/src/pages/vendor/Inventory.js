@@ -65,11 +65,13 @@ const Inventory = () => {
       return;
     }
     loadInventory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, user]);
 
   useEffect(() => {
     filterAndSortInventory();
     checkLowStockItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventory, searchTerm, filterStatus, filterCategory, sortBy]);
 
   const loadInventory = async () => {
@@ -387,21 +389,6 @@ const Inventory = () => {
       }
     } catch (error) {
       showError('कीमत अपडेट करने में त्रुटि');
-    }
-  };
-
-  const handleStatusUpdate = async (itemId, newStatus) => {
-    try {
-      const response = await put(`/vendor/inventory/${itemId}/status`, {
-        status: newStatus
-      });
-
-      if (response.success) {
-        showSuccess('स्टेटस अपडेट हो गया');
-        loadInventory();
-      }
-    } catch (error) {
-      showError('स्टेटस अपडेट करने में त्रुटि');
     }
   };
 

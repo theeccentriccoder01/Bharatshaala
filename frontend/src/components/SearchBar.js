@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const SearchBar = ({ value, onChange, placeholder = "खोजें...", suggestions = [] }) => {
   const [isFocused, setIsFocused] = useState(false);

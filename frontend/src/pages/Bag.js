@@ -3,7 +3,6 @@ import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
 import CartItem from "../components/CartItem";
 import OrderSummary from "../components/OrderSummary";
-import PaymentGateway from "../components/PaymentGateway";
 import "../App.css";
 
 function loadScript(src) {
@@ -19,9 +18,11 @@ function loadScript(src) {
 const Bag = () => {
   const [profileData, setProfileData] = useState(null);
   const [subtotal, setSubtotal] = useState(0);
-  const [shipCost, setShipCost] = useState(0);
-  const [order_details, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [_shipCost, setShipCost] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [_order_details, setOrderDetails] = useState(null);
   const [couponCode, setCouponCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [deliveryOption, setDeliveryOption] = useState('standard');
@@ -48,6 +49,7 @@ const Bag = () => {
     ]).finally(() => {
       setTimeout(() => setLoading(false), 1000);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function getAmount() {

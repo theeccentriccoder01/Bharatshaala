@@ -4,8 +4,6 @@ import { useAuth } from '../hooks/useAuth';
 import { useCart } from '../hooks/useCart';
 import { useAPI } from '../hooks/useAPI';
 import { useNotification } from '../hooks/useNotification';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import ProductCard from '../components/ProductCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const Wishlist = () => {
@@ -14,7 +12,6 @@ const Wishlist = () => {
   const { addToCart } = useCart();
   const { get, post, delete: deleteItem } = useAPI();
   const { showSuccess, showError, showInfo } = useNotification();
-  const { getItem, setItem } = useLocalStorage();
 
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,8 +19,6 @@ const Wishlist = () => {
   const [filterBy, setFilterBy] = useState('all');
   const [selectedItems, setSelectedItems] = useState([]);
   const [viewMode, setViewMode] = useState('grid');
-  const [showShareModal, setShowShareModal] = useState(false);
-
   const sortOptions = [
     { id: 'recent', name: 'हाल ही में जोड़े गए' },
     { id: 'oldest', name: 'पुराने पहले' },
@@ -46,10 +41,12 @@ const Wishlist = () => {
       return;
     }
     loadWishlist();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   useEffect(() => {
     filterAndSortItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wishlistItems, sortBy, filterBy]);
 
   const loadWishlist = async () => {
@@ -154,6 +151,7 @@ const Wishlist = () => {
       case 'out_of_stock':
         filtered = filtered.filter(item => !item.inStock);
         break;
+      default: break;
     }
 
     // Apply sorting

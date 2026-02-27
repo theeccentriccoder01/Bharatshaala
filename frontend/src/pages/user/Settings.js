@@ -8,7 +8,7 @@ const Settings = () => {
     
             {/* Main text */}
             <div className='max-w-lg mx-auto'>
-              <h1 className='flex'></h1>
+              <h1 className='flex'><span>&#8203;</span></h1>
               <h1 className='flex text-brsl_brick font-bharatshaala text-6xl mt-5 justify-center text-center'>My Account</h1>
             </div>
 

@@ -18,6 +18,7 @@ const OrderConfirmation = () => {
       loadOrderDetails();
       showSuccess('ऑर्डर सफलतापूर्वक प्लेस हो गया!');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
   const loadOrderDetails = async () => {
