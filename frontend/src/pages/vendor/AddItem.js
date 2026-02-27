@@ -76,6 +76,7 @@ const AddItem = () => {
     loadInitialData();
     const timer = setTimeout(() => setPageLoading(false), 800);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const AddItem = () => {
       const selectedCategory = predefinedCategories.find(cat => cat.id === formData.category);
       setSubcategories(selectedCategory?.subcategories || []);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.category]);
 
   const loadInitialData = () => {
@@ -139,6 +141,7 @@ const AddItem = () => {
       case 3:
         if (formData.images.length === 0) newErrors.images = 'कम से कम एक छवि आवश्यक है';
         break;
+      default: break;
     }
 
     setErrors(newErrors);

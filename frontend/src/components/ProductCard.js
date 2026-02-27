@@ -39,6 +39,8 @@ const ProductCard = ({
       case 'select':
         onSelect?.();
         break;
+      default:
+        break;
     }
   };
 

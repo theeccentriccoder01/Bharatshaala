@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Carousel from '../components/Carousel';
-import CategoryCard from '../components/CategoryCard';
 import MarketCard from '../components/MarketCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import '../App.css';
@@ -29,7 +28,6 @@ const Home = () => {
   const [popularMarkets, setPopularMarkets] = useState([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [isVisible, setIsVisible] = useState({});
   
   // Intersection Observer for animations
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -65,6 +63,7 @@ const Home = () => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 4000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadFeaturedData = () => {
@@ -251,6 +250,7 @@ const Home = () => {
         }, 20);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statsInView]);
 
   if (loading) {

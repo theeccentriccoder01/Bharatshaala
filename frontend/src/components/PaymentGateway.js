@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { useCart } from '../hooks/useCart';
 import { useNotification } from '../hooks/useNotification';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -24,8 +22,6 @@ const PaymentGateway = ({
   const [errors, setErrors] = useState({});
   const [transactionId, setTransactionId] = useState('');
   
-  const { user } = useAuth();
-  const { getCartSummary } = useCart();
   const { showSuccess, showError } = useNotification();
 
   const paymentMethods = [
@@ -149,6 +145,8 @@ const PaymentGateway = ({
         case 'cod':
           // No validation needed for COD
           break;
+        default:
+          break;
       }
 
       if (Object.keys(validationErrors).length > 0) {
@@ -205,7 +203,7 @@ const PaymentGateway = ({
   const formatCardNumber = (value) => {
     const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
     const matches = v.match(/\d{4,16}/g);
-    const match = matches && matches[0] || '';
+    const match = (matches && matches[0]) || '';
     const parts = [];
     for (let i = 0, len = match.length; i < len; i += 4) {
       parts.push(match.substring(i, i + 4));

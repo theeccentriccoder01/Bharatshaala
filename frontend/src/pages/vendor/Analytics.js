@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import VendorSidebar from "../../components/VendorSidebar";
@@ -9,9 +8,6 @@ const VendorAnalytics = () => {
   const [loading, setLoading] = useState(true);
   const [analyticsData, setAnalyticsData] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState('last_30_days');
-  const [selectedMetric, setSelectedMetric] = useState('revenue');
-  const [chartData, setChartData] = useState([]);
-  const navigate = useNavigate();
 
   const periods = [
     { id: 'today', name: 'आज', icon: '📅' },
@@ -22,18 +18,11 @@ const VendorAnalytics = () => {
     { id: 'this_year', name: 'इस साल', icon: '🗓️' }
   ];
 
-  const metrics = [
-    { id: 'revenue', name: 'राजस्व', icon: '💰', color: 'emerald' },
-    { id: 'orders', name: 'ऑर्डर', icon: '📦', color: 'blue' },
-    { id: 'customers', name: 'ग्राहक', icon: '👥', color: 'purple' },
-    { id: 'views', name: 'व्यू', icon: '👁️', color: 'orange' },
-    { id: 'conversion', name: 'कन्वर्शन', icon: '📊', color: 'green' }
-  ];
-
   useEffect(() => {
     loadAnalyticsData();
     const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPeriod]);
 
   const loadAnalyticsData = async () => {
@@ -41,7 +30,6 @@ const VendorAnalytics = () => {
       const response = await axios.get(`/vendor/analytics?period=${selectedPeriod}`);
       if (response.data.success) {
         setAnalyticsData(response.data.analytics);
-        setChartData(response.data.chartData);
       }
     } catch (error) {
       console.error("Analytics data fetch error:", error);
@@ -155,10 +143,6 @@ const VendorAnalytics = () => {
 
   const formatPercentage = (value) => {
     return `${value > 0 ? '+' : ''}${value.toFixed(1)}%`;
-  };
-
-  const getGrowthColor = (growth) => {
-    return growth >= 0 ? 'text-green-600' : 'text-red-600';
   };
 
   const getGrowthIcon = (growth) => {

@@ -75,6 +75,7 @@ const useWishlist = () => {
     };
 
     syncWishlist();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   // Add item to wishlist
@@ -125,7 +126,8 @@ const useWishlist = () => {
           throw new Error('Failed to add to wishlist');
         }
 
-        const data = await response.json();
+        // eslint-disable-next-line no-unused-vars
+        const _data = await response.json();
         setWishlistItems(prev => [...prev, wishlistItem]);
         
         if (showNotif) {

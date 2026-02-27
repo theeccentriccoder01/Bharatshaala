@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 export const useGeolocation = (options = {}) => {
   const [location, setLocation] = useState(null);
@@ -6,12 +6,13 @@ export const useGeolocation = (options = {}) => {
   const [error, setError] = useState(null);
   const [supported, setSupported] = useState(false);
 
-  const defaultOptions = {
+  const defaultOptions = useMemo(() => ({
     enableHighAccuracy: true,
     timeout: 10000,
     maximumAge: 300000, // 5 minutes
     ...options
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), []);
 
   useEffect(() => {
     setSupported('geolocation' in navigator);
@@ -52,6 +53,8 @@ export const useGeolocation = (options = {}) => {
             break;
           case error.TIMEOUT:
             errorMessage = 'स्थान प्राप्त करने में समय सीमा समाप्त';
+            break;
+          default:
             break;
         }
         

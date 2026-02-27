@@ -9,6 +9,7 @@ const ReturnPolicy = () => {
 
   useEffect(() => {
     trackPageView('return_policy');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const returnConditions = [

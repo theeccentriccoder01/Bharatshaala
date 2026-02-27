@@ -3,7 +3,6 @@ import { useState, useEffect, useContext, createContext, useCallback } from 'rea
 import { useNavigate } from 'react-router-dom';
 import apiService from '../utils/api';
 import { useAnalytics } from '../utils/analytics';
-import { storageService } from '../utils/storage';
 import config from '../utils/constants';
 import { useNotification } from './useNotification';
 
@@ -81,6 +80,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Token expiry check failed:', error);
       logout();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Check authentication status on mount

@@ -11,6 +11,7 @@ const Support = () => {
 
   useEffect(() => {
     trackPageView('support');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const supportTabs = [

@@ -9,6 +9,7 @@ const TermsOfService = () => {
 
   useEffect(() => {
     trackPageView('terms_of_service');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sections = [

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAPI } from '../hooks/useAPI';
 import { useDebounce } from '../hooks/useDebounce';
-import { useNotification } from '../hooks/useNotification';
 import { useCart } from '../hooks/useCart';
 import ProductCard from '../components/ProductCard';
 import FilterPanel from '../components/FilterPanel';
@@ -12,7 +11,6 @@ const SearchResults = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const { get } = useAPI();
-  const { showError } = useNotification();
   const { addToCart } = useCart();
 
   const [loading, setLoading] = useState(true);
@@ -62,6 +60,7 @@ const SearchResults = () => {
       performSearch();
       updateURL();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchQuery, currentPage, sortBy, filters]);
 
   useEffect(() => {
@@ -69,6 +68,7 @@ const SearchResults = () => {
     if (query && query !== searchQuery) {
       setSearchQuery(query);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const loadSearchHistory = () => {

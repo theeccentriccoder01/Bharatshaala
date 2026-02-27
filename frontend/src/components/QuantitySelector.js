@@ -184,7 +184,7 @@ export const BulkQuantitySelector = ({
   showBulkDiscounts = false,
   bulkDiscounts = {}
 }) => {
-  const [selectedBulk, setSelectedBulk] = useState(null);
+  const [, setSelectedBulk] = useState(null);
 
   const handleBulkSelect = (bulkValue) => {
     setSelectedBulk(bulkValue);

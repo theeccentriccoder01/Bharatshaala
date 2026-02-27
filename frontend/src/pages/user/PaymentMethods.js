@@ -64,6 +64,7 @@ const PaymentMethods = () => {
   useEffect(() => {
     trackPageView('payment_methods');
     loadPaymentMethods();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadPaymentMethods = async () => {

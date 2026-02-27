@@ -496,7 +496,7 @@ export const stringHelpers = {
 };
 
 // Export all helpers as default object
-export default {
+const helpers = {
   formatCurrency,
   formatIndianNumber,
   formatDate,
@@ -537,3 +537,5 @@ export default {
   dateHelpers,
   stringHelpers
 };
+
+export default helpers;

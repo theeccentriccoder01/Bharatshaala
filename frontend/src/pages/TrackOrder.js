@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAPI } from '../hooks/useAPI';
-import { useNotification } from '../hooks/useNotification';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const TrackOrder = () => {
   const { orderId } = useParams();
   const navigate = useNavigate();
   const { get } = useAPI();
-  const { showError } = useNotification();
 
   const [orderTracking, setOrderTracking] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,6 +19,7 @@ const TrackOrder = () => {
       const interval = setInterval(loadTrackingInfo, 30000);
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
   const loadTrackingInfo = async (isRefresh = false) => {

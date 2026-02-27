@@ -19,7 +19,7 @@ const apiClient = axios.create({
 
 // Custom hook for API calls
 export const useAPI = () => {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const { showError } = useNotification();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -215,7 +215,7 @@ export const useOrders = () => {
 };
 
 export const useVendor = () => {
-  const { get, post, put } = useAPI();
+  const { get, put } = useAPI();
 
   const getVendorProfile = useCallback(() => {
     return get('/vendor/profile');

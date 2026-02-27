@@ -77,6 +77,7 @@ const CategoriesOverview = () => {
       setCategories(staticCategories);
       setLoading(false);
     }, 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

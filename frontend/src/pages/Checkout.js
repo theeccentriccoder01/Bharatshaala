@@ -14,7 +14,8 @@ const Checkout = () => {
   const { user, isAuthenticated } = useAuth();
   const { post } = useAPI();
   const { showSuccess, showError } = useNotification();
-  const { deliveryAddress, setDeliveryFromCurrentLocation } = useGeolocation();
+  // eslint-disable-next-line no-unused-vars
+  const { deliveryAddress: _deliveryAddress, setDeliveryFromCurrentLocation: _setDeliveryFromCurrentLocation } = useGeolocation();
 
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);

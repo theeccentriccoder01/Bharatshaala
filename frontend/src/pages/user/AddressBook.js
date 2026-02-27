@@ -44,6 +44,7 @@ const AddressBook = () => {
   useEffect(() => {
     trackPageView('address_book');
     loadAddresses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadAddresses = async () => {
