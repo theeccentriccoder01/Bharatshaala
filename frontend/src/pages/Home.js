@@ -28,6 +28,7 @@ const Home = () => {
   const [popularMarkets, setPopularMarkets] = useState([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [isVisible, setIsVisible] = useState({});
 
   // Intersection Observer for animations

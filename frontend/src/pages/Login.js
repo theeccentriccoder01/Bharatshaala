@@ -131,10 +131,7 @@ const Login = () => {
     if (!emailError && !passwordError && email && password) {
       setIsLoading(true);
       try {
-        const confirm = await axios.post("/Login", { email, password });
-
-        // eslint-disable-next-line no-unused-vars
-        const _confirm = await axios.post("/Login", { email, password });
+        await axios.post("/Login", { email, password });
 
         const response = await fetch('/GetUser', {
           method: 'GET',
