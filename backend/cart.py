@@ -2,10 +2,12 @@ from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from . import database
 from .utils import success_response, error_response
-
+from .extensions import limiter
+from .config import Config
 cart_bp = Blueprint('cart', __name__, url_prefix='/v1')
 
 @cart_bp.route('/cart', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_CART)
 @jwt_required()
 def get_cart():
     try:
@@ -29,6 +31,7 @@ def get_cart():
         return error_response(f"Failed to retrieve cart: {str(e)}", 500)
 
 @cart_bp.route('/cart/add', methods=['POST'])
+@limiter.limit(Config.LIMIT_WRITE_CART)
 @jwt_required()
 def add_to_cart():
     try:
@@ -78,6 +81,7 @@ def add_to_cart():
         return error_response(f"Failed to add to cart: {str(e)}", 500)
 
 @cart_bp.route('/cart/items/<int:item_id>', methods=['PUT'])
+@limiter.limit(Config.LIMIT_WRITE_CART)
 @jwt_required()
 def update_cart_item(item_id):
     try:
@@ -108,6 +112,7 @@ def update_cart_item(item_id):
         return error_response(f"Failed to update cart item: {str(e)}", 500)
 
 @cart_bp.route('/cart/items/<int:item_id>', methods=['DELETE'])
+@limiter.limit(Config.LIMIT_WRITE_CART)
 @jwt_required()
 def remove_from_cart(item_id):
     try:
@@ -128,6 +133,7 @@ def remove_from_cart(item_id):
         return error_response(f"Failed to remove from cart: {str(e)}", 500)
 
 @cart_bp.route('/cart', methods=['DELETE'])
+@limiter.limit(Config.LIMIT_WRITE_CART)
 @jwt_required()
 def clear_cart():
     try:
@@ -144,6 +150,7 @@ def clear_cart():
 
 # Wishlist endpoints
 @cart_bp.route('/wishlist', methods=['GET'])
+@limiter.limit(Config.LIMIT_READ_CART)
 @jwt_required()
 def get_wishlist():
     try:
@@ -156,6 +163,7 @@ def get_wishlist():
         return error_response(f"Failed to retrieve wishlist: {str(e)}", 500)
 
 @cart_bp.route('/wishlist/add', methods=['POST'])
+@limiter.limit(Config.LIMIT_WRITE_CART)
 @jwt_required()
 def add_to_wishlist():
     try:
@@ -185,6 +193,7 @@ def add_to_wishlist():
         return error_response(f"Failed to add to wishlist: {str(e)}", 500)
 
 @cart_bp.route('/wishlist/<int:product_id>', methods=['DELETE'])
+@limiter.limit(Config.LIMIT_WRITE_CART)
 @jwt_required()
 def remove_from_wishlist(product_id):
     try:
