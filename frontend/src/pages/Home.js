@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Carousel from '../components/Carousel';
 import MarketCard from '../components/MarketCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import '../App.css';
+
 
 import car1 from '../images/markets/commercial.png';
 import car2 from '../images/markets/jaipur.png';
@@ -26,7 +27,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [featuredCategories, setFeaturedCategories] = useState([]);
   const [popularMarkets, setPopularMarkets] = useState([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const parallaxLayerRef = useRef(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   
   // Intersection Observer for animations
@@ -36,16 +38,32 @@ const Home = () => {
   const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   // Mouse tracking for parallax effects
-  useEffect(() => {
+ useEffect(() => {
+    let animationFrameId = null;
+
     const handleMouseMove = (e) => {
-      setMousePosition({
+      mousePosition.current = {
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100,
+      };
+
+      if (animationFrameId) return;
+
+      animationFrameId = requestAnimationFrame(() => {
+        if (parallaxLayerRef.current) {
+          parallaxLayerRef.current.style.transform =
+            `translate(${mousePosition.current.x * 0.05}px, ${mousePosition.current.y * 0.05}px)`;
+        }
+        animationFrameId = null;
       });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   useEffect(() => {
@@ -65,7 +83,9 @@ const Home = () => {
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const handleMarketClick = useCallback((href) => {
+    window.location.href = href;
+  },[]);
   const loadFeaturedData = () => {
     // Enhanced category data with more interactivity
     setFeaturedCategories([
@@ -259,7 +279,7 @@ const Home = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen overflow-x-hidden relative'>
+      <div className='relative min-h-screen overflow-x-hidden'>
         
         {/* Dynamic Multi-Layer Background */}
         <div className="fixed inset-0 z-0">
@@ -271,10 +291,10 @@ const Home = () => {
           
           {/* Animated geometric shapes */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-emerald-400/30 to-green-500/30 rounded-full blur-3xl animate-blob"></div>
-            <div className="absolute top-20 right-0 w-80 h-80 bg-gradient-to-bl from-green-400/40 to-emerald-600/40 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-            <div className="absolute bottom-0 left-20 w-72 h-72 bg-gradient-to-tr from-emerald-500/35 to-green-400/35 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
-            <div className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-tl from-green-300/30 to-emerald-500/30 rounded-full blur-3xl animate-blob animation-delay-6000"></div>
+            <div className="absolute top-0 left-0 rounded-full w-96 h-96 bg-gradient-to-br from-emerald-400/30 to-green-500/30 blur-3xl animate-blob"></div>
+            <div className="absolute right-0 rounded-full top-20 w-80 h-80 bg-gradient-to-bl from-green-400/40 to-emerald-600/40 blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute bottom-0 rounded-full left-20 w-72 h-72 bg-gradient-to-tr from-emerald-500/35 to-green-400/35 blur-3xl animate-blob animation-delay-4000"></div>
+            <div className="absolute w-64 h-64 rounded-full bottom-20 right-20 bg-gradient-to-tl from-green-300/30 to-emerald-500/30 blur-3xl animate-blob animation-delay-6000"></div>
           </div>
           
           {/* Subtle texture overlay */}
@@ -285,14 +305,14 @@ const Home = () => {
           
           {/* Light rays effect */}
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-white via-transparent to-transparent transform rotate-12 animate-pulse"></div>
-            <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-white via-transparent to-transparent transform -rotate-12 animate-pulse animation-delay-1000"></div>
-            <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-white via-transparent to-transparent transform rotate-6 animate-pulse animation-delay-2000"></div>
+            <div className="absolute top-0 w-px h-full transform left-1/4 bg-gradient-to-b from-white via-transparent to-transparent rotate-12 animate-pulse"></div>
+            <div className="absolute top-0 w-px h-full transform left-2/4 bg-gradient-to-b from-white via-transparent to-transparent -rotate-12 animate-pulse animation-delay-1000"></div>
+            <div className="absolute top-0 w-px h-full transform left-3/4 bg-gradient-to-b from-white via-transparent to-transparent rotate-6 animate-pulse animation-delay-2000"></div>
           </div>
         </div>
 
         {/* Floating particles with better visibility */}
-        <div className="fixed inset-0 pointer-events-none z-10">
+        <div className="fixed inset-0 z-10 pointer-events-none">
           {Array.from({ length: 25 }).map((_, i) => (
             <div
               key={i}
@@ -304,57 +324,55 @@ const Home = () => {
                 animationDuration: `${8 + Math.random() * 4}s`
               }}
             >
-              <div className="w-3 h-3 bg-white/40 rounded-full blur-sm shadow-lg"></div>
+              <div className="w-3 h-3 rounded-full shadow-lg bg-white/40 blur-sm"></div>
             </div>
           ))}
         </div>
 
         {/* Hero Section */}
-        <div ref={heroRef} className='relative overflow-hidden pt-20 min-h-screen flex items-center z-20'>
+        <div ref={heroRef} className='relative z-20 flex items-center min-h-screen pt-20 overflow-hidden'>
           {/* Dynamic Background with Parallax */}
           <div 
-            className="absolute inset-0 opacity-15 transition-transform duration-1000 ease-out"
-            style={{
-              transform: `translate(${mousePosition.x * 0.05}px, ${mousePosition.y * 0.05}px)`
-            }}
+            className="absolute inset-0 transition-transform duration-1000 ease-out opacity-15"
+            ref={parallaxLayerRef}
           >
             <div className="absolute top-10 left-10 text-8xl animate-bounce-slow">🏺</div>
-            <div className="absolute top-20 right-20 text-6xl animate-bounce-slow delay-1000">📿</div>
+            <div className="absolute text-6xl delay-1000 top-20 right-20 animate-bounce-slow">📿</div>
             <div className="absolute bottom-20 left-20 text-9xl animate-bounce-slow delay-2000">🎨</div>
             <div className="absolute bottom-10 right-10 text-7xl animate-bounce-slow delay-3000">📚</div>
-            <div className="absolute top-1/2 left-1/4 text-5xl animate-bounce-slow delay-4000">💎</div>
-            <div className="absolute top-1/3 right-1/3 text-6xl animate-bounce-slow delay-5000">🛍️</div>
+            <div className="absolute text-5xl top-1/2 left-1/4 animate-bounce-slow delay-4000">💎</div>
+            <div className="absolute text-6xl top-1/3 right-1/3 animate-bounce-slow delay-5000">🛍️</div>
           </div>
 
           <div className={`max-w-7xl mx-auto px-6 py-20 relative z-10 transition-all duration-1000 ${heroInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-            <div className='text-center mb-16'>
+            <div className='mb-16 text-center'>
               {/* Animated Welcome Badge */}
-              <div className='inline-flex items-center space-x-4 bg-white/20 backdrop-blur-md rounded-full px-8 py-4 mb-8 shadow-2xl border-2 border-white/30 hover:shadow-white/20 transition-all duration-500 transform hover:scale-105'>
+              <div className='inline-flex items-center px-8 py-4 mb-8 space-x-4 transition-all duration-500 transform border-2 rounded-full shadow-2xl bg-white/20 backdrop-blur-md border-white/30 hover:shadow-white/20 hover:scale-105'>
                 <span className='text-4xl animate-pulse'>🙏</span>
-                <span className='text-white font-bold text-xl drop-shadow-lg'>
+                <span className='text-xl font-bold text-white drop-shadow-lg'>
                   स्वागत है भारतशाला में
                 </span>
                 <div className="flex space-x-1">
                   <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                  <div className="w-2 h-2 bg-white/80 rounded-full animate-ping delay-75"></div>
-                  <div className="w-2 h-2 bg-white/60 rounded-full animate-ping delay-150"></div>
+                  <div className="w-2 h-2 delay-75 rounded-full bg-white/80 animate-ping"></div>
+                  <div className="w-2 h-2 delay-150 rounded-full bg-white/60 animate-ping"></div>
                 </div>
               </div>
               
               {/* Interactive Main Heading */}
-              <h1 className='text-6xl md:text-8xl font-bold mb-8 leading-tight'>
+              <h1 className='mb-8 text-6xl font-bold leading-tight md:text-8xl'>
                 <span className='text-white drop-shadow-2xl bg-size-200 animate-text-glow'>
                   भारत की समृद्ध
                 </span>
                 <br />
-                <span className='text-yellow-200 drop-shadow-2xl bg-size-200 animate-text-glow delay-500'>
+                <span className='text-yellow-200 delay-500 drop-shadow-2xl bg-size-200 animate-text-glow'>
                   विरासत का द्वार
                 </span>
               </h1>
               
               {/* Animated Subtitle with Typewriter Effect */}
-              <div className='text-2xl md:text-3xl text-white/90 max-w-5xl mx-auto leading-relaxed font-medium mb-12 h-20 drop-shadow-lg'>
-                <div className="typewriter-container pt-6 pb-20">
+              <div className='h-20 max-w-5xl mx-auto mb-12 text-2xl font-medium leading-relaxed md:text-3xl text-white/90 drop-shadow-lg'>
+                <div className="pt-6 pb-20 typewriter-container">
                   <span className="typewriter-text">
                     भारत के जीवंत और विविधतापूर्ण स्थानीय बाजारों की खोज करें
                   </span>
@@ -362,35 +380,35 @@ const Home = () => {
               </div>
 
               {/* Enhanced CTA Buttons */}
-              <div className='flex flex-col sm:flex-row gap-6 justify-center items-center mb-20'>
+              <div className='flex flex-col items-center justify-center gap-6 mb-20 sm:flex-row'>
                 <a 
                   href='/markets' 
-                  className='group relative bg-white/20 backdrop-blur-md text-white border-2 border-white/50 px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-emerald-600 hover:shadow-2xl hover:shadow-white/50 transform hover:scale-110 transition-all duration-500 flex items-center space-x-3 overflow-hidden'
+                  className='relative flex items-center px-10 py-5 space-x-3 overflow-hidden text-lg font-bold text-white transition-all duration-500 transform border-2 rounded-full group bg-white/20 backdrop-blur-md border-white/50 hover:bg-white hover:text-emerald-600 hover:shadow-2xl hover:shadow-white/50 hover:scale-110'
                 >
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 transition-opacity duration-300 bg-white opacity-0 group-hover:opacity-100"></div>
                   <span className="relative z-10">🏪 बाजार की यात्रा शुरू करें</span>
-                  <svg className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="relative z-10 w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
                 <a 
                   href='/categories' 
-                  className='group border-3 border-white/70 text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 backdrop-blur-md transition-all duration-500 transform hover:scale-110 hover:shadow-2xl hover:shadow-white/30 flex items-center space-x-3'
+                  className='flex items-center px-10 py-5 space-x-3 text-lg font-bold text-white transition-all duration-500 transform rounded-full group border-3 border-white/70 hover:bg-white/20 backdrop-blur-md hover:scale-110 hover:shadow-2xl hover:shadow-white/30'
                 >
                   <span>🎨 श्रेणियां देखें</span>
-                  <div className="w-2 h-2 bg-white rounded-full group-hover:bg-yellow-200 transition-colors duration-300"></div>
+                  <div className="w-2 h-2 transition-colors duration-300 bg-white rounded-full group-hover:bg-yellow-200"></div>
                 </a>
               </div>
 
               {/* Enhanced Trust Indicators with Animation */}
-              <div ref={statsRef} className='grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto'>
+              <div ref={statsRef} className='grid max-w-4xl grid-cols-2 gap-8 mx-auto md:grid-cols-4'>
                 {stats.map((stat, index) => (
                   <div key={index} className={`text-center bg-white/20 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-white/30 hover:shadow-white/20 transition-all duration-500 transform hover:scale-105 ${statsInView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: `${index * 200}ms` }}>
-                    <div className="text-4xl mb-2">{stat.icon}</div>
+                    <div className="mb-2 text-4xl">{stat.icon}</div>
                     <div className='text-3xl font-bold text-white drop-shadow-lg'>
                       {Math.floor(animatedStats[index])}{stat.suffix}
                     </div>
-                    <div className='text-white/80 text-sm font-medium'>{stat.label}</div>
+                    <div className='text-sm font-medium text-white/80'>{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -398,8 +416,8 @@ const Home = () => {
           </div>
 
           {/* Floating Action Elements */}
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
-            <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-2xl border border-white/30">
+          <div className="absolute z-30 transform -translate-x-1/2 bottom-10 left-1/2 animate-bounce">
+            <div className="flex items-center justify-center w-12 h-12 text-white border rounded-full shadow-2xl bg-white/20 backdrop-blur-md border-white/30">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
@@ -408,38 +426,38 @@ const Home = () => {
         </div>
 
         {/* Enhanced Carousel Section */}
-        <div className='max-w-7xl mx-auto px-6 mb-20 relative z-20'>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-4">
+        <div className='relative z-20 px-6 mx-auto mb-20 max-w-7xl'>
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl drop-shadow-lg">
               विशेष प्रस्तुति
             </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto drop-shadow-md">
+            <p className="max-w-2xl mx-auto text-xl text-white/80 drop-shadow-md">
               भारत की रंगबिरंगी संस्कृति की झलक
             </p>
           </div>
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+          <div className="relative overflow-hidden shadow-2xl rounded-3xl">
             <Carousel images={images} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none rounded-3xl"></div>
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
           </div>
         </div>
 
         {/* Enhanced Categories Section */}
-        <div ref={categoriesRef} className='max-w-7xl mx-auto px-6 mb-20 relative z-20'>
+        <div ref={categoriesRef} className='relative z-20 px-6 mx-auto mb-20 max-w-7xl'>
           <div className={`text-center mb-16 transition-all duration-1000 ${categoriesInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-            <div className="inline-flex items-center space-x-3 bg-white/20 backdrop-blur-md rounded-full px-6 py-3 mb-6 border border-white/30">
+            <div className="inline-flex items-center px-6 py-3 mb-6 space-x-3 border rounded-full bg-white/20 backdrop-blur-md border-white/30">
               <span className="text-2xl">🛍️</span>
-              <span className="text-white font-bold">लोकप्रिय श्रेणियां</span>
+              <span className="font-bold text-white">लोकप्रिय श्रेणियां</span>
             </div>
-            <h2 className='text-5xl md:text-6xl font-bold text-white drop-shadow-lg mb-6'>
+            <h2 className='mb-6 text-5xl font-bold text-white md:text-6xl drop-shadow-lg'>
               अनंत विविधता
             </h2>
-            <p className='text-xl text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-md'>
+            <p className='max-w-3xl mx-auto text-xl leading-relaxed text-white/80 drop-shadow-md'>
               भारत की समृद्ध विरासत से प्रेरित विभिन्न उत्पाद श्रेणियों की खोज करें। 
               हर श्रेणी में छुपी है अनगिनत कहानियां और परंपराएं।
             </p>
           </div>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+          <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
             {featuredCategories.map((category, index) => (
                 <div
                   key={category.id}
@@ -449,62 +467,62 @@ const Home = () => {
                 >
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700"></div>
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full transform -translate-x-12 translate-y-12 group-hover:scale-125 transition-transform duration-700"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 transition-transform duration-700 transform translate-x-16 -translate-y-16 bg-white rounded-full group-hover:scale-150"></div>
+                  <div className="absolute bottom-0 left-0 w-24 h-24 transition-transform duration-700 transform -translate-x-12 translate-y-12 bg-white rounded-full group-hover:scale-125"></div>
                 </div>
 
                 <div className="relative z-10">
-                  <div className="text-6xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500">
+                  <div className="mb-4 text-6xl transition-transform duration-500 transform group-hover:scale-110 group-hover:rotate-12">
                     {category.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-yellow-100 transition-colors duration-300">
+                  <h3 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 group-hover:text-yellow-100">
                     {category.name}
                   </h3>
-                  <p className="text-white/90 text-sm mb-3 group-hover:text-yellow-100 transition-colors duration-300">
+                  <p className="mb-3 text-sm transition-colors duration-300 text-white/90 group-hover:text-yellow-100">
                     {category.description}
                   </p>
-                  <div className="text-white/80 font-semibold text-lg mb-4">
+                  <div className="mb-4 text-lg font-semibold text-white/80">
                     {category.count}
                   </div>
-                  <div className="flex items-center text-white/70 group-hover:text-white transition-colors duration-300">
+                  <div className="flex items-center transition-colors duration-300 text-white/70 group-hover:text-white">
                     <span className="mr-2">एक्सप्लोर करें</span>
-                    <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
                 </div>
 
                 {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+                <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-white/10 to-transparent group-hover:opacity-100 rounded-3xl"></div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Enhanced Featured Markets Section */}
-        <div ref={marketsRef} className='relative py-20 overflow-hidden z-20'>
+        <div ref={marketsRef} className='relative z-20 py-20 overflow-hidden'>
           {/* Background with Pattern */}
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute inset-0 opacity-10" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}></div>
 
-          <div className='max-w-7xl mx-auto px-6 relative z-10'>
+          <div className='relative z-10 px-6 mx-auto max-w-7xl'>
             <div className={`text-center mb-16 transition-all duration-1000 ${marketsInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-              <div className="inline-flex items-center space-x-3 bg-white/20 backdrop-blur-md rounded-full px-6 py-3 mb-6 border border-white/30">
+              <div className="inline-flex items-center px-6 py-3 mb-6 space-x-3 border rounded-full bg-white/20 backdrop-blur-md border-white/30">
                 <span className="text-2xl">🏛️</span>
-                <span className="text-white font-bold">प्रसिद्ध बाजार</span>
+                <span className="font-bold text-white">प्रसिद्ध बाजार</span>
               </div>
-              <h2 className='text-5xl md:text-6xl font-bold text-white drop-shadow-lg mb-6'>
+              <h2 className='mb-6 text-5xl font-bold text-white md:text-6xl drop-shadow-lg'>
                 ऐतिहासिक बाजारों की यात्रा
               </h2>
-              <p className='text-xl text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-md'>
+              <p className='max-w-3xl mx-auto text-xl leading-relaxed text-white/80 drop-shadow-md'>
                 सदियों पुरानी परंपराओं से भरपूर भारत के सबसे प्रतिष्ठित बाजारों का दौरा करें। 
                 हर बाजार में छुपी है अनगिनत कहानियां।
               </p>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+            <div className='grid grid-cols-1 gap-10 md:grid-cols-3'>
               {popularMarkets.map((market, index) => (
                 <div
                   key={market.id}
@@ -514,19 +532,19 @@ const Home = () => {
                   <MarketCard 
                     market={market} 
                     viewMode="grid"
-                    onClick={() => window.location.href = market.href}
+                    onClick={handleMarketClick}
                   />
                 </div>
               ))}
             </div>
 
-            <div className='text-center mt-16'>
+            <div className='mt-16 text-center'>
               <a 
                 href='/markets' 
-                className='group inline-flex items-center space-x-3 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-emerald-600 hover:shadow-2xl hover:shadow-white/50 transform hover:scale-105 transition-all duration-500'
+                className='inline-flex items-center px-8 py-4 space-x-3 text-lg font-bold text-white transition-all duration-500 transform border-2 rounded-full group bg-white/20 backdrop-blur-md border-white/50 hover:bg-white hover:text-emerald-600 hover:shadow-2xl hover:shadow-white/50 hover:scale-105'
               >
                 <span>सभी बाजार की खोज करें</span>
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </a>
@@ -535,20 +553,20 @@ const Home = () => {
         </div>
 
         {/* Customer Testimonials */}
-        <div className='py-20 bg-white/10 backdrop-blur-md relative z-20'>
-          <div className='max-w-6xl mx-auto px-6'>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-4">
+        <div className='relative z-20 py-20 bg-white/10 backdrop-blur-md'>
+          <div className='max-w-6xl px-6 mx-auto'>
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl drop-shadow-lg">
                 ग्राहकों के अनुभव
               </h2>
-              <p className="text-xl text-white/80 max-w-2xl mx-auto drop-shadow-md">
+              <p className="max-w-2xl mx-auto text-xl text-white/80 drop-shadow-md">
                 हमारे खुश ग्राहकों की कहानियां सुनें
               </p>
             </div>
 
             <div className="relative">
-              <div className="overflow-hidden rounded-3xl bg-white/20 backdrop-blur-lg shadow-2xl p-8 md:p-12 border border-white/30">
-                <div className="flex items-center justify-center space-x-4 mb-8">
+              <div className="p-8 overflow-hidden border shadow-2xl rounded-3xl bg-white/20 backdrop-blur-lg md:p-12 border-white/30">
+                <div className="flex items-center justify-center mb-8 space-x-4">
                   {testimonials.map((_, index) => (
                     <button
                       key={index}
@@ -562,19 +580,19 @@ const Home = () => {
 
                 <div className="text-center">
                   {/* Fixed avatar display */}
-                  <div className="mb-6 flex justify-center">
+                  <div className="flex justify-center mb-6">
                     <img 
                       src={testimonials[currentTestimonial].avatar} 
                       alt={testimonials[currentTestimonial].name}
-                      className="w-20 h-20 rounded-full object-cover border-4 border-white/30 shadow-2xl"
+                      className="object-cover w-20 h-20 border-4 rounded-full shadow-2xl border-white/30"
                     />
                   </div>
-                  <p className="text-2xl text-white mb-6 italic leading-relaxed drop-shadow-md">
+                  <p className="mb-6 text-2xl italic leading-relaxed text-white drop-shadow-md">
                     "{testimonials[currentTestimonial].text}"
                   </p>
                   <div className="flex justify-center mb-4">
                     {Array.from({ length: testimonials[currentTestimonial].rating }).map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-2xl drop-shadow-md">⭐</span>
+                      <span key={i} className="text-2xl text-yellow-400 drop-shadow-md">⭐</span>
                     ))}
                   </div>
                   <h4 className="text-xl font-bold text-white drop-shadow-md">
@@ -588,30 +606,30 @@ const Home = () => {
         </div>
 
         {/* Enhanced Newsletter Section */}
-        <div className='relative py-20 overflow-hidden z-20'>
+        <div className='relative z-20 py-20 overflow-hidden'>
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-800/30 via-green-700/30 to-emerald-800/30"></div>
           <div className="absolute inset-0 opacity-20" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}></div>          
-          <div className='max-w-5xl mx-auto text-center px-6 relative z-10'>
+          <div className='relative z-10 max-w-5xl px-6 mx-auto text-center'>
             <div className="mb-8">
-              <div className="text-6xl mb-4">📬</div>
-              <h3 className='text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg'>
+              <div className="mb-4 text-6xl">📬</div>
+              <h3 className='mb-6 text-4xl font-bold text-white md:text-5xl drop-shadow-lg'>
                 अपडेट्स का खजाना पाएं
               </h3>
-              <p className='text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md'>
+              <p className='max-w-3xl mx-auto mb-8 text-xl leading-relaxed text-white/80 drop-shadow-md'>
                 नए उत्पादों, विशेष छूट, त्योहारी ऑफर्स और बाजार की ताजा खबरों के लिए 
                 हमारे विशेष न्यूज़लेटर की सदस्यता लें
               </p>
             </div>
 
-            <div className='flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-8'>
+            <div className='flex flex-col max-w-lg gap-4 mx-auto mb-8 sm:flex-row'>
               <input 
                 type="email" 
                 placeholder="आपका ईमेल पता डालें" 
-                className="flex-1 px-6 py-4 rounded-full border-none focus:outline-none focus:ring-4 focus:ring-white/50 text-lg shadow-2xl bg-white/90 backdrop-blur-md"
+                className="flex-1 px-6 py-4 text-lg border-none rounded-full shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/50 bg-white/90 backdrop-blur-md"
               />
-              <button className='bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center space-x-2'>
+              <button className='flex items-center px-8 py-4 space-x-2 text-lg font-bold transition-all duration-300 transform bg-white rounded-full shadow-2xl text-emerald-600 hover:bg-white/90 hover:scale-105'>
                 <span>सब्सक्राइब करें</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -619,25 +637,25 @@ const Home = () => {
               </button>
             </div>
 
-            <p className="text-white/80 text-sm drop-shadow-md">
+            <p className="text-sm text-white/80 drop-shadow-md">
               🔒 आपकी गोपनीयता हमारी प्राथमिकता है। स्पैम बिल्कुल नहीं!
             </p>
           </div>
         </div>
 
         {/* Enhanced Values Section */}
-        <div className='py-20 bg-white/10 backdrop-blur-md relative z-20'>
-          <div className='max-w-7xl mx-auto px-6'>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg pb-6 pt-6">
+        <div className='relative z-20 py-20 bg-white/10 backdrop-blur-md'>
+          <div className='px-6 mx-auto max-w-7xl'>
+            <div className="mb-16 text-center">
+              <h2 className="pt-6 pb-6 text-4xl font-bold text-white md:text-5xl drop-shadow-lg">
                 हमारे मूल्य
               </h2>
-              <p className="text-xl text-white/80 max-w-3xl mx-auto drop-shadow-md">
+              <p className="max-w-3xl mx-auto text-xl text-white/80 drop-shadow-md">
                 भारतशाला सिर्फ एक प्लेटफॉर्म नहीं, बल्कि भारतीय संस्कृति और परंपरा का संरक्षक है
               </p>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
               {[
                 {
                   icon: '🌿',
@@ -658,18 +676,18 @@ const Home = () => {
                   gradient: 'from-purple-500 to-pink-500'
                 }
               ].map((value, index) => (
-                <div key={index} className='group text-center bg-white/20 backdrop-blur-lg rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-white/30 overflow-hidden relative'>
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div key={index} className='relative p-8 overflow-hidden text-center transition-all duration-500 transform border shadow-2xl group bg-white/20 backdrop-blur-lg rounded-3xl hover:shadow-3xl hover:-translate-y-2 border-white/30'>
+                  <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-transparent to-white/10 group-hover:opacity-100"></div>
                   
                   <div className={`relative z-10 w-20 h-20 bg-gradient-to-br ${value.gradient} rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 transition-transform duration-500`}>
-                    <span className='text-white text-3xl'>{value.icon}</span>
+                    <span className='text-3xl text-white'>{value.icon}</span>
                   </div>
                   
-                  <h4 className='text-2xl font-bold text-white mb-4 group-hover:text-yellow-200 transition-colors duration-300 drop-shadow-md'>
+                  <h4 className='mb-4 text-2xl font-bold text-white transition-colors duration-300 group-hover:text-yellow-200 drop-shadow-md'>
                     {value.title}
                   </h4>
                   
-                  <p className='text-white/80 leading-relaxed group-hover:text-white transition-colors duration-300'>
+                  <p className='leading-relaxed transition-colors duration-300 text-white/80 group-hover:text-white'>
                     {value.description}
                   </p>
                 </div>
@@ -778,13 +796,16 @@ const Home = () => {
         
         .typewriter-text {
           display: inline-block;
-          animation: typewriter 4s steps(60) infinite;
+          overflow: hidden;
+          white-space: nowrap;
+          border-right: 2px solid white;
+          animation: typing 4s steps(60) infinite;
         }
-        
-        @keyframes typewriter {
-          0% { width: 0; }
-          50% { width: 100%; }
-          100% { width: 0; }
+
+        @keyframes typing {
+          0%   { clip-path: inset(0 100% 0 0); }
+          50%  { clip-path: inset(0 0 0 0); }
+          100% { clip-path: inset(0 100% 0 0); }
         }
         
         .shadow-3xl {
