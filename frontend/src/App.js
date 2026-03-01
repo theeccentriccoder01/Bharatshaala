@@ -27,67 +27,78 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoadingSpinner from "./components/LoadingSpinner";
 
-// Main Pages
-import Home from "./pages/Home";
-import Markets from "./pages/Markets";
-import Bag from "./pages/Bag";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Account from "./pages/Account";
-import SearchResults from "./pages/SearchResults";
-import ProductDetail from "./pages/ProductDetail";
-import Checkout from "./pages/Checkout";
-import OrderConfirmation from "./pages/OrderConfirmation";
-import Wishlist from "./pages/Wishlist";
-import TrackOrder from "./pages/TrackOrder";
-import Error from "./pages/Error";
 
-// User Pages
-import Settings from "./pages/user/Settings";
-import UserOrders from "./pages/user/Orders";
-import Dashboard from "./pages/user/Dashboard";
-import AddressBook from "./pages/user/AddressBook";
-import PaymentMethods from "./pages/user/PaymentMethods";
-import Notifications from "./pages/user/Notifications";
+//MAIN PAGES
+const Home = React.lazy(() => import("./pages/Home"));
+const Markets = React.lazy(() => import("./pages/Markets"));
+const Bag = React.lazy(() => import("./pages/Bag"));
+const Login = React.lazy(() => import("./pages/Login"));
+const Signup = React.lazy(() => import("./pages/Signup"));
+const Account = React.lazy(() => import("./pages/Account"));
+const SearchResults = React.lazy(() => import("./pages/SearchResults"));
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
+const Checkout = React.lazy(() => import("./pages/Checkout"));
+const OrderConfirmation = React.lazy(() => import("./pages/OrderConfirmation"));
+const Wishlist = React.lazy(() => import("./pages/Wishlist"));
+const TrackOrder = React.lazy(() => import("./pages/TrackOrder"));
+const Error = React.lazy(() => import("./pages/Error"));
 
-// Vendor Pages
-import VendorDashboard from "./pages/vendor/Dashboard";
-import VendorOrders from "./pages/vendor/Orders";
-import Items from "./pages/vendor/Items";
-import EditItem from "./pages/vendor/EditItem";
-import AddItem from "./pages/vendor/AddItem";
-import Analytics from "./pages/vendor/Analytics";
-import Inventory from "./pages/vendor/Inventory";
 
-// Menu Pages
-import About from "./pages/menu/About";
-import Contact from "./pages/menu/Contact";
-import FAQ from "./pages/menu/FAQ";
-import PrivacyPolicy from "./pages/menu/PrivacyPolicy";
-import TermsOfService from "./pages/menu/TermsOfService";
-import ShippingInfo from "./pages/menu/ShippingInfo";
-import ReturnPolicy from "./pages/menu/ReturnPolicy";
-import Support from "./pages/menu/Support";
 
-// Category Pages
-import Clothing from "./pages/categories/Clothing";
-import Jewellery from "./pages/categories/Jewellery";
-import Handicrafts from "./pages/categories/Handicrafts";
-import Books from "./pages/categories/Books";
-import Accessories from "./pages/categories/Accessories";
-import Houseware from "./pages/categories/Houseware";
-import CategoryLanding from "./pages/categories/CategoryLanding";
-import CategoriesOverview from "./pages/categories/CategoriesOverview";
+//USER PAGES
+const Settings = React.lazy(() => import("./pages/user/Settings"));
+const UserOrders = React.lazy(() => import("./pages/user/Orders"));
+const Dashboard = React.lazy(() => import("./pages/user/Dashboard"));
+const AddressBook = React.lazy(() => import("./pages/user/AddressBook"));
+const PaymentMethods = React.lazy(() => import("./pages/user/PaymentMethods"));
+const Notifications = React.lazy(() => import("./pages/user/Notifications"));
 
-// Market Pages - All Major Markets
-import PinkCity from "./pages/markets/pinkcity/PinkCity";
-import Shop1 from "./pages/markets/pinkcity/Shop1";
-import ChandniChowk from "./pages/markets/chandni_chowk/ChandniChowk";
-import ColabaCauseway from "./pages/markets/colaba_causeway/ColabaCauseway";
-import CommercialStreet from "./pages/markets/commercial_street/CommercialStreet";
-import DilliHaat from "./pages/markets/dilli_haat/DilliHaat";
-import LaadBazaar from "./pages/markets/laad_bazaar/LaadBazaar";
-import DevarajaMarket from "./pages/markets/devaraja_market/DevarajaMarket";
+
+
+//VENDOR PAGES
+const VendorDashboard = React.lazy(() => import("./pages/vendor/Dashboard"));
+const VendorOrders = React.lazy(() => import("./pages/vendor/Orders"));
+const Items = React.lazy(() => import("./pages/vendor/Items"));
+const EditItem = React.lazy(() => import("./pages/vendor/EditItem"));
+const AddItem = React.lazy(() => import("./pages/vendor/AddItem"));
+const Analytics = React.lazy(() => import("./pages/vendor/Analytics"));
+const Inventory = React.lazy(() => import("./pages/vendor/Inventory"));
+
+
+
+//MENU PAGES
+const About = React.lazy(() => import("./pages/menu/About"));
+const Contact = React.lazy(() => import("./pages/menu/Contact"));
+const FAQ = React.lazy(() => import("./pages/menu/FAQ"));
+const PrivacyPolicy = React.lazy(() => import("./pages/menu/PrivacyPolicy"));
+const TermsOfService = React.lazy(() => import("./pages/menu/TermsOfService"));
+const ShippingInfo = React.lazy(() => import("./pages/menu/ShippingInfo"));
+const ReturnPolicy = React.lazy(() => import("./pages/menu/ReturnPolicy"));
+const Support = React.lazy(() => import("./pages/menu/Support"));
+
+
+
+//CATEGORY PAGES
+const Clothing = React.lazy(() => import("./pages/categories/Clothing"));
+const Jewellery = React.lazy(() => import("./pages/categories/Jewellery"));
+const Handicrafts = React.lazy(() => import("./pages/categories/Handicrafts"));
+const Books = React.lazy(() => import("./pages/categories/Books"));
+const Accessories = React.lazy(() => import("./pages/categories/Accessories"));
+const Houseware = React.lazy(() => import("./pages/categories/Houseware"));
+const CategoryLanding = React.lazy(() => import("./pages/categories/CategoryLanding"));
+const CategoriesOverview = React.lazy(() => import("./pages/categories/CategoriesOverview"));
+
+
+
+//MARKET PAGES 
+const PinkCity = React.lazy(() => import("./pages/markets/pinkcity/PinkCity"));
+const Shop1 = React.lazy(() => import("./pages/markets/pinkcity/Shop1"));
+const ChandniChowk = React.lazy(() => import("./pages/markets/chandni_chowk/ChandniChowk"));
+const ColabaCauseway = React.lazy(() => import("./pages/markets/colaba_causeway/ColabaCauseway"));
+const CommercialStreet = React.lazy(() => import("./pages/markets/commercial_street/CommercialStreet"));
+const DilliHaat = React.lazy(() => import("./pages/markets/dilli_haat/DilliHaat"));
+const LaadBazaar = React.lazy(() => import("./pages/markets/laad_bazaar/LaadBazaar"));
+const DevarajaMarket = React.lazy(() => import("./pages/markets/devaraja_market/DevarajaMarket"));
 
 // Admin Pages (if needed)
 // import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -111,17 +122,17 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="flex items-center justify-center min-h-screen bg-gray-50">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">
+            <h1 className="mb-4 text-2xl font-bold text-gray-800">
               कुछ गलत हो गया है
             </h1>
-            <p className="text-gray-600 mb-4">
+            <p className="mb-4 text-gray-600">
               पेज लोड करने में समस्या हो रही है। कृपया पेज को रिफ्रेश करें।
             </p>
             <button 
               onClick={() => window.location.reload()}
-              className="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700"
+              className="px-6 py-2 text-white rounded-lg bg-emerald-600 hover:bg-emerald-700"
             >
               पेज रिफ्रेश करें
             </button>
@@ -152,12 +163,12 @@ function App() {
               <LanguageProvider>
                 <React.StrictMode>
                   <Router>
-                    <div className="min-h-screen flex flex-col">
+                    <div className="flex flex-col min-h-screen">
                       <Navbar />
                       
                       <main className="flex-grow">
                         <Suspense fallback={
-                          <div className="min-h-screen flex items-center justify-center">
+                          <div className="flex items-center justify-center min-h-screen">
                             <LoadingSpinner />
                           </div>
                         }>
