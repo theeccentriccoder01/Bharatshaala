@@ -85,7 +85,7 @@ const CategoriesOverview = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-18">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 mt-18">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20 pt-32">
         <div className="container mx-auto px-6 text-center mt-18">
@@ -119,8 +119,8 @@ const CategoriesOverview = () => {
                 >
                   {/* Animated Background Pattern */}
                   <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700"></div>
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full transform -translate-x-12 translate-y-12 group-hover:scale-125 transition-transform duration-700"></div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white dark:bg-gray-800 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white dark:bg-gray-800 rounded-full transform -translate-x-12 translate-y-12 group-hover:scale-125 transition-transform duration-700"></div>
                   </div>
 
                   <div className="relative z-10">

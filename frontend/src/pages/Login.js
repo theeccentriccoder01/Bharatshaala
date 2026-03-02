@@ -33,7 +33,7 @@ const Login = () => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         if (data.loggedIn) {
@@ -131,14 +131,13 @@ const Login = () => {
     if (!emailError && !passwordError && email && password) {
       setIsLoading(true);
       try {
-        // eslint-disable-next-line no-unused-vars
-        const _confirm = await axios.post("/Login", { email, password });
-        
+        await axios.post("/Login", { email, password });
+
         const response = await fetch('/GetUser', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' }
         });
-        
+
         const data = await response.json();
         handleSuccessfulLogin(data);
       } catch (error) {
@@ -152,7 +151,7 @@ const Login = () => {
     if (rememberMe) {
       localStorage.setItem('rememberLogin', 'true');
     }
-    
+
     if (data.accountType === "vendor") {
       navigate('/vendor/dashboard');
     } else {
@@ -171,36 +170,36 @@ const Login = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
         <div className="max-w-md mx-auto px-6 py-8">
-          
+
           {/* Header */}
           <div className="text-center mb-8">
-            <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-emerald-200'>
+            <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-100 to-green-100 dark:from-emerald-900/30 dark:to-green-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-emerald-200 dark:border-emerald-700'>
               <span className='text-2xl'>🙏</span>
-              <span className='text-emerald-800 font-bold'>स्वागत वापसी</span>
+              <span className='text-emerald-800 dark:text-emerald-300 font-bold'>स्वागत वापसी</span>
             </div>
-            
+
             <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-4">
               लॉग इन करें
             </h1>
-            <p className="text-emerald-600 text-lg">
+            <p className="text-emerald-600 dark:text-emerald-400 text-lg">
               सच्चे भारतशाला अनुभव का आनंद लेने के लिए,<br/>
               अपना ईमेल और पासवर्ड दर्ज करें
             </p>
           </div>
 
           {/* Login Form */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-emerald-200">
-            
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-emerald-200 dark:border-gray-700">
+
             {/* Login Method Toggle */}
-            <div className="flex bg-emerald-100 rounded-xl p-1 mb-6">
+            <div className="flex bg-emerald-100 dark:bg-emerald-900/30 rounded-xl p-1 mb-6">
               <button
                 onClick={() => setLoginMethod('email')}
                 className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
                   loginMethod === 'email'
                     ? 'bg-emerald-500 text-white shadow-md'
-                    : 'text-emerald-600 hover:bg-emerald-50'
+                    : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                 }`}
               >
                 📧 ईमेल से लॉगिन
@@ -210,7 +209,7 @@ const Login = () => {
                 className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
                   loginMethod === 'phone'
                     ? 'bg-emerald-500 text-white shadow-md'
-                    : 'text-emerald-600 hover:bg-emerald-50'
+                    : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                 }`}
               >
                 📱 फोन से लॉगिन
@@ -221,7 +220,7 @@ const Login = () => {
               <>
                 {/* Email Field */}
                 <div className="mb-6">
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     ईमेल पता
                   </label>
                   <div className="relative">
@@ -231,10 +230,10 @@ const Login = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       onBlur={(e) => validateEmail(e.target.value)}
                       className={`w-full px-4 py-4 pl-12 border-2 rounded-xl transition-all duration-300 ${
-                        emailError 
-                          ? 'border-red-300 focus:border-red-500' 
-                          : 'border-emerald-200 focus:border-emerald-500'
-                      } focus:outline-none bg-white text-lg`}
+                        emailError
+                          ? 'border-red-300 focus:border-red-500'
+                          : 'border-emerald-200 dark:border-gray-600 focus:border-emerald-500'
+                      } focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg`}
                       placeholder="आपका ईमेल पता"
                     />
                     <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,7 +250,7 @@ const Login = () => {
 
                 {/* Password Field */}
                 <div className="mb-6">
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     पासवर्ड
                   </label>
                   <div className="relative">
@@ -261,10 +260,10 @@ const Login = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       onBlur={(e) => validatePassword(e.target.value)}
                       className={`w-full px-4 py-4 pl-12 pr-12 border-2 rounded-xl transition-all duration-300 ${
-                        passwordError 
-                          ? 'border-red-300 focus:border-red-500' 
-                          : 'border-emerald-200 focus:border-emerald-500'
-                      } focus:outline-none bg-white text-lg`}
+                        passwordError
+                          ? 'border-red-300 focus:border-red-500'
+                          : 'border-emerald-200 dark:border-gray-600 focus:border-emerald-500'
+                      } focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg`}
                       placeholder="आपका पासवर्ड"
                     />
                     <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -299,7 +298,7 @@ const Login = () => {
               <>
                 {/* Phone Login */}
                 <div className="mb-6">
-                  <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                     फोन नंबर
                   </label>
                   <div className="relative">
@@ -307,7 +306,7 @@ const Login = () => {
                       type="tel"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="w-full px-4 py-4 pl-12 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none bg-white text-lg"
+                      className="w-full px-4 py-4 pl-12 border-2 border-emerald-200 dark:border-gray-600 rounded-xl focus:border-emerald-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg"
                       placeholder="+91 98765 43210"
                     />
                     <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -318,7 +317,7 @@ const Login = () => {
 
                 {otpSent && (
                   <div className="mb-6">
-                    <label className="block text-emerald-800 font-semibold text-lg mb-2">
+                    <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
                       OTP दर्ज करें
                     </label>
                     <div className="relative">
@@ -326,7 +325,7 @@ const Login = () => {
                         type="text"
                         value={otp}
                         onChange={(e) => setOtp(e.target.value)}
-                        className="w-full px-4 py-4 pl-12 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none bg-white text-lg text-center tracking-widest"
+                        className="w-full px-4 py-4 pl-12 border-2 border-emerald-200 dark:border-gray-600 rounded-xl focus:border-emerald-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg text-center tracking-widest"
                         placeholder="6 अंकों का OTP"
                         maxLength={6}
                       />
@@ -334,7 +333,7 @@ const Login = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <p className="text-emerald-600 text-sm mt-2">
+                    <p className="text-emerald-600 dark:text-emerald-400 text-sm mt-2">
                       📱 {phoneNumber} पर OTP भेजा गया है
                     </p>
                   </div>
@@ -350,11 +349,11 @@ const Login = () => {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 text-emerald-600 border-emerald-300 rounded focus:ring-emerald-500"
+                    className="w-4 h-4 text-emerald-600 border-emerald-300 dark:border-emerald-600 rounded focus:ring-emerald-500"
                   />
-                  <span className="text-emerald-700 text-sm">मुझे याद रखें</span>
+                  <span className="text-emerald-700 dark:text-emerald-300 text-sm">मुझे याद रखें</span>
                 </label>
-                <a href="/forgot-password" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium">
+                <a href="/forgot-password" className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-sm font-medium">
                   पासवर्ड भूल गए?
                 </a>
               </div>
@@ -365,8 +364,8 @@ const Login = () => {
               onClick={login}
               disabled={isLoading}
               className={`w-full bg-gradient-to-r from-emerald-500 to-green-500 text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
-                isLoading 
-                  ? 'opacity-50 cursor-not-allowed' 
+                isLoading
+                  ? 'opacity-50 cursor-not-allowed'
                   : 'hover:from-emerald-600 hover:to-green-600 hover:shadow-lg transform hover:scale-105'
               }`}
             >
@@ -383,10 +382,10 @@ const Login = () => {
             {/* Divider */}
             <div className="relative my-8">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-emerald-200"></div>
+                <div className="w-full border-t border-emerald-200 dark:border-gray-700"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-emerald-600 font-medium">या इससे लॉगिन करें</span>
+                <span className="px-4 bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 font-medium">या इससे लॉगिन करें</span>
               </div>
             </div>
 
@@ -394,7 +393,7 @@ const Login = () => {
             <div className="grid grid-cols-2 gap-4 mb-6">
               <button
                 onClick={() => socialLogin('google')}
-                className="flex items-center justify-center space-x-2 bg-white border-2 border-emerald-200 hover:border-emerald-300 py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-md"
+                className="flex items-center justify-center space-x-2 bg-white dark:bg-gray-700 border-2 border-emerald-200 dark:border-gray-600 hover:border-emerald-300 dark:hover:border-gray-500 py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-md"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -402,27 +401,27 @@ const Login = () => {
                   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                <span className="text-emerald-700 font-medium">Google</span>
+                <span className="text-emerald-700 dark:text-emerald-300 font-medium">Google</span>
               </button>
               <button
                 onClick={() => socialLogin('facebook')}
-                className="flex items-center justify-center space-x-2 bg-white border-2 border-emerald-200 hover:border-emerald-300 py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-md"
+                className="flex items-center justify-center space-x-2 bg-white dark:bg-gray-700 border-2 border-emerald-200 dark:border-gray-600 hover:border-emerald-300 dark:hover:border-gray-500 py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-md"
               >
                 <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
-                <span className="text-emerald-700 font-medium">Facebook</span>
+                <span className="text-emerald-700 dark:text-emerald-300 font-medium">Facebook</span>
               </button>
             </div>
 
             {/* Sign Up Link */}
             <div className="text-center">
-              <p className="text-emerald-600 mb-4">
+              <p className="text-emerald-600 dark:text-emerald-400 mb-4">
                 खाता नहीं है?
               </p>
               <a
                 href="/signup"
-                className="text-emerald-600 hover:text-emerald-700 font-semibold text-lg border-b-2 border-transparent hover:border-emerald-600 transition-all duration-300"
+                className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold text-lg border-b-2 border-transparent hover:border-emerald-600 transition-all duration-300"
               >
                 साइन अप करें!
               </a>
@@ -431,14 +430,14 @@ const Login = () => {
 
           {/* Additional Links */}
           <div className="text-center mt-8">
-            <div className="flex justify-center space-x-6 text-sm text-emerald-600">
-              <a href="/help" className="hover:text-emerald-700 transition-colors duration-200">
+            <div className="flex justify-center space-x-6 text-sm text-emerald-600 dark:text-emerald-400">
+              <a href="/help" className="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200">
                 सहायता
               </a>
-              <a href="/privacy" className="hover:text-emerald-700 transition-colors duration-200">
+              <a href="/privacy" className="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200">
                 गोपनीयता नीति
               </a>
-              <a href="/terms" className="hover:text-emerald-700 transition-colors duration-200">
+              <a href="/terms" className="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200">
                 नियम और शर्तें
               </a>
             </div>

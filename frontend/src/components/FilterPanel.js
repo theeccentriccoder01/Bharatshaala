@@ -84,13 +84,13 @@ const FilterPanel = ({
   const subcategories = categories.find(cat => cat.id === localFilters.category)?.subcategories || [];
 
   return (
-    <div className={`bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-emerald-200 ${className}`}>
+    <div className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-lg border border-emerald-200 dark:border-emerald-700 ${className}`}>
       
       {/* Header */}
-      <div className="p-6 border-b border-emerald-200">
+      <div className="p-6 border-b border-emerald-200 dark:border-emerald-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <h3 className="text-xl font-bold text-emerald-800">फ़िल्टर</h3>
+            <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200">फ़िल्टर</h3>
             {getActiveFiltersCount() > 0 && (
               <span className="bg-emerald-500 text-white text-xs px-2 py-1 rounded-full">
                 {getActiveFiltersCount()}
@@ -101,14 +101,14 @@ const FilterPanel = ({
             {getActiveFiltersCount() > 0 && (
               <button
                 onClick={resetFilters}
-                className="text-emerald-600 hover:text-emerald-700 text-sm underline"
+                className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-sm underline"
               >
                 सभी साफ़ करें
               </button>
             )}
             <button
               onClick={onToggle}
-              className="lg:hidden p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg"
+              className="lg:hidden p-2 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 rounded-lg"
             >
               {isOpen ? '✕' : '☰'}
             </button>
@@ -122,11 +122,11 @@ const FilterPanel = ({
           
           {/* Sort By */}
           <div>
-            <h4 className="font-semibold text-emerald-800 mb-3">क्रमबद्ध करें</h4>
+            <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-3">क्रमबद्ध करें</h4>
             <select
               value={localFilters.sortBy}
               onChange={(e) => updateFilter('sortBy', e.target.value)}
-              className="w-full px-3 py-2 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+              className="w-full px-3 py-2 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
             >
               <option value="popular">लोकप्रिय</option>
               <option value="newest">नवीनतम</option>
@@ -139,7 +139,7 @@ const FilterPanel = ({
 
           {/* Category Filter */}
           <div>
-            <h4 className="font-semibold text-emerald-800 mb-3">श्रेणी</h4>
+            <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-3">श्रेणी</h4>
             <div className="space-y-2">
               <select
                 value={localFilters.category}
@@ -147,7 +147,7 @@ const FilterPanel = ({
                   updateFilter('category', e.target.value);
                   updateFilter('subCategory', ''); // Reset subcategory
                 }}
-                className="w-full px-3 py-2 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                className="w-full px-3 py-2 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
               >
                 <option value="">सभी श्रेणियां</option>
                 {categories.map(category => (
@@ -161,7 +161,7 @@ const FilterPanel = ({
                 <select
                   value={localFilters.subCategory}
                   onChange={(e) => updateFilter('subCategory', e.target.value)}
-                  className="w-full px-3 py-2 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                  className="w-full px-3 py-2 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
                 >
                   <option value="">सभी उप-श्रेणियां</option>
                   {subcategories.map(sub => (
@@ -174,12 +174,12 @@ const FilterPanel = ({
 
           {/* Price Range */}
           <div>
-            <h4 className="font-semibold text-emerald-800 mb-3">
+            <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-3">
               मूल्य सीमा: ₹{localFilters.priceMin.toLocaleString()} - ₹{localFilters.priceMax.toLocaleString()}
             </h4>
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-emerald-600">न्यूनतम मूल्य</label>
+                <label className="text-sm text-emerald-600 dark:text-emerald-400">न्यूनतम मूल्य</label>
                 <input
                   type="range"
                   min={priceRange.min}
@@ -190,7 +190,7 @@ const FilterPanel = ({
                 />
               </div>
               <div>
-                <label className="text-sm text-emerald-600">अधिकतम मूल्य</label>
+                <label className="text-sm text-emerald-600 dark:text-emerald-400">अधिकतम मूल्य</label>
                 <input
                   type="range"
                   min={priceRange.min}
@@ -206,14 +206,14 @@ const FilterPanel = ({
                   placeholder="न्यूनतम"
                   value={localFilters.priceMin}
                   onChange={(e) => updateFilter('priceMin', parseInt(e.target.value) || 0)}
-                  className="px-3 py-2 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                  className="px-3 py-2 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
                 />
                 <input
                   type="number"
                   placeholder="अधिकतम"
                   value={localFilters.priceMax}
                   onChange={(e) => updateFilter('priceMax', parseInt(e.target.value) || priceRange.max)}
-                  className="px-3 py-2 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                  className="px-3 py-2 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -222,7 +222,7 @@ const FilterPanel = ({
           {/* Brands */}
           {brands.length > 0 && (
             <div>
-              <h4 className="font-semibold text-emerald-800 mb-3">ब्रांड</h4>
+              <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-3">ब्रांड</h4>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {brands.map(brand => (
                   <label key={brand.id} className="flex items-center space-x-2 cursor-pointer">
@@ -230,10 +230,10 @@ const FilterPanel = ({
                       type="checkbox"
                       checked={localFilters.brands.includes(brand.id)}
                       onChange={() => toggleArrayFilter('brands', brand.id)}
-                      className="w-4 h-4 text-emerald-600 border-emerald-300 rounded focus:ring-emerald-500"
+                      className="w-4 h-4 text-emerald-600 dark:text-emerald-400 border-emerald-300 dark:border-emerald-600 rounded focus:ring-emerald-500"
                     />
-                    <span className="text-emerald-700">{brand.name}</span>
-                    <span className="text-emerald-500 text-sm">({brand.count})</span>
+                    <span className="text-emerald-700 dark:text-emerald-300">{brand.name}</span>
+                    <span className="text-emerald-500 dark:text-emerald-400 text-sm">({brand.count})</span>
                   </label>
                 ))}
               </div>
@@ -242,7 +242,7 @@ const FilterPanel = ({
 
           {/* Rating */}
           <div>
-            <h4 className="font-semibold text-emerald-800 mb-3">रेटिंग</h4>
+            <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-3">रेटिंग</h4>
             <div className="space-y-2">
               {[4, 3, 2, 1].map(rating => (
                 <label key={rating} className="flex items-center space-x-2 cursor-pointer">
@@ -251,7 +251,7 @@ const FilterPanel = ({
                     name="rating"
                     checked={localFilters.rating === rating}
                     onChange={() => updateFilter('rating', rating)}
-                    className="w-4 h-4 text-emerald-600 border-emerald-300 focus:ring-emerald-500"
+                    className="w-4 h-4 text-emerald-600 dark:text-emerald-400 border-emerald-300 dark:border-emerald-600 focus:ring-emerald-500"
                   />
                   <div className="flex items-center space-x-1">
                     {[...Array(5)].map((_, i) => (
@@ -259,7 +259,7 @@ const FilterPanel = ({
                         ⭐
                       </span>
                     ))}
-                    <span className="text-emerald-700 text-sm">और ऊपर</span>
+                    <span className="text-emerald-700 dark:text-emerald-300 text-sm">और ऊपर</span>
                   </div>
                 </label>
               ))}
@@ -268,7 +268,7 @@ const FilterPanel = ({
 
           {/* Special Filters */}
           <div>
-            <h4 className="font-semibold text-emerald-800 mb-3">विशेष फ़िल्टर</h4>
+            <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-3">विशेष फ़िल्टर</h4>
             <div className="space-y-3">
               {[
                 { key: 'inStock', label: 'स्टॉक में उपलब्ध', icon: '✅' },
@@ -281,10 +281,10 @@ const FilterPanel = ({
                     type="checkbox"
                     checked={localFilters[filter.key]}
                     onChange={(e) => updateFilter(filter.key, e.target.checked)}
-                    className="w-4 h-4 text-emerald-600 border-emerald-300 rounded focus:ring-emerald-500"
+                    className="w-4 h-4 text-emerald-600 dark:text-emerald-400 border-emerald-300 dark:border-emerald-600 rounded focus:ring-emerald-500"
                   />
                   <span className="text-lg">{filter.icon}</span>
-                  <span className="text-emerald-700">{filter.label}</span>
+                  <span className="text-emerald-700 dark:text-emerald-300">{filter.label}</span>
                 </label>
               ))}
             </div>

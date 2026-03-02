@@ -130,7 +130,7 @@ class ErrorBoundary extends React.Component {
             <p className="mb-4 text-gray-600">
               पेज लोड करने में समस्या हो रही है। कृपया पेज को रिफ्रेश करें।
             </p>
-            <button 
+            <button
               onClick={() => window.location.reload()}
               className="px-6 py-2 text-white rounded-lg bg-emerald-600 hover:bg-emerald-700"
             >
@@ -163,9 +163,9 @@ function App() {
               <LanguageProvider>
                 <React.StrictMode>
                   <Router>
-                    <div className="flex flex-col min-h-screen">
+                    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 transition-colors duration-300">
                       <Navbar />
-                      
+
                       <main className="flex-grow">
                         <Suspense fallback={
                           <div className="flex items-center justify-center min-h-screen">
@@ -226,22 +226,22 @@ function App() {
                             <Route path="/markets/pinkcity_bazaar" element={<Navigate to="/markets/pinkcity" replace />} />
                             <Route path="/markets/pinkcity/shop1" element={<Shop1 />} />
                             <Route path="/markets/pinkcity_bazaar/shop1" element={<Navigate to="/markets/pinkcity/shop1" replace />} />
-                            
+
                             <Route path="/markets/chandni-chowk" element={<ChandniChowk />} />
                             <Route path="/markets/chandni_chowk" element={<Navigate to="/markets/chandni-chowk" replace />} />
-                            
+
                             <Route path="/markets/colaba-causeway" element={<ColabaCauseway />} />
                             <Route path="/markets/colaba_causeway" element={<Navigate to="/markets/colaba-causeway" replace />} />
-                            
+
                             <Route path="/markets/commercial-street" element={<CommercialStreet />} />
                             <Route path="/markets/commercial_street" element={<Navigate to="/markets/commercial-street" replace />} />
-                            
+
                             <Route path="/markets/dilli-haat" element={<DilliHaat />} />
                             <Route path="/markets/dilli_haat" element={<Navigate to="/markets/dilli-haat" replace />} />
-                            
+
                             <Route path="/markets/laad-bazaar" element={<LaadBazaar />} />
                             <Route path="/markets/laad_bazaar" element={<Navigate to="/markets/laad-bazaar" replace />} />
-                            
+
                             <Route path="/markets/devaraja-market" element={<DevarajaMarket />} />
                             <Route path="/markets/devaraja_market" element={<Navigate to="/markets/devaraja-market" replace />} />
 
@@ -306,7 +306,7 @@ function App() {
                           </Routes>
                         </Suspense>
                       </main>
-                      
+
                       <Footer />
                     </div>
                   </Router>

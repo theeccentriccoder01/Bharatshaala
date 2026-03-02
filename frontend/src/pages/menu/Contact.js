@@ -138,9 +138,9 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const validation = validateForm(formData, validationRules);
-    
+
     if (!validation.isValid) {
       setErrors(validation.errors);
       showError('कृपया सभी आवश्यक फील्ड सही तरीके से भरें');
@@ -148,7 +148,7 @@ const Contact = () => {
     }
 
     setIsSubmitting(true);
-    
+
     try {
       const response = await useAPI.post('/contact/submit', {
         ...formData,
@@ -164,7 +164,7 @@ const Contact = () => {
         });
 
         showSuccess('आपका संदेश सफलतापूर्वक भेजा गया! हम 24 घंटे में जवाब देंगे।');
-        
+
         // Reset form
         setFormData({
           name: '',
@@ -194,8 +194,8 @@ const Contact = () => {
         <meta name="keywords" content="संपर्क, सहायता, भारतशाला, ग्राहक सेवा" />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-orange-50">
-        
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 to-orange-50 dark:to-gray-800">
+
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20 pt-32">
           <div className="container mx-auto px-6 text-center">
@@ -214,9 +214,9 @@ const Contact = () => {
         </section>
 
         {/* Quick Contact Methods */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center text-emerald-800 mb-12">तुरंत संपर्क करें</h2>
+            <h2 className="text-3xl font-bold text-center text-emerald-800 dark:text-emerald-200 mb-12">तुरंत संपर्क करें</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {contactMethods.map((method, index) => (
                 <motion.div
@@ -240,20 +240,20 @@ const Contact = () => {
         <section className="py-20">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16">
-              
+
               {/* Contact Form */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="bg-white rounded-2xl shadow-xl p-8"
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8"
               >
-                <h2 className="text-3xl font-bold text-emerald-800 mb-8">संदेश भेजें</h2>
-                
+                <h2 className="text-3xl font-bold text-emerald-800 dark:text-emerald-200 mb-8">संदेश भेजें</h2>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       पूरा नाम *
                     </label>
                     <input
@@ -261,17 +261,17 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 ${
-                        errors.name ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-gray-100 ${
+                        errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                       }`}
                       placeholder="आपका पूरा नाम"
                     />
-                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name[0]}</p>}
+                    {errors.name && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.name[0]}</p>}
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       ईमेल पता *
                     </label>
                     <input
@@ -279,17 +279,17 @@ const Contact = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 ${
-                        errors.email ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-gray-100 ${
+                        errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                       }`}
                       placeholder="आपका ईमेल पता"
                     />
-                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email[0]}</p>}
+                    {errors.email && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.email[0]}</p>}
                   </div>
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       फोन नंबर *
                     </label>
                     <input
@@ -297,25 +297,25 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 ${
-                        errors.phone ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-gray-100 ${
+                        errors.phone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                       }`}
                       placeholder="+91 98765 43210"
                     />
-                    {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone[0]}</p>}
+                    {errors.phone && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.phone[0]}</p>}
                   </div>
 
                   {/* Category */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       विषय श्रेणी *
                     </label>
                     <select
                       name="category"
                       value={formData.category}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 ${
-                        errors.category ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-gray-100 ${
+                        errors.category ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                       }`}
                     >
                       <option value="">श्रेणी चुनें</option>
@@ -326,12 +326,12 @@ const Contact = () => {
                       <option value="complaint">शिकायत</option>
                       <option value="suggestion">सुझाव</option>
                     </select>
-                    {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category[0]}</p>}
+                    {errors.category && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.category[0]}</p>}
                   </div>
 
                   {/* Subject */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       विषय *
                     </label>
                     <input
@@ -339,17 +339,17 @@ const Contact = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 ${
-                        errors.subject ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-gray-100 ${
+                        errors.subject ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                       }`}
                       placeholder="संदेश का विषय"
                     />
-                    {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject[0]}</p>}
+                    {errors.subject && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.subject[0]}</p>}
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       संदेश *
                     </label>
                     <textarea
@@ -357,12 +357,12 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={6}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none ${
-                        errors.message ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-gray-100 resize-none ${
+                        errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                       }`}
                       placeholder="अपना संदेश विस्तार से लिखें..."
                     />
-                    {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message[0]}</p>}
+                    {errors.message && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.message[0]}</p>}
                   </div>
 
                   {/* Vendor Checkbox */}
@@ -372,9 +372,9 @@ const Contact = () => {
                       name="isVendor"
                       checked={formData.isVendor}
                       onChange={handleInputChange}
-                      className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                      className="w-4 h-4 text-emerald-600 dark:text-emerald-400 border-gray-300 dark:border-gray-600 rounded focus:ring-emerald-500"
                     />
-                    <label className="ml-2 text-sm text-gray-700">
+                    <label className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                       मैं एक विक्रेता बनना चाहता हूं
                     </label>
                   </div>
@@ -397,15 +397,15 @@ const Contact = () => {
                 transition={{ duration: 0.8 }}
                 className="space-y-8"
               >
-                
+
                 {/* Office Locations */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-6">हमारे कार्यालय</h3>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">हमारे कार्यालय</h3>
                   <div className="space-y-6">
                     {officeLocations.map((office, index) => (
                       <div key={index} className="border-l-4 border-emerald-500 pl-4">
-                        <h4 className="font-semibold text-lg text-gray-900">{office.city}</h4>
-                        <p className="text-gray-600 text-sm mt-1">{office.address}</p>
+                        <h4 className="font-semibold text-lg text-gray-900 dark:text-gray-100">{office.city}</h4>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">{office.address}</p>
                         <div className="mt-2 space-y-1 text-sm">
                           <p><span className="font-medium">📞</span> {office.phone}</p>
                           <p><span className="font-medium">📧</span> {office.email}</p>
@@ -417,15 +417,15 @@ const Contact = () => {
                 </div>
 
                 {/* Quick FAQ */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-6">जल्दी मदद</h3>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">जल्दी मदद</h3>
                   <div className="space-y-4">
                     {faqCategories.map((category, index) => (
                       <div key={index}>
-                        <h4 className="font-semibold text-orange-600 mb-2">{category.title}</h4>
-                        <ul className="space-y-1 text-sm text-gray-600">
+                        <h4 className="font-semibold text-orange-600 dark:text-orange-400 mb-2">{category.title}</h4>
+                        <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
                           {category.questions.map((question, qIndex) => (
-                            <li key={qIndex} className="hover:text-emerald-600 cursor-pointer">
+                            <li key={qIndex} className="hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer">
                               • {question}
                             </li>
                           ))}
@@ -434,7 +434,7 @@ const Contact = () => {
                     ))}
                   </div>
                   <div className="mt-6">
-                    <button className="text-emerald-600 font-medium hover:underline">
+                    <button className="text-emerald-600 dark:text-emerald-400 font-medium hover:underline">
                       सभी FAQ देखें →
                     </button>
                   </div>
@@ -452,11 +452,11 @@ const Contact = () => {
         </section>
 
         {/* Map Section (Placeholder) */}
-        <section className="py-16 bg-emerald-50">
+        <section className="py-16 bg-emerald-50 dark:bg-emerald-900/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center text-emerald-800 mb-12">हमारा स्थान</h2>
-            <div className="bg-gray-300 rounded-2xl h-96 flex items-center justify-center">
-              <div className="text-center text-gray-600">
+            <h2 className="text-3xl font-bold text-center text-emerald-800 dark:text-emerald-200 mb-12">हमारा स्थान</h2>
+            <div className="bg-gray-300 dark:bg-gray-600 rounded-2xl h-96 flex items-center justify-center">
+              <div className="text-center text-gray-600 dark:text-gray-300">
                 <div className="text-4xl mb-4">🗺️</div>
                 <p>Interactive Map Coming Soon</p>
                 <p className="text-sm">Google Maps Integration</p>

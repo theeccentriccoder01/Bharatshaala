@@ -30,7 +30,9 @@ const Home = () => {
   const mousePosition = useRef({ x: 0, y: 0 });
   const parallaxLayerRef = useRef(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  
+  // eslint-disable-next-line no-unused-vars
+  const [isVisible, setIsVisible] = useState({});
+
   // Intersection Observer for animations
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: categoriesRef, inView: categoriesInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -89,62 +91,62 @@ const Home = () => {
   const loadFeaturedData = () => {
     // Enhanced category data with more interactivity
     setFeaturedCategories([
-      { 
-        id: 'clothing', 
-        name: 'वस्त्र', 
-        nameEn: 'Clothing', 
-        icon: '👗', 
-        gradient: 'from-pink-500 via-rose-400 to-pink-600', 
+      {
+        id: 'clothing',
+        name: 'वस्त्र',
+        nameEn: 'Clothing',
+        icon: '👗',
+        gradient: 'from-pink-500 via-rose-400 to-pink-600',
         count: '2500+ आइटम्स',
         description: 'पारंपरिक और आधुनिक वस्त्रों का संग्रह',
         hoverColor: 'hover:shadow-pink-500/50'
       },
-      { 
-        id: 'jewellery', 
-        name: 'आभूषण', 
-        nameEn: 'Jewellery', 
-        icon: '💎', 
-        gradient: 'from-yellow-400 via-amber-400 to-orange-500', 
+      {
+        id: 'jewellery',
+        name: 'आभूषण',
+        nameEn: 'Jewellery',
+        icon: '💎',
+        gradient: 'from-yellow-400 via-amber-400 to-orange-500',
         count: '1800+ आइटम्स',
         description: 'हस्तनिर्मित और पारंपरिक आभूषण',
         hoverColor: 'hover:shadow-yellow-500/50'
       },
-      { 
-        id: 'handicrafts', 
-        name: 'हस्तशिल्प', 
-        nameEn: 'Handicrafts', 
-        icon: '🎨', 
-        gradient: 'from-purple-500 via-violet-400 to-indigo-500', 
+      {
+        id: 'handicrafts',
+        name: 'हस्तशिल्प',
+        nameEn: 'Handicrafts',
+        icon: '🎨',
+        gradient: 'from-purple-500 via-violet-400 to-indigo-500',
         count: '3200+ आइटम्स',
         description: 'कलाकारों द्वारा तैयार हस्तशिल्प',
         hoverColor: 'hover:shadow-purple-500/50'
       },
-      { 
-        id: 'books', 
-        name: 'पुस्तकें', 
-        nameEn: 'Books', 
-        icon: '📚', 
-        gradient: 'from-blue-500 via-cyan-400 to-teal-500', 
+      {
+        id: 'books',
+        name: 'पुस्तकें',
+        nameEn: 'Books',
+        icon: '📚',
+        gradient: 'from-blue-500 via-cyan-400 to-teal-500',
         count: '5000+ आइटम्स',
         description: 'ज्ञान और मनोरंजन की पुस्तकें',
         hoverColor: 'hover:shadow-blue-500/50'
       },
-      { 
-        id: 'accessories', 
-        name: 'एक्सेसरीज़', 
-        nameEn: 'Accessories', 
-        icon: '👜', 
-        gradient: 'from-emerald-500 via-green-400 to-teal-500', 
+      {
+        id: 'accessories',
+        name: 'एक्सेसरीज़',
+        nameEn: 'Accessories',
+        icon: '👜',
+        gradient: 'from-emerald-500 via-green-400 to-teal-500',
         count: '1200+ आइटम्स',
         description: 'फैशन और उपयोगी एक्सेसरीज़',
         hoverColor: 'hover:shadow-emerald-500/50'
       },
-      { 
-        id: 'houseware', 
-        name: 'घरेलू सामान', 
-        nameEn: 'Houseware', 
-        icon: '🏠', 
-        gradient: 'from-amber-500 via-orange-400 to-red-500', 
+      {
+        id: 'houseware',
+        name: 'घरेलू सामान',
+        nameEn: 'Houseware',
+        icon: '🏠',
+        gradient: 'from-amber-500 via-orange-400 to-red-500',
         count: '2800+ आइटम्स',
         description: 'घर की सजावट और उपयोगी वस्तुएं',
         hoverColor: 'hover:shadow-amber-500/50'
@@ -284,11 +286,11 @@ const Home = () => {
         {/* Dynamic Multi-Layer Background */}
         <div className="fixed inset-0 z-0">
           {/* Primary animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-green-500 to-emerald-600 animate-gradient-shift"></div>
-          
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-green-500 to-emerald-600 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 animate-gradient-shift"></div>
+
           {/* Secondary overlay with pattern */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-300/40 via-transparent to-green-400/40 animate-gradient-shift-reverse"></div>
-          
+          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-300/40 via-transparent to-green-400/40 dark:from-gray-800/40 dark:to-gray-700/40 animate-gradient-shift-reverse"></div>
+
           {/* Animated geometric shapes */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-0 left-0 rounded-full w-96 h-96 bg-gradient-to-br from-emerald-400/30 to-green-500/30 blur-3xl animate-blob"></div>
@@ -296,13 +298,13 @@ const Home = () => {
             <div className="absolute bottom-0 rounded-full left-20 w-72 h-72 bg-gradient-to-tr from-emerald-500/35 to-green-400/35 blur-3xl animate-blob animation-delay-4000"></div>
             <div className="absolute w-64 h-64 rounded-full bottom-20 right-20 bg-gradient-to-tl from-green-300/30 to-emerald-500/30 blur-3xl animate-blob animation-delay-6000"></div>
           </div>
-          
+
           {/* Subtle texture overlay */}
           <div className="absolute inset-0 opacity-20" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M50 50m-10 0a10 10 0 1 1 20 0a10 10 0 1 1-20 0'/%3E%3Cpath d='M25 25m-5 0a5 5 0 1 1 10 0a5 5 0 1 1-10 0'/%3E%3Cpath d='M75 75m-5 0a5 5 0 1 1 10 0a5 5 0 1 1-10 0'/%3E%3Cpath d='M25 75m-3 0a3 3 0 1 1 6 0a3 3 0 1 1-6 0'/%3E%3Cpath d='M75 25m-3 0a3 3 0 1 1 6 0a3 3 0 1 1-6 0'/%3E%3C/g%3E%3C/svg%3E")`,
             backgroundSize: '100px 100px'
           }}></div>
-          
+
           {/* Light rays effect */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 w-px h-full transform left-1/4 bg-gradient-to-b from-white via-transparent to-transparent rotate-12 animate-pulse"></div>
@@ -358,7 +360,7 @@ const Home = () => {
                   <div className="w-2 h-2 delay-150 rounded-full bg-white/60 animate-ping"></div>
                 </div>
               </div>
-              
+
               {/* Interactive Main Heading */}
               <h1 className='mb-8 text-6xl font-bold leading-tight md:text-8xl'>
                 <span className='text-white drop-shadow-2xl bg-size-200 animate-text-glow'>
@@ -369,7 +371,7 @@ const Home = () => {
                   विरासत का द्वार
                 </span>
               </h1>
-              
+
               {/* Animated Subtitle with Typewriter Effect */}
               <div className='h-20 max-w-5xl mx-auto mb-12 text-2xl font-medium leading-relaxed md:text-3xl text-white/90 drop-shadow-lg'>
                 <div className="pt-6 pb-20 typewriter-container">
@@ -502,7 +504,7 @@ const Home = () => {
         {/* Enhanced Featured Markets Section */}
         <div ref={marketsRef} className='relative z-20 py-20 overflow-hidden'>
           {/* Background with Pattern */}
-          <div className="absolute inset-0 bg-black/10"></div>
+          <div className="absolute inset-0 bg-black/10 dark:bg-black/30"></div>
           <div className="absolute inset-0 opacity-10" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}></div>
@@ -529,8 +531,8 @@ const Home = () => {
                   className={`transform transition-all duration-1000 ${marketsInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
                   style={{ transitionDelay: `${index * 200}ms` }}
                 >
-                  <MarketCard 
-                    market={market} 
+                  <MarketCard
+                    market={market}
                     viewMode="grid"
                     onClick={handleMarketClick}
                   />
@@ -704,12 +706,12 @@ const Home = () => {
           33% { transform: translateY(-20px) rotate(5deg); }
           66% { transform: translateY(10px) rotate(-3deg); }
         }
-        
+
         @keyframes bounce-slow {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
         }
-        
+
         @keyframes gradient-x {
           0%, 100% { background-size: 200% 200%; background-position: left center; }
           50% { background-size: 200% 200%; background-position: right center; }
@@ -738,15 +740,15 @@ const Home = () => {
           0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1); }
           50% { text-shadow: 0 0 30px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5), 0 0 50px rgba(255,255,255,0.3); }
         }
-        
+
         .animate-float {
           animation: float 8s ease-in-out infinite;
         }
-        
+
         .animate-bounce-slow {
           animation: bounce-slow 4s ease-in-out infinite;
         }
-        
+
         .animate-gradient-x {
           animation: gradient-x 3s ease infinite;
         }
@@ -784,16 +786,16 @@ const Home = () => {
         .animation-delay-1000 {
           animation-delay: 1s;
         }
-        
+
         .bg-size-200 {
           background-size: 200% 200%;
         }
-        
+
         .typewriter-container {
           height: 80px;
           overflow: hidden;
         }
-        
+
         .typewriter-text {
           display: inline-block;
           overflow: hidden;
@@ -807,11 +809,11 @@ const Home = () => {
           50%  { clip-path: inset(0 0 0 0); }
           100% { clip-path: inset(0 100% 0 0); }
         }
-        
+
         .shadow-3xl {
           box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
         }
-        
+
         .border-3 {
           border-width: 3px;
         }

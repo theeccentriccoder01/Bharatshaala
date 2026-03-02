@@ -133,17 +133,17 @@ const Books = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 flex items-center justify-center">
         <div className="text-center">
           <div className="relative mb-8">
-            <div className="w-24 h-24 border-4 border-emerald-200 rounded-full animate-spin border-t-emerald-600 mx-auto"></div>
+            <div className="w-24 h-24 border-4 border-emerald-200 dark:border-emerald-700 rounded-full animate-spin border-t-emerald-600 mx-auto"></div>
             <div className="absolute inset-0 w-24 h-24 border-4 border-transparent rounded-full animate-ping border-t-emerald-400 mx-auto"></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <div className="text-3xl animate-bounce">📚</div>
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-emerald-800 mb-2">पुस्तक संग्रह व्यवस्थित हो रहा है...</h2>
-          <p className="text-emerald-600">ज्ञान के भंडार का इंतज़ार करें</p>
+          <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">पुस्तक संग्रह व्यवस्थित हो रहा है...</h2>
+          <p className="text-emerald-600 dark:text-emerald-400">ज्ञान के भंडार का इंतज़ार करें</p>
         </div>
       </div>
     );
@@ -151,7 +151,7 @@ const Books = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
         
         {/* Hero Section */}
         <div className='relative overflow-hidden'>
@@ -165,9 +165,9 @@ const Books = () => {
 
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
-              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-blue-200'>
+              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-blue-100 dark:from-blue-900/30 to-indigo-100 dark:to-indigo-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-blue-200 dark:border-blue-700'>
                 <span className='text-2xl'>📚</span>
-                <span className='text-blue-800 font-bold'>ज्ञान का भंडार</span>
+                <span className='text-blue-800 dark:text-blue-200 font-bold'>ज्ञान का भंडार</span>
               </div>
               
               <h1 className='text-6xl md:text-7xl font-bold bg-gradient-to-r from-emerald-700 via-green-600 to-emerald-800 bg-clip-text text-transparent mb-6 leading-tight'>
@@ -185,32 +185,32 @@ const Books = () => {
                 </div>
               </div>
               
-              <p className='text-xl md:text-2xl text-emerald-700 max-w-4xl mx-auto leading-relaxed font-medium'>
+              <p className='text-xl md:text-2xl text-emerald-700 dark:text-emerald-300 max-w-4xl mx-auto leading-relaxed font-medium'>
                 भारत के सबसे प्रसिद्ध स्थानीय बाजारों में घूमें और विभिन्न विषयों की<br/>
                 पुस्तकों का अनूठा संग्रह खोजें। हर पन्ना एक नई दुनिया का द्वार है।
               </p>
 
               {/* Reading Stats */}
               <div className='grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mt-12'>
-                <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-4'>
+                <div className='text-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-4'>
                   <div className='text-3xl mb-2'>📖</div>
-                  <div className='text-2xl font-bold text-emerald-600'>{markets.reduce((sum, market) => sum + market.specialBooks, 0).toLocaleString()}</div>
-                  <div className='text-sm text-emerald-600 font-medium'>दुर्लभ पुस्तकें</div>
+                  <div className='text-2xl font-bold text-emerald-600 dark:text-emerald-400'>{markets.reduce((sum, market) => sum + market.specialBooks, 0).toLocaleString()}</div>
+                  <div className='text-sm text-emerald-600 dark:text-emerald-400 font-medium'>दुर्लभ पुस्तकें</div>
                 </div>
-                <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-4'>
+                <div className='text-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-4'>
                   <div className='text-3xl mb-2'>🌐</div>
-                  <div className='text-2xl font-bold text-emerald-600'>12</div>
-                  <div className='text-sm text-emerald-600 font-medium'>भाषाएं</div>
+                  <div className='text-2xl font-bold text-emerald-600 dark:text-emerald-400'>12</div>
+                  <div className='text-sm text-emerald-600 dark:text-emerald-400 font-medium'>भाषाएं</div>
                 </div>
-                <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-4'>
+                <div className='text-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-4'>
                   <div className='text-3xl mb-2'>👨‍🏫</div>
-                  <div className='text-2xl font-bold text-emerald-600'>{markets.reduce((sum, market) => sum + market.vendors, 0)}</div>
-                  <div className='text-sm text-emerald-600 font-medium'>पुस्तक विक्रेता</div>
+                  <div className='text-2xl font-bold text-emerald-600 dark:text-emerald-400'>{markets.reduce((sum, market) => sum + market.vendors, 0)}</div>
+                  <div className='text-sm text-emerald-600 dark:text-emerald-400 font-medium'>पुस्तक विक्रेता</div>
                 </div>
-                <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-4'>
+                <div className='text-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-4'>
                   <div className='text-3xl mb-2'>⭐</div>
-                  <div className='text-2xl font-bold text-emerald-600'>4.6</div>
-                  <div className='text-sm text-emerald-600 font-medium'>औसत रेटिंग</div>
+                  <div className='text-2xl font-bold text-emerald-600 dark:text-emerald-400'>4.6</div>
+                  <div className='text-sm text-emerald-600 dark:text-emerald-400 font-medium'>औसत रेटिंग</div>
                 </div>
               </div>
             </div>
@@ -219,7 +219,7 @@ const Books = () => {
 
         {/* Search and Filter Section */}
         <div className='max-w-6xl mx-auto px-6 mb-12'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
             
             {/* Search Bar */}
             <div className='mb-6'>
@@ -229,7 +229,7 @@ const Books = () => {
                   placeholder="पुस्तक, लेखक या विषय खोजें..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-6 py-3 pl-12 pr-12 rounded-full border-2 border-emerald-200 focus:border-emerald-500 focus:outline-none transition-colors duration-300 bg-white"
+                  className="w-full px-6 py-3 pl-12 pr-12 rounded-full border-2 border-emerald-200 dark:border-emerald-700 focus:border-emerald-500 dark:focus:border-emerald-400 focus:outline-none transition-colors duration-300 bg-white dark:bg-gray-800"
                 />
                 <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -237,7 +237,7 @@ const Books = () => {
                 {searchTerm && (
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-emerald-400 hover:text-emerald-600"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-emerald-400 hover:text-emerald-600 dark:text-emerald-400"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -249,7 +249,7 @@ const Books = () => {
 
             {/* Genre Filter */}
             <div>
-              <h3 className='text-lg font-semibold text-emerald-800 mb-4 text-center'>पुस्तक श्रेणियां</h3>
+              <h3 className='text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-4 text-center'>पुस्तक श्रेणियां</h3>
               <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3'>
                 {bookGenres.map((genre) => (
                   <button
@@ -258,7 +258,7 @@ const Books = () => {
                     className={`group flex flex-col items-center space-y-2 p-3 rounded-xl transition-all duration-300 ${
                       selectedGenre === genre.id
                         ? `bg-gradient-to-br ${genre.gradient} text-white shadow-lg scale-105`
-                        : 'bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-200 hover:border-emerald-300'
+                        : 'bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-300'
                     }`}
                   >
                     <span className='text-xl'>{genre.icon}</span>
@@ -275,8 +275,8 @@ const Books = () => {
           {filteredMarkets.length === 0 ? (
             <div className='text-center py-20'>
               <div className='text-6xl mb-4'>📚</div>
-              <h3 className='text-2xl font-bold text-emerald-800 mb-2'>कोई पुस्तक नहीं मिली</h3>
-              <p className='text-emerald-600'>कृपया अपना खोज शब्द या श्रेणी बदलें</p>
+              <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2'>कोई पुस्तक नहीं मिली</h3>
+              <p className='text-emerald-600 dark:text-emerald-400'>कृपया अपना खोज शब्द या श्रेणी बदलें</p>
             </div>
           ) : (
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
@@ -288,7 +288,7 @@ const Books = () => {
                   onMouseEnter={() => setHoveredCard(market.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className={`relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+                  <div className={`relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
                     hoveredCard === market.id ? 'scale-[1.02]' : ''
                   }`}>
                     
@@ -324,8 +324,8 @@ const Books = () => {
 
                       {/* Established Year */}
                       <div className='absolute bottom-4 left-4'>
-                        <div className='bg-white/90 backdrop-blur-sm rounded-full px-3 py-1'>
-                          <span className='text-emerald-600 text-sm font-medium'>स्थापना {market.established}</span>
+                        <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-3 py-1'>
+                          <span className='text-emerald-600 dark:text-emerald-400 text-sm font-medium'>स्थापना {market.established}</span>
                         </div>
                       </div>
 
@@ -342,10 +342,10 @@ const Books = () => {
                     <div className='p-8'>
                       <div className='flex items-start justify-between mb-4'>
                         <div>
-                          <h2 className='text-2xl font-bold text-gray-800 mb-1 group-hover:text-emerald-600 transition-colors duration-300'>
+                          <h2 className='text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1 group-hover:text-emerald-600 dark:text-emerald-400 transition-colors duration-300'>
                             {market.name}
                           </h2>
-                          <div className='flex items-center space-x-2 text-emerald-600'>
+                          <div className='flex items-center space-x-2 text-emerald-600 dark:text-emerald-400'>
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                             </svg>
@@ -359,23 +359,23 @@ const Books = () => {
                         </div>
                       </div>
 
-                      <p className='text-gray-600 leading-relaxed mb-6'>
+                      <p className='text-gray-600 dark:text-gray-300 leading-relaxed mb-6'>
                         {market.description}
                       </p>
 
                       {/* Specialty & Languages */}
                       <div className='space-y-3 mb-6'>
-                        <div className='inline-flex items-center bg-emerald-50 rounded-full px-4 py-2 border border-emerald-200'>
-                          <svg className="w-4 h-4 text-emerald-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <div className='inline-flex items-center bg-emerald-50 dark:bg-emerald-900/30 rounded-full px-4 py-2 border border-emerald-200 dark:border-emerald-700'>
+                          <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                           </svg>
-                          <span className='text-emerald-700 text-sm font-medium'>{market.specialty}</span>
+                          <span className='text-emerald-700 dark:text-emerald-300 text-sm font-medium'>{market.specialty}</span>
                         </div>
                         
                         {/* Languages */}
                         <div className='flex flex-wrap gap-2'>
                           {market.languages.map((language) => (
-                            <span key={language} className='inline-flex items-center bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs border border-blue-200'>
+                            <span key={language} className='inline-flex items-center bg-blue-50 dark:bg-blue-900/20 text-blue-700 px-3 py-1 rounded-full text-xs border border-blue-200 dark:border-blue-700'>
                               <span className='mr-1'>🌐</span>
                               {language}
                             </span>
@@ -400,7 +400,7 @@ const Books = () => {
                       <div className={`flex items-center justify-between transition-all duration-300 ${
                         hoveredCard === market.id ? 'transform translate-x-2' : ''
                       }`}>
-                        <span className='text-emerald-600 font-semibold group-hover:text-emerald-700'>
+                        <span className='text-emerald-600 dark:text-emerald-400 font-semibold group-hover:text-emerald-700 dark:text-emerald-300'>
                           पुस्तकें देखें
                         </span>
                         <div className='flex items-center space-x-1'>
@@ -426,10 +426,10 @@ const Books = () => {
                   विशेषज्ञों से सिफारिश लें और अपनी रुचि के अनुसार सही पुस्तक चुनें
                 </p>
                 <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
-                  <button className='bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-colors duration-300 transform hover:scale-105 shadow-lg'>
+                  <button className='bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 dark:hover:bg-gray-700 dark:bg-blue-900/20 transition-colors duration-300 transform hover:scale-105 shadow-lg'>
                     बुक रिकमेंडेशन लें
                   </button>
-                  <button className='border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105'>
+                  <button className='border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:bg-gray-800 hover:text-blue-600 dark:text-blue-400 transition-all duration-300 transform hover:scale-105'>
                     रीडिंग क्लब ज्वाइन करें
                   </button>
                 </div>

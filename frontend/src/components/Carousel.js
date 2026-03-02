@@ -80,7 +80,7 @@ const Carousel = ({ images, interval = 5000 }) => {
             <p className='text-lg md:text-xl mb-6 opacity-90 animate-fade-in-delay text-white'>
               पारंपरिक शिल्प से लेकर आधुनिक नवाचार तक, सभी कुछ एक ही स्थान पर
             </p>
-            <button className='bg-gradient-to-r from-yellow-400 to-orange-400 text-emerald-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 animate-fade-in-delay-2'>
+            <button className='bg-gradient-to-r from-yellow-400 to-orange-400 text-emerald-900 dark:text-emerald-200 px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 animate-fade-in-delay-2'>
               अभी खरीदारी करें
             </button>
           </div>
@@ -130,7 +130,7 @@ const Carousel = ({ images, interval = 5000 }) => {
       </div>
 
       {/* Progress Bar */}
-      <div className='mt-4 w-full bg-gray-200 rounded-full h-1'>
+      <div className='mt-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1'>
         <div 
           className='h-1 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full transition-all duration-300'
           style={{ width: `${((current + 1) / images.length) * 100}%` }}

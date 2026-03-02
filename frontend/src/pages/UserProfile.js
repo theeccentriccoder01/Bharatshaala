@@ -208,15 +208,15 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
       <div className="max-w-6xl mx-auto px-6 py-8">
         
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+          <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
             मेरी प्रोफाइल
           </h1>
-          <p className="text-emerald-600 text-lg">
+          <p className="text-emerald-600 dark:text-emerald-400 text-lg">
             अपनी जानकारी और सेटिंग्स प्रबंधित करें
           </p>
         </div>
@@ -224,7 +224,7 @@ const UserProfile = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
           {/* Sidebar Tabs */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg h-fit">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg h-fit">
             <div className="space-y-2">
               {tabs.map((tab) => (
                 <button
@@ -233,7 +233,7 @@ const UserProfile = () => {
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 ${
                     activeTab === tab.id
                       ? 'bg-emerald-500 text-white'
-                      : 'text-emerald-700 hover:bg-emerald-50'
+                      : 'text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-gray-700'
                   }`}
                 >
                   <span className="text-lg">{tab.icon}</span>
@@ -244,12 +244,12 @@ const UserProfile = () => {
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-3 bg-white rounded-2xl p-8 shadow-lg">
+          <div className="lg:col-span-3 bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
             
             {/* Profile Tab */}
             {activeTab === 'profile' && (
               <div className="space-y-8">
-                <h2 className="text-2xl font-bold text-emerald-800 mb-6">प्रोफाइल जानकारी</h2>
+                <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">प्रोफाइल जानकारी</h2>
                 
                 {/* Avatar Section */}
                 <div className="flex items-center space-x-6">
@@ -257,7 +257,7 @@ const UserProfile = () => {
                     <img
                       src={profileData.avatar || '/images/default-avatar.jpg'}
                       alt="Profile"
-                      className="w-24 h-24 rounded-full object-cover border-4 border-emerald-200"
+                      className="w-24 h-24 rounded-full object-cover border-4 border-emerald-200 dark:border-emerald-700"
                     />
                     {uploadingAvatar && (
                       <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center">
@@ -266,7 +266,7 @@ const UserProfile = () => {
                     )}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-emerald-800 mb-2">प्रोफाइल फोटो</h3>
+                    <h3 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-2">प्रोफाइल फोटो</h3>
                     <ImageUploader
                       onImagesChange={handleAvatarUpload}
                       maxImages={1}
@@ -282,51 +282,51 @@ const UserProfile = () => {
                 {/* Basic Info */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2">नाम *</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">नाम *</label>
                     <input
                       type="text"
                       value={profileData.name}
                       onChange={(e) => setProfileData({...profileData, name: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2">ईमेल *</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">ईमेल *</label>
                     <input
                       type="email"
                       value={profileData.email}
                       onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2">फोन नंबर</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">फोन नंबर</label>
                     <input
                       type="tel"
                       value={profileData.phone}
                       onChange={(e) => setProfileData({...profileData, phone: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2">जन्म तारीख</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">जन्म तारीख</label>
                     <input
                       type="date"
                       value={profileData.dateOfBirth}
                       onChange={(e) => setProfileData({...profileData, dateOfBirth: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2">लिंग</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">लिंग</label>
                     <select
                       value={profileData.gender}
                       onChange={(e) => setProfileData({...profileData, gender: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     >
                       <option value="">चुनें</option>
                       <option value="male">पुरुष</option>
@@ -338,12 +338,12 @@ const UserProfile = () => {
 
                 {/* Bio */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">बायो</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">बायो</label>
                   <textarea
                     value={profileData.bio}
                     onChange={(e) => setProfileData({...profileData, bio: e.target.value})}
                     rows={4}
-                    className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none resize-none"
+                    className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100 resize-none"
                     placeholder="अपने बारे में कुछ बताएं..."
                   ></textarea>
                 </div>
@@ -362,7 +362,7 @@ const UserProfile = () => {
             {activeTab === 'addresses' && (
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-2xl font-bold text-emerald-800">सहेजे गए पते</h2>
+                  <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200">सहेजे गए पते</h2>
                   <button
                     onClick={() => setShowAddAddress(true)}
                     className="bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors duration-200"
@@ -374,32 +374,32 @@ const UserProfile = () => {
                 {addresses.length > 0 ? (
                   <div className="space-y-4">
                     {addresses.map((address, index) => (
-                      <div key={index} className="p-6 border-2 border-emerald-200 rounded-xl">
+                      <div key={index} className="p-6 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl">
                         <div className="flex justify-between items-start">
                           <div>
                             <div className="flex items-center space-x-2 mb-2">
-                              <h3 className="font-semibold text-emerald-800">{address.name}</h3>
+                              <h3 className="font-semibold text-emerald-800 dark:text-emerald-200">{address.name}</h3>
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                address.type === 'home' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'
+                                address.type === 'home' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' : 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300'
                               }`}>
                                 {address.type === 'home' ? '🏠 घर' : '🏢 ऑफिस'}
                               </span>
                               {address.isDefault && (
-                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-2 py-1 rounded-full text-xs font-medium">
                                   डिफ़ॉल्ट
                                 </span>
                               )}
                             </div>
-                            <p className="text-gray-600">{address.phone}</p>
-                            <p className="text-gray-700 mt-1">
+                            <p className="text-gray-600 dark:text-gray-300">{address.phone}</p>
+                            <p className="text-gray-700 dark:text-gray-300 mt-1">
                               {address.addressLine1}<br />
                               {address.addressLine2 && `${address.addressLine2}, `}
                               {address.city}, {address.state} - {address.pincode}
                             </p>
                           </div>
                           <div className="flex space-x-2">
-                            <button className="text-emerald-600 hover:text-emerald-700">✏️</button>
-                            <button className="text-red-600 hover:text-red-700">🗑️</button>
+                            <button className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300">✏️</button>
+                            <button className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-400">🗑️</button>
                           </div>
                         </div>
                       </div>
@@ -408,15 +408,15 @@ const UserProfile = () => {
                 ) : (
                   <div className="text-center py-12">
                     <div className="text-6xl mb-4">📍</div>
-                    <p className="text-gray-600">कोई सहेजा गया पता नहीं है</p>
+                    <p className="text-gray-600 dark:text-gray-300">कोई सहेजा गया पता नहीं है</p>
                   </div>
                 )}
 
                 {/* Add Address Modal */}
                 {showAddAddress && (
                   <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                      <h3 className="text-xl font-bold text-emerald-800 mb-6">नया पता जोड़ें</h3>
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                      <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">नया पता जोड़ें</h3>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <input
@@ -424,54 +424,54 @@ const UserProfile = () => {
                           placeholder="नाम *"
                           value={newAddress.name}
                           onChange={(e) => setNewAddress({...newAddress, name: e.target.value})}
-                          className="px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         />
                         <input
                           type="tel"
                           placeholder="फोन नंबर *"
                           value={newAddress.phone}
                           onChange={(e) => setNewAddress({...newAddress, phone: e.target.value})}
-                          className="px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         />
                         <input
                           type="text"
                           placeholder="पता लाइन 1 *"
                           value={newAddress.addressLine1}
                           onChange={(e) => setNewAddress({...newAddress, addressLine1: e.target.value})}
-                          className="md:col-span-2 px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="md:col-span-2 px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         />
                         <input
                           type="text"
                           placeholder="पता लाइन 2"
                           value={newAddress.addressLine2}
                           onChange={(e) => setNewAddress({...newAddress, addressLine2: e.target.value})}
-                          className="md:col-span-2 px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="md:col-span-2 px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         />
                         <input
                           type="text"
                           placeholder="शहर *"
                           value={newAddress.city}
                           onChange={(e) => setNewAddress({...newAddress, city: e.target.value})}
-                          className="px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         />
                         <input
                           type="text"
                           placeholder="राज्य"
                           value={newAddress.state}
                           onChange={(e) => setNewAddress({...newAddress, state: e.target.value})}
-                          className="px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         />
                         <input
                           type="text"
                           placeholder="पिनकोड *"
                           value={newAddress.pincode}
                           onChange={(e) => setNewAddress({...newAddress, pincode: e.target.value})}
-                          className="px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         />
                         <select
                           value={newAddress.type}
                           onChange={(e) => setNewAddress({...newAddress, type: e.target.value})}
-                          className="px-4 py-3 border border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         >
                           <option value="home">घर</option>
                           <option value="office">ऑफिस</option>
@@ -483,9 +483,9 @@ const UserProfile = () => {
                           type="checkbox"
                           checked={newAddress.isDefault}
                           onChange={(e) => setNewAddress({...newAddress, isDefault: e.target.checked})}
-                          className="w-4 h-4 text-emerald-600"
+                          className="w-4 h-4 text-emerald-600 dark:text-emerald-400"
                         />
-                        <label className="text-emerald-700">डिफ़ॉल्ट पता बनाएं</label>
+                        <label className="text-emerald-700 dark:text-emerald-300">डिफ़ॉल्ट पता बनाएं</label>
                       </div>
 
                       <div className="flex space-x-3">
@@ -498,7 +498,7 @@ const UserProfile = () => {
                         </button>
                         <button
                           onClick={() => setShowAddAddress(false)}
-                          className="border border-emerald-500 text-emerald-600 px-6 py-3 rounded-lg hover:bg-emerald-50 transition-colors duration-200"
+                          className="border border-emerald-500 text-emerald-600 dark:text-emerald-400 px-6 py-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200"
                         >
                           रद्द करें
                         </button>
@@ -512,32 +512,32 @@ const UserProfile = () => {
             {/* Security Tab */}
             {activeTab === 'security' && (
               <div className="space-y-8">
-                <h2 className="text-2xl font-bold text-emerald-800">सुरक्षा सेटिंग्स</h2>
+                <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200">सुरक्षा सेटिंग्स</h2>
                 
                 {/* Change Password */}
-                <div className="bg-emerald-50 rounded-xl p-6">
-                  <h3 className="font-bold text-emerald-800 mb-4">पासवर्ड बदलें</h3>
+                <div className="bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-6">
+                  <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4">पासवर्ड बदलें</h3>
                   <div className="space-y-4">
                     <input
                       type="password"
                       placeholder="वर्तमान पासवर्ड"
                       value={passwordData.currentPassword}
                       onChange={(e) => setPasswordData({...passwordData, currentPassword: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                     <input
                       type="password"
                       placeholder="नया पासवर्ड"
                       value={passwordData.newPassword}
                       onChange={(e) => setPasswordData({...passwordData, newPassword: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                     <input
                       type="password"
                       placeholder="नया पासवर्ड कन्फर्म करें"
                       value={passwordData.confirmPassword}
                       onChange={(e) => setPasswordData({...passwordData, confirmPassword: e.target.value})}
-                      className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                     <button
                       onClick={handlePasswordChange}
@@ -554,11 +554,11 @@ const UserProfile = () => {
             {/* Appearance Tab */}
             {activeTab === 'appearance' && (
               <div className="space-y-8">
-                <h2 className="text-2xl font-bold text-emerald-800">दिखावट सेटिंग्स</h2>
+                <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200">दिखावट सेटिंग्स</h2>
                 
                 {/* Theme Selection */}
                 <div>
-                  <h3 className="font-bold text-emerald-800 mb-4">थीम चुनें</h3>
+                  <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4">थीम चुनें</h3>
                   <div className="grid grid-cols-3 gap-4">
                     {['light', 'dark', 'system'].map((themeOption) => (
                       <button
@@ -566,8 +566,8 @@ const UserProfile = () => {
                         onClick={() => changeTheme(themeOption)}
                         className={`p-4 border-2 rounded-xl transition-all duration-200 ${
                           theme === themeOption
-                            ? 'border-emerald-500 bg-emerald-50'
-                            : 'border-gray-200 hover:border-emerald-300'
+                            ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30'
+                            : 'border-gray-200 dark:border-gray-700 hover:border-emerald-300 dark:hover:border-emerald-600'
                         }`}
                       >
                         <div className="text-center">
@@ -586,11 +586,11 @@ const UserProfile = () => {
 
                 {/* Language Selection */}
                 <div>
-                  <h3 className="font-bold text-emerald-800 mb-4">भाषा चुनें</h3>
+                  <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4">भाषा चुनें</h3>
                   <select
                     value={language}
                     onChange={(e) => changeLanguage(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                    className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                   >
                     {languages.map((lang) => (
                       <option key={lang.code} value={lang.code}>
@@ -602,14 +602,14 @@ const UserProfile = () => {
 
                 {/* Accent Color */}
                 <div>
-                  <h3 className="font-bold text-emerald-800 mb-4">एक्सेंट कलर</h3>
+                  <h3 className="font-bold text-emerald-800 dark:text-emerald-200 mb-4">एक्सेंट कलर</h3>
                   <div className="grid grid-cols-5 gap-3">
                     {['emerald', 'blue', 'purple', 'orange', 'pink'].map((color) => (
                       <button
                         key={color}
                         onClick={() => changeAccentColor(color)}
                         className={`w-12 h-12 rounded-full border-4 transition-all duration-200 ${
-                          accentColor === color ? 'border-gray-800 scale-110' : 'border-gray-200'
+                          accentColor === color ? 'border-gray-800 scale-110' : 'border-gray-200 dark:border-gray-700'
                         } bg-${color}-500`}
                       />
                     ))}

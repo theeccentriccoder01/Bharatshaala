@@ -24,12 +24,12 @@ const UserSidebar = ({ user }) => {
     };
 
     return (
-        <div className={`bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-emerald-200 transition-all duration-300 ${
+        <div className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-lg border border-emerald-200 dark:border-emerald-700 transition-all duration-300 ${
             isCollapsed ? 'w-20' : 'w-80'
         }`}>
             
             {/* Header */}
-            <div className='p-6 border-b border-emerald-200'>
+            <div className='p-6 border-b border-emerald-200 dark:border-emerald-700'>
                 <div className='flex items-center justify-between'>
                     {!isCollapsed && (
                         <div className='flex items-center space-x-3'>
@@ -37,14 +37,14 @@ const UserSidebar = ({ user }) => {
                                 {user?.name?.charAt(0) || 'U'}
                             </div>
                             <div>
-                                <h3 className='font-bold text-emerald-800'>{user?.name || 'उपयोगकर्ता'}</h3>
-                                <p className='text-emerald-600 text-sm'>{user?.email}</p>
+                                <h3 className='font-bold text-emerald-800 dark:text-emerald-200'>{user?.name || 'उपयोगकर्ता'}</h3>
+                                <p className='text-emerald-600 dark:text-emerald-400 text-sm'>{user?.email}</p>
                             </div>
                         </div>
                     )}
                     <button
                         onClick={() => setIsCollapsed(!isCollapsed)}
-                        className='p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors duration-200'
+                        className='p-2 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200'
                     >
                         {isCollapsed ? '→' : '←'}
                     </button>
@@ -63,7 +63,7 @@ const UserSidebar = ({ user }) => {
                                     className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 group ${
                                         isActive
                                             ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-md'
-                                            : 'text-emerald-700 hover:bg-emerald-50'
+                                            : 'text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-gray-700'
                                     }`}
                                 >
                                     <span className='text-xl'>{item.icon}</span>
@@ -90,19 +90,19 @@ const UserSidebar = ({ user }) => {
 
             {/* User Actions */}
             {!isCollapsed && (
-                <div className='p-4 border-t border-emerald-200'>
+                <div className='p-4 border-t border-emerald-200 dark:border-emerald-700'>
                     <div className='space-y-3'>
                         {/* Quick Stats */}
-                        <div className='bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                            <h4 className='font-semibold text-emerald-800 mb-3 text-sm'>आपकी गतिविधि</h4>
+                        <div className='bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                            <h4 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-3 text-sm'>आपकी गतिविधि</h4>
                             <div className='grid grid-cols-2 gap-3 text-center'>
                                 <div>
-                                    <div className='text-lg font-bold text-emerald-600'>8</div>
-                                    <div className='text-xs text-emerald-600'>कुल ऑर्डर</div>
+                                    <div className='text-lg font-bold text-emerald-600 dark:text-emerald-400'>8</div>
+                                    <div className='text-xs text-emerald-600 dark:text-emerald-400'>कुल ऑर्डर</div>
                                 </div>
                                 <div>
-                                    <div className='text-lg font-bold text-emerald-600'>₹15,420</div>
-                                    <div className='text-xs text-emerald-600'>कुल खर्च</div>
+                                    <div className='text-lg font-bold text-emerald-600 dark:text-emerald-400'>₹15,420</div>
+                                    <div className='text-xs text-emerald-600 dark:text-emerald-400'>कुल खर्च</div>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@ const UserSidebar = ({ user }) => {
                         {/* Logout Button */}
                         <button
                             onClick={handleLogout}
-                            className='w-full flex items-center justify-center space-x-2 p-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors duration-200'
+                            className='w-full flex items-center justify-center space-x-2 p-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200'
                         >
                             <span>🚪</span>
                             <span className='font-medium'>लॉग आउट</span>

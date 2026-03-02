@@ -89,11 +89,11 @@ const Clothing = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-20 h-20 border-4 border-emerald-200 rounded-full animate-spin border-t-emerald-600 mx-auto mb-6"></div>
-          <h2 className="text-2xl font-bold text-emerald-800 mb-2">वस्त्र संग्रह लोड हो रहा है...</h2>
-          <p className="text-emerald-600">कृपया प्रतीक्षा करें</p>
+          <div className="w-20 h-20 border-4 border-emerald-200 dark:border-emerald-700 rounded-full animate-spin border-t-emerald-600 mx-auto mb-6"></div>
+          <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">वस्त्र संग्रह लोड हो रहा है...</h2>
+          <p className="text-emerald-600 dark:text-emerald-400">कृपया प्रतीक्षा करें</p>
         </div>
       </div>
     );
@@ -101,7 +101,7 @@ const Clothing = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
         
         {/* Hero Section */}
         <div className='relative overflow-hidden'>
@@ -114,14 +114,14 @@ const Clothing = () => {
 
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
-              <div className='inline-flex items-center space-x-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-6 shadow-lg'>
-                <svg className="w-6 h-6 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+              <div className='inline-flex items-center space-x-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full px-6 py-3 mb-6 shadow-lg'>
+                <svg className="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zm8 0a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1V8z" clipRule="evenodd"/>
                 </svg>
-                <span className='text-emerald-700 font-semibold'>फैशन श्रेणी</span>
+                <span className='text-emerald-700 dark:text-emerald-300 font-semibold'>फैशन श्रेणी</span>
               </div>
               
-              <h1 className='text-6xl md:text-7xl font-bold text-emerald-800 mb-6 leading-tight'>
+              <h1 className='text-6xl md:text-7xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 leading-tight'>
                 वस्त्र संसार
               </h1>
               
@@ -136,7 +136,7 @@ const Clothing = () => {
                 </div>
               </div>
               
-              <p className='text-xl md:text-2xl text-emerald-700 max-w-4xl mx-auto leading-relaxed font-medium'>
+              <p className='text-xl md:text-2xl text-emerald-700 dark:text-emerald-300 max-w-4xl mx-auto leading-relaxed font-medium'>
                 भारत के सबसे प्रसिद्ध स्थानीय बाजारों में घूमें और विभिन्न प्रकार के कपड़े<br/>
                 और अन्य फैशन आइटम खोजें। परंपरा से आधुनिकता तक का सफर।
               </p>
@@ -144,16 +144,16 @@ const Clothing = () => {
               {/* Quick Stats */}
               <div className='grid grid-cols-3 gap-6 max-w-md mx-auto mt-12'>
                 <div className='text-center'>
-                  <div className='text-3xl font-bold text-emerald-600'>6</div>
-                  <div className='text-emerald-600 text-sm'>प्रमुख बाजार</div>
+                  <div className='text-3xl font-bold text-emerald-600 dark:text-emerald-400'>6</div>
+                  <div className='text-emerald-600 dark:text-emerald-400 text-sm'>प्रमुख बाजार</div>
                 </div>
                 <div className='text-center'>
-                  <div className='text-3xl font-bold text-emerald-600'>1000+</div>
-                  <div className='text-emerald-600 text-sm'>वस्त्र विकल्प</div>
+                  <div className='text-3xl font-bold text-emerald-600 dark:text-emerald-400'>1000+</div>
+                  <div className='text-emerald-600 dark:text-emerald-400 text-sm'>वस्त्र विकल्प</div>
                 </div>
                 <div className='text-center'>
-                  <div className='text-3xl font-bold text-emerald-600'>50+</div>
-                  <div className='text-emerald-600 text-sm'>डिज़ाइनर ब्रांड</div>
+                  <div className='text-3xl font-bold text-emerald-600 dark:text-emerald-400'>50+</div>
+                  <div className='text-emerald-600 dark:text-emerald-400 text-sm'>डिज़ाइनर ब्रांड</div>
                 </div>
               </div>
             </div>
@@ -171,7 +171,7 @@ const Clothing = () => {
                 onMouseEnter={() => setHoveredCard(market.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className={`relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+                <div className={`relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
                   hoveredCard === market.id ? 'scale-[1.02]' : ''
                 }`}>
                   
@@ -190,11 +190,11 @@ const Clothing = () => {
                     
                     {/* Floating Badge */}
                     <div className='absolute top-4 left-4'>
-                      <div className='bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
+                      <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2'>
                         <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                         </svg>
-                        <span className='text-sm font-semibold text-gray-800'>{market.rating}</span>
+                        <span className='text-sm font-semibold text-gray-800 dark:text-gray-100'>{market.rating}</span>
                       </div>
                     </div>
 
@@ -210,10 +210,10 @@ const Clothing = () => {
                   <div className='p-8'>
                     <div className='flex items-start justify-between mb-4'>
                       <div>
-                        <h2 className='text-2xl font-bold text-gray-800 mb-1 group-hover:text-emerald-600 transition-colors duration-300'>
+                        <h2 className='text-2xl font-bold text-gray-800 dark:text-gray-100 mb-1 group-hover:text-emerald-600 dark:text-emerald-400 transition-colors duration-300'>
                           {market.name}
                         </h2>
-                        <div className='flex items-center space-x-2 text-emerald-600'>
+                        <div className='flex items-center space-x-2 text-emerald-600 dark:text-emerald-400'>
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                           </svg>
@@ -229,17 +229,17 @@ const Clothing = () => {
                       </div>
                     </div>
 
-                    <p className='text-gray-600 leading-relaxed mb-6 line-clamp-3'>
+                    <p className='text-gray-600 dark:text-gray-300 leading-relaxed mb-6 line-clamp-3'>
                       {market.description}
                     </p>
 
                     {/* Specialty Tag */}
                     <div className='mb-6'>
-                      <div className='inline-flex items-center bg-emerald-50 rounded-full px-4 py-2 border border-emerald-200'>
-                        <svg className="w-4 h-4 text-emerald-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <div className='inline-flex items-center bg-emerald-50 dark:bg-emerald-900/30 rounded-full px-4 py-2 border border-emerald-200 dark:border-emerald-700'>
+                        <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span className='text-emerald-700 text-sm font-medium'>{market.specialty}</span>
+                        <span className='text-emerald-700 dark:text-emerald-300 text-sm font-medium'>{market.specialty}</span>
                       </div>
                     </div>
 
@@ -247,7 +247,7 @@ const Clothing = () => {
                     <div className={`flex items-center justify-between transition-all duration-300 ${
                       hoveredCard === market.id ? 'transform translate-x-2' : ''
                     }`}>
-                      <span className='text-emerald-600 font-semibold group-hover:text-emerald-700'>
+                      <span className='text-emerald-600 dark:text-emerald-400 font-semibold group-hover:text-emerald-700 dark:text-emerald-300'>
                         बाजार देखें
                       </span>
                       <div className='flex items-center space-x-1'>
@@ -269,7 +269,7 @@ const Clothing = () => {
               <p className='text-xl text-emerald-100 mb-8 max-w-2xl mx-auto'>
                 पारंपरिक से लेकर आधुनिक तक, हमारे पास हर अवसर के लिए वस्त्र हैं
               </p>
-              <button className='bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold hover:bg-emerald-50 transition-colors duration-300 transform hover:scale-105'>
+              <button className='bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 px-8 py-4 rounded-full font-semibold hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 transition-colors duration-300 transform hover:scale-105'>
                 सभी संग्रह देखें
               </button>
             </div>

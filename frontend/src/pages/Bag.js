@@ -235,7 +235,7 @@ const Bag = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
         
         {/* Notification */}
         {notification && (
@@ -249,10 +249,10 @@ const Bag = () => {
         {/* Header */}
         <div className='max-w-7xl mx-auto px-6 py-8'>
           <div className='text-center mb-12'>
-            <h1 className='text-4xl md:text-5xl font-bold text-emerald-800 mb-4'>
+            <h1 className='text-4xl md:text-5xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>
               शॉपिंग बैग
             </h1>
-            <p className='text-xl text-emerald-600 max-w-2xl mx-auto'>
+            <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-2xl mx-auto'>
               आपकी यात्रा से चुने गए आइटम्स देखें और जो चाहिए उन्हें चेकआउट के लिए तैयार करें
             </p>
           </div>
@@ -262,8 +262,8 @@ const Bag = () => {
               
               {/* Cart Items */}
               <div className='lg:col-span-2 space-y-6'>
-                <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-                  <h2 className='text-2xl font-bold text-emerald-800 mb-6 flex items-center space-x-3'>
+                <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+                  <h2 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 flex items-center space-x-3'>
                     <span>🛍️</span>
                     <span>आपके आइटम्स ({profileData.length})</span>
                   </h2>
@@ -281,31 +281,31 @@ const Bag = () => {
                 </div>
 
                 {/* Delivery Options */}
-                <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-                  <h3 className='text-xl font-bold text-emerald-800 mb-4 flex items-center space-x-2'>
+                <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+                  <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4 flex items-center space-x-2'>
                     <span>🚚</span>
                     <span>डिलीवरी विकल्प</span>
                   </h3>
                   
                   <div className='space-y-3'>
                     {deliveryOptions.map((option) => (
-                      <label key={option.id} className='flex items-center space-x-3 p-4 border border-emerald-200 rounded-xl cursor-pointer hover:bg-emerald-50 transition-colors duration-200'>
+                      <label key={option.id} className='flex items-center space-x-3 p-4 border border-emerald-200 dark:border-emerald-700 rounded-xl cursor-pointer hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200'>
                         <input
                           type="radio"
                           name="delivery"
                           value={option.id}
                           checked={deliveryOption === option.id}
                           onChange={(e) => setDeliveryOption(e.target.value)}
-                          className="text-emerald-600"
+                          className="text-emerald-600 dark:text-emerald-400"
                         />
                         <div className='flex-1'>
                           <div className='flex justify-between items-center'>
-                            <span className='font-semibold text-emerald-800'>{option.name}</span>
-                            <span className='font-bold text-emerald-600'>
+                            <span className='font-semibold text-emerald-800 dark:text-emerald-200'>{option.name}</span>
+                            <span className='font-bold text-emerald-600 dark:text-emerald-400'>
                               {option.cost === 0 ? 'मुफ्त' : `₹${option.cost}`}
                             </span>
                           </div>
-                          <div className='text-emerald-600 text-sm'>{option.time} • {option.description}</div>
+                          <div className='text-emerald-600 dark:text-emerald-400 text-sm'>{option.time} • {option.description}</div>
                         </div>
                       </label>
                     ))}
@@ -313,8 +313,8 @@ const Bag = () => {
                 </div>
 
                 {/* Coupon Section */}
-                <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-                  <h3 className='text-xl font-bold text-emerald-800 mb-4 flex items-center space-x-2'>
+                <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+                  <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4 flex items-center space-x-2'>
                     <span>🎫</span>
                     <span>कूपन कोड</span>
                   </h3>
@@ -325,7 +325,7 @@ const Bag = () => {
                       placeholder="कूपन कोड डालें"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
-                      className="flex-1 px-4 py-3 border border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                      className="flex-1 px-4 py-3 border border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none"
                     />
                     <button
                       onClick={applyCoupon}
@@ -336,9 +336,9 @@ const Bag = () => {
                   </div>
 
                   <div className='space-y-2'>
-                    <p className='text-emerald-600 text-sm font-medium'>उपलब्ध कूपन:</p>
+                    <p className='text-emerald-600 dark:text-emerald-400 text-sm font-medium'>उपलब्ध कूपन:</p>
                     {coupons.map((coupon, index) => (
-                      <div key={index} className='text-emerald-600 text-sm bg-emerald-50 p-2 rounded-lg border border-emerald-200'>
+                      <div key={index} className='text-emerald-600 dark:text-emerald-400 text-sm bg-emerald-50 dark:bg-emerald-900/30 p-2 rounded-lg border border-emerald-200 dark:border-emerald-700'>
                         <span className='font-semibold'>{coupon.code}</span> - {coupon.description}
                       </div>
                     ))}
@@ -361,8 +361,8 @@ const Bag = () => {
             /* Empty Cart */
             <div className='text-center py-20'>
               <div className='text-8xl mb-6'>🛒</div>
-              <h2 className='text-3xl font-bold text-emerald-800 mb-4'>आपका बैग खाली है</h2>
-              <p className='text-xl text-emerald-600 mb-8'>भारतशाला में कुछ खूबसूरत चीजें खोजें</p>
+              <h2 className='text-3xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>आपका बैग खाली है</h2>
+              <p className='text-xl text-emerald-600 dark:text-emerald-400 mb-8'>भारतशाला में कुछ खूबसूरत चीजें खोजें</p>
               <a
                 href="/markets"
                 className="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"

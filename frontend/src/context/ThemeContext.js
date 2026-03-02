@@ -165,12 +165,14 @@ export const ThemeProvider = ({ children }) => {
 
   const applyTheme = (selectedTheme) => {
     const root = document.documentElement;
-    
-    // Apply theme classes
+
+    // Apply theme classes and data attribute
     if (selectedTheme === 'dark' || (selectedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       root.classList.add('dark');
+      root.setAttribute('data-theme', 'dark');
     } else {
       root.classList.remove('dark');
+      root.setAttribute('data-theme', 'light');
     }
 
     // Apply accent color
@@ -223,7 +225,7 @@ export const ThemeProvider = ({ children }) => {
     setAccentColor('emerald');
     setFontSize('medium');
     setAnimations(true);
-    
+
     localStorage.removeItem('bharatshaala_theme');
     localStorage.removeItem('bharatshaala_accent');
     localStorage.removeItem('bharatshaala_fontSize');
@@ -237,7 +239,7 @@ export const ThemeProvider = ({ children }) => {
   const getThemeClasses = () => {
     const currentTheme = getCurrentTheme();
     const currentAccent = getCurrentAccent();
-    
+
     return {
       ...currentTheme.colors,
       accent: {

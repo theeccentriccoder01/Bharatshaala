@@ -252,15 +252,15 @@ const UserOrders = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         <div className="max-w-7xl mx-auto px-6 py-8">
           
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+            <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
               मेरे ऑर्डर
             </h1>
-            <p className="text-emerald-600 text-lg">
+            <p className="text-emerald-600 dark:text-emerald-400 text-lg">
               आपके सभी ऑर्डर्स की जानकारी और स्थिति देखें
             </p>
           </div>
@@ -282,7 +282,7 @@ const UserOrders = () => {
                       <p className="text-blue-100 text-sm font-medium">कुल ऑर्डर</p>
                       <p className="text-3xl font-bold">{stats.total}</p>
                     </div>
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-white/20 dark:bg-gray-700/20 rounded-full flex items-center justify-center">
                       <span className="text-2xl">📦</span>
                     </div>
                   </div>
@@ -294,7 +294,7 @@ const UserOrders = () => {
                       <p className="text-green-100 text-sm font-medium">डिलीवर्ड</p>
                       <p className="text-3xl font-bold">{stats.delivered}</p>
                     </div>
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-white/20 dark:bg-gray-700/20 rounded-full flex items-center justify-center">
                       <span className="text-2xl">✅</span>
                     </div>
                   </div>
@@ -306,7 +306,7 @@ const UserOrders = () => {
                       <p className="text-yellow-100 text-sm font-medium">प्रोसेसिंग</p>
                       <p className="text-3xl font-bold">{stats.pending}</p>
                     </div>
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-white/20 dark:bg-gray-700/20 rounded-full flex items-center justify-center">
                       <span className="text-2xl">⏳</span>
                     </div>
                   </div>
@@ -318,7 +318,7 @@ const UserOrders = () => {
                       <p className="text-purple-100 text-sm font-medium">कुल खर्च</p>
                       <p className="text-2xl font-bold">₹{stats.totalSpent.toLocaleString()}</p>
                     </div>
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-white/20 dark:bg-gray-700/20 rounded-full flex items-center justify-center">
                       <span className="text-2xl">💰</span>
                     </div>
                   </div>
@@ -326,7 +326,7 @@ const UserOrders = () => {
               </div>
 
               {/* Filters */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
                 
                 {/* Search */}
                 <div className="mb-6">
@@ -336,7 +336,7 @@ const UserOrders = () => {
                       placeholder="ऑर्डर ID या उत्पाद खोजें..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full px-4 py-3 pl-12 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 pl-12 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                     <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -346,7 +346,7 @@ const UserOrders = () => {
 
                 {/* Status Filter */}
                 <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-emerald-800 mb-4">ऑर्डर स्थिति के अनुसार</h3>
+                  <h3 className="text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-4">ऑर्डर स्थिति के अनुसार</h3>
                   <div className="flex flex-wrap gap-3">
                     {orderStatuses.map((status) => (
                       <button
@@ -367,7 +367,7 @@ const UserOrders = () => {
 
                 {/* Time Period Filter */}
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-800 mb-4">समय अवधि</h3>
+                  <h3 className="text-lg font-semibold text-emerald-800 dark:text-emerald-200 mb-4">समय अवधि</h3>
                   <div className="flex flex-wrap gap-3">
                     {timePeriods.map((period) => (
                       <button
@@ -376,7 +376,7 @@ const UserOrders = () => {
                         className={`px-4 py-2 rounded-full transition-all duration-300 ${
                           selectedPeriod === period.id
                             ? 'bg-emerald-500 text-white shadow-lg scale-105'
-                            : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200 border border-emerald-300'
+                            : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-800 border border-emerald-300 dark:border-emerald-600'
                         }`}
                       >
                         {period.name}
@@ -385,7 +385,7 @@ const UserOrders = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 text-emerald-600 font-medium">
+                <div className="mt-4 text-emerald-600 dark:text-emerald-400 font-medium">
                   {filteredOrders.length} ऑर्डर मिले
                 </div>
               </div>
@@ -396,7 +396,7 @@ const UserOrders = () => {
                   {filteredOrders.map((order) => {
                     const statusInfo = getStatusInfo(order.status);
                     return (
-                      <div key={order.id} className="bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                      <div key={order.id} className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         
                         {/* Order Header */}
                         <div className={`bg-gradient-to-r from-${statusInfo.color}-500 to-${statusInfo.color}-600 p-6 text-white`}>
@@ -410,7 +410,7 @@ const UserOrders = () => {
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className={`inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-2`}>
+                              <div className={`inline-flex items-center space-x-2 bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm rounded-full px-4 py-2 mb-2`}>
                                 <span>{statusInfo.icon}</span>
                                 <span className="font-medium">{statusInfo.name}</span>
                               </div>
@@ -425,19 +425,19 @@ const UserOrders = () => {
                           {/* Items */}
                           <div className="space-y-4 mb-6">
                             {order.items.map((item, itemIndex) => (
-                              <div key={itemIndex} className="flex items-center space-x-4 p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+                              <div key={itemIndex} className="flex items-center space-x-4 p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl border border-emerald-200 dark:border-emerald-700">
                                 <img 
                                   src={item.image} 
                                   alt={item.name}
                                   className="w-16 h-16 object-cover rounded-lg"
                                 />
                                 <div className="flex-1">
-                                  <h4 className="font-semibold text-emerald-800">{item.name}</h4>
-                                  <p className="text-emerald-600 text-sm">विक्रेता: {item.seller}</p>
-                                  <p className="text-emerald-600 text-sm">मात्रा: {item.quantity}</p>
+                                  <h4 className="font-semibold text-emerald-800 dark:text-emerald-200">{item.name}</h4>
+                                  <p className="text-emerald-600 dark:text-emerald-400 text-sm">विक्रेता: {item.seller}</p>
+                                  <p className="text-emerald-600 dark:text-emerald-400 text-sm">मात्रा: {item.quantity}</p>
                                 </div>
                                 <div className="text-right">
-                                  <p className="font-bold text-emerald-600">₹{(item.price * item.quantity).toLocaleString()}</p>
+                                  <p className="font-bold text-emerald-600 dark:text-emerald-400">₹{(item.price * item.quantity).toLocaleString()}</p>
                                 </div>
                               </div>
                             ))}
@@ -445,29 +445,29 @@ const UserOrders = () => {
 
                           {/* Tracking Info */}
                           {order.tracking && (
-                            <div className="mb-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-                              <h4 className="font-semibold text-blue-800 mb-2 flex items-center space-x-2">
+                            <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-700">
+                              <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2 flex items-center space-x-2">
                                 <span>📍</span>
                                 <span>ट्रैकिंग जानकारी</span>
                               </h4>
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                                 <div>
-                                  <span className="text-blue-600">ट्रैकिंग नंबर:</span>
+                                  <span className="text-blue-600 dark:text-blue-400">ट्रैकिंग नंबर:</span>
                                   <span className="font-mono font-medium ml-2">{order.tracking.number}</span>
                                 </div>
                                 <div>
-                                  <span className="text-blue-600">वर्तमान स्थिति:</span>
+                                  <span className="text-blue-600 dark:text-blue-400">वर्तमान स्थिति:</span>
                                   <span className="font-medium ml-2">{order.tracking.currentStatus}</span>
                                 </div>
                                 {order.tracking.estimatedDelivery && (
                                   <div>
-                                    <span className="text-blue-600">अनुमानित डिलीवरी:</span>
+                                    <span className="text-blue-600 dark:text-blue-400">अनुमानित डिलीवरी:</span>
                                     <span className="font-medium ml-2">{new Date(order.tracking.estimatedDelivery).toLocaleDateString('hi-IN')}</span>
                                   </div>
                                 )}
                                 {order.tracking.actualDelivery && (
                                   <div>
-                                    <span className="text-blue-600">वास्तविक डिलीवरी:</span>
+                                    <span className="text-blue-600 dark:text-blue-400">वास्तविक डिलीवरी:</span>
                                     <span className="font-medium ml-2">{new Date(order.tracking.actualDelivery).toLocaleDateString('hi-IN')}</span>
                                   </div>
                                 )}
@@ -476,12 +476,12 @@ const UserOrders = () => {
                           )}
 
                           {/* Delivery Address */}
-                          <div className="mb-6 p-4 bg-gray-50 rounded-xl">
-                            <h4 className="font-semibold text-gray-800 mb-2 flex items-center space-x-2">
+                          <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
+                            <h4 className="font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center space-x-2">
                               <span>🏠</span>
                               <span>डिलीवरी पता</span>
                             </h4>
-                            <div className="text-gray-700">
+                            <div className="text-gray-700 dark:text-gray-300">
                               <p className="font-medium">{order.deliveryAddress.name}</p>
                               <p className="text-sm">{order.deliveryAddress.phone}</p>
                               <p className="text-sm">{order.deliveryAddress.address}</p>
@@ -533,7 +533,7 @@ const UserOrders = () => {
                                 setSelectedOrder(order);
                                 setShowOrderDetails(true);
                               }}
-                              className="border-2 border-emerald-500 text-emerald-600 px-4 py-2 rounded-lg hover:bg-emerald-50 transition-colors duration-200 flex items-center space-x-2"
+                              className="border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 flex items-center space-x-2"
                             >
                               <span>👁️</span>
                               <span>विस्तार देखें</span>
@@ -548,10 +548,10 @@ const UserOrders = () => {
                 /* No Orders */
                 <div className="text-center py-20">
                   <div className="text-6xl mb-4">📦</div>
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-2">
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                     {orders.length === 0 ? 'अभी तक कोई ऑर्डर नहीं' : 'कोई ऑर्डर नहीं मिला'}
                   </h3>
-                  <p className="text-emerald-600 mb-6">
+                  <p className="text-emerald-600 dark:text-emerald-400 mb-6">
                     {orders.length === 0 
                       ? 'भारतशाला से अपनी पहली खरीदारी करें' 
                       : 'अपने फ़िल्टर बदलकर देखें'

@@ -9,7 +9,7 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
   };
 
   return (
-    <div className={`flex items-center space-x-4 p-4 bg-white rounded-xl border border-emerald-200 transition-all duration-300 ${
+    <div className={`flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-emerald-200 dark:border-emerald-700 transition-all duration-300 ${
       isRemoving ? 'opacity-50 scale-95' : 'hover:shadow-md'
     }`}>
       
@@ -24,13 +24,13 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
 
       {/* Product Details */}
       <div className='flex-1'>
-        <h3 className='font-semibold text-emerald-800 text-lg mb-1'>
+        <h3 className='font-semibold text-emerald-800 dark:text-emerald-200 text-lg mb-1'>
           {item.ItemName}
         </h3>
-        <p className='text-emerald-600 text-sm mb-2'>
+        <p className='text-emerald-600 dark:text-emerald-400 text-sm mb-2'>
           {item.description}
         </p>
-        <div className='flex items-center space-x-3 text-sm text-emerald-600'>
+        <div className='flex items-center space-x-3 text-sm text-emerald-600 dark:text-emerald-400'>
           <span>विक्रेता: {item.seller}</span>
           <span>•</span>
           <span>₹{item.Price.toLocaleString()}</span>
@@ -39,11 +39,11 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
 
       {/* Quantity Selector */}
       <div className='flex items-center space-x-3'>
-        <label className='text-emerald-700 font-medium text-sm'>मात्रा:</label>
+        <label className='text-emerald-700 dark:text-emerald-300 font-medium text-sm'>मात्रा:</label>
         <select
           value={item.Quantity}
           onChange={(e) => onQuantityChange(e, item)}
-          className="bg-white border-2 border-emerald-200 px-3 py-2 rounded-lg focus:border-emerald-500 focus:outline-none"
+          className="bg-white dark:bg-gray-800 border-2 border-emerald-200 dark:border-emerald-700 px-3 py-2 rounded-lg focus:border-emerald-500 focus:outline-none"
         >
           {[...Array(10)].map((_, i) => (
             <option key={i + 1} value={i + 1}>
@@ -55,7 +55,7 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
 
       {/* Total Price */}
       <div className='text-right min-w-[100px]'>
-        <div className='text-lg font-bold text-emerald-600'>
+        <div className='text-lg font-bold text-emerald-600 dark:text-emerald-400'>
           ₹{(item.Price * item.Quantity).toLocaleString()}
         </div>
       </div>
@@ -64,7 +64,7 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
       <button
         onClick={handleRemove}
         disabled={isRemoving}
-        className='p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200 disabled:opacity-50'
+        className='p-2 text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-200 disabled:opacity-50'
         title="आइटम हटाएं"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -321,24 +321,24 @@ const SalesPlot = () => {
     };
 
     return (
-        <div className="bg-gradient-to-br from-emerald-50 to-green-50 p-6 rounded-2xl">
+        <div className="bg-gradient-to-br from-emerald-50 dark:from-gray-900 to-green-50 dark:to-gray-900 p-6 rounded-2xl">
             <div className="max-w-4xl mx-auto">
                 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                     <div>
-                        <h2 className="text-3xl font-bold text-emerald-800 mb-2">बिक्री विश्लेषण</h2>
-                        <p className="text-emerald-600">मासिक प्रदर्शन का ग्राफिकल दृश्य</p>
+                        <h2 className="text-3xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">बिक्री विश्लेषण</h2>
+                        <p className="text-emerald-600 dark:text-emerald-400">मासिक प्रदर्शन का ग्राफिकल दृश्य</p>
                     </div>
                     
                     {/* Chart Type Toggle */}
-                    <div className="flex bg-white rounded-xl p-1 shadow-lg mt-4 md:mt-0">
+                    <div className="flex bg-white dark:bg-gray-800 rounded-xl p-1 shadow-lg mt-4 md:mt-0">
                         <button
                             onClick={() => setChartType('line')}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                                 chartType === 'line'
                                     ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-md'
-                                    : 'text-emerald-600 hover:bg-emerald-50'
+                                    : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                             }`}
                         >
                             <div className="flex items-center space-x-2">
@@ -353,7 +353,7 @@ const SalesPlot = () => {
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                                 chartType === 'bar'
                                     ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-md'
-                                    : 'text-emerald-600 hover:bg-emerald-50'
+                                    : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
                             }`}
                         >
                             <div className="flex items-center space-x-2">
@@ -367,12 +367,12 @@ const SalesPlot = () => {
                 </div>
 
                 {/* Chart Container */}
-                <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
                     {loading ? (
                         <div className="flex items-center justify-center h-96">
                             <div className="text-center">
-                                <div className="w-16 h-16 border-4 border-emerald-200 rounded-full animate-spin border-t-emerald-600 mx-auto mb-4"></div>
-                                <p className="text-emerald-600 font-medium">चार्ट लोड हो रहा है...</p>
+                                <div className="w-16 h-16 border-4 border-emerald-200 dark:border-emerald-700 rounded-full animate-spin border-t-emerald-600 mx-auto mb-4"></div>
+                                <p className="text-emerald-600 dark:text-emerald-400 font-medium">चार्ट लोड हो रहा है...</p>
                             </div>
                         </div>
                     ) : (

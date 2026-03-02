@@ -16,7 +16,7 @@ const CategoryCard = ({ category, size = 'medium' }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+      <div className={`relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
         isHovered ? 'scale-105' : ''
       }`}>
         
@@ -32,15 +32,15 @@ const CategoryCard = ({ category, size = 'medium' }) => {
           </div>
           
           {/* Title */}
-          <h3 className='text-xl font-bold text-emerald-800 mb-2 group-hover:text-emerald-600 transition-colors duration-300'>
+          <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 dark:hover:text-emerald-400 transition-colors duration-300'>
             {category.name}
           </h3>
-          <p className='text-emerald-600 font-medium mb-4'>
+          <p className='text-emerald-600 dark:text-emerald-400 font-medium mb-4'>
             {category.nameEn}
           </p>
           
           {/* Count */}
-          <div className='inline-flex items-center bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm border border-emerald-200'>
+          <div className='inline-flex items-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm border border-emerald-200 dark:border-emerald-700'>
             <span className='mr-2'>📦</span>
             <span className='font-medium'>{category.count}</span>
           </div>
@@ -50,8 +50,8 @@ const CategoryCard = ({ category, size = 'medium' }) => {
             isHovered ? 'transform translate-x-2' : ''
           }`}>
             <div className='flex items-center space-x-1'>
-              <span className='text-emerald-600 font-semibold'>देखें</span>
-              <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className='text-emerald-600 dark:text-emerald-400 font-semibold'>देखें</span>
+              <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>

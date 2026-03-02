@@ -189,8 +189,8 @@ const LaadBazaar = () => {
     { id: 'textiles', name: 'कपड़े', icon: '🧵', count: shops.filter(s => s.category === 'textiles').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -199,7 +199,7 @@ const LaadBazaar = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
 
         {/* Hero Section */}
         <div className='relative overflow-hidden'>
@@ -214,60 +214,60 @@ const LaadBazaar = () => {
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
               {/* Nizami Heritage Badge */}
-              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-purple-200'>
+              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-purple-100 dark:from-purple-900/30 to-indigo-100 dark:to-indigo-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-purple-200 dark:border-purple-700'>
                 <span className='text-2xl'>👑</span>
-                <span className='text-purple-800 font-bold'>निज़ामी विरासत</span>
+                <span className='text-purple-800 dark:text-purple-200 font-bold'>निज़ामी विरासत</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
-              <h2 className='text-2xl md:text-3xl text-emerald-700 font-semibold mb-6'>
+              <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Laad Bazaar, {marketInfo.cityHindi}
               </h2>
-              
-              <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
-                प्रतिष्ठित चार मीनार के सामने स्थित, यह बाजार चूड़ियों, मोतियों और पारंपरिक हैदराबादी आभूषण डिज़ाइन का शानदार संग्रह प्रस्तुत करता है। 
-                निज़ामों के समय से चली आ रही यह परंपरा आज भी जीवंत है। यहाँ आपको विश्व प्रसिद्ध हैदराबादी मोती और लाख की चूड़ियों का 
+
+              <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
+                प्रतिष्ठित चार मीनार के सामने स्थित, यह बाजार चूड़ियों, मोतियों और पारंपरिक हैदराबादी आभूषण डिज़ाइन का शानदार संग्रह प्रस्तुत करता है।
+                निज़ामों के समय से चली आ रही यह परंपरा आज भी जीवंत है। यहाँ आपको विश्व प्रसिद्ध हैदराबादी मोती और लाख की चूड़ियों का
                 अनुपम संग्रह मिलेगा।
               </p>
 
               {/* Market Stats */}
               <div className='grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12'>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200'>
-                  <div className='text-2xl font-bold text-purple-600'>{marketInfo.established}</div>
-                  <div className='text-purple-600 text-sm font-medium'>स्थापना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200 dark:border-purple-700'>
+                  <div className='text-2xl font-bold text-purple-600 dark:text-purple-400'>{marketInfo.established}</div>
+                  <div className='text-purple-600 dark:text-purple-400 text-sm font-medium'>स्थापना</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200'>
-                  <div className='text-2xl font-bold text-purple-600'>{marketInfo.totalShops.toLocaleString()}+</div>
-                  <div className='text-purple-600 text-sm font-medium'>कुल दुकानें</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200 dark:border-purple-700'>
+                  <div className='text-2xl font-bold text-purple-600 dark:text-purple-400'>{marketInfo.totalShops.toLocaleString()}+</div>
+                  <div className='text-purple-600 dark:text-purple-400 text-sm font-medium'>कुल दुकानें</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200'>
-                  <div className='text-2xl font-bold text-purple-600'>{marketInfo.totalVendors}+</div>
-                  <div className='text-purple-600 text-sm font-medium'>विक्रेता</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200 dark:border-purple-700'>
+                  <div className='text-2xl font-bold text-purple-600 dark:text-purple-400'>{marketInfo.totalVendors}+</div>
+                  <div className='text-purple-600 dark:text-purple-400 text-sm font-medium'>विक्रेता</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200'>
-                  <div className='text-2xl font-bold text-purple-600'>433</div>
-                  <div className='text-purple-600 text-sm font-medium'>साल पुराना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200 dark:border-purple-700'>
+                  <div className='text-2xl font-bold text-purple-600 dark:text-purple-400'>433</div>
+                  <div className='text-purple-600 dark:text-purple-400 text-sm font-medium'>साल पुराना</div>
                 </div>
               </div>
 
               {/* Special Features */}
               <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto'>
-                <div className='bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-purple-200'>
+                <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-purple-200 dark:border-purple-700'>
                   <div className='text-3xl mb-3'>🐚</div>
-                  <h3 className='font-bold text-purple-800 mb-2'>हैदराबादी मोती</h3>
-                  <p className='text-purple-600 text-sm'>विश्व प्रसिद्ध बेसरा पर्ल्स और प्राकृतिक मोती</p>
+                  <h3 className='font-bold text-purple-800 dark:text-purple-200 mb-2'>हैदराबादी मोती</h3>
+                  <p className='text-purple-600 dark:text-purple-400 text-sm'>विश्व प्रसिद्ध बेसरा पर्ल्स और प्राकृतिक मोती</p>
                 </div>
-                <div className='bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-purple-200'>
+                <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-purple-200 dark:border-purple-700'>
                   <div className='text-3xl mb-3'>💍</div>
-                  <h3 className='font-bold text-purple-800 mb-2'>लाख बैंगल्स</h3>
-                  <p className='text-purple-600 text-sm'>हस्तनिर्मित रंग-बिरंगी चूड़ियां</p>
+                  <h3 className='font-bold text-purple-800 dark:text-purple-200 mb-2'>लाख बैंगल्स</h3>
+                  <p className='text-purple-600 dark:text-purple-400 text-sm'>हस्तनिर्मित रंग-बिरंगी चूड़ियां</p>
                 </div>
-                <div className='bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-purple-200'>
+                <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-purple-200 dark:border-purple-700'>
                   <div className='text-3xl mb-3'>🎨</div>
-                  <h3 className='font-bold text-purple-800 mb-2'>बिदरी आर्ट</h3>
-                  <p className='text-purple-600 text-sm'>पारंपरिक निज़ामी हस्तशिल्प</p>
+                  <h3 className='font-bold text-purple-800 dark:text-purple-200 mb-2'>बिदरी आर्ट</h3>
+                  <p className='text-purple-600 dark:text-purple-400 text-sm'>पारंपरिक निज़ामी हस्तशिल्प</p>
                 </div>
               </div>
             </div>
@@ -276,53 +276,53 @@ const LaadBazaar = () => {
 
         {/* Interactive Map Section */}
         <div className='max-w-7xl mx-auto px-6 mb-16'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
-            <h3 className='text-2xl font-bold text-emerald-800 mb-6 text-center flex items-center justify-center space-x-3'>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg'>
+            <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6 text-center flex items-center justify-center space-x-3'>
               <span>🗺️</span>
               <span>लाड़ बाजार का नक्शा</span>
               <span>🕌</span>
             </h3>
             <div className='relative flex justify-center'>
-              <img 
-                src={map} 
-                alt='Laad Bazaar Map' 
-                className='rounded-2xl w-full max-w-4xl shadow-lg hover:scale-105 transition-transform duration-500' 
+              <img
+                src={map}
+                alt='Laad Bazaar Map'
+                className='rounded-2xl w-full max-w-4xl shadow-lg hover:scale-105 transition-transform duration-500'
               />
               <div className='absolute top-4 right-4 bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-medium'>
                 🕌 चार मीनार के सामने
               </div>
             </div>
-            
+
             {/* Char Minar Connection */}
-            <div className='mt-8 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-200'>
+            <div className='mt-8 bg-gradient-to-r from-purple-50 dark:from-purple-900/30 to-indigo-50 dark:to-indigo-900/30 rounded-xl p-6 border border-purple-200 dark:border-purple-700'>
               <div className='text-center'>
-                <h4 className='font-bold text-purple-800 mb-4 flex items-center justify-center space-x-2'>
+                <h4 className='font-bold text-purple-800 dark:text-purple-200 mb-4 flex items-center justify-center space-x-2'>
                   <span>🕌</span>
                   <span>चार मीनार से दूरी: केवल 50 मीटर</span>
                 </h4>
-                <p className='text-purple-700 max-w-2xl mx-auto'>
-                  इस ऐतिहासिक बाजार का मुख्य आकर्षण चार मीनार के ठीक सामने होना है। 
+                <p className='text-purple-700 dark:text-purple-300 max-w-2xl mx-auto'>
+                  इस ऐतिहासिक बाजार का मुख्य आकर्षण चार मीनार के ठीक सामने होना है।
                   पर्यटक चार मीनार देखने के साथ-साथ इस प्रसिद्ध बाजार की खरीदारी का भी आनंद ले सकते हैं।
                 </p>
               </div>
             </div>
-            
+
             {/* Market Info */}
             <div className='mt-6 grid grid-cols-1 md:grid-cols-3 gap-6'>
-              <div className='text-center bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                <h4 className='font-semibold text-emerald-800 mb-2'>⏰ समय</h4>
-                <p className='text-emerald-700'>{marketInfo.openingHours}</p>
-                <p className='text-emerald-600 text-sm mt-1'>रोज़ाना खुला</p>
+              <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                <h4 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-2'>⏰ समय</h4>
+                <p className='text-emerald-700 dark:text-emerald-300'>{marketInfo.openingHours}</p>
+                <p className='text-emerald-600 dark:text-emerald-400 text-sm mt-1'>रोज़ाना खुला</p>
               </div>
-              <div className='text-center bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                <h4 className='font-semibold text-emerald-800 mb-2'>🌤️ बेस्ट टाइम</h4>
-                <p className='text-emerald-700'>{marketInfo.bestTime}</p>
-                <p className='text-emerald-600 text-sm mt-1'>सुखद मौसम</p>
+              <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                <h4 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-2'>🌤️ बेस्ट टाइम</h4>
+                <p className='text-emerald-700 dark:text-emerald-300'>{marketInfo.bestTime}</p>
+                <p className='text-emerald-600 dark:text-emerald-400 text-sm mt-1'>सुखद मौसम</p>
               </div>
-              <div className='text-center bg-emerald-50 rounded-xl p-4 border border-emerald-200'>
-                <h4 className='font-semibold text-emerald-800 mb-2'>🚇 मेट्रो</h4>
-                <p className='text-emerald-700'>चार मीनार स्टेशन</p>
-                <p className='text-emerald-600 text-sm mt-1'>5 मिनट पैदल</p>
+              <div className='text-center bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700'>
+                <h4 className='font-semibold text-emerald-800 dark:text-emerald-200 mb-2'>🚇 मेट्रो</h4>
+                <p className='text-emerald-700 dark:text-emerald-300'>चार मीनार स्टेशन</p>
+                <p className='text-emerald-600 dark:text-emerald-400 text-sm mt-1'>5 मिनट पैदल</p>
               </div>
             </div>
           </div>
@@ -337,24 +337,24 @@ const LaadBazaar = () => {
                 हैदराबाद के निज़ामों द्वारा संरक्षित यह बाजार आज भी अपनी मूल परंपरा को जीवित रखे हुए है
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>👑</div>
                 <h4 className='text-lg font-semibold mb-2'>निज़ामी काल</h4>
                 <p className='text-purple-100 text-sm'>1591 से चली आ रही परंपरा</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🌍</div>
                 <h4 className='text-lg font-semibold mb-2'>विश्व प्रसिद्ध</h4>
                 <p className='text-purple-100 text-sm'>हैदराबादी मोतियों की वैश्विक पहचान</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🎨</div>
                 <h4 className='text-lg font-semibold mb-2'>हस्तकला</h4>
                 <p className='text-purple-100 text-sm'>पीढ़ियों से चली आ रही कारीगरी</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🏆</div>
                 <h4 className='text-lg font-semibold mb-2'>यूनेस्को मान्यता</h4>
                 <p className='text-purple-100 text-sm'>सांस्कृतिक विरासत स्थल</p>
@@ -365,8 +365,8 @@ const LaadBazaar = () => {
 
         {/* Category Filter */}
         <div className='max-w-7xl mx-auto px-6 mb-12'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-            <h3 className='text-xl font-bold text-emerald-800 mb-4 text-center'>दुकान श्रेणियां</h3>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+            <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4 text-center'>दुकान श्रेणियां</h3>
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3'>
               {categories.map((category) => (
                 <button
@@ -375,15 +375,15 @@ const LaadBazaar = () => {
                   className={`flex flex-col items-center space-y-2 p-4 rounded-xl transition-all duration-300 ${
                     activeFilter === category.id
                       ? 'bg-gradient-to-br from-purple-500 to-indigo-500 text-white shadow-lg scale-105'
-                      : 'bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-200 hover:border-emerald-300'
+                      : 'bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-300'
                   }`}
                 >
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-emerald-100 text-emerald-600'
+                    activeFilter === category.id
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white'
+                      : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}
                   </span>
@@ -396,10 +396,10 @@ const LaadBazaar = () => {
         {/* Shops Grid */}
         <div className='max-w-7xl mx-auto px-6 pb-20'>
           <div className='text-center mb-12'>
-            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>प्रमुख दुकानें</h3>
-            <p className='text-xl text-emerald-600'>
-              {activeFilter === 'all' 
-                ? 'लाड़ बाजार की सभी प्रसिद्ध दुकानें' 
+            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
+            <p className='text-xl text-emerald-600 dark:text-emerald-400'>
+              {activeFilter === 'all'
+                ? 'लाड़ बाजार की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>
@@ -421,8 +421,8 @@ const LaadBazaar = () => {
           ) : (
             <div className='text-center py-20'>
               <div className='text-6xl mb-4'>🔍</div>
-              <h3 className='text-2xl font-bold text-emerald-800 mb-2'>कोई दुकान नहीं मिली</h3>
-              <p className='text-emerald-600'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
+              <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2'>कोई दुकान नहीं मिली</h3>
+              <p className='text-emerald-600 dark:text-emerald-400'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
             </div>
           )}
 
@@ -434,27 +434,27 @@ const LaadBazaar = () => {
                 लाड़ बाजार के मोती अपनी चमक, आकार और गुणवत्ता के लिए विश्व भर में प्रसिद्ध हैं
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🐚</div>
                 <h4 className='text-lg font-semibold mb-2'>बेसरा पर्ल्स</h4>
                 <p className='text-indigo-100 text-sm'>दुनिया के सबसे महंगे और दुर्लभ मोती</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>✨</div>
                 <h4 className='text-lg font-semibold mb-2'>प्राकृतिक चमक</h4>
                 <p className='text-indigo-100 text-sm'>बिना रसायन के प्राकृतिक रूप से चमकदार</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🏆</div>
                 <h4 className='text-lg font-semibold mb-2'>प्रमाणिता</h4>
                 <p className='text-indigo-100 text-sm'>हर मोती प्रमाणपत्र के साथ</p>
               </div>
             </div>
-            
+
             <div className='text-center mt-8'>
-              <button className='bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 transition-colors duration-300 transform hover:scale-105'>
+              <button className='bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 dark:hover:bg-gray-700 dark:bg-purple-900/20 transition-colors duration-300 transform hover:scale-105'>
                 मोती की जानकारी
               </button>
             </div>
@@ -476,4 +476,4 @@ const LaadBazaar = () => {
   );
 };
 
-export default LaadBazaar;              
+export default LaadBazaar;
