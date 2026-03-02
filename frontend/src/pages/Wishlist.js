@@ -243,8 +243,8 @@ const Wishlist = () => {
   };
 
   const handleSelectItem = (itemId) => {
-    setSelectedItems(prev => 
-      prev.includes(itemId) 
+    setSelectedItems(prev =>
+      prev.includes(itemId)
         ? prev.filter(id => id !== itemId)
         : [...prev, itemId]
     );
@@ -277,8 +277,8 @@ const Wishlist = () => {
     try {
       const response = await post(`/wishlist/${itemId}/notifications`, { type });
       if (response.success) {
-        setWishlistItems(prev => prev.map(item => 
-          item.id === itemId 
+        setWishlistItems(prev => prev.map(item =>
+          item.id === itemId
             ? { ...item, notifications: { ...item.notifications, [type]: !item.notifications[type] } }
             : item
         ));
@@ -296,21 +296,21 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20">
       <div className="max-w-7xl mx-auto px-6 py-8">
-        
+
         {/* Header */}
         <div className="mb-8">
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+              <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                 मेरी विशलिस्ट ❤️
               </h1>
-              <p className="text-emerald-600 text-lg">
+              <p className="text-emerald-600 dark:text-emerald-400 text-lg">
                 आपकी पसंदीदा चीजों का संग्रह ({wishlistItems.length} आइटम)
               </p>
             </div>
-            
+
             {wishlistItems.length > 0 && (
               <button
                 onClick={shareWishlist}
@@ -327,10 +327,10 @@ const Wishlist = () => {
           /* Empty Wishlist */
           <div className="text-center py-20">
             <div className="text-8xl mb-6">💔</div>
-            <h2 className="text-3xl font-bold text-emerald-800 mb-4">
+            <h2 className="text-3xl font-bold text-emerald-800 dark:text-emerald-200 mb-4">
               आपकी विशलिस्ट खाली है
             </h2>
-            <p className="text-emerald-600 text-lg mb-8">
+            <p className="text-emerald-600 dark:text-emerald-400 text-lg mb-8">
               अपनी पसंदीदा चीजों को सेव करना शुरू करें!
             </p>
             <button
@@ -343,16 +343,16 @@ const Wishlist = () => {
         ) : (
           <>
             {/* Controls */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg mb-8">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                
+
                 {/* Filter */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">फ़िल्टर</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">फ़िल्टर</label>
                   <select
                     value={filterBy}
                     onChange={(e) => setFilterBy(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                    className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
                   >
                     {filterOptions.map(option => (
                       <option key={option.id} value={option.id}>
@@ -364,11 +364,11 @@ const Wishlist = () => {
 
                 {/* Sort */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">क्रमबद्ध करें</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">क्रमबद्ध करें</label>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                    className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none"
                   >
                     {sortOptions.map(option => (
                       <option key={option.id} value={option.id}>
@@ -380,14 +380,14 @@ const Wishlist = () => {
 
                 {/* View Mode */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">व्यू मोड</label>
-                  <div className="flex bg-emerald-100 rounded-lg p-1">
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">व्यू मोड</label>
+                  <div className="flex bg-emerald-100 dark:bg-gray-800 rounded-lg p-1">
                     <button
                       onClick={() => setViewMode('grid')}
                       className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                        viewMode === 'grid' 
-                          ? 'bg-emerald-500 text-white' 
-                          : 'text-emerald-600 hover:bg-emerald-200'
+                        viewMode === 'grid'
+                          ? 'bg-emerald-500 text-white'
+                          : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-gray-700'
                       }`}
                     >
                       ⊞ ग्रिड
@@ -395,9 +395,9 @@ const Wishlist = () => {
                     <button
                       onClick={() => setViewMode('list')}
                       className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                        viewMode === 'list' 
-                          ? 'bg-emerald-500 text-white' 
-                          : 'text-emerald-600 hover:bg-emerald-200'
+                        viewMode === 'list'
+                          ? 'bg-emerald-500 text-white'
+                          : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-gray-700'
                       }`}
                     >
                       ☰ लिस्ट
@@ -407,14 +407,14 @@ const Wishlist = () => {
 
                 {/* Select All */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">बल्क एक्शन</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">बल्क एक्शन</label>
                   <div className="space-y-2">
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={selectedItems.length === filteredItems.length && filteredItems.length > 0}
                         onChange={handleSelectAll}
-                        className="w-4 h-4 text-emerald-600 border-emerald-300 rounded focus:ring-emerald-500"
+                        className="w-4 h-4 text-emerald-600 dark:text-emerald-400 border-emerald-300 dark:border-emerald-700 rounded focus:ring-emerald-500"
                       />
                       <span className="text-sm">सभी चुनें ({selectedItems.length})</span>
                     </label>
@@ -424,9 +424,9 @@ const Wishlist = () => {
 
               {/* Bulk Actions */}
               {selectedItems.length > 0 && (
-                <div className="mt-6 pt-6 border-t border-emerald-200">
+                <div className="mt-6 pt-6 border-t border-emerald-200 dark:border-emerald-700">
                   <div className="flex items-center space-x-3">
-                    <span className="text-emerald-800 font-medium">
+                    <span className="text-emerald-800 dark:text-emerald-200 font-medium">
                       {selectedItems.length} आइटम चुने गए:
                     </span>
                     <button
@@ -447,15 +447,15 @@ const Wishlist = () => {
             </div>
 
             {/* Items Grid/List */}
-            <div className={viewMode === 'grid' 
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' 
+            <div className={viewMode === 'grid'
+              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
               : 'space-y-4'
             }>
               {filteredItems.map((item) => (
                 <div
                   key={item.id}
-                  className={`group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
-                    selectedItems.includes(item.id) ? 'ring-2 ring-emerald-500' : ''
+                  className={`group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
+                    selectedItems.includes(item.id) ? 'ring-2 ring-emerald-500 dark:ring-emerald-400' : ''
                   } ${viewMode === 'list' ? 'flex' : ''}`}
                 >
                   {/* Selection Checkbox */}
@@ -464,7 +464,7 @@ const Wishlist = () => {
                       type="checkbox"
                       checked={selectedItems.includes(item.id)}
                       onChange={() => handleSelectItem(item.id)}
-                      className="w-5 h-5 text-emerald-600 bg-white rounded border-2 border-emerald-300 focus:ring-emerald-500"
+                      className="w-5 h-5 text-emerald-600 dark:text-emerald-400 bg-white dark:bg-gray-800 rounded border-2 border-emerald-300 dark:border-emerald-700 focus:ring-emerald-500"
                     />
                   </div>
 
@@ -472,7 +472,7 @@ const Wishlist = () => {
                   <div className="absolute top-3 right-3 z-10">
                     <button
                       onClick={() => handleRemoveFromWishlist(item.id)}
-                      className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-red-500 hover:bg-red-50 transition-colors duration-200"
+                      className="w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center text-red-500 dark:text-red-400 hover:bg-red-50 transition-colors duration-200"
                     >
                       ❤️
                     </button>
@@ -480,12 +480,12 @@ const Wishlist = () => {
 
                   {/* Product Image */}
                   <div className={`relative ${viewMode === 'list' ? 'w-48 h-32' : 'h-64'} overflow-hidden`}>
-                    <img 
-                      src={item.image} 
+                    <img
+                      src={item.image}
                       alt={item.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    
+
                     {/* Stock Status */}
                     {!item.inStock && (
                       <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -507,11 +507,11 @@ const Wishlist = () => {
 
                   {/* Product Info */}
                   <div className={`p-4 ${viewMode === 'list' ? 'flex-1' : ''}`}>
-                    <h3 className="font-semibold text-emerald-800 mb-2 line-clamp-2">
+                    <h3 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-2 line-clamp-2">
                       {item.name}
                     </h3>
-                    
-                    <p className="text-gray-600 text-sm mb-2">
+
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
                       विक्रेता: {item.seller}
                     </p>
 
@@ -519,22 +519,22 @@ const Wishlist = () => {
                       <div className="flex items-center space-x-1">
                         <span className="text-yellow-500">⭐</span>
                         <span className="text-sm font-medium">{item.rating}</span>
-                        <span className="text-gray-500 text-xs">({item.reviewCount})</span>
+                        <span className="text-gray-500 dark:text-gray-400 text-xs">({item.reviewCount})</span>
                       </div>
                     </div>
 
                     <div className="flex items-baseline space-x-2 mb-4">
-                      <span className="text-lg font-bold text-emerald-800">
+                      <span className="text-lg font-bold text-emerald-800 dark:text-emerald-200">
                         ₹{item.price.toLocaleString()}
                       </span>
                       {item.originalPrice > item.price && (
-                        <span className="text-sm text-gray-500 line-through">
+                        <span className="text-sm text-gray-500 dark:text-gray-400 line-through">
                           ₹{item.originalPrice.toLocaleString()}
                         </span>
                       )}
                     </div>
 
-                    <div className="text-xs text-gray-500 mb-4">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                       जोड़ा गया: {new Date(item.addedDate).toLocaleDateString('hi-IN')}
                     </div>
 
@@ -547,24 +547,24 @@ const Wishlist = () => {
                       >
                         {item.inStock ? 'कार्ट में जोड़ें' : 'स्टॉक में नहीं'}
                       </button>
-                      
+
                       <button
                         onClick={() => navigate(`/products/${item.productId}`)}
-                        className="w-full border border-emerald-500 text-emerald-600 py-2 rounded-lg hover:bg-emerald-50 transition-colors duration-200 text-sm font-medium"
+                        className="w-full border border-emerald-500 dark:border-emerald-400 text-emerald-600 dark:text-emerald-400 py-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 text-sm font-medium"
                       >
                         विवरण देखें
                       </button>
                     </div>
 
                     {/* Notification Settings */}
-                    <div className="mt-3 pt-3 border-t border-gray-200">
+                    <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
                       <div className="flex items-center justify-between text-xs">
                         <label className="flex items-center space-x-1 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={item.notifications.priceAlert}
                             onChange={() => toggleNotifications(item.id, 'priceAlert')}
-                            className="w-3 h-3 text-emerald-600"
+                            className="w-3 h-3 text-emerald-600 dark:text-emerald-400"
                           />
                           <span>कीमत अलर्ट</span>
                         </label>
@@ -573,7 +573,7 @@ const Wishlist = () => {
                             type="checkbox"
                             checked={item.notifications.stockAlert}
                             onChange={() => toggleNotifications(item.id, 'stockAlert')}
-                            className="w-3 h-3 text-emerald-600"
+                            className="w-3 h-3 text-emerald-600 dark:text-emerald-400"
                           />
                           <span>स्टॉक अलर्ट</span>
                         </label>

@@ -306,11 +306,11 @@ const Inventory = () => {
   };
 
   const checkLowStockItems = () => {
-    const lowStock = inventory.filter(item => 
+    const lowStock = inventory.filter(item =>
       item.currentStock <= item.minStockLevel && item.currentStock > 0
     );
     setLowStockItems(lowStock);
-    
+
     if (lowStock.length > 0 && !showStockAlert) {
       setShowStockAlert(true);
       showWarning(`${lowStock.length} उत्पादों में कम स्टॉक है!`);
@@ -394,12 +394,12 @@ const Inventory = () => {
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      active: { bg: 'bg-green-100', text: 'text-green-800', label: 'सक्रिय' },
-      inactive: { bg: 'bg-gray-100', text: 'text-gray-800', label: 'निष्क्रिय' },
-      out_of_stock: { bg: 'bg-red-100', text: 'text-red-800', label: 'स्टॉक खत्म' },
-      low_stock: { bg: 'bg-yellow-100', text: 'text-yellow-800', label: 'कम स्टॉक' }
+      active: { bg: 'bg-green-100 dark:bg-green-900/20', text: 'text-green-800 dark:text-green-400', label: 'सक्रिय' },
+      inactive: { bg: 'bg-gray-100 dark:bg-gray-800', text: 'text-gray-800 dark:text-gray-100', label: 'निष्क्रिय' },
+      out_of_stock: { bg: 'bg-red-100 dark:bg-red-900/20', text: 'text-red-800 dark:text-red-400', label: 'स्टॉक खत्म' },
+      low_stock: { bg: 'bg-yellow-100 dark:bg-yellow-900/20', text: 'text-yellow-800 dark:text-yellow-300', label: 'कम स्टॉक' }
     };
-    
+
     const config = statusConfig[status] || statusConfig.inactive;
     return (
       <span className={`px-2 py-1 rounded-full text-xs font-medium ${config.bg} ${config.text}`}>
@@ -410,11 +410,11 @@ const Inventory = () => {
 
   const getStockIndicator = (item) => {
     if (item.currentStock === 0) {
-      return <span className="text-red-600 font-bold">स्टॉक खत्म</span>;
+      return <span className="text-red-600 dark:text-red-400 font-bold">स्टॉक खत्म</span>;
     } else if (item.currentStock <= item.minStockLevel) {
-      return <span className="text-yellow-600 font-bold">कम स्टॉक</span>;
+      return <span className="text-yellow-600 dark:text-yellow-400 font-bold">कम स्टॉक</span>;
     } else {
-      return <span className="text-green-600 font-bold">पर्याप्त स्टॉक</span>;
+      return <span className="text-green-600 dark:text-green-400 font-bold">पर्याप्त स्टॉक</span>;
     }
   };
 
@@ -431,21 +431,21 @@ const Inventory = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
       <div className="max-w-7xl mx-auto px-6 py-8">
-        
+
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+          <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
             📦 इन्वेंटरी प्रबंधन
           </h1>
-          <p className="text-emerald-600 text-lg">
+          <p className="text-emerald-600 dark:text-emerald-400 text-lg">
             आपके स्टॉक और उत्पादों का प्रबंधन करें
           </p>
         </div>
 
         <div className="flex gap-8">
-          
+
           {/* Sidebar */}
           <div className="hidden lg:block">
             <VendorSidebar />
@@ -453,16 +453,16 @@ const Inventory = () => {
 
           {/* Main Content */}
           <div className="flex-1 space-y-8">
-            
+
             {/* Low Stock Alert */}
             {lowStockItems.length > 0 && showStockAlert && (
-              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg">
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-6 rounded-lg">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-lg font-bold text-yellow-800 mb-2">
+                    <h3 className="text-lg font-bold text-yellow-800 dark:text-yellow-300 mb-2">
                       ⚠️ कम स्टॉक चेतावनी
                     </h3>
-                    <p className="text-yellow-700 mb-3">
+                    <p className="text-yellow-700 dark:text-yellow-300 mb-3">
                       {lowStockItems.length} उत्पादों में कम स्टॉक है। कृपया जल्दी स्टॉक भरें।
                     </p>
                     <div className="space-y-1">
@@ -478,7 +478,7 @@ const Inventory = () => {
                   </div>
                   <button
                     onClick={() => setShowStockAlert(false)}
-                    className="text-yellow-600 hover:text-yellow-800"
+                    className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-800"
                   >
                     ×
                   </button>
@@ -488,11 +488,11 @@ const Inventory = () => {
 
             {/* Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm">कुल उत्पाद</p>
-                    <p className="text-3xl font-bold text-emerald-800">{inventory.length}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">कुल उत्पाद</p>
+                    <p className="text-3xl font-bold text-emerald-800 dark:text-emerald-200">{inventory.length}</p>
                   </div>
                   <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xl">📦</span>
@@ -500,11 +500,11 @@ const Inventory = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm">कुल स्टॉक वैल्यू</p>
-                    <p className="text-2xl font-bold text-emerald-800">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">कुल स्टॉक वैल्यू</p>
+                    <p className="text-2xl font-bold text-emerald-800 dark:text-emerald-200">
                       {formatCurrency(inventory.reduce((sum, item) => sum + (item.price * item.currentStock), 0))}
                     </p>
                   </div>
@@ -514,11 +514,11 @@ const Inventory = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm">कम स्टॉक</p>
-                    <p className="text-3xl font-bold text-yellow-600">{lowStockItems.length}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">कम स्टॉक</p>
+                    <p className="text-3xl font-bold text-yellow-600 dark:text-yellow-400">{lowStockItems.length}</p>
                   </div>
                   <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xl">⚠️</span>
@@ -526,11 +526,11 @@ const Inventory = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-600 text-sm">स्टॉक आउट</p>
-                    <p className="text-3xl font-bold text-red-600">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">स्टॉक आउट</p>
+                    <p className="text-3xl font-bold text-red-600 dark:text-red-400">
                       {inventory.filter(i => i.currentStock === 0).length}
                     </p>
                   </div>
@@ -542,19 +542,19 @@ const Inventory = () => {
             </div>
 
             {/* Filters and Controls */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                
+
                 {/* Search */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">खोजें</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">खोजें</label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="नाम, SKU या टैग खोजें..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full px-4 py-3 pl-12 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 pl-12 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                     <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -564,11 +564,11 @@ const Inventory = () => {
 
                 {/* Status Filter */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">स्टेटस</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">स्टेटस</label>
                   <select
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                    className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                   >
                     {statusOptions.map(option => (
                       <option key={option.id} value={option.id}>
@@ -580,11 +580,11 @@ const Inventory = () => {
 
                 {/* Category Filter */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">श्रेणी</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">श्रेणी</label>
                   <select
                     value={filterCategory}
                     onChange={(e) => setFilterCategory(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                    className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                   >
                     {categories.map(category => (
                       <option key={category.id} value={category.id}>
@@ -596,11 +596,11 @@ const Inventory = () => {
 
                 {/* Sort */}
                 <div>
-                  <label className="block text-emerald-800 font-semibold mb-2">क्रमबद्ध करें</label>
+                  <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">क्रमबद्ध करें</label>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                    className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                   >
                     {sortOptions.map(option => (
                       <option key={option.id} value={option.id}>
@@ -619,7 +619,7 @@ const Inventory = () => {
                       type="checkbox"
                       checked={selectedItems.length === filteredInventory.length && filteredInventory.length > 0}
                       onChange={handleSelectAll}
-                      className="w-4 h-4 text-emerald-600 border-emerald-300 rounded focus:ring-emerald-500"
+                      className="w-4 h-4 text-emerald-600 dark:text-emerald-400 border-emerald-300 rounded focus:ring-emerald-500"
                     />
                     <span className="text-sm">सभी चुनें ({selectedItems.length})</span>
                   </label>
@@ -634,7 +634,7 @@ const Inventory = () => {
                       बल्क अपडेट ({selectedItems.length})
                     </button>
                   )}
-                  
+
                   <button
                     onClick={() => navigate('/vendor/add-item')}
                     className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm"
@@ -646,41 +646,41 @@ const Inventory = () => {
             </div>
 
             {/* Inventory Table */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-emerald-50">
+                  <thead className="bg-emerald-50 dark:bg-emerald-900/30">
                     <tr>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
                         उत्पाद
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
                         कीमत
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
                         स्टॉक
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
                         स्टेटस
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
                         परफॉर्मेंस
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-medium text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
                         कार्य
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-emerald-200">
+                  <tbody className="bg-white dark:bg-gray-800 divide-y divide-emerald-200 dark:divide-emerald-700">
                     {filteredInventory.map((item) => (
-                      <tr key={item.id} className="hover:bg-emerald-50">
+                      <tr key={item.id} className="hover:bg-emerald-50 dark:hover:bg-gray-700">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <input
                               type="checkbox"
                               checked={selectedItems.includes(item.id)}
                               onChange={() => handleItemSelect(item.id)}
-                              className="w-4 h-4 text-emerald-600 border-emerald-300 rounded focus:ring-emerald-500 mr-4"
+                              className="w-4 h-4 text-emerald-600 dark:text-emerald-400 border-emerald-300 rounded focus:ring-emerald-500 mr-4"
                             />
                             <div className="flex items-center">
                               <img
@@ -689,26 +689,26 @@ const Inventory = () => {
                                 className="w-12 h-12 rounded-lg object-cover"
                               />
                               <div className="ml-4">
-                                <div className="text-sm font-medium text-emerald-900">{item.name}</div>
-                                <div className="text-sm text-emerald-500">SKU: {item.sku}</div>
-                                <div className="text-xs text-gray-500 capitalize">{item.category}</div>
+                                <div className="text-sm font-medium text-emerald-900 dark:text-emerald-200">{item.name}</div>
+                                <div className="text-sm text-emerald-500 dark:text-emerald-400">SKU: {item.sku}</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">{item.category}</div>
                               </div>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm">
-                            <div className="font-medium text-emerald-900">{formatCurrency(item.price)}</div>
-                            <div className="text-emerald-500 text-xs">Cost: {formatCurrency(item.costPrice)}</div>
-                            <div className="text-green-600 text-xs">
+                            <div className="font-medium text-emerald-900 dark:text-emerald-200">{formatCurrency(item.price)}</div>
+                            <div className="text-emerald-500 dark:text-emerald-400 text-xs">Cost: {formatCurrency(item.costPrice)}</div>
+                            <div className="text-green-600 dark:text-green-400 text-xs">
                               Margin: {(((item.price - item.costPrice) / item.price) * 100).toFixed(1)}%
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm">
-                            <div className="font-medium text-emerald-900">{item.currentStock} units</div>
-                            <div className="text-xs text-gray-500">Min: {item.minStockLevel}</div>
+                            <div className="font-medium text-emerald-900 dark:text-emerald-200">{item.currentStock} units</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">Min: {item.minStockLevel}</div>
                             <div className="text-xs">{getStockIndicator(item)}</div>
                           </div>
                         </td>
@@ -721,21 +721,21 @@ const Inventory = () => {
                           <div>Revenue: {formatCurrency(item.revenue)}</div>
                           <div className="flex items-center space-x-1">
                             <span>⭐ {item.rating}</span>
-                            <span className="text-gray-500">({item.reviewCount})</span>
+                            <span className="text-gray-500 dark:text-gray-400">({item.reviewCount})</span>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <div className="flex items-center space-x-2">
                             <button
                               onClick={() => navigate(`/vendor/edit-item/${item.id}`)}
-                              className="text-blue-600 hover:text-blue-900"
+                              className="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300"
                               title="संपादित करें"
                             >
                               ✏️
                             </button>
                             <button
                               onClick={() => navigate(`/products/${item.id}`)}
-                              className="text-green-600 hover:text-green-900"
+                              className="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300"
                               title="देखें"
                             >
                               👁️
@@ -747,7 +747,7 @@ const Inventory = () => {
                                   handleStockUpdate(item.id, newStock);
                                 }
                               }}
-                              className="text-yellow-600 hover:text-yellow-900"
+                              className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-900 dark:hover:text-yellow-300"
                               title="स्टॉक अपडेट करें"
                             >
                               📦
@@ -759,7 +759,7 @@ const Inventory = () => {
                                   handlePriceUpdate(item.id, newPrice);
                                 }
                               }}
-                              className="text-purple-600 hover:text-purple-900"
+                              className="text-purple-600 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                               title="कीमत अपडेट करें"
                             >
                               💰
@@ -775,8 +775,8 @@ const Inventory = () => {
               {filteredInventory.length === 0 && (
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4">📦</div>
-                  <h3 className="text-xl font-bold text-emerald-800 mb-2">कोई उत्पाद नहीं मिला</h3>
-                  <p className="text-emerald-600 mb-6">फ़िल्टर बदलें या नया उत्पाद जोड़ें</p>
+                  <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">कोई उत्पाद नहीं मिला</h3>
+                  <p className="text-emerald-600 dark:text-emerald-400 mb-6">फ़िल्टर बदलें या नया उत्पाद जोड़ें</p>
                   <button
                     onClick={() => navigate('/vendor/add-item')}
                     className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600"
@@ -790,18 +790,18 @@ const Inventory = () => {
             {/* Bulk Update Modal */}
             {showBulkUpdate && (
               <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-                <div className="bg-white rounded-2xl p-8 max-w-2xl w-full">
-                  <h2 className="text-2xl font-bold text-emerald-800 mb-6">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-2xl w-full">
+                  <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">
                     बल्क अपडेट ({selectedItems.length} आइटम)
                   </h2>
 
                   <div className="space-y-6">
                     <div>
-                      <label className="block text-emerald-800 font-semibold mb-2">अपडेट का प्रकार</label>
+                      <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">अपडेट का प्रकार</label>
                       <select
                         value={bulkUpdateData.action}
                         onChange={(e) => setBulkUpdateData({...bulkUpdateData, action: e.target.value})}
-                        className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                        className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                       >
                         <option value="">चुनें</option>
                         <option value="price">कीमत अपडेट</option>
@@ -812,12 +812,12 @@ const Inventory = () => {
 
                     {bulkUpdateData.action === 'price' && (
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">नई कीमत</label>
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">नई कीमत</label>
                         <input
                           type="number"
                           value={bulkUpdateData.price}
                           onChange={(e) => setBulkUpdateData({...bulkUpdateData, price: e.target.value})}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           placeholder="कीमत डालें"
                         />
                       </div>
@@ -825,12 +825,12 @@ const Inventory = () => {
 
                     {bulkUpdateData.action === 'stock' && (
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">स्टॉक अपडेट</label>
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">स्टॉक अपडेट</label>
                         <input
                           type="number"
                           value={bulkUpdateData.quantity}
                           onChange={(e) => setBulkUpdateData({...bulkUpdateData, quantity: e.target.value})}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                           placeholder="स्टॉक मात्रा डालें"
                         />
                       </div>
@@ -838,11 +838,11 @@ const Inventory = () => {
 
                     {bulkUpdateData.action === 'status' && (
                       <div>
-                        <label className="block text-emerald-800 font-semibold mb-2">नया स्टेटस</label>
+                        <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">नया स्टेटस</label>
                         <select
                           value={bulkUpdateData.status}
                           onChange={(e) => setBulkUpdateData({...bulkUpdateData, status: e.target.value})}
-                          className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                          className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                         >
                           <option value="">चुनें</option>
                           <option value="active">सक्रिय</option>
@@ -855,7 +855,7 @@ const Inventory = () => {
                   <div className="flex justify-end space-x-3 mt-8">
                     <button
                       onClick={() => setShowBulkUpdate(false)}
-                      className="px-6 py-3 border border-emerald-500 text-emerald-600 rounded-lg hover:bg-emerald-50"
+                      className="px-6 py-3 border border-emerald-500 text-emerald-600 dark:text-emerald-400 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-700"
                     >
                       रद्द करें
                     </button>

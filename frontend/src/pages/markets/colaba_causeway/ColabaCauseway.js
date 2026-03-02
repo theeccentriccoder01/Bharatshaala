@@ -187,8 +187,8 @@ const ColabaCauseway = () => {
     { id: 'souvenirs', name: 'सुवेनिर्स', icon: '🗽', count: shops.filter(s => s.category === 'souvenirs').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -197,7 +197,7 @@ const ColabaCauseway = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
 
         {/* Hero Section */}
         <div className='relative overflow-hidden'>
@@ -212,60 +212,60 @@ const ColabaCauseway = () => {
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
               {/* Mumbai Spirit Badge */}
-              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-blue-200'>
+              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-blue-100 dark:from-blue-900/30 to-indigo-100 dark:to-indigo-900/30 rounded-full px-6 py-3 mb-6 shadow-lg border border-blue-200 dark:border-blue-700'>
                 <span className='text-2xl'>🌊</span>
-                <span className='text-blue-800 font-bold'>मुंबई की आत्मा</span>
+                <span className='text-blue-800 dark:text-blue-200 font-bold'>मुंबई की आत्मा</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
-              <h2 className='text-2xl md:text-3xl text-emerald-700 font-semibold mb-6'>
+              <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Colaba Causeway, {marketInfo.cityHindi}
               </h2>
-              
-              <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
-                गेटवे ऑफ इंडिया के बगल में स्थित यह बाजार मुंबई का दिल है। यहाँ आपको फैशन से लेकर एंटीक्स तक, 
-                स्ट्रीट फूड से लेकर हैंडीक्राफ्ट्स तक सब कुछ मिलेगा। मुंबई की स्पिरिट को जानना है तो कॉलाबा कॉज़वे आना ज़रूरी है। 
+
+              <p className='text-xl text-emerald-600 dark:text-emerald-400 max-w-4xl mx-auto leading-relaxed mb-8'>
+                गेटवे ऑफ इंडिया के बगल में स्थित यह बाजार मुंबई का दिल है। यहाँ आपको फैशन से लेकर एंटीक्स तक,
+                स्ट्रीट फूड से लेकर हैंडीक्राफ्ट्स तक सब कुछ मिलेगा। मुंबई की स्पिरिट को जानना है तो कॉलाबा कॉज़वे आना ज़रूरी है।
                 यहाँ की हर गली में कुछ नया और दिलचस्प छुपा हुआ है।
               </p>
 
               {/* Market Stats */}
               <div className='grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12'>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200'>
-                  <div className='text-2xl font-bold text-blue-600'>{marketInfo.established}</div>
-                  <div className='text-blue-600 text-sm font-medium'>स्थापना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200 dark:border-blue-700'>
+                  <div className='text-2xl font-bold text-blue-600 dark:text-blue-400'>{marketInfo.established}</div>
+                  <div className='text-blue-600 dark:text-blue-400 text-sm font-medium'>स्थापना</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200'>
-                  <div className='text-2xl font-bold text-blue-600'>{marketInfo.totalShops.toLocaleString()}+</div>
-                  <div className='text-blue-600 text-sm font-medium'>कुल दुकानें</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200 dark:border-blue-700'>
+                  <div className='text-2xl font-bold text-blue-600 dark:text-blue-400'>{marketInfo.totalShops.toLocaleString()}+</div>
+                  <div className='text-blue-600 dark:text-blue-400 text-sm font-medium'>कुल दुकानें</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200'>
-                  <div className='text-2xl font-bold text-blue-600'>{marketInfo.totalVendors}+</div>
-                  <div className='text-blue-600 text-sm font-medium'>विक्रेता</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200 dark:border-blue-700'>
+                  <div className='text-2xl font-bold text-blue-600 dark:text-blue-400'>{marketInfo.totalVendors}+</div>
+                  <div className='text-blue-600 dark:text-blue-400 text-sm font-medium'>विक्रेता</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200'>
-                  <div className='text-2xl font-bold text-blue-600'>165</div>
-                  <div className='text-blue-600 text-sm font-medium'>साल पुराना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200 dark:border-blue-700'>
+                  <div className='text-2xl font-bold text-blue-600 dark:text-blue-400'>165</div>
+                  <div className='text-blue-600 dark:text-blue-400 text-sm font-medium'>साल पुराना</div>
                 </div>
               </div>
 
               {/* Special Features */}
               <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto'>
-                <div className='bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-blue-200'>
+                <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-blue-200 dark:border-blue-700'>
                   <div className='text-3xl mb-3'>👗</div>
-                  <h3 className='font-bold text-blue-800 mb-2'>फैशन हब</h3>
-                  <p className='text-blue-600 text-sm'>ट्रेंडी कपड़े और एक्सेसरीज़</p>
+                  <h3 className='font-bold text-blue-800 dark:text-blue-200 mb-2'>फैशन हब</h3>
+                  <p className='text-blue-600 dark:text-blue-400 text-sm'>ट्रेंडी कपड़े और एक्सेसरीज़</p>
                 </div>
-                <div className='bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-blue-200'>
+                <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-blue-200 dark:border-blue-700'>
                   <div className='text-3xl mb-3'>🍛</div>
-                  <h3 className='font-bold text-blue-800 mb-2'>स्ट्रीट फूड</h3>
-                  <p className='text-blue-600 text-sm'>मुंबई का असली स्वाद</p>
+                  <h3 className='font-bold text-blue-800 dark:text-blue-200 mb-2'>स्ट्रीट फूड</h3>
+                  <p className='text-blue-600 dark:text-blue-400 text-sm'>मुंबई का असली स्वाद</p>
                 </div>
-                <div className='bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-blue-200'>
+                <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-blue-200 dark:border-blue-700'>
                   <div className='text-3xl mb-3'>🏺</div>
-                  <h3 className='font-bold text-blue-800 mb-2'>एंटीक्स</h3>
-                  <p className='text-blue-600 text-sm'>दुर्लभ पुरानी वस्तुएं</p>
+                  <h3 className='font-bold text-blue-800 dark:text-blue-200 mb-2'>एंटीक्स</h3>
+                  <p className='text-blue-600 dark:text-blue-400 text-sm'>दुर्लभ पुरानी वस्तुएं</p>
                 </div>
               </div>
             </div>
@@ -281,24 +281,24 @@ const ColabaCauseway = () => {
                 भारत के प्रवेश द्वार से सिर्फ 200 मीटर की दूरी पर स्थित यह बाजार मुंबई का गौरव है
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🗽</div>
                 <h4 className='text-lg font-semibold mb-2'>गेटवे व्यू</h4>
                 <p className='text-blue-100 text-sm'>200 मीटर की दूरी</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🚢</div>
                 <h4 className='text-lg font-semibold mb-2'>हार्बर व्यू</h4>
                 <p className='text-blue-100 text-sm'>अरब सागर का नज़ारा</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🏨</div>
                 <h4 className='text-lg font-semibold mb-2'>ताज होटल</h4>
                 <p className='text-blue-100 text-sm'>विश्व प्रसिद्ध होटल</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🎬</div>
                 <h4 className='text-lg font-semibold mb-2'>फिल्म लोकेशन</h4>
                 <p className='text-blue-100 text-sm'>बॉलीवुड की पसंद</p>
@@ -309,8 +309,8 @@ const ColabaCauseway = () => {
 
         {/* Category Filter */}
         <div className='max-w-7xl mx-auto px-6 mb-12'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-            <h3 className='text-xl font-bold text-emerald-800 mb-4 text-center'>दुकान श्रेणियां</h3>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+            <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4 text-center'>दुकान श्रेणियां</h3>
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3'>
               {categories.map((category) => (
                 <button
@@ -319,15 +319,15 @@ const ColabaCauseway = () => {
                   className={`flex flex-col items-center space-y-2 p-4 rounded-xl transition-all duration-300 ${
                     activeFilter === category.id
                       ? 'bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-lg scale-105'
-                      : 'bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-200 hover:border-emerald-300'
+                      : 'bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-300'
                   }`}
                 >
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-emerald-100 text-emerald-600'
+                    activeFilter === category.id
+                      ? 'bg-white/20 dark:bg-gray-800/20 text-white'
+                      : 'bg-emerald-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400'
                   }`}>
                     {category.count}
                   </span>
@@ -340,10 +340,10 @@ const ColabaCauseway = () => {
         {/* Shops Grid */}
         <div className='max-w-7xl mx-auto px-6 pb-20'>
           <div className='text-center mb-12'>
-            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>प्रमुख दुकानें</h3>
-            <p className='text-xl text-emerald-600'>
-              {activeFilter === 'all' 
-                ? 'कॉलाबा कॉज़वे की सभी प्रसिद्ध दुकानें' 
+            <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4'>प्रमुख दुकानें</h3>
+            <p className='text-xl text-emerald-600 dark:text-emerald-400'>
+              {activeFilter === 'all'
+                ? 'कॉलाबा कॉज़वे की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>
@@ -365,8 +365,8 @@ const ColabaCauseway = () => {
           ) : (
             <div className='text-center py-20'>
               <div className='text-6xl mb-4'>🔍</div>
-              <h3 className='text-2xl font-bold text-emerald-800 mb-2'>कोई दुकान नहीं मिली</h3>
-              <p className='text-emerald-600'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
+              <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2'>कोई दुकान नहीं मिली</h3>
+              <p className='text-emerald-600 dark:text-emerald-400'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
             </div>
           )}
 
@@ -378,27 +378,27 @@ const ColabaCauseway = () => {
                 कॉलाबा कॉज़वे सिर्फ एक बाज़ार नहीं, यह मुंबई की आत्मा है - जहाँ सपने मिलते हैं और यादें बनती हैं
               </p>
             </div>
-            
+
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🎭</div>
                 <h4 className='text-lg font-semibold mb-2'>कल्चरल हब</h4>
                 <p className='text-orange-100 text-sm'>कला, संस्कृति और विविधता का केंद्र</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>💝</div>
                 <h4 className='text-lg font-semibold mb-2'>शॉपिंग पैराडाइज़</h4>
                 <p className='text-orange-100 text-sm'>हर बजट में कुछ न कुछ खास</p>
               </div>
-              <div className='text-center bg-white/20 backdrop-blur-sm rounded-xl p-6'>
+              <div className='text-center bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-xl p-6'>
                 <div className='text-3xl mb-3'>🌟</div>
                 <h4 className='text-lg font-semibold mb-2'>टूरिस्ट फेवरेट</h4>
                 <p className='text-orange-100 text-sm'>दुनिया भर के सैलानियों की पसंद</p>
               </div>
             </div>
-            
+
             <div className='text-center mt-8'>
-              <button className='bg-white text-orange-600 px-8 py-4 rounded-full font-semibold hover:bg-orange-50 transition-colors duration-300 transform hover:scale-105'>
+              <button className='bg-white dark:bg-gray-800 text-orange-600 px-8 py-4 rounded-full font-semibold hover:bg-orange-50 dark:hover:bg-gray-700 dark:bg-orange-900/20 transition-colors duration-300 transform hover:scale-105'>
                 मुंबई एक्सप्लोर करें
               </button>
             </div>

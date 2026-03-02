@@ -30,7 +30,7 @@ const CategoryLanding = () => {
   const loadCategoryData = async () => {
     try {
       setLoading(true);
-      
+
       const [categoryResponse, productsResponse, subcategoriesResponse] = await Promise.all([
         useAPI.get(`/categories/${categorySlug}`),
         useAPI.get(`/categories/${categorySlug}/featured-products`),
@@ -85,9 +85,9 @@ const CategoryLanding = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">श्रेणी नहीं मिली</h2>
-          <p className="text-gray-600 mb-4">यह श्रेणी अभी उपलब्ध नहीं है</p>
-          <Link to="/products" className="text-emerald-600 hover:text-emerald-700">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">श्रेणी नहीं मिली</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">यह श्रेणी अभी उपलब्ध नहीं है</p>
+          <Link to="/products" className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:text-emerald-300">
             सभी उत्पाद देखें
           </Link>
         </div>
@@ -104,17 +104,17 @@ const CategoryLanding = () => {
         <link rel="canonical" href={`https://bharatshaala.com/categories/${categorySlug}`} />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-20">
           <div className="absolute inset-0 bg-black/20"></div>
           {categoryData.bannerImage && (
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center opacity-30"
               style={{ backgroundImage: `url(${categoryData.bannerImage})` }}
             ></div>
           )}
-          
+
           <div className="container mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -127,7 +127,7 @@ const CategoryLanding = () => {
               <p className="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
                 {categoryData.description}
               </p>
-              
+
               <div className="flex flex-wrap justify-center gap-6 text-emerald-200">
                 <div className="flex items-center space-x-2">
                   <span>📦</span>
@@ -146,7 +146,7 @@ const CategoryLanding = () => {
               <div className="mt-8">
                 <Link
                   to={`/products?category=${categorySlug}`}
-                  className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors duration-200 inline-block"
+                  className="bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800 transition-colors duration-200 inline-block"
                   onClick={() => trackEvent('category_hero_cta_clicked', { categorySlug })}
                 >
                   सभी उत्पाद देखें
@@ -158,7 +158,7 @@ const CategoryLanding = () => {
 
         {/* Subcategories */}
         {subcategories.length > 0 && (
-          <section className="py-16 bg-white">
+          <section className="py-16 bg-white dark:bg-gray-800">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -166,8 +166,8 @@ const CategoryLanding = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-12"
               >
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">उप-श्रेणियां</h2>
-                <p className="text-xl text-gray-600">विशिष्ट प्रकार के उत्पाद खोजें</p>
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">उप-श्रेणियां</h2>
+                <p className="text-xl text-gray-600 dark:text-gray-300">विशिष्ट प्रकार के उत्पाद खोजें</p>
               </motion.div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -181,13 +181,13 @@ const CategoryLanding = () => {
                   >
                     <Link
                       to={`/products?category=${categorySlug}&subcategory=${subcategory.slug}`}
-                      className="block bg-white rounded-xl shadow-lg border hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                      className="block bg-white dark:bg-gray-800 rounded-xl shadow-lg border hover:shadow-xl transition-shadow duration-300 overflow-hidden"
                       onClick={() => trackEvent('subcategory_clicked', {
                         categorySlug,
                         subcategorySlug: subcategory.slug
                       })}
                     >
-                      <div className="aspect-square bg-gray-100 overflow-hidden">
+                      <div className="aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden">
                         {subcategory.image ? (
                           <img
                             src={subcategory.image}
@@ -201,8 +201,8 @@ const CategoryLanding = () => {
                         )}
                       </div>
                       <div className="p-4">
-                        <h3 className="font-semibold text-gray-900 text-center">{subcategory.name}</h3>
-                        <p className="text-sm text-gray-600 text-center mt-1">
+                        <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-center">{subcategory.name}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 text-center mt-1">
                           {subcategory.productCount || 0} उत्पाद
                         </p>
                       </div>
@@ -216,7 +216,7 @@ const CategoryLanding = () => {
 
         {/* Featured Products */}
         {featuredProducts.length > 0 && (
-          <section className="py-16 bg-gray-50">
+          <section className="py-16 bg-gray-50 dark:bg-gray-900">
             <div className="container mx-auto px-6">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -224,8 +224,8 @@ const CategoryLanding = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-12"
               >
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">चुनिंदा उत्पाद</h2>
-                <p className="text-xl text-gray-600">इस श्रेणी के सबसे लोकप्रिय उत्पाद</p>
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">चुनिंदा उत्पाद</h2>
+                <p className="text-xl text-gray-600 dark:text-gray-300">इस श्रेणी के सबसे लोकप्रिय उत्पाद</p>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -260,7 +260,7 @@ const CategoryLanding = () => {
         )}
 
         {/* Category Features */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-8">
               <motion.div
@@ -270,8 +270,8 @@ const CategoryLanding = () => {
                 className="text-center"
               >
                 <div className="text-5xl mb-4">✨</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">प्रामाणिक उत्पाद</h3>
-                <p className="text-gray-600">सभी उत्पाद वास्तविक कारीगरों द्वारा बनाए गए हैं और गुणवत्ता की जांच के बाद ही बेचे जाते हैं</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">प्रामाणिक उत्पाद</h3>
+                <p className="text-gray-600 dark:text-gray-300">सभी उत्पाद वास्तविक कारीगरों द्वारा बनाए गए हैं और गुणवत्ता की जांच के बाद ही बेचे जाते हैं</p>
               </motion.div>
 
               <motion.div
@@ -281,8 +281,8 @@ const CategoryLanding = () => {
                 className="text-center"
               >
                 <div className="text-5xl mb-4">🚚</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">तेज़ डिलीवरी</h3>
-                <p className="text-gray-600">सुरक्षित पैकेजिंग के साथ 3-7 दिनों में पूरे भारत में डिलीवरी</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">तेज़ डिलीवरी</h3>
+                <p className="text-gray-600 dark:text-gray-300">सुरक्षित पैकेजिंग के साथ 3-7 दिनों में पूरे भारत में डिलीवरी</p>
               </motion.div>
 
               <motion.div
@@ -292,8 +292,8 @@ const CategoryLanding = () => {
                 className="text-center"
               >
                 <div className="text-5xl mb-4">🛡️</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">खरीदार सुरक्षा</h3>
-                <p className="text-gray-600">7 दिन की रिटर्न पॉलिसी और 100% सुरक्षित भुगतान</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">खरीदार सुरक्षा</h3>
+                <p className="text-gray-600 dark:text-gray-300">7 दिन की रिटर्न पॉलिसी और 100% सुरक्षित भुगतान</p>
               </motion.div>
             </div>
           </div>
@@ -315,7 +315,7 @@ const CategoryLanding = () => {
               </p>
               <Link
                 to={`/products?category=${categorySlug}`}
-                className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors duration-200 inline-block"
+                className="bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800 transition-colors duration-200 inline-block"
                 onClick={() => trackEvent('category_cta_clicked', { categorySlug })}
               >
                 अभी खरीदारी करें

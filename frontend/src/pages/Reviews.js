@@ -238,26 +238,26 @@ const Reviews = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
       <div className="max-w-6xl mx-auto px-6 py-8">
         
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-emerald-800 mb-4">
+          <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-4">
             ग्राहक समीक्षा
           </h1>
-          <p className="text-emerald-600 text-lg">
+          <p className="text-emerald-600 dark:text-emerald-400 text-lg">
             अपनी खरीदारी का अनुभव साझा करें और अन्य ग्राहकों की मदद करें
           </p>
         </div>
 
         {/* Filters and Controls */}
-        <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             {/* Filter Options */}
             <div>
-              <label className="block text-emerald-800 font-semibold mb-3">फ़िल्टर करें</label>
+              <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-3">फ़िल्टर करें</label>
               <div className="grid grid-cols-2 gap-2">
                 {filterOptions.map((option) => (
                   <button
@@ -266,7 +266,7 @@ const Reviews = () => {
                     className={`flex items-center space-x-2 p-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                       filter === option.id
                         ? 'bg-emerald-500 text-white'
-                        : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'
+                        : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-800'
                     }`}
                   >
                     <span>{option.icon}</span>
@@ -278,11 +278,11 @@ const Reviews = () => {
 
             {/* Sort Options */}
             <div>
-              <label className="block text-emerald-800 font-semibold mb-3">क्रमबद्ध करें</label>
+              <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-3">क्रमबद्ध करें</label>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
               >
                 {sortOptions.map(option => (
                   <option key={option.id} value={option.id}>
@@ -293,8 +293,8 @@ const Reviews = () => {
             </div>
 
             {/* Review Stats */}
-            <div className="bg-emerald-50 rounded-xl p-4">
-              <h3 className="font-semibold text-emerald-800 mb-2">आपकी समीक्षा</h3>
+            <div className="bg-emerald-50 dark:bg-emerald-900/30 rounded-xl p-4">
+              <h3 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-2">आपकी समीक्षा</h3>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
                   <span>कुल समीक्षा:</span>
@@ -332,7 +332,7 @@ const Reviews = () => {
             reviews.map((review) => (
               review.isPending ? (
                 /* Pending Review Card */
-                <div key={review.id} className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-500">
+                <div key={review.id} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-l-4 border-orange-500">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <img 
@@ -341,12 +341,12 @@ const Reviews = () => {
                         className="w-16 h-16 object-cover rounded-lg"
                       />
                       <div>
-                        <h3 className="font-semibold text-emerald-800">{review.productName}</h3>
-                        <p className="text-gray-600">
+                        <h3 className="font-semibold text-emerald-800 dark:text-emerald-200">{review.productName}</h3>
+                        <p className="text-gray-600 dark:text-gray-300">
                           खरीदारी की दिनांक: {new Date(review.orderDate).toLocaleDateString('hi-IN')}
                         </p>
                         <div className="flex items-center space-x-2 mt-2">
-                          <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs font-medium">
+                          <span className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-2 py-1 rounded-full text-xs font-medium">
                             ⏳ समीक्षा लिखना बाकी
                           </span>
                         </div>
@@ -376,10 +376,10 @@ const Reviews = () => {
           ) : (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">💬</div>
-              <h3 className="text-2xl font-bold text-emerald-800 mb-2">
+              <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                 {filter === 'pending' ? 'कोई समीक्षा लिखना बाकी नहीं' : 'कोई समीक्षा नहीं मिली'}
               </h3>
-              <p className="text-emerald-600 mb-6">
+              <p className="text-emerald-600 dark:text-emerald-400 mb-6">
                 {filter === 'pending' 
                   ? 'सभी खरीदे गए उत्पादों की समीक्षा लिख दी गई है।'
                   : 'पहली समीक्षा लिखने वाले बनें!'
@@ -398,12 +398,12 @@ const Reviews = () => {
         {/* Write Review Modal */}
         {showWriteReview && selectedProduct && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-emerald-800">समीक्षा लिखें</h2>
+                <h2 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200">समीक्षा लिखें</h2>
                 <button
                   onClick={() => setShowWriteReview(false)}
-                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                  className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-2xl"
                   disabled={submitting}
                 >
                   ×
@@ -411,15 +411,15 @@ const Reviews = () => {
               </div>
 
               {/* Product Info */}
-              <div className="flex items-center space-x-4 mb-6 p-4 bg-emerald-50 rounded-xl">
+              <div className="flex items-center space-x-4 mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
                 <img 
                   src={selectedProduct.productImage} 
                   alt={selectedProduct.productName}
                   className="w-16 h-16 object-cover rounded-lg"
                 />
                 <div>
-                  <h3 className="font-semibold text-emerald-800">{selectedProduct.productName}</h3>
-                  <p className="text-gray-600">
+                  <h3 className="font-semibold text-emerald-800 dark:text-emerald-200">{selectedProduct.productName}</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
                     खरीदारी की दिनांक: {new Date(selectedProduct.orderDate).toLocaleDateString('hi-IN')}
                   </p>
                 </div>
@@ -427,9 +427,9 @@ const Reviews = () => {
 
               {/* Rating */}
               <div className="mb-6">
-                <label className="block text-emerald-800 font-semibold mb-3">रेटिंग दें *</label>
+                <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-3">रेटिंग दें *</label>
                 {renderStars(newReview.rating, true, (rating) => setNewReview({...newReview, rating}))}
-                <p className="text-gray-600 text-sm mt-2">
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
                   {newReview.rating === 5 ? 'उत्कृष्ट' :
                    newReview.rating === 4 ? 'अच्छा' :
                    newReview.rating === 3 ? 'ठीक' :
@@ -439,27 +439,27 @@ const Reviews = () => {
 
               {/* Title */}
               <div className="mb-6">
-                <label className="block text-emerald-800 font-semibold mb-2">शीर्षक</label>
+                <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">शीर्षक</label>
                 <input
                   type="text"
                   placeholder="संक्षिप्त शीर्षक लिखें"
                   value={newReview.title}
                   onChange={(e) => setNewReview({...newReview, title: e.target.value})}
-                  className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                  className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                 />
               </div>
 
               {/* Comment */}
               <div className="mb-6">
-                <label className="block text-emerald-800 font-semibold mb-2">समीक्षा *</label>
+                <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2">समीक्षा *</label>
                 <textarea
                   placeholder="अपना अनुभव विस्तार से बताएं..."
                   value={newReview.comment}
                   onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
                   rows={5}
-                  className="w-full px-4 py-3 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none resize-none"
+                  className="w-full px-4 py-3 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100 resize-none"
                 ></textarea>
-                <p className="text-gray-500 text-sm mt-2">
+                <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
                   कम से कम 10 शब्द लिखें। अन्य ग्राहकों की मदद के लिए विस्तार से बताएं।
                 </p>
               </div>
@@ -469,7 +469,7 @@ const Reviews = () => {
                 <button
                   onClick={() => setShowWriteReview(false)}
                   disabled={submitting}
-                  className="px-6 py-3 border border-emerald-500 text-emerald-600 rounded-lg hover:bg-emerald-50 transition-colors duration-200 disabled:opacity-50"
+                  className="px-6 py-3 border border-emerald-500 text-emerald-600 dark:text-emerald-400 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-700 transition-colors duration-200 disabled:opacity-50"
                 >
                   रद्द करें
                 </button>

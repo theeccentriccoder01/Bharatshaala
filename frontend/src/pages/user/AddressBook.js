@@ -63,7 +63,7 @@ const AddressBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       let response;
       if (editingAddress) {
@@ -141,14 +141,14 @@ const AddressBook = () => {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50 p-6">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">एड्रेस बुक</h1>
-                <p className="text-gray-600">अपने डिलीवरी पते मैनेज करें</p>
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">एड्रेस बुक</h1>
+                <p className="text-gray-600 dark:text-gray-300">अपने डिलीवरी पते मैनेज करें</p>
               </div>
               <button
                 onClick={() => setShowAddForm(true)}
@@ -164,16 +164,16 @@ const AddressBook = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-lg shadow-lg p-6 mb-6"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6"
             >
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 {editingAddress ? 'पता एडिट करें' : 'नया पता जोड़ें'}
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Address Type */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     पता का प्रकार
                   </label>
                   <div className="flex space-x-4">
@@ -184,8 +184,8 @@ const AddressBook = () => {
                         onClick={() => setFormData({...formData, type: type.value})}
                         className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors duration-200 ${
                           formData.type === type.value
-                            ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
-                            : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                            ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
+                            : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                         }`}
                       >
                         <span>{type.icon}</span>
@@ -198,7 +198,7 @@ const AddressBook = () => {
                 {/* Name Fields */}
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       पहला नाम *
                     </label>
                     <input
@@ -206,11 +206,11 @@ const AddressBook = () => {
                       required
                       value={formData.firstName}
                       onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       अंतिम नाम *
                     </label>
                     <input
@@ -218,14 +218,14 @@ const AddressBook = () => {
                       required
                       value={formData.lastName}
                       onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                 </div>
 
                 {/* Phone */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     फोन नंबर *
                   </label>
                   <input
@@ -233,13 +233,13 @@ const AddressBook = () => {
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                   />
                 </div>
 
                 {/* Address Lines */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     पता लाइन 1 *
                   </label>
                   <input
@@ -248,12 +248,12 @@ const AddressBook = () => {
                     value={formData.addressLine1}
                     onChange={(e) => setFormData({...formData, addressLine1: e.target.value})}
                     placeholder="मकान नंबर, सड़क का नाम"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     पता लाइन 2
                   </label>
                   <input
@@ -261,14 +261,14 @@ const AddressBook = () => {
                     value={formData.addressLine2}
                     onChange={(e) => setFormData({...formData, addressLine2: e.target.value})}
                     placeholder="इलाका, कॉलोनी"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                   />
                 </div>
 
                 {/* City, State, Pincode */}
                 <div className="grid md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       शहर *
                     </label>
                     <input
@@ -276,18 +276,18 @@ const AddressBook = () => {
                       required
                       value={formData.city}
                       onChange={(e) => setFormData({...formData, city: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       राज्य *
                     </label>
                     <select
                       required
                       value={formData.state}
                       onChange={(e) => setFormData({...formData, state: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                     >
                       <option value="">राज्य चुनें</option>
                       {indianStates.map((state) => (
@@ -296,7 +296,7 @@ const AddressBook = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       पिनकोड *
                     </label>
                     <input
@@ -305,14 +305,14 @@ const AddressBook = () => {
                       pattern="[0-9]{6}"
                       value={formData.pincode}
                       onChange={(e) => setFormData({...formData, pincode: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                     />
                   </div>
                 </div>
 
                 {/* Landmark */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     लैंडमार्क (वैकल्पिक)
                   </label>
                   <input
@@ -320,7 +320,7 @@ const AddressBook = () => {
                     value={formData.landmark}
                     onChange={(e) => setFormData({...formData, landmark: e.target.value})}
                     placeholder="पास का प्रसिद्ध स्थान"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-gray-100"
                   />
                 </div>
 
@@ -333,7 +333,7 @@ const AddressBook = () => {
                     onChange={(e) => setFormData({...formData, isDefault: e.target.checked})}
                     className="mr-2"
                   />
-                  <label htmlFor="isDefault" className="text-sm text-gray-700">
+                  <label htmlFor="isDefault" className="text-sm text-gray-700 dark:text-gray-300">
                     इसे डिफ़ॉल्ट पता बनाएं
                   </label>
                 </div>
@@ -349,7 +349,7 @@ const AddressBook = () => {
                   <button
                     type="button"
                     onClick={resetForm}
-                    className="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+                    className="bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-6 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors duration-200"
                   >
                     कैंसल करें
                   </button>
@@ -361,10 +361,10 @@ const AddressBook = () => {
           {/* Address List */}
           <div className="space-y-4">
             {addresses.length === 0 ? (
-              <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center">
                 <div className="text-4xl mb-4">📍</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">कोई पता नहीं मिला</h3>
-                <p className="text-gray-600 mb-4">अपना पहला डिलीवरी पता जोड़ें</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">कोई पता नहीं मिला</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">अपना पहला डिलीवरी पता जोड़ें</p>
                 <button
                   onClick={() => setShowAddForm(true)}
                   className="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-colors duration-200"
@@ -379,7 +379,7 @@ const AddressBook = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-lg shadow-lg p-6"
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -387,17 +387,17 @@ const AddressBook = () => {
                         <span className="text-lg">
                           {addressTypes.find(t => t.value === address.type)?.icon}
                         </span>
-                        <span className="font-semibold text-gray-900">
+                        <span className="font-semibold text-gray-900 dark:text-gray-100">
                           {addressTypes.find(t => t.value === address.type)?.label}
                         </span>
                         {address.isDefault && (
-                          <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs">
+                          <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200 px-2 py-1 rounded-full text-xs">
                             डिफ़ॉल्ट
                           </span>
                         )}
                       </div>
-                      
-                      <div className="text-gray-700 space-y-1">
+
+                      <div className="text-gray-700 dark:text-gray-300 space-y-1">
                         <p className="font-medium">{address.firstName} {address.lastName}</p>
                         <p>{address.addressLine1}</p>
                         {address.addressLine2 && <p>{address.addressLine2}</p>}
@@ -406,18 +406,18 @@ const AddressBook = () => {
                         <p>फोन: {address.phone}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex space-x-2 ml-4">
                       <button
                         onClick={() => handleEdit(address)}
-                        className="text-blue-600 hover:text-blue-800 p-2"
+                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 p-2"
                         title="एडिट करें"
                       >
                         ✏️
                       </button>
                       <button
                         onClick={() => handleDelete(address.id)}
-                        className="text-red-600 hover:text-red-800 p-2"
+                        className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 p-2"
                         title="हटाएं"
                       >
                         🗑️

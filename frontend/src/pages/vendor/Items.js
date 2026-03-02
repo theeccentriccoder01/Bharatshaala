@@ -291,17 +291,17 @@ const VendorItems = () => {
 
   return (
     <React.StrictMode>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20">
         <div className="max-w-7xl mx-auto px-6 py-8">
           
           {/* Header */}
           <div className="mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-emerald-800 mb-2">
+                <h1 className="text-4xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">
                   उत्पाद प्रबंधन
                 </h1>
-                <p className="text-emerald-600 text-lg">
+                <p className="text-emerald-600 dark:text-emerald-400 text-lg">
                   अपने सभी उत्पादों को यहाँ देखें और प्रबंधित करें
                 </p>
               </div>
@@ -377,7 +377,7 @@ const VendorItems = () => {
               </div>
 
               {/* Filters and Search */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
                 
                 {/* Search Bar */}
                 <div className="mb-6">
@@ -387,7 +387,7 @@ const VendorItems = () => {
                       placeholder="उत्पाद खोजें..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full px-4 py-3 pl-12 border-2 border-emerald-200 rounded-xl focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-4 py-3 pl-12 border-2 border-emerald-200 dark:border-emerald-700 rounded-xl focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     />
                     <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -400,11 +400,11 @@ const VendorItems = () => {
                   
                   {/* Category Filter */}
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2 text-sm">श्रेणी</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2 text-sm">श्रेणी</label>
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="w-full px-3 py-2 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-3 py-2 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     >
                       {categories.map(category => (
                         <option key={category.id} value={category.id}>
@@ -416,11 +416,11 @@ const VendorItems = () => {
 
                   {/* Status Filter */}
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2 text-sm">स्थिति</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2 text-sm">स्थिति</label>
                     <select
                       value={selectedStatus}
                       onChange={(e) => setSelectedStatus(e.target.value)}
-                      className="w-full px-3 py-2 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-3 py-2 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     >
                       {statusOptions.map(status => (
                         <option key={status.id} value={status.id}>
@@ -432,11 +432,11 @@ const VendorItems = () => {
 
                   {/* Sort Filter */}
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2 text-sm">क्रमबद्ध करें</label>
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2 text-sm">क्रमबद्ध करें</label>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="w-full px-3 py-2 border-2 border-emerald-200 rounded-lg focus:border-emerald-500 focus:outline-none"
+                      className="w-full px-3 py-2 border-2 border-emerald-200 dark:border-emerald-700 rounded-lg focus:border-emerald-500 focus:outline-none dark:bg-gray-700 dark:text-gray-100"
                     >
                       {sortOptions.map(option => (
                         <option key={option.id} value={option.id}>
@@ -448,14 +448,14 @@ const VendorItems = () => {
 
                   {/* View Mode */}
                   <div>
-                    <label className="block text-emerald-800 font-semibold mb-2 text-sm">व्यू मोड</label>
-                    <div className="flex bg-emerald-100 rounded-lg p-1">
+                    <label className="block text-emerald-800 dark:text-emerald-200 font-semibold mb-2 text-sm">व्यू मोड</label>
+                    <div className="flex bg-emerald-100 dark:bg-gray-800 rounded-lg p-1">
                       <button
                         onClick={() => setViewMode('grid')}
                         className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                           viewMode === 'grid' 
                             ? 'bg-emerald-500 text-white' 
-                            : 'text-emerald-600 hover:bg-emerald-200'
+                            : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-emerald-800'
                         }`}
                       >
                         ⊞ ग्रिड
@@ -465,7 +465,7 @@ const VendorItems = () => {
                         className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                           viewMode === 'list' 
                             ? 'bg-emerald-500 text-white' 
-                            : 'text-emerald-600 hover:bg-emerald-200'
+                            : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-emerald-800'
                         }`}
                       >
                         ☰ लिस्ट
@@ -476,9 +476,9 @@ const VendorItems = () => {
 
                 {/* Bulk Actions */}
                 {showBulkActions && (
-                  <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+                  <div className="flex items-center justify-between bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-xl p-4">
                     <div className="flex items-center space-x-3">
-                      <span className="text-emerald-800 font-medium">
+                      <span className="text-emerald-800 dark:text-emerald-200 font-medium">
                         {selectedItems.length} उत्पाद चयनित
                       </span>
                       <button
@@ -486,7 +486,7 @@ const VendorItems = () => {
                           setSelectedItems([]);
                           setShowBulkActions(false);
                         }}
-                        className="text-emerald-600 hover:text-emerald-700 text-sm"
+                        className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-sm"
                       >
                         चयन हटाएं
                       </button>
@@ -516,7 +516,7 @@ const VendorItems = () => {
 
                 {/* Select All */}
                 <div className="flex items-center justify-between">
-                  <div className="text-emerald-600 font-medium">
+                  <div className="text-emerald-600 dark:text-emerald-400 font-medium">
                     {filteredItems.length} उत्पाद मिले
                   </div>
                   {filteredItems.length > 0 && (
@@ -525,9 +525,9 @@ const VendorItems = () => {
                         type="checkbox"
                         checked={selectedItems.length === filteredItems.length}
                         onChange={handleSelectAll}
-                        className="w-4 h-4 text-emerald-600"
+                        className="w-4 h-4 text-emerald-600 dark:text-emerald-400"
                       />
-                      <span className="text-emerald-700 text-sm">सभी चुनें</span>
+                      <span className="text-emerald-700 dark:text-emerald-300 text-sm">सभी चुनें</span>
                     </label>
                   )}
                 </div>
@@ -556,8 +556,8 @@ const VendorItems = () => {
                 /* No Items */
                 <div className="text-center py-20">
                   <div className="text-6xl mb-4">📦</div>
-                  <h3 className="text-2xl font-bold text-emerald-800 mb-2">कोई उत्पाद नहीं मिला</h3>
-                  <p className="text-emerald-600 mb-6">
+                  <h3 className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2">कोई उत्पाद नहीं मिला</h3>
+                  <p className="text-emerald-600 dark:text-emerald-400 mb-6">
                     {items.length === 0 
                       ? 'अभी तक कोई उत्पाद नहीं जोड़ा गया है।' 
                       : 'आपके फ़िल्टर के अनुसार कोई उत्पाद नहीं मिला।'

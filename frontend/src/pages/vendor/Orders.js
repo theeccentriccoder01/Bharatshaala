@@ -88,7 +88,7 @@ const VendorOrders = () => {
               {orderData.map((order, index) => (
                 <div
                   key={index}
-                  className="flex justify-between relative bg-white p-5 rounded-2xl"
+                  className="flex justify-between relative bg-white dark:bg-gray-800 p-5 rounded-2xl"
                 >
                   <div className="text-gray-600">
                     <Link to="/order" className="font-bharatshaala text-xl ml-5">
@@ -104,7 +104,7 @@ const VendorOrders = () => {
                       <p>Customer Email: {order.CustomerContact}</p>
                     </div>
                   </div>
-                  <h1 className="font-bharatshaala text-2xl text-gray-800 relative bottom-0.5 right-2">
+                  <h1 className="font-bharatshaala text-2xl text-gray-800 dark:text-gray-100 relative bottom-0.5 right-2">
                     ₹{order.Price * order.Quantity}
                   </h1>
                 </div>

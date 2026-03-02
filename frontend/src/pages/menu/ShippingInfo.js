@@ -104,7 +104,7 @@ const ShippingInfo = () => {
         <link rel="canonical" href="https://bharatshaala.com/shipping-info" />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Header */}
         <section className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-16">
           <div className="container mx-auto px-6">
@@ -123,10 +123,10 @@ const ShippingInfo = () => {
         </section>
 
         {/* Shipping Options */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">डिलीवरी विकल्प</h2>
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">डिलीवरी विकल्प</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {shippingOptions.map((option, index) => (
                   <motion.div
@@ -134,12 +134,12 @@ const ShippingInfo = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-green-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-200"
+                    className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-200"
                   >
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{option.type}</h3>
-                    <div className="text-3xl font-bold text-green-600 mb-2">{option.time}</div>
-                    <div className="text-lg font-semibold text-gray-700 mb-3">{option.cost}</div>
-                    <p className="text-gray-600 text-sm">{option.description}</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{option.type}</h3>
+                    <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">{option.time}</div>
+                    <div className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">{option.cost}</div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">{option.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -148,10 +148,10 @@ const ShippingInfo = () => {
         </section>
 
         {/* Delivery Process */}
-        <section className="py-12 bg-gray-50">
+        <section className="py-12 bg-gray-50 dark:bg-gray-900">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">डिलीवरी प्रक्रिया</h2>
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">डिलीवरी प्रक्रिया</h2>
               <div className="grid md:grid-cols-5 gap-4">
                 {deliveryProcess.map((process, index) => (
                   <motion.div
@@ -165,8 +165,8 @@ const ShippingInfo = () => {
                       {index + 1}
                     </div>
                     <h3 className="text-lg font-semibold mb-2">{process.step}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{process.description}</p>
-                    <p className="text-green-600 font-medium text-sm">{process.time}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">{process.description}</p>
+                    <p className="text-green-600 dark:text-green-400 font-medium text-sm">{process.time}</p>
                   </motion.div>
                 ))}
               </div>
@@ -175,17 +175,17 @@ const ShippingInfo = () => {
         </section>
 
         {/* Tracking Info */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-green-50 rounded-lg p-8"
+                className="bg-green-50 dark:bg-green-900/20 rounded-lg p-8"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">ऑर्डर ट्रैकिंग</h2>
-                <p className="text-gray-700 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">ऑर्डर ट्रैकिंग</h2>
+                <p className="text-gray-700 dark:text-gray-300 mb-6">
                   ऑर्डर कन्फर्मेशन के बाद आपको ट्रैकिंग नंबर मिलेगा। इन स्टेप्स से आप अपने ऑर्डर को ट्रैक कर सकते हैं:
                 </p>
                 <div className="space-y-3">
@@ -194,7 +194,7 @@ const ShippingInfo = () => {
                       <span className="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                         {index + 1}
                       </span>
-                      <span className="text-gray-700">{step}</span>
+                      <span className="text-gray-700 dark:text-gray-300">{step}</span>
                     </div>
                   ))}
                 </div>
@@ -204,10 +204,10 @@ const ShippingInfo = () => {
         </section>
 
         {/* Courier Partners */}
-        <section className="py-12 bg-gray-50">
+        <section className="py-12 bg-gray-50 dark:bg-gray-900">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">हमारे कूरियर पार्टनर्स</h2>
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">हमारे कूरियर पार्टनर्स</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {courierPartners.map((partner, index) => (
                   <motion.div
@@ -215,11 +215,11 @@ const ShippingInfo = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-white rounded-lg p-6 text-center shadow-lg"
+                    className="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-lg"
                   >
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{partner.coverage}</p>
-                    <p className="text-green-600 font-medium text-sm">{partner.specialty}</p>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{partner.name}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">{partner.coverage}</p>
+                    <p className="text-green-600 dark:text-green-400 font-medium text-sm">{partner.specialty}</p>
                   </motion.div>
                 ))}
               </div>
@@ -228,10 +228,10 @@ const ShippingInfo = () => {
         </section>
 
         {/* Special Handling */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">स्पेशल हैंडलिंग</h2>
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">स्पेशल हैंडलिंग</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {specialHandling.map((handling, index) => (
                   <motion.div
@@ -239,11 +239,11 @@ const ShippingInfo = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-green-50 rounded-lg p-6"
+                    className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6"
                   >
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{handling.category}</h3>
-                    <p className="text-gray-700 mb-3">{handling.handling}</p>
-                    <p className="text-green-600 font-medium text-sm">{handling.items}</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{handling.category}</h3>
+                    <p className="text-gray-700 dark:text-gray-300 mb-3">{handling.handling}</p>
+                    <p className="text-green-600 dark:text-green-400 font-medium text-sm">{handling.items}</p>
                   </motion.div>
                 ))}
               </div>
@@ -267,7 +267,7 @@ const ShippingInfo = () => {
                 <div className="flex flex-col md:flex-row gap-4 justify-center">
                   <a
                     href="mailto:shipping@bharatshaala.com"
-                    className="bg-white text-green-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                    className="bg-white dark:bg-gray-800 text-green-600 dark:text-green-400 px-6 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
                   >
                     ईमेल करें
                   </a>

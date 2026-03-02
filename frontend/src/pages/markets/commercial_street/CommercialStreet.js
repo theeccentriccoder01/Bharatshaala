@@ -187,8 +187,8 @@ const CommercialStreet = () => {
     { id: 'books', name: 'किताबें', icon: '📚', count: shops.filter(s => s.category === 'books').length }
   ];
 
-  const filteredShops = activeFilter === 'all' 
-    ? shops 
+  const filteredShops = activeFilter === 'all'
+    ? shops
     : shops.filter(shop => shop.category === activeFilter);
 
   if (loading) {
@@ -197,46 +197,46 @@ const CommercialStreet = () => {
 
   return (
     <React.StrictMode>
-      <div className='min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100 pt-20'>
+      <div className='min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 via-green-50 dark:via-gray-900 to-emerald-100 dark:to-gray-800 pt-20'>
 
         {/* Hero Section */}
         <div className='relative overflow-hidden'>
           <div className='max-w-6xl mx-auto px-6 py-16 relative z-10'>
             <div className='text-center mb-16'>
-              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-gray-100 to-slate-100 rounded-full px-6 py-3 mb-6 shadow-lg border border-gray-200'>
+              <div className='inline-flex items-center space-x-3 bg-gradient-to-r from-gray-100 dark:from-gray-800 to-slate-100 dark:to-gray-800 rounded-full px-6 py-3 mb-6 shadow-lg border border-gray-200 dark:border-gray-700'>
                 <span className='text-2xl'>🏙️</span>
-                <span className='text-gray-800 font-bold'>IT शहर का दिल</span>
+                <span className='text-gray-800 dark:text-gray-100 font-bold'>IT शहर का दिल</span>
               </div>
-              
+
               <h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-600 via-slate-500 to-gray-700 bg-clip-text text-transparent mb-4 leading-tight'>
                 {marketInfo.nameHindi}
               </h1>
-              <h2 className='text-2xl md:text-3xl text-emerald-700 font-semibold mb-6'>
+              <h2 className='text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 font-semibold mb-6'>
                 Commercial Street, {marketInfo.cityHindi}
               </h2>
-              
+
               <p className='text-xl text-emerald-600 max-w-4xl mx-auto leading-relaxed mb-8'>
-                भारत की IT राजधानी बेंगलुरु का यह प्रसिद्ध शॉपिंग स्ट्रीट पुराने और नए का संगम है। 
-                यहाँ आपको पारंपरिक कांचीपुरम सिल्क से लेकर मॉडर्न फैशन तक, हर चीज़ मिलेगी। 
+                भारत की IT राजधानी बेंगलुरु का यह प्रसिद्ध शॉपिंग स्ट्रीट पुराने और नए का संगम है।
+                यहाँ आपको पारंपरिक कांचीपुरम सिल्क से लेकर मॉडर्न फैशन तक, हर चीज़ मिलेगी।
                 MG Road के पास स्थित यह बाजार टेक सिटी के युवाओं और पारंपरिक खरीदारों दोनों की पसंद है।
               </p>
 
               <div className='grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12'>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200'>
-                  <div className='text-2xl font-bold text-gray-600'>{marketInfo.established}</div>
-                  <div className='text-gray-600 text-sm font-medium'>स्थापना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700'>
+                  <div className='text-2xl font-bold text-gray-600 dark:text-gray-300'>{marketInfo.established}</div>
+                  <div className='text-gray-600 dark:text-gray-300 text-sm font-medium'>स्थापना</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200'>
-                  <div className='text-2xl font-bold text-gray-600'>{marketInfo.totalShops.toLocaleString()}+</div>
-                  <div className='text-gray-600 text-sm font-medium'>कुल दुकानें</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700'>
+                  <div className='text-2xl font-bold text-gray-600 dark:text-gray-300'>{marketInfo.totalShops.toLocaleString()}+</div>
+                  <div className='text-gray-600 dark:text-gray-300 text-sm font-medium'>कुल दुकानें</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200'>
-                  <div className='text-2xl font-bold text-gray-600'>{marketInfo.totalVendors}+</div>
-                  <div className='text-gray-600 text-sm font-medium'>विक्रेता</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700'>
+                  <div className='text-2xl font-bold text-gray-600 dark:text-gray-300'>{marketInfo.totalVendors}+</div>
+                  <div className='text-gray-600 dark:text-gray-300 text-sm font-medium'>विक्रेता</div>
                 </div>
-                <div className='text-center bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200'>
-                  <div className='text-2xl font-bold text-gray-600'>141</div>
-                  <div className='text-gray-600 text-sm font-medium'>साल पुराना</div>
+                <div className='text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700'>
+                  <div className='text-2xl font-bold text-gray-600 dark:text-gray-300'>141</div>
+                  <div className='text-gray-600 dark:text-gray-300 text-sm font-medium'>साल पुराना</div>
                 </div>
               </div>
             </div>
@@ -245,8 +245,8 @@ const CommercialStreet = () => {
 
         {/* Category Filter */}
         <div className='max-w-7xl mx-auto px-6 mb-12'>
-          <div className='bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
-            <h3 className='text-xl font-bold text-emerald-800 mb-4 text-center'>दुकान श्रेणियां</h3>
+          <div className='bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg'>
+            <h3 className='text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-4 text-center'>दुकान श्रेणियां</h3>
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3'>
               {categories.map((category) => (
                 <button
@@ -255,14 +255,14 @@ const CommercialStreet = () => {
                   className={`flex flex-col items-center space-y-2 p-4 rounded-xl transition-all duration-300 ${
                     activeFilter === category.id
                       ? 'bg-gradient-to-br from-gray-500 to-slate-500 text-white shadow-lg scale-105'
-                      : 'bg-white text-emerald-600 hover:bg-emerald-50 border border-emerald-200 hover:border-emerald-300'
+                      : 'bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-300'
                   }`}
                 >
                   <span className='text-2xl'>{category.icon}</span>
                   <span className='font-medium text-sm text-center leading-tight'>{category.name}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activeFilter === category.id 
-                      ? 'bg-white/20 text-white' 
+                    activeFilter === category.id
+                      ? 'bg-white/20 text-white'
                       : 'bg-emerald-100 text-emerald-600'
                   }`}>
                     {category.count}
@@ -278,8 +278,8 @@ const CommercialStreet = () => {
           <div className='text-center mb-12'>
             <h3 className='text-3xl md:text-4xl font-bold text-emerald-800 mb-4'>प्रमुख दुकानें</h3>
             <p className='text-xl text-emerald-600'>
-              {activeFilter === 'all' 
-                ? 'कमर्शियल स्ट्रीट की सभी प्रसिद्ध दुकानें' 
+              {activeFilter === 'all'
+                ? 'कमर्शियल स्ट्रीट की सभी प्रसिद्ध दुकानें'
                 : `${categories.find(c => c.id === activeFilter)?.name} की दुकानें`
               }
             </p>
@@ -301,8 +301,8 @@ const CommercialStreet = () => {
           ) : (
             <div className='text-center py-20'>
               <div className='text-6xl mb-4'>🔍</div>
-              <h3 className='text-2xl font-bold text-emerald-800 mb-2'>कोई दुकान नहीं मिली</h3>
-              <p className='text-emerald-600'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
+              <h3 className='text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-2'>कोई दुकान नहीं मिली</h3>
+              <p className='text-emerald-600 dark:text-emerald-400'>इस श्रेणी में कोई दुकान उपलब्ध नहीं है</p>
             </div>
           )}
         </div>

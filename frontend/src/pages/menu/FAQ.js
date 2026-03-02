@@ -241,9 +241,9 @@ const FAQ = () => {
 
   const filteredFAQs = React.useMemo(() => {
     if (!debouncedSearch) return faqData[activeCategory] || [];
-    
+
     const allFAQs = Object.values(faqData).flat();
-    return allFAQs.filter(faq => 
+    return allFAQs.filter(faq =>
       faq.question.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       faq.answer.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       faq.tags.some(tag => tag.toLowerCase().includes(debouncedSearch.toLowerCase()))
@@ -265,12 +265,12 @@ const FAQ = () => {
 
   const handleVote = (id, isHelpful) => {
     if (votedItems.has(id)) return;
-    
+
     setVotedItems(new Set([...votedItems, id]));
-    trackEvent('faq_voted', { 
-      questionId: id, 
+    trackEvent('faq_voted', {
+      questionId: id,
       isHelpful,
-      category: activeCategory 
+      category: activeCategory
     });
   };
 
@@ -287,8 +287,8 @@ const FAQ = () => {
         <meta name="keywords" content="FAQ, सवाल, जवाब, सहायता, भारतशाला" />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-orange-50">
-        
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 dark:from-gray-900 to-orange-50 dark:to-gray-800">
+
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-emerald-600 to-orange-500 text-white py-16 pt-32">
           <div className="container mx-auto px-6 text-center">
@@ -309,7 +309,7 @@ const FAQ = () => {
         </section>
 
         {/* Search Section */}
-        <section className="py-12 bg-white shadow-sm">
+        <section className="py-12 bg-white dark:bg-gray-800 shadow-sm">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl mx-auto">
               <div className="relative">
@@ -318,12 +318,12 @@ const FAQ = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="सवाल खोजें... जैसे 'ऑर्डर ट्रैक करना' या 'पेमेंट'"
-                  className="w-full px-6 py-4 text-lg border-2 border-emerald-200 rounded-2xl focus:border-emerald-500 focus:outline-none pl-14"
+                  className="w-full px-6 py-4 text-lg border-2 border-emerald-200 dark:border-emerald-700 rounded-2xl focus:border-emerald-500 focus:outline-none pl-14 dark:bg-gray-700 dark:text-gray-100"
                 />
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl">🔍</div>
               </div>
               {debouncedSearch && (
-                <p className="mt-4 text-emerald-600 text-center">
+                <p className="mt-4 text-emerald-600 dark:text-emerald-400 text-center">
                   "{debouncedSearch}" के लिए {filteredFAQs.length} परिणाम मिले
                 </p>
               )}
@@ -333,11 +333,11 @@ const FAQ = () => {
 
         <div className="container mx-auto px-6 py-12">
           <div className="grid lg:grid-cols-4 gap-8">
-            
+
             {/* Category Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
-                <h2 className="text-xl font-bold text-emerald-800 mb-6">श्रेणियां</h2>
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 sticky top-6">
+                <h2 className="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-6">श्रेणियां</h2>
                 <div className="space-y-2">
                   {categories.map((category) => (
                     <button
@@ -350,7 +350,7 @@ const FAQ = () => {
                       className={`w-full text-left p-4 rounded-xl transition-all duration-200 flex items-center space-x-3 ${
                         activeCategory === category.id && !debouncedSearch
                           ? 'bg-gradient-to-r from-emerald-500 to-orange-500 text-white'
-                          : 'hover:bg-emerald-50 text-gray-700 hover:text-emerald-700'
+                          : 'hover:bg-emerald-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-emerald-700 dark:hover:text-emerald-300'
                       }`}
                     >
                       <span className="text-xl">{category.icon}</span>
@@ -360,9 +360,9 @@ const FAQ = () => {
                 </div>
 
                 {/* Quick Stats */}
-                <div className="mt-8 p-4 bg-emerald-50 rounded-xl">
-                  <h3 className="font-semibold text-emerald-800 mb-2">आंकड़े</h3>
-                  <div className="text-sm text-emerald-600 space-y-1">
+                <div className="mt-8 p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
+                  <h3 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-2">आंकड़े</h3>
+                  <div className="text-sm text-emerald-600 dark:text-emerald-400 space-y-1">
                     <p>✓ 95% सवालों का तुरंत जवाब</p>
                     <p>⚡ औसत रिस्पांस टाइम: 2 मिनट</p>
                     <p>👥  50,000+ संतुष्ट ग्राहक</p>
@@ -373,12 +373,12 @@ const FAQ = () => {
 
             {/* FAQ Content */}
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+
                 {/* Header */}
                 <div className="bg-gradient-to-r from-emerald-500 to-orange-500 text-white p-6">
                   <h2 className="text-2xl font-bold">
-                    {debouncedSearch ? 'खोज परिणाम' : 
+                    {debouncedSearch ? 'खोज परिणाम' :
                      categories.find(c => c.id === activeCategory)?.name}
                   </h2>
                   <p className="opacity-90 mt-2">
@@ -387,7 +387,7 @@ const FAQ = () => {
                 </div>
 
                 {/* FAQ Items */}
-                <div className="divide-y divide-gray-100">
+                <div className="divide-y divide-gray-100 dark:divide-gray-700">
                   <AnimatePresence>
                     {filteredFAQs.map((faq, index) => (
                       <motion.div
@@ -396,20 +396,20 @@ const FAQ = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3, delay: index * 0.05 }}
-                        className="p-6 hover:bg-gray-50 transition-colors duration-200"
+                        className="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                       >
                         <button
                           onClick={() => toggleExpanded(faq.id)}
                           className="w-full text-left focus:outline-none"
                         >
                           <div className="flex items-center justify-between">
-                            <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 pr-4">
                               {faq.question}
                             </h3>
                             <div className={`transform transition-transform duration-200 ${
                               expandedItems.has(faq.id) ? 'rotate-180' : ''
                             }`}>
-                              <span className="text-emerald-500 text-xl">▼</span>
+                              <span className="text-emerald-500 dark:text-emerald-400 text-xl">▼</span>
                             </div>
                           </div>
                         </button>
@@ -423,7 +423,7 @@ const FAQ = () => {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="mt-4 text-gray-700 leading-relaxed">
+                              <div className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
                                 {faq.answer}
                               </div>
 
@@ -432,7 +432,7 @@ const FAQ = () => {
                                 {faq.tags.map((tag) => (
                                   <span
                                     key={tag}
-                                    className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm"
+                                    className="bg-emerald-100 dark:bg-gray-800 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-sm"
                                   >
                                     #{tag}
                                   </span>
@@ -442,12 +442,12 @@ const FAQ = () => {
                               {/* Helpfulness */}
                               <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
                                 <div className="flex items-center space-x-4">
-                                  <span className="text-sm text-gray-600">यह जवाब सहायक था?</span>
+                                  <span className="text-sm text-gray-600 dark:text-gray-300">यह जवाब सहायक था?</span>
                                   <div className="flex space-x-2">
                                     <button
                                       onClick={() => handleVote(faq.id, true)}
                                       disabled={votedItems.has(faq.id)}
-                                      className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                                      className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                                     >
                                       <span>👍</span>
                                       <span className="text-sm">{faq.helpful}</span>
@@ -455,16 +455,16 @@ const FAQ = () => {
                                     <button
                                       onClick={() => handleVote(faq.id, false)}
                                       disabled={votedItems.has(faq.id)}
-                                      className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                                      className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                                     >
                                       <span>👎</span>
                                       <span className="text-sm">{faq.notHelpful}</span>
                                     </button>
                                   </div>
                                 </div>
-                                
+
                                 {votedItems.has(faq.id) && (
-                                  <span className="text-emerald-600 text-sm">✓ धन्यवाद!</span>
+                                  <span className="text-emerald-600 dark:text-emerald-400 text-sm">✓ धन्यवाद!</span>
                                 )}
                               </div>
                             </motion.div>
@@ -479,10 +479,10 @@ const FAQ = () => {
                 {filteredFAQs.length === 0 && (
                   <div className="p-12 text-center">
                     <div className="text-6xl mb-4">🤔</div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
                       कोई परिणाम नहीं मिला
                     </h3>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-gray-600 dark:text-gray-300 mb-6">
                       कृपया अलग कीवर्ड से खोजें या किसी अन्य श्रेणी में देखें
                     </p>
                     <button
@@ -513,18 +513,18 @@ const FAQ = () => {
               <div className="flex flex-col md:flex-row gap-4 justify-center max-w-md mx-auto">
                 <button
                   onClick={handleContactSupport}
-                  className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-200"
+                  className="bg-white dark:bg-gray-800 text-emerald-600 dark:text-emerald-400 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
                 >
                   सपोर्ट से संपर्क करें
                 </button>
                 <button
                   onClick={() => window.open('https://wa.me/919876543210', '_blank')}
-                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-emerald-600 transition-all duration-200"
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200"
                 >
                   व्हाट्सऐप चैट
                 </button>
               </div>
-              
+
               <div className="mt-8 grid md:grid-cols-3 gap-6 max-w-2xl mx-auto">
                 <div className="text-center">
                   <div className="text-2xl mb-2">📧</div>
