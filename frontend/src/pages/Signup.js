@@ -31,10 +31,6 @@ const Signup = () => {
     lowercase: false
   });
 
-  const [otp, setOTP] = useState('');
-  const [correctOTP, setCorrectOTP] = useState('');
-  const [otpSent, setOtpSent] = useState(false);
-  const [, setOtpValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
@@ -44,8 +40,7 @@ const Signup = () => {
 
   const steps = [
     { id: 1, title: 'खाता प्रकार', icon: '👤' },
-    { id: 2, title: 'व्यक्तिगत जानकारी', icon: '📝' },
-    { id: 3, title: 'सत्यापन', icon: '✅' }
+    { id: 2, title: 'व्यक्तिगत जानकारी', icon: '📝' }
   ];
 
   useEffect(() => {
@@ -53,26 +48,12 @@ const Signup = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const validateEmail = async (email) => {
+  const validateEmail = (email) => {
     if (!email) {
       return "कृपया ईमेल दर्ज करें";
     }
-
     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!isValid) {
-      return "अमान्य ईमेल प्रारूप";
-    }
-
-    try {
-      const response = await axios.post("/AuthenticateEmail", { email });
-      if (response.data.exists) {
-        return response.data.message;
-      } else {
-        return '';
-      }
-    } catch (error) {
-      return "ईमेल जांचने में त्रुटि";
-    }
+    return isValid ? '' : "अमान्य ईमेल प्रारूप";
   };
 
   const validatePassword = (password) => {
@@ -106,18 +87,9 @@ const Signup = () => {
     return '';
   };
 
-  const validateInvitationCode = async (code) => {
+  const validateInvitationCode = (code) => {
     if (formData.accountType === "vendor" && !code) {
       return "कृपया निमंत्रण कोड दर्ज करें";
-    }
-
-    if (code && formData.accountType === "vendor") {
-      try {
-        const response = await axios.post("/AuthenticateInvitationCode", { value: code });
-        return response.data.exists ? "" : response.data.message;
-      } catch (error) {
-        return "निमंत्रण कोड जांचने में त्रुटि";
-      }
     }
     return '';
   };
@@ -129,7 +101,7 @@ const Signup = () => {
     let error = '';
     switch (field) {
       case 'email':
-        error = await validateEmail(value);
+        error = validateEmail(value);
         break;
       case 'password':
         error = validatePassword(value);
@@ -144,8 +116,9 @@ const Signup = () => {
         error = value !== formData.password ? 'पासवर्ड मैच नहीं करता' : '';
         break;
       case 'invitationCode':
-        error = await validateInvitationCode(value);
+        error = validateInvitationCode(value);
         break;
+
       default:
         break;
     }
@@ -153,53 +126,16 @@ const Signup = () => {
     setErrors(prev => ({ ...prev, [field]: error }));
   };
 
-  const sendOTP = async () => {
-    const phoneError = validatePhoneNumber(formData.phoneNumber);
-    if (phoneError) {
-      setErrors(prev => ({ ...prev, phoneNumber: phoneError }));
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const response = await axios.post("/SendOTP", {
-        name: formData.name,
-        phoneNumber: formData.phoneNumber
-      });
-
-      if (response.data.success) {
-        setOtpSent(true);
-        setCorrectOTP(response.data.otp);
-        setErrors(prev => ({ ...prev, phoneNumber: '' }));
-      } else {
-        setErrors(prev => ({ ...prev, phoneNumber: "OTP भेजने में समस्या" }));
-      }
-    } catch (error) {
-      setErrors(prev => ({ ...prev, phoneNumber: "OTP भेजने में त्रुटि" }));
-    }
-    setIsLoading(false);
-  };
-
-  const verifyOTP = async () => {
-    if (otp === correctOTP) {
-      setOtpValid(true);
-      setCurrentStep(3);
-      await signup();
-    } else {
-      setErrors(prev => ({ ...prev, otp: "गलत OTP" }));
-    }
-  };
-
   const signup = async () => {
     setIsLoading(true);
     try {
       // eslint-disable-next-line no-unused-vars
-      const _response = await axios.post("/Signup", {
+      const _response = await axios.post("/auth/register", {
         email: formData.email,
         name: formData.name,
         password: formData.password,
         accountType: formData.accountType,
-        phoneNumber: formData.phoneNumber,
+        phone: formData.phoneNumber,
         invitationCode: formData.invitationCode
       });
 
@@ -436,35 +372,7 @@ const Signup = () => {
                   {errors.phoneNumber && (
                     <p className="text-red-500 text-sm mt-2">{errors.phoneNumber}</p>
                   )}
-
-                  <button
-                    onClick={sendOTP}
-                    disabled={!validations.validPhoneNumber || otpSent}
-                    className="mt-3 bg-emerald-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {otpSent ? 'OTP भेजा गया ✓' : 'OTP भेजें'}
-                  </button>
                 </div>
-
-                {/* OTP Verification */}
-                {otpSent && (
-                  <div>
-                    <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
-                      OTP दर्ज करें
-                    </label>
-                    <input
-                      type="text"
-                      value={otp}
-                      onChange={(e) => setOTP(e.target.value)}
-                      className="w-full px-4 py-4 border-2 border-emerald-200 dark:border-gray-600 rounded-xl focus:border-emerald-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg text-center tracking-widest"
-                      placeholder="6 अंकों का OTP"
-                      maxLength={6}
-                    />
-                    {errors.otp && (
-                      <p className="text-red-500 text-sm mt-2">{errors.otp}</p>
-                    )}
-                  </div>
-                )}
 
                 {/* Password */}
                 <div>
@@ -536,8 +444,8 @@ const Signup = () => {
                     पीछे
                   </button>
                   <button
-                    onClick={otpSent ? verifyOTP : sendOTP}
-                    disabled={isLoading || !validations.validPassword || !formData.name || !formData.email || errors.repeatPassword}
+                    onClick={signup}
+                    disabled={isLoading || !validations.validPassword || !formData.name || !formData.email || !!errors.repeatPassword}
                     className="flex-1 bg-gradient-to-r from-emerald-500 to-green-500 text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:from-emerald-600 hover:to-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? (
@@ -545,7 +453,7 @@ const Signup = () => {
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                         <span>प्रतीक्षा करें...</span>
                       </div>
-                    ) : otpSent ? 'OTP सत्यापित करें' : 'OTP भेजें'}
+                    ) : 'साइन अप करें'}
                   </button>
                 </div>
               </div>

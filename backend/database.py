@@ -4,8 +4,22 @@ import datetime
 import hashlib
 import uuid
 import logging
+import os
 from contextlib import contextmanager
+from functools import wraps
 from flask_bcrypt import Bcrypt
+
+# Import new modules for optimization
+from .cache import cache, cached, categories_cache, products_cache
+from .db_utils import (
+    get_pooled_connection, 
+    transaction, 
+    with_retry, 
+    QueryLogger,
+    query_logger,
+    enable_query_logging,
+    get_connection_pool
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 import "./index.css";
 import { ThemeProvider } from "@material-tailwind/react";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+// All backend routes are under /v1 — point axios there globally
+axios.defaults.baseURL = '/v1';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
