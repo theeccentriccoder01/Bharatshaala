@@ -80,7 +80,6 @@ class ConnectionPool:
 
 
 # Global connection pool instance
-from .database import DATABASE_NAME
 _connection_pool = None
 
 
@@ -88,6 +87,7 @@ def get_connection_pool() -> ConnectionPool:
     """Get or create the global connection pool"""
     global _connection_pool
     if _connection_pool is None:
+        from .database import DATABASE_NAME
         _connection_pool = ConnectionPool(
             DATABASE_NAME,
             max_connections=5

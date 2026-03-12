@@ -78,14 +78,14 @@ export const AuthProvider = ({ children }) => {
       }
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      const response = await axios.get('/auth/me');
+      const response = await axios.get('/user/profile');
       
       if (response.data.success) {
         dispatch({ 
           type: 'AUTH_SUCCESS', 
           payload: {
-            user: response.data.user,
-            accountType: response.data.accountType
+            user: response.data.data,
+            accountType: response.data.data.role
           }
         });
       } else {
@@ -106,16 +106,17 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post('/auth/login', credentials);
       
       if (response.data.success) {
-        const { token, user, accountType } = response.data;
+        const { user, access_token } = response.data.data;
+        const accountType = user.role;
         
         // Store token based on account type
         if (accountType === 'vendor') {
-          localStorage.setItem('vendorToken', token);
+          localStorage.setItem('vendorToken', access_token);
         } else {
-          localStorage.setItem('authToken', token);
+          localStorage.setItem('authToken', access_token);
         }
         
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
         
         dispatch({ 
           type: 'AUTH_SUCCESS', 
@@ -137,7 +138,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (userData) => {
     dispatch({ type: 'AUTH_START' });
     try {
-      const response = await axios.post('/auth/signup', userData);
+      const response = await axios.post('/auth/register', userData);
       
       if (response.data.success) {
         return { success: true, message: 'खाता सफलतापूर्वक बनाया गया' };
@@ -161,10 +162,10 @@ export const AuthProvider = ({ children }) => {
 
   const updateProfile = async (profileData) => {
     try {
-      const response = await axios.put('/auth/profile', profileData);
+      const response = await axios.put('/user/profile', profileData);
       
       if (response.data.success) {
-        dispatch({ type: 'UPDATE_USER', payload: response.data.user });
+        dispatch({ type: 'UPDATE_USER', payload: profileData });
         return { success: true, message: 'प्रोफाइल अपडेट हो गई' };
       } else {
         return { success: false, message: response.data.message };
@@ -176,7 +177,7 @@ export const AuthProvider = ({ children }) => {
 
   const changePassword = async (passwordData) => {
     try {
-      const response = await axios.put('/auth/change-password', passwordData);
+      const response = await axios.put('/user/change-password', passwordData);
       
       if (response.data.success) {
         return { success: true, message: 'पासवर्ड सफलतापूर्वक बदला गया' };
