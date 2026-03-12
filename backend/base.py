@@ -53,6 +53,10 @@ def create_app():
     app.register_blueprint(vendor_bp)
     app.register_blueprint(admin_bp)
 
+    # Initialize database tables on startup
+    with app.app_context():
+        database.initialize_database()
+
     # JWT error handlers
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
