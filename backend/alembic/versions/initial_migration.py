@@ -43,8 +43,8 @@ def upgrade() -> None:
             sa.PrimaryKeyConstraint('UserId'),
             sa.UniqueConstraint('Email')
         )
-    op.create_index('ix_user_email', 'User', ['Email'], unique=True, if_not_exists=True)
-    op.create_index('ix_user_store_id', 'User', ['StoreID'], unique=False, if_not_exists=True)
+        op.create_index('ix_user_email', 'User', ['Email'], unique=True)
+        op.create_index('ix_user_store_id', 'User', ['StoreID'], unique=False)
 
     # InvitationCodes Table
     if 'InvitationCodes' not in existing_tables:
@@ -91,7 +91,7 @@ def upgrade() -> None:
             sa.ForeignKeyConstraint(['CategoryId'], ['Categories.CategoryId'], ),
             sa.PrimaryKeyConstraint('StoreId', 'ItemId')
         )
-    op.create_index('ix_store_category_id', 'Store', ['CategoryId'], unique=False, if_not_exists=True)
+        op.create_index('ix_store_category_id', 'Store', ['CategoryId'], unique=False)
 
     # Cart Table
     if 'cart' not in existing_tables:
@@ -132,9 +132,9 @@ def upgrade() -> None:
             sa.ForeignKeyConstraint(['CustomerId'], ['User.UserId'], ),
             sa.PrimaryKeyConstraint('OrderDetailId')
         )
-    op.create_index('ix_orders_customer_id', 'orders', ['CustomerId'], unique=False, if_not_exists=True)
-    op.create_index('ix_orders_status', 'orders', ['OrderStatus'], unique=False, if_not_exists=True)
-    op.create_index('ix_orders_order_id', 'orders', ['OrderId'], unique=False, if_not_exists=True)
+        op.create_index('ix_orders_customer_id', 'orders', ['CustomerId'], unique=False)
+        op.create_index('ix_orders_status', 'orders', ['OrderStatus'], unique=False)
+        op.create_index('ix_orders_order_id', 'orders', ['OrderId'], unique=False)
 
     # Inventory Table
     if 'inventory' not in existing_tables:
@@ -162,8 +162,8 @@ def upgrade() -> None:
             sa.UniqueConstraint('SKU'),
             sa.UniqueConstraint('VendorId', 'ItemId', name='uq_inventory_vendor_item')
         )
-    op.create_index('ix_inventory_category_id', 'inventory', ['CategoryId'], unique=False, if_not_exists=True)
-    op.create_index('ix_inventory_vendor_id', 'inventory', ['VendorId'], unique=False, if_not_exists=True)
+        op.create_index('ix_inventory_category_id', 'inventory', ['CategoryId'], unique=False)
+        op.create_index('ix_inventory_vendor_id', 'inventory', ['VendorId'], unique=False)
 
     # Payments Table
     if 'payments' not in existing_tables:
@@ -183,7 +183,7 @@ def upgrade() -> None:
             sa.PrimaryKeyConstraint('PaymentId'),
             sa.UniqueConstraint('TransactionId')
         )
-    op.create_index('ix_payments_order_id', 'payments', ['OrderId'], unique=False, if_not_exists=True)
+        op.create_index('ix_payments_order_id', 'payments', ['OrderId'], unique=False)
 
     # Reviews Table
     if 'reviews' not in existing_tables:
@@ -203,7 +203,7 @@ def upgrade() -> None:
             sa.ForeignKeyConstraint(['CustomerId'], ['User.UserId'], ),
             sa.PrimaryKeyConstraint('ReviewId')
         )
-    op.create_index('ix_reviews_product_id', 'reviews', ['ProductId'], unique=False, if_not_exists=True)
+        op.create_index('ix_reviews_product_id', 'reviews', ['ProductId'], unique=False)
 
     # Wishlist Table
     if 'wishlist' not in existing_tables:
