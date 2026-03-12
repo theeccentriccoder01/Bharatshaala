@@ -4,6 +4,7 @@ flask-login
 flask-jwt-extended
 flask-cors
 sqlalchemy
+alembic
 pymongo
 pillow
 flask-limiter

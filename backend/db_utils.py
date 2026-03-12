@@ -80,7 +80,7 @@ class ConnectionPool:
 
 
 # Global connection pool instance
-from .config import Config
+from .database import DATABASE_NAME
 _connection_pool = None
 
 
@@ -89,7 +89,7 @@ def get_connection_pool() -> ConnectionPool:
     global _connection_pool
     if _connection_pool is None:
         _connection_pool = ConnectionPool(
-            Config.DATABASE_URL.replace('sqlite:///', ''),
+            DATABASE_NAME,
             max_connections=5
         )
     return _connection_pool
@@ -99,7 +99,8 @@ def get_connection_pool() -> ConnectionPool:
 def get_pooled_connection():
     """Context manager for getting a pooled connection"""
     pool = get_connection_pool()
-    yield from pool.get_connection()
+    with pool.get_connection() as conn:
+        yield conn
 
 
 def with_retry(max_retries: int = MAX_RETRIES, delay: float = RETRY_DELAY):
