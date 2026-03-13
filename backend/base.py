@@ -4,22 +4,35 @@ from flask import Flask, request
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
 from flask_cors import CORS
 import os
+import sys
 
-# Import configuration and utilities
-from .config import Config
-from .utils import success_response, error_response
-from .extensions import limiter
+# Support both `backend.base` (package import) and `base` (top-level import)
+if __package__:
+    from .config import Config
+    from .utils import success_response, error_response
+    from .extensions import limiter
+    from .auth import auth_bp
+    from .products import products_bp
+    from .cart import cart_bp
+    from .orders import orders_bp
+    from .vendor import vendor_bp
+    from .admin import admin_bp
+    from . import database
+else:
+    backend_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if backend_root not in sys.path:
+        sys.path.insert(0, backend_root)
 
-# Import blueprints
-from .auth import auth_bp
-from .products import products_bp
-from .cart import cart_bp
-from .orders import orders_bp
-from .vendor import vendor_bp
-from .admin import admin_bp
-
-# Import database
-from . import database
+    from backend.config import Config
+    from backend.utils import success_response, error_response
+    from backend.extensions import limiter
+    from backend.auth import auth_bp
+    from backend.products import products_bp
+    from backend.cart import cart_bp
+    from backend.orders import orders_bp
+    from backend.vendor import vendor_bp
+    from backend.admin import admin_bp
+    from backend import database
 
 def register_error_handlers(flask_app):
     @flask_app.errorhandler(429)
