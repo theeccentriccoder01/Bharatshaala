@@ -9,3 +9,4 @@ pillow
 flask-limiter
 gunicorn
 alembic
+requests
