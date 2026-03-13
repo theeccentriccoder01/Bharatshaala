@@ -10,3 +10,4 @@ flask-limiter
 gunicorn
 alembic
 requests
+setuptools
