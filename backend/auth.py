@@ -50,7 +50,7 @@ def login():
             return error_response("User not found", 404)
         
         # Check if user is active
-        if not user[7]:  # is_active field
+        if not user['IsActive']:
             return error_response("Account is deactivated", 401)
         
         # Create JWT tokens
@@ -58,12 +58,12 @@ def login():
         refresh_token = create_refresh_token(identity=str(user_id))
         
         user_data = {
-            'id': user[0],
-            'email': user[2],
-            'name': user[3],
-            'role': user[1],
-            'phone': user[5],
-            'is_verified': user[6]
+            'id': user['UserId'],
+            'email': user['Email'],
+            'name': user['Name'],
+            'role': user['AccountType'],
+            'phone': user['PhoneNumber'],
+            'is_verified': user['IsVerified']
         }
         
         return success_response({

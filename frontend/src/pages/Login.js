@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from "../components/LoadingSpinner";
 import "../App.css";
-import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,155 +13,55 @@ const Login = () => {
   const [pageLoading, setPageLoading] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [loginMethod, setLoginMethod] = useState('email'); // 'email' or 'phone'
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [otp, setOtp] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
   const navigate = useNavigate();
+  const { login, isAuthenticated, accountType } = useAuth();
 
   useEffect(() => {
-    // Check if user is already logged in
-    checkAuthStatus();
+    if (isAuthenticated) {
+      navigate(accountType === 'vendor' ? '/vendor/dashboard' : '/user/account');
+    }
     const timer = setTimeout(() => setPageLoading(false), 800);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAuthenticated, accountType, navigate]);
 
-  const checkAuthStatus = async () => {
-    try {
-      const response = await fetch('/GetUser', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.loggedIn) {
-          if (data.accountType === "vendor") {
-            navigate('/vendor/dashboard');
-          } else {
-            navigate('/user/account');
-          }
-        }
-      }
-    } catch (error) {
-      console.log('Auth check failed:', error);
-    }
-  };
-
-  const validateEmail = async (email) => {
+  const validateEmail = (email) => {
     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!isValid) {
       setEmailError("अमान्य ईमेल प्रारूप");
       return "अमान्य ईमेल प्रारूप";
     }
-
-    try {
-      const response = await axios.post("/AuthenticateEmail", { email });
-      if (response.data.exists) {
-        setEmailError("");
-        return "";
-      } else {
-        setEmailError(response.data.message.toString());
-        return response.data.message.toString();
-      }
-    } catch (error) {
-      setEmailError("ईमेल जांचने में त्रुटि");
-      return "ईमेल जांचने में त्रुटि";
-    }
+    setEmailError("");
+    return "";
   };
 
-  const validatePassword = async (password) => {
-    try {
-      const response = await axios.post("/AuthenticatePassword", { email, password });
-      if (response.data.valid) {
-        setPasswordError("");
-        return "";
-      } else {
-        setPasswordError(response.data.message);
-        return response.data.message;
-      }
-    } catch (error) {
-      setPasswordError("पासवर्ड जांचने में त्रुटि");
-      return "पासवर्ड जांचने में त्रुटि";
+  const validatePassword = (password) => {
+    if (!password) {
+      setPasswordError("कृपया पासवर्ड दर्ज करें");
+      return "कृपया पासवर्ड दर्ज करें";
     }
+    setPasswordError("");
+    return "";
   };
 
-  const sendOTPLogin = async () => {
+  const handleLogin = async () => {
+    const eErr = validateEmail(email);
+    const pErr = validatePassword(password);
+    if (eErr || pErr) return;
+
     setIsLoading(true);
-    try {
-      const response = await axios.post("/SendLoginOTP", { phoneNumber });
-      if (response.data.success) {
-        setOtpSent(true);
-        setEmailError("");
-      } else {
-        setEmailError("OTP भेजने में समस्या");
-      }
-    } catch (error) {
-      setEmailError("OTP भेजने में त्रुटि");
-    }
+    const result = await login({ email, password });
     setIsLoading(false);
-  };
 
-  const verifyOTPLogin = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.post("/VerifyLoginOTP", { phoneNumber, otp });
-      if (response.data.success) {
-        handleSuccessfulLogin(response.data);
-      } else {
-        setPasswordError("गलत OTP");
-      }
-    } catch (error) {
-      setPasswordError("OTP सत्यापन में त्रुटि");
-    }
-    setIsLoading(false);
-  };
-
-  const login = async () => {
-    if (loginMethod === 'phone') {
-      if (!otpSent) {
-        await sendOTPLogin();
-      } else {
-        await verifyOTPLogin();
-      }
-      return;
-    }
-
-    if (!emailError && !passwordError && email && password) {
-      setIsLoading(true);
-      try {
-        await axios.post("/Login", { email, password });
-
-        const response = await fetch('/GetUser', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' }
-        });
-
-        const data = await response.json();
-        handleSuccessfulLogin(data);
-      } catch (error) {
-        setPasswordError("लॉगिन में त्रुटि");
-      }
-      setIsLoading(false);
-    }
-  };
-
-  const handleSuccessfulLogin = (data) => {
-    if (rememberMe) {
-      localStorage.setItem('rememberLogin', 'true');
-    }
-
-    if (data.accountType === "vendor") {
-      navigate('/vendor/dashboard');
+    if (result.success) {
+      if (rememberMe) localStorage.setItem('rememberLogin', 'true');
+      navigate(result.accountType === 'vendor' ? '/vendor/dashboard' : '/user/account');
     } else {
-      navigate("/user/account");
+      setPasswordError(result.message || 'लॉगिन में त्रुटि');
     }
   };
 
   const socialLogin = (provider) => {
-    // Implement social login
-    console.log(`Login with ${provider}`);
+    console.log(`Login with ${provider} - not implemented`);
   };
 
   if (pageLoading) {
@@ -192,37 +92,11 @@ const Login = () => {
           {/* Login Form */}
           <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-emerald-200 dark:border-gray-700">
 
-            {/* Login Method Toggle */}
-            <div className="flex bg-emerald-100 dark:bg-emerald-900/30 rounded-xl p-1 mb-6">
-              <button
-                onClick={() => setLoginMethod('email')}
-                className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  loginMethod === 'email'
-                    ? 'bg-emerald-500 text-white shadow-md'
-                    : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
-                }`}
-              >
-                📧 ईमेल से लॉगिन
-              </button>
-              <button
-                onClick={() => setLoginMethod('phone')}
-                className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  loginMethod === 'phone'
-                    ? 'bg-emerald-500 text-white shadow-md'
-                    : 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-700'
-                }`}
-              >
-                📱 फोन से लॉगिन
-              </button>
-            </div>
-
-            {loginMethod === 'email' ? (
-              <>
-                {/* Email Field */}
-                <div className="mb-6">
-                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
-                    ईमेल पता
-                  </label>
+            {/* Email Field */}
+            <div className="mb-6">
+              <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
+                ईमेल पता
+              </label>
                   <div className="relative">
                     <input
                       type="email"
@@ -286,82 +160,33 @@ const Login = () => {
                       )}
                     </button>
                   </div>
-                  {passwordError && (
+                    {passwordError && (
                     <p className="text-red-500 text-sm mt-2 flex items-center">
                       <span className="mr-1">⚠️</span>
                       {passwordError}
                     </p>
                   )}
                 </div>
-              </>
-            ) : (
-              <>
-                {/* Phone Login */}
-                <div className="mb-6">
-                  <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
-                    फोन नंबर
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="tel"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="w-full px-4 py-4 pl-12 border-2 border-emerald-200 dark:border-gray-600 rounded-xl focus:border-emerald-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg"
-                      placeholder="+91 98765 43210"
-                    />
-                    <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                </div>
-
-                {otpSent && (
-                  <div className="mb-6">
-                    <label className="block text-emerald-800 dark:text-emerald-300 font-semibold text-lg mb-2">
-                      OTP दर्ज करें
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        className="w-full px-4 py-4 pl-12 border-2 border-emerald-200 dark:border-gray-600 rounded-xl focus:border-emerald-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100 text-lg text-center tracking-widest"
-                        placeholder="6 अंकों का OTP"
-                        maxLength={6}
-                      />
-                      <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p className="text-emerald-600 dark:text-emerald-400 text-sm mt-2">
-                      📱 {phoneNumber} पर OTP भेजा गया है
-                    </p>
-                  </div>
-                )}
-              </>
-            )}
 
             {/* Remember Me & Forgot Password */}
-            {loginMethod === 'email' && (
-              <div className="flex justify-between items-center mb-6">
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 text-emerald-600 border-emerald-300 dark:border-emerald-600 rounded focus:ring-emerald-500"
-                  />
-                  <span className="text-emerald-700 dark:text-emerald-300 text-sm">मुझे याद रखें</span>
-                </label>
-                <a href="/forgot-password" className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-sm font-medium">
-                  पासवर्ड भूल गए?
-                </a>
-              </div>
-            )}
+            <div className="flex justify-between items-center mb-6">
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 text-emerald-600 border-emerald-300 dark:border-emerald-600 rounded focus:ring-emerald-500"
+                />
+                <span className="text-emerald-700 dark:text-emerald-300 text-sm">मुझे याद रखें</span>
+              </label>
+              <a href="/forgot-password" className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-sm font-medium">
+                पासवर्ड भूल गए?
+              </a>
+            </div>
 
             {/* Login Button */}
             <button
-              onClick={login}
+              onClick={handleLogin}
               disabled={isLoading}
               className={`w-full bg-gradient-to-r from-emerald-500 to-green-500 text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                 isLoading
@@ -374,9 +199,7 @@ const Login = () => {
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   <span>प्रतीक्षा करें...</span>
                 </div>
-              ) : (
-                loginMethod === 'phone' && !otpSent ? 'OTP भेजें' : 'लॉग इन करें'
-              )}
+              ) : 'लॉग इन करें'}
             </button>
 
             {/* Divider */}
