@@ -4,6 +4,10 @@ from flask import Flask, request
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
 from flask_cors import CORS
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Import configuration and utilities
 from .config import Config

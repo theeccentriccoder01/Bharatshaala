@@ -3,23 +3,31 @@ from datetime import timedelta
 
 class Config:
     # Flask Configuration
-    SECRET_KEY = os.environ.get('SECRET_KEY') or '12aj2k4j3lj5nlsklq24534'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    if not SECRET_KEY:
+        raise ValueError("SECRET_KEY environment variable not set. Please set it in .env file.")
     
     # JWT Configuration
-    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or 'bharatshaala-jwt-secret-key'
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
+    if not JWT_SECRET_KEY:
+        raise ValueError("JWT_SECRET_KEY environment variable not set. Please set it in .env file.")
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     
     # Database Configuration
-    DATABASE_URL = os.environ.get('DATABASE_URL') or 'sqlite:///bharatshaala.db'
+    DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///bharatshaala.db')
     
     # API Configuration
     API_VERSION = 'v1'
     API_BASE_URL = f'https://api.bharatshaala.com/{API_VERSION}'
     
     # Razorpay Configuration
-    RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID') or 'rzp_test_BXNSan3NdLPrPa'
-    RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET') or 'jQLMopwxI1FrtqnrHg3j9e3R'
+    RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID')
+    if not RAZORPAY_KEY_ID:
+        raise ValueError("RAZORPAY_KEY_ID environment variable not set. Please set it in .env file.")
+    RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET')
+    if not RAZORPAY_KEY_SECRET:
+        raise ValueError("RAZORPAY_KEY_SECRET environment variable not set. Please set it in .env file.")
     
     # Upload Configuration
     UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER') or 'uploads'
