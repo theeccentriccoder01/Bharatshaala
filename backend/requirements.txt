@@ -11,3 +11,7 @@ gunicorn
 alembic
 requests
 razorpay
+python-dotenv
+redis
+black
+flake8

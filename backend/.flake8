@@ -1,0 +1,32 @@
+[flake8]
+# Flake8 Configuration for Bharatshaala Backend
+max-line-length = 100
+max-complexity = 10
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    .eggs,
+    build,
+    dist,
+    alembic/,
+    migrations/,
+    razorpay_sdk/
+ignore =
+    E203,  # Whitespace before ':'
+    E501,  # Line too long (handled by black)
+    W503,  # Line break before binary operator
+    W504,  # Line break after binary operator
+    F401,  # Imported but unused (can be disabled per import)
+    F841,  # Local variable assigned but never used
+per-file-ignores =
+    __init__.py:F401
+    tests/*:F401,F811
+
+# Docstring coverage (if using flake8-docstrings)
+docstring-convention = google
+
+# Statistics
+statistics = True
+count = True

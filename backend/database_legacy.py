@@ -1039,6 +1039,6 @@ def Add_User(username, password, user_type):
 if __name__ == "__main__":
     try:
         initialize_database()
-        print("Database initialization completed successfully!")
+        logger.info("Database initialization completed successfully!")
     except Exception as e:
-        print(f"Database initialization failed: {e}")
+        logger.error(f"Database initialization failed: {e}")
