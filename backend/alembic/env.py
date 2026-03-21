@@ -2,29 +2,19 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
-import os
-import sys
-
-# Add the parent directory to sys.path to import models
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-
-# Import models for autogenerate support BEFORE setting metadata
-from models import Base
-
-# Use the database name from models (sql.db)
-config.set_main_option('sqlalchemy.url', 'sqlite:///sql.db')
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Set the target metadata for Alembic
-target_metadata = Base.metadata
+# Models in this project use raw SQLite (no SQLAlchemy ORM), so target_metadata
+# is None. Migrations are written manually — autogenerate is not used.
+target_metadata = None
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

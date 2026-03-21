@@ -7,4 +7,7 @@ sqlalchemy
 pymongo
 pillow
 flask-limiter
-python-dotenv
+gunicorn
+alembic
+requests
+razorpay

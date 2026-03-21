@@ -1,0 +1,33 @@
+# Environment variables - NEVER commit secrets
+.env
+.env.*
+!.env.example
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Egg / packaging
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Uploads (user-generated content)
+uploads/
+
+# Alembic runtime files (keep alembic/ sources but not pycache inside)
+alembic/__pycache__/
+alembic/versions/__pycache__/
