@@ -12,7 +12,7 @@ load_dotenv()
 # Import configuration and utilities
 from .config import Config
 from .utils import success_response, error_response
-from .extensions import limiter
+from .extensions import limiter, db, init_db
 
 # Import blueprints
 from .auth import auth_bp
@@ -38,16 +38,18 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-
+    # Initialize SQLAlchemy database
+    init_db(app)
+    
     # Initialize extensions
     jwt = JWTManager(app)
     CORS(app, origins=app.config['CORS_ORIGINS'])
+    limiter.init_app(app)
     
     # Create upload folders
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], 'products'), exist_ok=True)
-    #init rate-limiter
-    limiter.init_app(app)
+    
     register_error_handlers(app)
     # Register blueprints
     app.register_blueprint(auth_bp)
