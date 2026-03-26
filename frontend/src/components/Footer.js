@@ -4,6 +4,60 @@ import '../App.css';
 var date = new Date();
 var currYear = date.getFullYear();
 
+// Social media links configuration
+const socialMediaLinks = [
+  {
+    name: 'facebook',
+    url: 'https://www.facebook.com/',
+    icon: 'facebook'
+  },
+  {
+    name: 'twitter',
+    url: 'https://www.twitter.com/',
+    icon: 'twitter'
+  },
+  {
+    name: 'instagram',
+    url: 'https://www.instagram.com/',
+    icon: 'instagram'
+  },
+  {
+    name: 'youtube',
+    url: 'https://www.youtube.com/',
+    icon: 'youtube'
+  }
+];
+
+// Function to get SVG icon based on social media platform
+const getSocialIcon = (iconType) => {
+  const icons = {
+    facebook: (
+      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 0C4.477 0 0 4.477 0 10c0 5.013 3.693 9.153 8.505 9.876v-6.987h-2.56V10h2.56V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.129 20 14.99 20 10c0-5.523-4.477-10-10-10z"/>
+      </svg>
+    ),
+    twitter: (
+      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
+      </svg>
+    ),
+    instagram: (
+      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 0C7.287 0 6.949.012 5.905.058c-1.04.047-1.752.217-2.374.465-.644.25-1.191.586-1.738 1.133-.547.547-.883 1.094-1.133 1.738-.248.622-.418 1.334-.465 2.374C.012 6.948 0 7.287 0 10s.012 3.052.058 4.095c.047 1.04.217 1.752.465 2.374.25.644.586 1.191 1.133 1.738.547.547 1.094.883 1.738 1.133.622.248 1.334.418 2.374.465 1.044.046 1.383.058 4.095.058s3.051-.012 4.095-.058c1.04-.047 1.752-.217 2.374-.465.644-.25 1.191-.586 1.738-1.133.547-.547.883-1.094 1.133-1.738.248-.622.418-1.334.465-2.374.046-1.044.058-1.383.058-4.095s-.012-3.051-.058-4.095c-.047-1.04-.217-1.752-.465-2.374-.25-.644-.586-1.191-1.133-1.738C18.309.586 17.762.25 17.118 0c-.622-.248-1.334-.418-2.374-.465C13.052.012 12.713 0 10 0zm0 1.8c2.663 0 2.981.01 4.033.058.973.045 1.502.207 1.853.344.466.182.798.398 1.148.748.35.35.566.682.748 1.148.137.351.299.88.344 1.853.048 1.052.058 1.37.058 4.033s-.01 2.981-.058 4.033c-.045.973-.207 1.502-.344 1.853-.182.466-.398.798-.748 1.148-.35.35-.682.566-1.148.748-.351.137-.88.299-1.853.344-1.052.048-1.37.058-4.033.058s-2.981-.01-4.033-.058c-.973-.045-1.502-.207-1.853-.344-.466-.182-.798-.398-1.148-.748-.35-.35-.566-.682-.748-1.148-.137-.351-.299-.88-.344-1.853-.048-1.052-.058-1.37-.058-4.033s.01-2.981.058-4.033c.045-.973.207-1.502.344-1.853.182-.466.398-.798.748-1.148.35-.35.682-.566 1.148-.748.351-.137.88-.299 1.853-.344 1.052-.048 1.37-.058 4.033-.058z"/>
+        <circle cx="10" cy="10" r="3.85" fill="currentColor"/>
+        <circle cx="15.658" cy="4.342" r="0.927" fill="currentColor"/>
+      </svg>
+    ),
+    youtube: (
+      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M19.615 3.654a2 2 0 00-1.414-1.414C15.88 2 10 2 10 2s-5.88 0-8.201.24a2 2 0 00-1.414 1.414C0 5.875 0 10 0 10s0 4.125.171 6.346a2 2 0 001.414 1.414c2.321.24 8.201.24 8.201.24s5.88 0 8.201-.24a2 2 0 001.414-1.414C20 14.125 20 10 20 10s0-4.125-.171-6.346zM8 14V6l5.2 4-5.2 4z"/>
+      </svg>
+    )
+  };
+  
+  return icons[iconType] || icons.twitter;
+};
+
 const Footer = () => {
   return (
     <React.StrictMode>
@@ -33,12 +87,18 @@ const Footer = () => {
                 भारत की सांस्कृतिक विरासत को डिजिटल रूप में संजोते हुए, हम पारंपरिक बाजारों को आधुनिक तकनीक से जोड़ते हैं।
               </p>
               <div className="flex space-x-4">
-                {['facebook', 'twitter', 'instagram', 'youtube'].map((social) => (
-                  <div key={social} className="w-10 h-10 bg-emerald-700 hover:bg-emerald-600 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
-                    </svg>
-                  </div>
+                {socialMediaLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-emerald-700 hover:bg-emerald-600 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
+                    aria-label={`Visit our ${social.name} page`}
+                    title={`Follow us on ${social.name}`}
+                  >
+                    {getSocialIcon(social.icon)}
+                  </a>
                 ))}
               </div>
             </div>
