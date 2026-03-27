@@ -14,8 +14,15 @@ class Config:
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     
-    # Database Configuration
-    DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///bharatshaala.db')
+    # Database Configuration - Using sql.db as the active database
+    DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///sql.db')
+    SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'connect_args': {'timeout': 30},
+        'pool_pre_ping': True,
+        'pool_recycle': 3600,
+    }
     
     # API Configuration
     API_VERSION = 'v1'
@@ -47,6 +54,10 @@ class Config:
     # Pagination
     DEFAULT_PAGE_SIZE = 20
     MAX_PAGE_SIZE = 100
+    
+    # Rate Limiting Configuration
+    RATELIMIT_DEFAULT = "200 per day"
+    RATELIMIT_STRATEGY = "moving-window"
     
     # Application Settings
     SHIPPING_COST = 100
