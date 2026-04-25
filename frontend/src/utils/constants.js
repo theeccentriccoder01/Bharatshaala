@@ -1,5 +1,5 @@
 // Comprehensive Constants for Bharatshaala Platform
-// Updated: 2025-08-06 18:20:54 UTC by eccentriccoder01
+// Updated: 2025-08-06 18:20:54 UTC by theeccentriccoder
 
 export const PLATFORM_SETTINGS = {
   NAME: 'भारतशाला',
