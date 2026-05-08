@@ -25,17 +25,17 @@ Experience Bharatshaala live here:
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat)
-![Visitors](https://api.visitorbadge.io/api/Visitors?path=theeccentriccoder%2FBharatshaala%20&countColor=%23263759&style=flat)
-![GitHub Forks](https://img.shields.io/github/forks/theeccentriccoder/Bharatshaala)
-![GitHub Repo Stars](https://img.shields.io/github/stars/theeccentriccoder/Bharatshaala)
-![GitHub Contributors](https://img.shields.io/github/contributors/theeccentriccoder/Bharatshaala)
-![GitHub Last Commit](https://img.shields.io/github/last-commit/theeccentriccoder/Bharatshaala)
-![GitHub Repo Size](https://img.shields.io/github/repo-size/theeccentriccoder/Bharatshaala)
-![Github](https://img.shields.io/github/license/theeccentriccoder/Bharatshaala)
-![GitHub Issues](https://img.shields.io/github/issues/theeccentriccoder/Bharatshaala)
-![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/theeccentriccoder/Bharatshaala)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/theeccentriccoder/Bharatshaala)
-![GitHub Closed Pull Requests](https://img.shields.io/github/issues-pr-closed/theeccentriccoder/Bharatshaala)
+![Visitors](https://api.visitorbadge.io/api/Visitors?path=theeccentriccoder01%2FBharatshaala%20&countColor=%23263759&style=flat)
+![GitHub Forks](https://img.shields.io/github/forks/theeccentriccoder01/Bharatshaala)
+![GitHub Repo Stars](https://img.shields.io/github/stars/theeccentriccoder01/Bharatshaala)
+![GitHub Contributors](https://img.shields.io/github/contributors/theeccentriccoder01/Bharatshaala)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/theeccentriccoder01/Bharatshaala)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/theeccentriccoder01/Bharatshaala)
+![Github](https://img.shields.io/github/license/theeccentriccoder01/Bharatshaala)
+![GitHub Issues](https://img.shields.io/github/issues/theeccentriccoder01/Bharatshaala)
+![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/theeccentriccoder01/Bharatshaala)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/theeccentriccoder01/Bharatshaala)
+![GitHub Closed Pull Requests](https://img.shields.io/github/issues-pr-closed/theeccentriccoder01/Bharatshaala)
  </p>
  </div>
 
@@ -175,7 +175,7 @@ Ensure you have the following installed:
 
 ### 1) Clone the repository
 ```bash
-git clone https://github.com/theeccentriccoder/Bharatshaala.git
+git clone https://github.com/theeccentriccoder01/Bharatshaala.git
 cd Bharatshaala
 ```
 
@@ -320,7 +320,7 @@ This project is open-source and available under the MIT License.
 
 ## 📞 Contact
 
-Developed by [Eccentric Explorer](https://theeccentriccoder.github.io/Me)
+Developed by [Eccentric Explorer](https://theeccentriccoder01.github.io/Me)
 
 Bharatshaala aspires to be more than an online marketplace—it’s a cultural bridge. By giving Indian markets a beautiful, honest digital expression—backed by responsible commerce and modern tech—we can inspire pride at home, curiosity abroad, and prosperity for the communities that keep our heritage alive.
 
